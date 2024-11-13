@@ -1,6 +1,14 @@
-"use client"
 import type { Metadata } from "next";
 import "./globals.css";
+import { Inter, Calistoga } from "next/font/google";
+import { twMerge } from "tailwind-merge";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const calistoga = Calistoga({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Navaneethan _ Front-End Developer",
@@ -14,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={twMerge(inter.className, calistoga.className, "bg-gray-900 text-white antialiased")}>
+        {children}
+      </body>
     </html>
   );
 }
