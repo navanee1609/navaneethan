@@ -5,6 +5,8 @@ import Image from "next/image";
 import CheckIcon from "@/assets/icons/check-circle.svg" 
 import ArrowUpIcon from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
+import { SectionHeader } from "./SectionHeader";
+import { Card } from "@/components/Card";
 const portfolioProjects = [
   {
     company: "Spritle",
@@ -48,26 +50,15 @@ export const ProjectsSection = () => {
   return (
     <section className="pb-16 lg:py-24">
     <div className="container">
-      <div className="flex justify-center">
-        <p className="uppercase font-semibold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 text-center bg-clip-text text-transparent">
-          Real-world Results
-        </p>
-      </div>
-      <h2 className="font-serif text-3xl md:text-5xl text-center mt-6">Featured Projects</h2>
-      <p className="text-center md:text-lg lg:text-xl text-white/60 mt-4 max-w-md mx-auto">Elevating the Digital Experience.</p>
+      <SectionHeader eyebrow="Real world results" description="Elevating the Digital Experience." title="Featured Projects"/>
+      
       <div className="mt-10 md:mt-20 flex flex-col gap-14">
         {portfolioProjects.map((project) => (
-          <div
-            className="bg-gray-800 rounded-3xl relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1] px-8 pt-8 md:pt-12 md:px-10 lg:pt-16 lg:px-16"
+          <Card
+            className=" px-8 pb-0 pt-8 md:pt-12 md:px-10 lg:pt-16 lg:px-16"
             key={project.title}
           >
-            <div
-              className="absolute inset-0 opacity-5 pointer-events-none"
-              style={{
-                backgroundImage: `url(${grainImage.src})`,
-                zIndex: -1, // Ensure background image is below the content
-              }}
-            ></div>
+            
             <div className="lg:grid lg:grid-cols-2 lg:gap-20" >
               <div className="lg:pb-16">
             <div className="flex justify-between">
@@ -98,7 +89,7 @@ export const ProjectsSection = () => {
             <Image src={project.image} alt={project.title} className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none"  />
             </div>
             </div>
-          </div>
+          </Card>
         ))}
       </div>
     </div>
