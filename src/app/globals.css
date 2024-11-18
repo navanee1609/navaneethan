@@ -18,3 +18,50 @@
         }
     }
 }
+
+/* Timeline Styles */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+  }
+  
+  .timeline-list {
+    list-style: none;
+  }
+  
+  .timeline-item {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .timeline-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+  }
+  
+  .timeline-content {
+    flex: 1;
+  }
+  
+  .timeline-date {
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .timeline-title {
+    font-size: 18px;
+    margin-top: 5px;
+  }
+  
+  .timeline-description {
+    font-size: 14px;
+    color: #666;
+  }
+  

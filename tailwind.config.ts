@@ -28,7 +28,8 @@ const config: Config = {
      animation: {
         'ping-large': "ping-large 1s ease-in-out infinite", // Fixed typo
         'move-left': "move-left 30s linear infinite", // Fixed typo
-        'move-left-card': "move-left 60s linear infinite", // Fixed typo
+        'move-left-card': "move-left-card 60s linear infinite", // Fixed typo
+        'move-right-card': "move-right-card 60s linear infinite", // Fixed typo
       },
       keyframes: {
         'ping-large': {
@@ -51,6 +52,14 @@ const config: Config = {
           },
           '100%': {
             transform: 'translateX(-50%)'
+          }
+        },
+        'move-right-card': {
+          '0': {
+            transform: 'translateX(-50%)'
+          },
+          '100%': {
+            transform: 'translateX(0%)'
           }
         },
       }
