@@ -21,15 +21,15 @@ const config: Config = {
       },
     },
     extend: {
-      fontFamily:{
-        Sans: 'var{--font-sans}',
+      fontFamily: {
+        Sans: 'var(--font-sans)', // Fixed typo
         serif: 'var(--font-serif)',
       },
-     animation: {
-        'ping-large': "ping-large 1s ease-in-out infinite", // Fixed typo
-        'move-left': "move-left 30s linear infinite", // Fixed typo
-        'move-left-card': "move-left-card 60s linear infinite", // Fixed typo
-        'move-right-card': "move-right-card 60s linear infinite", // Fixed typo
+      animation: {
+        'ping-large': "ping-large 1s ease-in-out infinite",
+        'move-left': "move-left 30s linear infinite",
+        'move-left-card': "move-left-card 60s linear infinite",
+        'move-right-card': "move-right-card 60s linear infinite",
       },
       keyframes: {
         'ping-large': {
@@ -39,32 +39,21 @@ const config: Config = {
           }
         },
         'move-left': {
-          '0': {
-            transform: 'translateX(0%)'
-          },
-          '100%': {
-            transform: 'translateX(-50%)'
-          }
+          '0': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         'move-left-card': {
-          '0': {
-            transform: 'translateX(0%)'
-          },
-          '100%': {
-            transform: 'translateX(-50%)'
-          }
+          '0': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         'move-right-card': {
-          '0': {
-            transform: 'translateX(-50%)'
-          },
-          '100%': {
-            transform: 'translateX(0%)'
-          }
+          '0': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
         },
       }
     },
   },
   plugins: [],
 };
+
 export default config;

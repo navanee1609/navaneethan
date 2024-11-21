@@ -15,6 +15,7 @@ import { CardHeader } from "@/components/Cardheader";
 import { ToolboxItems } from "@/components/ToolboxItems";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import { Timeline } from "./Timeline";
 
 // Data for the timeline
 const timelineData = [
@@ -128,7 +129,8 @@ export const AboutSection = () => {
   const constrainRef = useRef(null); // Initialize the ref for drag constraints
 
   return (
-    <div className="py-20">
+    <section id="about">
+      <div className="py-20">
       <div className="container">
         <SectionHeader eyebrow="Learn a glimpse about me" title="About me" description="something about me" />
       
@@ -148,26 +150,45 @@ export const AboutSection = () => {
             </Card>
           </div>
 
-          {/* Timeline Section */}
-          <div className="grid grid-cols-1 gap-8 mt-12 md:grid-cols-5">
-            <Card className="h-[auto] p-0 col-span-5">
-              <CardHeader title="Timeline" description="A glimpse into my journey" className="px-6 py-6" />
-              <div className="timeline">
-                <ul className="timeline-list">
-                  {timelineData.map((item, index) => (
-                    <li key={index} className="timeline-item">
-                      <div className="timeline-icon">{item.icon}</div>
-                      <div className="timeline-content">
-                        <span className="timeline-date">{item.date}</span>
-                        <h3 className="timeline-title">{item.title}</h3>
-                        <p className="timeline-description">{item.description}</p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Card>
-          </div>
+          {/* Bento grid */}
+          <div className="mt-12">
+
+  {/* Bento Grid Section */}
+  <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
+    {/* Card 1: Reasons to Hire Me */}
+    <Card className="h-[320px]">
+      <CardHeader
+        title="Reasons to Hire Me"
+        description="Why I would be a great addition to your team."
+        className="px-6 py-6"
+      />
+      <div className="px-6 pb-6">
+        <p className="text-white/50">
+          I bring a mix of technical expertise, creative problem-solving, and a
+          passion for building engaging, user-friendly web experiences. My dedication
+          and attention to detail ensure quality in every project I undertake.
+        </p>
+      </div>
+    </Card>
+
+    {/* Card 2: What Drives Me */}
+    <Card className="h-[320px]">
+      <CardHeader
+        title="What Drives Me"
+        description="The motivation behind my passion for development."
+        className="px-6 py-6"
+      />
+      <div className="px-6 pb-6">
+        <p className="text-white/50">
+          My drive comes from a deep curiosity about technology and a desire to
+          create meaningful solutions. I enjoy turning challenges into opportunities
+          to learn and grow, pushing myself to deliver impactful results.
+        </p>
+      </div>
+    </Card>
+  </div>
+</div>
+
 
           {/* Hobbies Section */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
@@ -204,5 +225,7 @@ export const AboutSection = () => {
         </div>
       </div>
     </div>
+    <Timeline/>
+    </section>
   );
 };
