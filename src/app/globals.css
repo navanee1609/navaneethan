@@ -18,7 +18,9 @@
         }
     }
 }
-
+html{
+  scroll-behavior: smooth;
+}
 /* Customize the scrollbar */
 ::-webkit-scrollbar {
     width: 4px;  /* Reduced width of the scrollbar */

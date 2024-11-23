@@ -115,51 +115,76 @@ export const ContactSection = () => {
 
                 {/* Form */}
                 <form
-                  action="https://api.web3forms.com/submit"
-                  method="POST"
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
-                >
-                  <input
-                    type="hidden"
-                    name="access_key"
-                    value="89c046ff-8f76-47dd-9562-7105809a3576" // Your Web3Forms access key
-                  />
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                    required
-                  />
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="Your Phone"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Your Message"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                    rows={4}
-                    required
-                  ></textarea>
-                  <button
-                    type="submit"
-                    className="w-full bg-gray-900 text-white py-2 rounded-md"
-                  >
-                    {isSending ? "Sending..." : isSuccess ? "Thanks for Contacting!" : "Send"}
-                  </button>
-                </form>
+  action="https://api.web3forms.com/submit"
+  method="POST"
+  onSubmit={handleSubmit}
+  className="space-y-4"
+>
+  {/* Access Key */}
+  <input
+    type="hidden"
+    name="access_key"
+    value="89c046ff-8f76-47dd-9562-7105809a3576" // Your Web3Forms access key
+  />
+
+  {/* Name and Email as flex */}
+  <div className="flex flex-col md:flex-row gap-4">
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+      required
+    />
+  </div>
+
+  {/* Phone Number */}
+  <input
+    type="tel"
+    name="phone"
+    placeholder="Your Phone"
+    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+    required
+  />
+
+  {/* Subject */}
+  <input
+    type="text"
+    name="subject"
+    placeholder="Subject"
+    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+    required
+  />
+
+  {/* Message */}
+  <textarea
+    name="message"
+    placeholder="Your Message"
+    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+    rows={4}
+    required
+  ></textarea>
+
+  {/* Submit Button */}
+  <button
+    type="submit"
+    className="w-full bg-gray-900 text-white py-2 rounded-md"
+  >
+    {isSending
+      ? "Sending..."
+      : isSuccess
+      ? "Thanks for Contacting!"
+      : "Send"}
+  </button>
+</form>
+
 
                 {/* Additional text below the Send button */}
                 <p className="text-sm text-gray-500 text-center mt-4">

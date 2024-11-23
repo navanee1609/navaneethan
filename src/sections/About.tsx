@@ -190,14 +190,14 @@ export const AboutSection = () => {
 
 
  {/* Modal for DSA Topics */}
-{isDsaModalOpen && (
+ {isDsaModalOpen && (
   <div
     className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
     onClick={(e) => e.stopPropagation()}
   >
     <div
       className={twMerge(
-        "bg-gray-800 rounded-3xl p-6 w-full max-w-xl relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
+        "bg-gray-800 rounded-3xl p-6 w-full max-w-3xl relative z-0 overflow- mx-4 after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
         "transition-all transform duration-500 ease-out opacity-0 scale-95",
         isDsaModalOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
       )}
@@ -233,19 +233,23 @@ export const AboutSection = () => {
         {dsaTopics.map((topic, index) => (
           <motion.div
             key={index}
-            className="flex flex-col items-center justify-center gap-2 bg-gray-800/90 px-6 py-2 rounded-lg shadow-md hover:shadow-lg hover:bg-gray-700/90 transition cursor-pointer"
+            className="flex items-center gap-4 bg-gray-800/90 px-6 py-2 rounded-lg shadow-md hover:shadow-lg hover:bg-gray-700/90 transition cursor-pointer"
             onClick={() => window.open(topic.link, "_blank")}
             drag
-            dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }}  // Makes cards draggable
+            dragConstraints={{ top: 0, left: 0, right: 0, bottom: 0 }} // Makes cards draggable
           >
-            <FontAwesomeIcon icon={topic.icon} className="text-3xl text-white" />
-            <span className="font-medium text-white">{topic.title}</span>
+            {/* Icon */}
+            <FontAwesomeIcon icon={topic.icon} className="text-2xl text-white" />
+
+            {/* Title */}
+            <span className="font-medium text-md text-white">{topic.title}</span>
           </motion.div>
         ))}
       </motion.div>
     </div>
   </div>
 )}
+
 
 
 
