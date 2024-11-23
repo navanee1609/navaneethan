@@ -6,7 +6,7 @@ import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
 import memojiImage from "@/assets/images/memoji-computer.png"; // Importing an image asset
-import { useRouter } from 'next/router';
+import navaneethan from "@/assets/images/Navaneethan.jpeg"
 
 export const HeroSection = () => {
   // Function to scroll to the contact section
@@ -85,8 +85,8 @@ export const HeroSection = () => {
         <div className="container">
           <div className="flex flex-col items-center">
             <Image
-              src={memojiImage}
-              className="size-[100px]"
+              src={navaneethan}
+              className="size-[100px] rounded-full"
               alt="Person seeking behind computer"
             />
             <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">

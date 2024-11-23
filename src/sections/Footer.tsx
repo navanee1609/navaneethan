@@ -29,7 +29,7 @@ export const Footer = () => {
         {/* Footer Content */}
         <div className="border-t border-white/15 py-6 text-sm flex flex-wrap justify-between items-center gap-4 md:gap-8">
           {/* Footer Text */}
-          <div className="text-white/40 text-lg font-medium">Elevating the Digital Experience</div>
+          <div className="text-white/40 text-md font-medium">Elevating the Digital Experience</div>
 
           {/* Navigation Links */}
           <nav className="flex flex-wrap justify-center items-center gap-4 md:gap-8 z-30">

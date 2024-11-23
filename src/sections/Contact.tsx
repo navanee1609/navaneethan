@@ -51,27 +51,30 @@ export const ContactSection = () => {
           <div className="container">
             {/* Section layout */}
             <div
-              className="bg-gradient-to-r from-emerald-300 to-sky-400 text-gray-900 py-8 px-10 rounded-3xl flex flex-col lg:flex-row items-center justify-between text-center lg:text-left gap-8 relative overflow-hidden"
-            >
-              {/* Text content */}
-              <div className="lg:w-1/2">
-                <h2 className="text-2xl font-serif">Let's Create Something Amazing Together</h2>
-                <p className="text-sm mt-2">
-    I'm passionate about building unique and impactful solutions. Let's work together to bring your vision to life, combining creativity with precision.
-  </p>
-              </div>
+  className="bg-gradient-to-r from-emerald-300 to-sky-400 text-gray-900 py-6 px-8 rounded-3xl flex flex-col lg:flex-row items-center justify-between text-center lg:text-left gap-4 lg:gap-6 relative overflow-hidden"
+>
+  {/* Text content */}
+  <div className="lg:w-3/4">
+    <h2 className="text-2xl font-serif leading-snug">
+      Let's Create Something Amazing Together
+    </h2>
+    <p className="text-md mt-2 leading-relaxed">
+      I'm passionate about building unique and impactful solutions. Let's work together to bring your vision to life, combining creativity with precision.
+    </p>
+  </div>
 
-              {/* Button */}
-              <div className="lg:w-1/2 lg:flex lg:justify-center z-[1000]">
-                <button
-                  className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-8 lg:mt-0 " // Increased z-index
-                  onClick={() => setIsOpen(true)}
-                >
-                  <span className="font-semibold">Contact Me</span>
-                  <ArrowUp className="size4" />
-                </button>
-              </div>
-            </div>
+  {/* Button */}
+  <div className="lg:w-1/4 lg:flex lg:justify-end z-[1000]">
+    <button
+      className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-6 lg:mt-0"
+      onClick={() => setIsOpen(true)}
+    >
+      <span className="font-semibold">Contact Me</span>
+      <ArrowUp className="size4" />
+    </button>
+  </div>
+</div>
+
           </div>
 
           {/* Modal */}
