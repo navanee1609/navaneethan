@@ -86,7 +86,7 @@ export const HeroSection = () => {
           <div className="flex flex-col items-center">
             <Image
               src={navaneethan}
-              className="size-[100px] rounded-full"
+              className="size-[150px] rounded-full"
               alt="Person seeking behind computer"
             />
             <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
@@ -102,9 +102,9 @@ export const HeroSection = () => {
               Navaneethan KV
             </h1>
             <p className="mt-4 text-center text-white/60 md:text-lg">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. In
-              perspiciatis, quibusdam ea molestias exercitationem expedita?
-            </p>
+  Passionate Front End Developer focused on creating responsive, user-friendly websites with clean code, performance optimization, and seamless digital experiences.
+</p>
+
           </div>
 
           <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">

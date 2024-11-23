@@ -19,3 +19,30 @@
     }
 }
 
+/* Customize the scrollbar */
+::-webkit-scrollbar {
+    width: 4px;  /* Reduced width of the scrollbar */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.2);  /* Background color of the track */
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Scrollbar thumb color (matches the modal) */
+    border-radius: 4px;
+    border: 2px solid rgba(0, 0, 0, 0.5);  /* Optional border around thumb */
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.8);  /* Darken when hovered */
+  }
+  
+  /* Ensure the modal's scrollable content is properly styled */
+  .modal-content {
+    max-height: 60vh;  /* Adjust height as needed */
+    overflow-y: auto;  /* Allow scrolling */
+    padding-right: 8px;  /* Add space to avoid the scrollbar overlapping content */
+  }
+  

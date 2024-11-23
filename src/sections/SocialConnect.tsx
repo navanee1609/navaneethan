@@ -12,14 +12,14 @@ import {
 } from "react-icons/fa";
 
 export const SocialConnect = () => (
-  <Card className="h-[320px] p-6 col-span-3 shadow-lg to-gray-900 overflow-hidden">
+  <Card className="h-[400px] p-6 col-span-1 md:col-span-3 shadow-lg to-gray-900 overflow-hidden md:h-[320px]">
     <CardHeader
       title="Connect with Me"
       description="Let's connect and collaborate on exciting projects."
       className="mb-6 text-white"
     />
 
-    <div className="grid grid-cols-2 lg:gap-4 md:grid-cols-3">
+    <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
       <a
         href="https://instagram.com"
         target="_blank"

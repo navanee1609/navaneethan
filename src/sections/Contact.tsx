@@ -5,6 +5,8 @@ import grainImage from "@/assets/images/grain.jpg";
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg";
 import { useSnackbar, SnackbarProvider } from "notistack";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const ContactSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,10 +95,10 @@ export const ContactSection = () => {
               >
                 {/* Close button */}
                 <button
-                  className="absolute top-4 right-4 text-white rounded-full p-2 text-2xl"
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
                   onClick={() => setIsOpen(false)}
                 >
-                  &times;
+                  <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
                 </button>
 
                 {/* Background grain image */}

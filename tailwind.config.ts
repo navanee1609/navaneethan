@@ -50,6 +50,11 @@ const config: Config = {
           '0': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
         },
+      },
+      // Add custom class for paused animation on hover
+      animationPlayState: {
+        paused: 'paused',
+        running: 'running',
       }
     },
   },
