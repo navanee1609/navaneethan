@@ -1,45 +1,45 @@
 "use client";
 import { motion } from "framer-motion";
-import { FaLaptopCode, FaGlobe, FaReact, FaGithub, FaBriefcase, FaDotCircle } from "react-icons/fa"; // Import icons
+import { FaLaptopCode, FaGraduationCap, FaReact, FaGithub, FaBriefcase, FaDotCircle } from "react-icons/fa"; // Import icons
 import grainImage from "@/assets/images/grain.jpg";
 import { SectionHeader } from "./SectionHeader";
 
-// Data for the timeline
+// Data for the timeline in reversed order
 const timelineData = [
   {
-    date: "2020",
-    title: "Started Coding",
-    company: "Self-Learning", // Organization name
-    description: "I started learning the basics of JavaScript, HTML, and CSS.",
-    icon: <FaLaptopCode size={28} />, // Icon for this entry
-  },
-  {
-    date: "2021",
-    title: "Built My First Project",
-    company: "Personal Portfolio", // Organization name
-    description: "Created a personal portfolio website and integrated React.",
-    icon: <FaGlobe size={28} />, // Icon for this entry
-  },
-  {
-    date: "2022",
-    title: "Learned Advanced React",
-    company: "React Academy", // Organization name
-    description: "Mastered React concepts like hooks, context API, and state management.",
-    icon: <FaReact size={28} />, // Icon for this entry
+    date: "2024",
+    title: "Front-End Developer",
+    company: "Spritle Software",
+    description: "Started my full-time role as a front-end developer and expanded my skillset with new frameworks and tools.",
+    icon: <FaBriefcase size={28} />, // Icon for this entry
   },
   {
     date: "2023",
-    title: "Started Contributing to Open Source",
-    company: "GitHub", // Organization name
-    description: "Contributed to several open-source projects on GitHub, improving my collaboration skills.",
-    icon: <FaGithub size={28} />, // Icon for this entry
+    title: "Front-End Developer Intern",
+    company: "Besant Technologies",
+    description: "Contributed to several open-source projects on GitHub, improving my collaboration skills and coding practices.",
+    icon: <FaLaptopCode size={28} />, // Icon for this entry (since it was coding work)
   },
   {
-    date: "2024",
-    title: "Full-time Developer",
-    company: "TechCorp Inc.", // Organization name
-    description: "Started my full-time role as a front-end developer and expanded my skillset.",
-    icon: <FaBriefcase size={28} />, // Icon for this entry
+    date: "2022",
+    title: "Started learning Programming",
+    company: "React Academy",
+    description: "Mastered React concepts like hooks, context API, and state management, launching several personal projects.",
+    icon: <FaReact size={28} />, // Icon for this entry
+  },
+  {
+    date: "2018 -2022",
+    title: "Bachelor of Mechanical Engineering",
+    company: "Dhanalakshmi Srinivasan Engineering College",
+    description: "Created a personal portfolio website and integrated React into my projects, focusing on front-end development.",
+    icon: <FaGraduationCap size={28} />, // Icon for this entry (represents graduation)
+  },
+  {
+    date: "2017",
+    title: "Higher Secondary",
+    company: "Vivekananda Higher Sec.School",
+    description: "I started learning the basics of JavaScript, HTML, and CSS, which sparked my interest in coding.",
+    icon: <FaLaptopCode size={28} />, // Icon for this entry (first step into coding)
   },
 ];
 
@@ -47,11 +47,11 @@ export const Timeline = () => {
   return (
     <section id="timeline" className="px-8 py-16 bg-gray-900 text-white">
       <div className="container mx-auto">
-      <SectionHeader
-  eyebrow="My Journey & Growth"
-  title="A Glimpse Into My Professional Milestones"
-  description="Explore key moments that shaped my development career."
-/>
+        <SectionHeader
+          eyebrow="My Journey & Growth"
+          title="A Glimpse Into My Professional Milestones"
+          description="Explore key moments that shaped my development career."
+        />
 
         <div className="relative mt-6">
           {/* Timeline Vertical Line */}
@@ -75,13 +75,12 @@ export const Timeline = () => {
               >
                 {/* Connector Dots */}
                 <div
-  className={`absolute top-8 h-6 w-6 text-white flex items-center justify-center ${
-    index % 2 === 0 ? "left-1/2 -ml-3" : "right-1/2 -mr-3"
-  }`}
->
-  <FaDotCircle size={24} />
-</div>
-
+                  className={`absolute top-8 h-6 w-6 text-white flex items-center justify-center ${
+                    index % 2 === 0 ? "left-1/2 -ml-3" : "right-1/2 -mr-3"
+                  }`}
+                >
+                  <FaDotCircle size={24} />
+                </div>
 
                 {/* Timeline Card */}
                 <motion.div
@@ -95,16 +94,12 @@ export const Timeline = () => {
                   {/* Flex container for icon and year */}
                   <div className="flex items-center gap-6">
                     {/* Icon with updated styles */}
-                    <motion.div
-                      className="bg-gray-700 inline-flex items-center justify-center rounded-full flex-shrink-0 w-12 h-12"
-                    >
+                    <motion.div className="bg-gray-700 inline-flex items-center justify-center rounded-full flex-shrink-0 w-12 h-12">
                       {item.icon}
                     </motion.div>
 
                     {/* Date */}
-                    <span className="text-sm font-semibold text-emerald-400">
-                      {item.date}
-                    </span>
+                    <span className="text-sm font-semibold text-emerald-400">{item.date}</span>
                   </div>
 
                   {/* Text Content */}

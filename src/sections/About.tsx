@@ -36,6 +36,7 @@ import {
   BriefcaseIcon as LinkedInIcon,
   CodeBracketIcon as GitHubIcon,
 } from "@heroicons/react/24/outline";
+import ContactAnimation from "./ContactAnimation";
 
 
 interface DsaTopic {
@@ -347,82 +348,7 @@ export const AboutSection = () => {
 
   {/* Map Box */}
 
-
-  <Card className="h-[320px] p-6 relative col-span-1 md:col-span-2 md:h-[420px]">
-  <CardHeader
-    title="Connect with Me"
-    description="Let's connect and collaborate on exciting projects."
-    className="text-justify max-w-full mx-auto"
-  />
-  <div className="absolute mt-4 size-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after-outline-2 after-outline-offset-2 after:rounded-full after:outline-gray-950/30">
-    {/* Ping animation background */}
-    <div className="absolute inset-0 rounded-full bg-gradient-to-r bg-emerald-300 to-sky-400 -z-20 animate-ping"></div>
-    <div className="absolute inset-0 rounded-full bg-gradient-to-r bg-emerald-300 to-sky-400 -z-10"></div>
-    
-    {/* Navaneethan Image */}
-    <Image src={Navaneethan} alt="smile" className="size-20 rounded-full" />
-    
-    <div className="absolute inset-0 flex items-center justify-center">
-      <div className="relative w-[240px] h-[240px]"> {/* Adjusted size for gap around icons */}
-        {/* Mapping Social Media Icons */}
-        {[ 
-          { icon: FaWhatsapp, link: "https://whatsapp.com" },
-          { icon: FaInstagram, link: "https://instagram.com" },
-          { icon: FaLinkedin, link: "https://linkedin.com" },
-          { icon: FaGithub, link: "https://github.com" },
-          { icon: FaEnvelope, link: "mailto:example@mail.com" },
-          { icon: FaPhone, link: "tel:+1234567890" },
-        ].map((social, index) => {
-          const angle = (360 / 6) * index; // Calculate angle for even spacing
-          const radian = (angle * Math.PI) / 180;
-          const x = Math.cos(radian) * 100; // Radius of 100px for spacing around the image
-          const y = Math.sin(radian) * 100; // Same for y-axis
-
-          return (
-            <a
-              key={index}
-              href={social.link}
-              className="absolute"
-              style={{
-                left: `calc(50% + ${x}px)`,
-                top: `calc(50% + ${y}px)`,
-                transform: "translate(-50%, -50%)",
-              }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {/* Icon Styling: Rounded, Shadow, Hover Effects with Framer Motion for animation */}
-              <motion.div
-                className="w-12 h-12 bg-gray-800/90 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-gray-700/90 transition duration-300"
-                whileHover={{
-                  scale: 1.4, // Larger scale on hover
-                  rotate: 0, // No rotation on hover
-                  opacity: 1, // Full opacity on hover
-                  transition: { duration: 0.2 }, // Smooth transition for hover
-                }}
-                whileTap={{
-                  scale: 0.9, // Shrink the icon when clicked
-                }}
-                animate={{
-                  y: [0, -15, 0], // Bounce animation with more amplitude
-                  opacity: [1, 0.8, 1], // Pulse effect for opacity
-                }}
-                transition={{
-                  duration: 0.6, // Smooth and long transition for the bounce
-                  repeat: Infinity, // Continuous bounce
-                  repeatType: 'reverse', // Reverse the animation to create a ping effect
-                  ease: "easeOut", // Smooth easing for the bouncing effect
-                }}
-              >
-                <social.icon className="w-6 h-6 text-white hover:text-sky-400" />
-              </motion.div>
-            </a>
-          );
-        })}
-      </div>
-    </div>
-  </div>
-</Card>
+<ContactAnimation/>
 
 
 

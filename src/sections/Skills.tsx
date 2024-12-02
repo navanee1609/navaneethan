@@ -26,17 +26,6 @@ const tools = [
 ];
 
 export const SkillsToolsSection = () => {
-  const initialPositions = [
-    { top: "10%", left: "10%" },
-    { top: "20%", left: "30%" },
-    { top: "30%", left: "50%" },
-    { top: "40%", left: "70%" },
-    { top: "50%", left: "20%" },
-    { top: "60%", left: "40%" },
-    { top: "70%", left: "60%" },
-    { top: "80%", left: "80%" },
-  ];
-
   return (
     <section id="skills-tools">
       <div className="py-20">
@@ -50,49 +39,52 @@ export const SkillsToolsSection = () => {
                 className="mb-6 text-white"
               />
               <div className="relative w-full h-80 bg-gray-800/90 rounded-md overflow-hidden">
-                {frontEndSkills.map((skill, index) => (
-                  <Draggable key={index}>
-                    <div
-                      className="absolute flex items-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-grab"
-                      style={{
-                        top: initialPositions[index % initialPositions.length].top,
-                        left: initialPositions[index % initialPositions.length].left,
-                        transition: "all 0.2s ease", // Smooth transitions added
-                      }}
-                    >
-                      <img src={skill.imageUrl} alt={skill.title} className="w-8 h-8" />
-                      <span className="text-white text-sm">{skill.title}</span>
-                    </div>
-                  </Draggable>
-                ))}
+                {/* Grid Layout to Place Skills Properly with 2 items per row */}
+                <div className="grid grid-cols-2 gap-4 p-4">
+                  {frontEndSkills.map((skill, index) => (
+                    <Draggable key={index}>
+                      <div
+                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-grab"
+                        style={{
+                          transition: "all 0.2s ease", // Smooth transitions added
+                        }}
+                      >
+                        <img src={skill.imageUrl} alt={skill.title} className="w-8 h-8" />
+                        <span className="text-white text-sm">{skill.title}</span>
+                      </div>
+                    </Draggable>
+                  ))}
+                </div>
               </div>
             </Card>
 
             {/* Tools Card */}
             <Card className="h-auto p-6 shadow-lg bg-gray-900 overflow-hidden">
-              <CardHeader
-                title="Tools"
-                description="Here are the tools I use to streamline my development workflow."
-                className="mb-6 text-white"
-              />
-              <div className="relative w-full h-80 bg-gray-800/90 rounded-md overflow-hidden">
-                {tools.map((tool, index) => (
-                  <Draggable key={index}>
-                    <div
-                      className="absolute flex items-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-grab"
-                      style={{
-                        top: initialPositions[index % initialPositions.length].top,
-                        left: initialPositions[index % initialPositions.length].left,
-                        transition: "all 0.2s ease", // Smooth transitions added
-                      }}
-                    >
-                      <img src={tool.imageUrl} alt={tool.title} className="w-8 h-8" />
-                      <span className="text-white text-sm">{tool.title}</span>
-                    </div>
-                  </Draggable>
-                ))}
-              </div>
-            </Card>
+  <CardHeader
+    title="Tools"
+    description="Here are the tools I use to streamline my development workflow."
+    className="mb-6 text-white"
+  />
+  <div className="relative w-full h-80 bg-gray-800/90 rounded-md overflow-hidden flex items-center justify-center">
+    {/* Grid Layout to Place Tools Properly with 2 items per row */}
+    <div className="grid grid-cols-2 gap-4 p-4 w-full">
+      {tools.map((tool, index) => (
+        <Draggable key={index}>
+          <div
+            className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-grab"
+            style={{
+              transition: "all 0.2s ease", // Smooth transitions added
+            }}
+          >
+            <img src={tool.imageUrl} alt={tool.title} className="w-8 h-8" />
+            <span className="text-white text-sm">{tool.title}</span>
+          </div>
+        </Draggable>
+      ))}
+    </div>
+  </div>
+</Card>
+
           </div>
         </div>
       </div>
