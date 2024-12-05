@@ -43,6 +43,17 @@ const nextConfig = {
 
     return config;
   },
+  
+  images: {
+    domains: [
+      'www.w3.org',
+      'upload.wikimedia.org',
+      'getbootstrap.com',
+      'd33wubrfki0l68.cloudfront.net',
+      'seeklogo.com',
+      'vitejs.dev',
+    ],
+  },
 };
 
 export default nextConfig;
