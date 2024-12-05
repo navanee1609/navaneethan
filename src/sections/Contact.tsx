@@ -58,10 +58,10 @@ export const ContactSection = () => {
   {/* Text content */}
   <div className="lg:w-3/4">
     <h2 className="text-2xl font-serif leading-snug">
-      Let's Create Something Amazing Together
+      Let&apos;s Create Something Amazing Together
     </h2>
     <p className="text-md mt-2 leading-relaxed">
-      I'm passionate about building unique and impactful solutions. Let's work together to bring your vision to life, combining creativity with precision.
+      I&apos;m passionate about building unique and impactful solutions. Let&apos;s work together to bring your vision to life, combining creativity with precision.
     </p>
   </div>
 

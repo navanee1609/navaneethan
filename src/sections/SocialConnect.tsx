@@ -13,7 +13,7 @@ export const SocialConnect = () => (
 
     <div className="p-4 rounded-lg text-white">
       <p className="text-lg font-medium">
-        Bugs are hard, but boredom is harder. Let's chat and make coding fun! Hit me up on social media and let's build something amazing!
+        Bugs are hard, but boredom is harder. Let&apos;s chat and make coding fun! Hit me up on social media and let&apos;s build something amazing!
       </p>
     </div>
   </Card>

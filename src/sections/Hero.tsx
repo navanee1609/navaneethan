@@ -124,7 +124,7 @@ export const HeroSection = () => {
               onClick={handleScrollToContact} // Scroll to contact section
             >
               <span>👋</span>
-              <span className="font-semibold">Let's Connect</span>
+              <span className="font-semibold">Let&apos;s Connect</span>
             </button>
           </div>
         </div>
