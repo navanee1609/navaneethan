@@ -1,42 +1,41 @@
+"use client";
+
 import { SectionHeader } from "./SectionHeader";
 import { AiFillLinkedin } from "react-icons/ai"; // Import LinkedIn icon from react-icons
 import { Card } from "@/components/Card";
-import { Fragment } from "react";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg";
 
-// Mock data for testimonials
-const testimonials = [
+const articles = [
   {
-    name: "Alex Turner",
-    position: "Marketing Manager @ TechStartups",
-    text: "Alex was instrumental in transforming our website into a powerful marketing tool. His attention to detail and ability to understand our brand is exceptional. We're thrilled with the results!",
-    articleLink: "https://www.linkedin.com/pulse/your-article-link-1", // Add article link here
+    name: "Future of Front-End",
+    domain: "Web Development",
+    description:
+      "Explore how Web Components are changing front-end development by enabling reusable, modular, and interoperable designs that enhance scalability and efficiency.",
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_frontenddevelopment-webcomponents-modulardesign-activity-7205554564538728448-6_tz?utm_source=share&utm_medium=member_desktop", 
   },
   {
-    name: "Olivia Green",
-    position: "Head of Design @ GreenLeaf",
-    text: "Working with Alex was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
-    articleLink: "https://www.linkedin.com/pulse/your-article-link-2", // Add article link here
+    name: "Code Quality Practices",
+    domain: "Web Performance",
+    description:
+      "Discover essential practices for maintaining code quality and optimizing performance to achieve faster load times, better architecture, and improved usability.",
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_codequality-webperformance-seo-activity-7203374051715596288-iPHR?utm_source=share&utm_medium=member_desktop", 
   },
   {
-    name: "Daniel White",
-    position: "CEO @ InnovateCo",
-    text: "Alex's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
-    articleLink: "https://www.linkedin.com/pulse/your-article-link-3", // Add article link here
+    name: "The Rise of PWAs",
+    domain: "Progressive Web Apps",
+    description:
+      "Dive into how Progressive Web Apps merge web and mobile app capabilities, offering offline functionality, fast performance, and seamless experiences.",
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_progressivewebapps-pwas-webdevelopment-activity-7195827416991248387-nL_B?utm_source=share&utm_medium=member_desktop", 
   },
   {
-    name: "Emily Carter",
-    position: "Product Manager @ GlobalTech",
-    text: "Alex is a true frontend wizard. He took our complex product and transformed it into an intuitive and engaging user interface. We're already seeing positive feedback from our customers.",
-    articleLink: "https://www.linkedin.com/pulse/your-article-link-4", // Add article link here
-  },
-  {
-    name: "Michael Brown",
-    position: "Director of IT @ MegaCorp",
-    text: "Alex's work on our website has been nothing short of exceptional. He's a talented developer who is also a great communicator. We highly recommend him.",
-    articleLink: "https://www.linkedin.com/pulse/your-article-link-5", // Add article link here
+    name: "Power of Animation",
+    domain: "Web Design",
+    description:
+      "Learn how animations enhance usability, engage users, and reinforce branding, helping developers and designers create stunning digital experiences.",
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_webdesign-animation-userexperience-activity-7195824917169201153-m4ZO?utm_source=share&utm_medium=member_desktop", 
   },
 ];
+
 
 export const Articles = () => {
   return (
@@ -52,9 +51,9 @@ export const Articles = () => {
 
           <div className="mt-12 lg:mt-20 flex overflow-x-clip [mask-image: linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
             <div className="flex gap-8 flex-none animate-move-left-card hover:[animation-play-state:paused]">
-              {testimonials.map((testimonial) => (
+              {articles.map((article) => (
                 <Card
-                  key={testimonial.name}
+                  key={article.name}
                   className="max-w-xs p-6 md:p-8 md:max-w-md hover:-rotate-3 transition duration-300 group cursor-pointer"
                 >
                   <div className="flex gap-4 items-center">
@@ -62,16 +61,16 @@ export const Articles = () => {
                       <AiFillLinkedin className="text-2xl" />
                     </div>
                     <div>
-                      <div className="font-semibold">{testimonial.name}</div>
-                      <div className="text-sm text-white/40">{testimonial.position}</div>
+                      <div className="font-semibold">{article.name}</div>
+                      <div className="text-sm text-white/40">{article.domain}</div>
                     </div>
                   </div>
 
-                  <p className="mt-4 md:mt-6 text-sm md:text-base">{testimonial.text}</p>
+                  <p className="mt-4 md:mt-6 text-sm md:text-base">{article.description}</p>
 
                   {/* Button to open article in a new tab */}
                   <a
-                    href={testimonial.articleLink} // The article link from the testimonial data
+                    href={article.articleLink} // The article link from the data
                     target="_blank" // Open the link in a new tab
                     rel="noopener noreferrer"
                   >

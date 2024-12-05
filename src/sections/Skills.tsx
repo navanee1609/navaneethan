@@ -2,6 +2,7 @@
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 import Draggable from "react-draggable"; // For drag functionality
+import { SectionHeader } from "./SectionHeader";
 
 // Data for Front-End Skills with SVG Links
 const frontEndSkills = [
@@ -30,7 +31,14 @@ export const SkillsToolsSection = () => {
     <section id="skills-tools">
       <div className="py-20">
         <div className="container">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+  
+<SectionHeader 
+  eyebrow="Technical Mastery" 
+  title="Skills & Tools That Empower My Creations" 
+  description="A glimpse into the technologies and tools I leverage to craft seamless and innovative web experiences." 
+/>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 my-14">
             {/* Front-End Skills Card */}
             <Card className="h-auto p-6 shadow-lg bg-gray-900 overflow-hidden">
               <CardHeader

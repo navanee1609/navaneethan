@@ -83,11 +83,12 @@ export const AboutSection = () => {
     <section id="about">
       <div className="py-20">
       <div className="container">
-      <SectionHeader 
-  eyebrow="Discover My Expertise" 
-  title="My Technical Journey" 
-  description="Elevating the Digital Experience!" 
+      <SectionHeader
+  eyebrow="Who I Am"
+  title="My Journey in Front-End Development"
+  description="From foundational concepts to advanced techniques, explore my continuous pursuit of crafting exceptional web experiences."
 />
+
 
       
         <div className="mt-20 flex flex-col gap-8">
@@ -361,7 +362,7 @@ export const AboutSection = () => {
         </div>
       </div>
     </div>
-    <Timeline/>
+    
     <SkillsToolsSection/>
     </section>
   );

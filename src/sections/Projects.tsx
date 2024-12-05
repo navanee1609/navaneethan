@@ -61,11 +61,12 @@ export const ProjectsSection = () => {
   return (
     <section id="projects" className="pb-16 lg:py-24">
       <div className="container">
-        <SectionHeader
-          eyebrow="Real world results"
-          description="Elevating the Digital Experience."
-          title="Featured Projects"
-        />
+      <SectionHeader
+  eyebrow="Real-World Impact"
+  title="Showcasing My Featured Projects"
+  description="Discover how I bring ideas to life, creating seamless and transformative digital experiences."
+/>
+
 
         <div className="mt-10 md:mt-20 flex flex-col gap-14">
           {portfolioProjects.map((project, projectIndex) => (
