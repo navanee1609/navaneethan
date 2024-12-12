@@ -1,53 +1,109 @@
-import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
 import Image from "next/image";
 import CheckIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpIcon from "@/assets/icons/arrow-up-right.svg";
 import { SectionHeader } from "./SectionHeader";
 import { Card } from "@/components/Card";
-
+import retrorift from "@/assets/images/retrorift.png"
+import cque from "@/assets/images/cque.png"
+import haleon from "@/assets/images/haleon.png"
+import shopcart from "@/assets/images/shopcart.png"
+import sbg from "@/assets/images/sbg.png"
+import notekeeper from "@/assets/images/notekeeper.png"
+import cookio from "@/assets/images/cookio.png"
 const portfolioProjects = [
   {
-    company: "Spritle",
+    company: "Spritle Software",
     year: "2024",
-    title: "proj 3",
+    title: "Haleon",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "Developed the frontend for Haleon's e-commerce platform with brands like Eno, Iodex, and Centrum." },
+      { title: "Built admin features for product management, order tracking, and user management." },
+      { title: "Integrated modern web technologies for an interactive, dynamic user experience." },
     ],
-    link: "",
-    image: darkSaasLandingPage,
-    techStack: ["HTML", "CSS", "JavaScript", "Tailwind CSS"],
+    link: "https://haleon-test.spritle.com/products",
+    image: haleon,
+    techStack: ["HTML","CSS","Bootstrap","Javascript", "ruby-on-rails","Spree"],
   },
   {
-    company: "Spritle",
+    company: "Spritle Software",
     year: "2024",
-    title: "Proj 2",
+    title: "CQUE.AI",
     results: [
-      { title: "Boosted sales by 20%" },
-      { title: "Expanded customer reach by 35%" },
-      { title: "Increased brand awareness by 15%" },
+      { title: "Created a professional portfolio site with modern design principles and smooth navigation." },
+      { title: "Implemented interactive JavaScript for dynamic and engaging browsing experience." },
+      { title: "Deployed the site with Vercel to optimize performance and ensure device compatibility." },
     ],
-    link: "",
-    image: lightSaasLandingPage,
-    techStack: ["React", "Node.js", "Express", "MongoDB"],
+    link: "https://cque-archie.vercel.app/",
+    image: cque,
+    techStack: ["Reactjs","Tailwind CSS","Magic UI"]
   },
   {
-    company: "Spritle",
+    company: "Spritle Software",
     year: "2024",
-    title: "proj 1",
+    title: "SBG - Teknomaju",
     results: [
-      { title: "Enhanced user experience by 40%" },
-      { title: "Improved site speed by 50%" },
-      { title: "Increased mobile traffic by 35%" },
+      { title: "Built a responsive, user-centric interface to serve diverse audiences across devices." },
+      { title: "Integrated AI and cloud-native solutions to highlight the company's DevOps offerings." },
+      { title: "Implemented business-driven features to enhance user engagement with detailed service exploration." },
     ],
-    link: "",
-    image: aiStartupLandingPage,
-    techStack: ["Vue.js", "Firebase", "Tailwind CSS"],
+    link: "https://teknomaju.my/",
+    image: sbg,
+    techStack: ["HTML","CSS","Bootstrap","Javascript"],
+  },
+  {
+    company: "Personal Project",
+    year: "2024",
+    title: "RetroRift - Where Gaming Nostalgia Meets Modern Excitement!",
+    results: [
+      { title: "Brought together a diverse game library, live events, and exclusive content for gamers." },
+      { title: "Blended retro nostalgia with modern trends in a user-friendly interface for easy navigation." },
+      { title: "Built a vibrant community experience to unite gamers in an engaging and exciting platform." },
+    ],
+    link: "https://retrorift-gaming-paradise.netlify.app/",
+    image: retrorift,
+    techStack: ["React","React-Redux", "RAWG.API - Axios"],
+  },
+  {
+    company: "Personal Project",
+    year: "2023",
+    title: "Shop Cart - Where Every Click Unveils a Seamless Shopping Experience.",
+    results: [
+      { title: "Developed Shop Cart with React and Firebase for secure user authentication and smooth shopping." },
+      { title: "Created a responsive design with collaborative wishlists and a streamlined checkout process." },
+      { title: "Used intuitive interfaces to deliver an enhanced online shopping experience with modern technology." },
+    ],
+    link: "https://shopcart-ecommerce-project.netlify.app/",
+    image: shopcart,
+    techStack: ["Reactjs", "Bootstrap"],
+  },
+  {
+    company: "Personal Project",
+    year: "2023",
+    title: "Note Keeper - CRUD Operations in JavaScript",
+    results: [
+      { title: "Developed a JavaScript app that allows users to create, read, update, and delete notes." },
+      { title: "Styled the app with CSS to create a visually appealing and user-friendly interface." },
+      { title: "Demonstrated JavaScript skills with a fully functional CRUD application for note management." },
+    ],
+    link: "https://notekeeper-dailynotes.netlify.app/",
+    image: notekeeper,
+    techStack: ["HTML","CSS","Javascript"],
+  },
+  {
+    company: "Personal Project",
+    year: "2023",
+    title: "Cook.io",
+    results: [
+      { title: "Showcased skills in HTML, CSS, JavaScript, and Edamam API to build a recipe discovery platform." },
+      { title: "Integrated the Edamam API for interactive recipe searches, filtering, and shopping list creation." },
+      { title: "Planned future features, including user accounts, for a more personalized and advanced experience." },
+    ],
+    link: "https://cookio-recipehub.netlify.app/",
+    image: cookio,
+    techStack: ["HTML", "CSS", "Javascript", "Edaman API"],
   },
 ];
+
 
 // Tech colors array (will repeat)
 const techColors = [
@@ -90,8 +146,8 @@ export const ProjectsSection = () => {
                   <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
                   <ul className="flex flex-col gap-4 mt-4">
                     {project.results.map((result, index) => (
-                      <li className="flex gap-2 text-sm md:text-base text-white/50" key={index}>
-                        <CheckIcon className="size-5 md:size-6" />
+                      <li className="flex gap-2 text-md md:text-base text-white/50" key={index}>
+                        <CheckIcon className="size-8 md:size-10" />
                         <span>{result.title}</span>
                       </li>
                     ))}

@@ -245,13 +245,12 @@ export const AboutSection = () => {
 
           <div className="flex justify-center mt-4">
   <a
-    href="/path-to-your-resume.pdf"  // Replace with the actual path to your resume file
-    download="My_Resume.pdf"  // Optional: name the file when downloaded
+    href="https://drive.google.com/file/d/1Qd8cFOhMg41pVCECXCUp799tIn5_MHB6/view?usp=sharing"  
+    download="Navaneethan KV.pdf"  
     className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
   >
     <span className="font-semibold">Check Resume</span>
-    {/* Replace with your desired icon */}
-    <ArrowUp className="text-xl" />  {/* Adjust size as needed */}
+    <ArrowUp className="text-xl" />
   </a>
 </div>
 
@@ -262,7 +261,7 @@ export const AboutSection = () => {
   
 
   {/* Second Card */}
-  <Card className="h-[400px] col-span-1 md:col-span-3 p-6 lg:p-8 md:h-[320px]">
+  {/* <Card className="h-[400px] col-span-1 md:col-span-3 p-6 lg:p-8 md:h-[320px]">
     <CardHeader
       title="Passionate About DSA"
       description="With a strong foundation in Data Structures and Algorithms, I am driven by a passion for optimizing solutions to complex problems. I enjoy breaking down intricate challenges into manageable pieces and crafting efficient, scalable algorithms. Whether it's designing robust data structures or finding elegant solutions to computational puzzles, I am continually inspired to learn and refine my skills."
@@ -275,7 +274,23 @@ export const AboutSection = () => {
       <span className="font-semibold">Explore DSA Topics</span>
       <ArrowUp className="size4" />
     </button>
-  </Card>
+  </Card> */}
+
+<Card className="h-[400px] col-span-1 md:col-span-3 p-6 lg:p-8 md:h-[320px]">
+  <CardHeader
+    title="My Experience as a Frontend Developer"
+    description="With a strong background in frontend development, I have honed my skills in building responsive, user-friendly websites and web applications. My experience includes working with modern technologies like HTML, CSS, JavaScript, and popular frameworks such as React and Bootstrap. I enjoy creating seamless user experiences and optimizing performance across devices, ensuring that every project I work on is both visually appealing and functional. I'm passionate about clean, maintainable code and staying updated with the latest trends in web development."
+    className="text-justify max-w-full mx-auto"
+  />
+  {/* <button
+    onClick={openExperienceModal}
+    className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2 mx-auto lg:mx-0"
+  >
+    <span className="font-semibold">Explore My Projects</span>
+    <ArrowUp className="size4" />
+  </button> */}
+</Card>
+
 </div>
 
 

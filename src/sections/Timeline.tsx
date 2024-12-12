@@ -15,15 +15,15 @@ const timelineData = [
   },
   {
     date: "2023",
-    title: "Front-End Developer Intern",
-    company: "Besant Technologies",
+    title: "Building Projects",
+    company: "Self-Learn",
     description: "Contributed to several open-source projects on GitHub, improving my collaboration skills and coding practices.",
     icon: <FaLaptopCode size={28} />, // Icon for this entry (since it was coding work)
   },
   {
     date: "2022",
     title: "Started learning Programming",
-    company: "React Academy",
+    company: "Youtube Learning",
     description: "Mastered React concepts like hooks, context API, and state management, launching several personal projects.",
     icon: <FaReact size={28} />, // Icon for this entry
   },

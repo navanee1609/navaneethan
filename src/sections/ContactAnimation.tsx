@@ -1,24 +1,21 @@
 "use client";
 
-import Image from "next/image"; // Assuming Next.js Image component is being used for optimization
+import Image from "next/image"; 
 import { FaWhatsapp, FaInstagram, FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Replaced FaPhone with FaPhoneAlt
-import { motion } from "framer-motion"; // Importing framer-motion for animation
-import { IconType } from "react-icons"; // Explicitly import IconType
-
-// Import the image (assuming Navaneethan is a local image)
-import Navaneethan from "@/assets/images/Navaneethan.jpeg"; // Adjust path as per your structure
+import { motion } from "framer-motion"; 
+import Navaneethan from "@/assets/images/Navaneethan.jpeg"; 
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 
 const ContactAnimation = () => {
-  // Define the social media data with the type of the icon explicitly
   const socialMedia = [
-    { icon: FaWhatsapp, link: "https://whatsapp.com", color: "#25D366" },
-    { icon: FaInstagram, link: "https://instagram.com", color: "#E4405F" },
-    { icon: FaLinkedin, link: "https://linkedin.com", color: "#0077B5" },
-    { icon: FaGithub, link: "https://github.com", color: "#333" },
-    { icon: FaEnvelope, link: "mailto:example@mail.com", color: "#D44638" },
-    { icon: FaPhoneAlt, link: "tel:+1234567890", color: "#25D366" },
+    { icon: FaWhatsapp, link: "https://wa.me/7639096688"
+      , color: "#25D366" },
+    { icon: FaInstagram, link: "https://https://spritle.slack.com/archives/D072P4WGGEB/p1734005101081149", color: "#E4405F" },
+    { icon: FaLinkedin, link: "www.linkedin.com/in/navaneethacn-k-v-546a9025b", color: "#0077B5" },
+    { icon: FaGithub, link: "https://github.com/navanee1609", color: "#333" },
+    { icon: FaEnvelope, link: "mailto:navaneethanvs18@gmail.com", color: "#D44638" },
+    { icon: FaPhoneAlt, link: "tel:+6380939303", color: "#25D366" },
   ];
 
   return (

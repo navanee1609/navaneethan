@@ -5,7 +5,6 @@ import grainImage from "@/assets/images/grain.jpg"; // Importing a grain texture
 import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
-import memojiImage from "@/assets/images/memoji-computer.png"; // Importing an image asset
 import navaneethan from "@/assets/images/Navaneethan.jpeg"
 
 export const HeroSection = () => {
@@ -110,7 +109,7 @@ export const HeroSection = () => {
           <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
             {/* Explore my work Button */}
             <a
-              href="/path/to/resume.pdf" // Replace with the correct path to your resume
+              href="https://drive.google.com/file/d/1Qd8cFOhMg41pVCECXCUp799tIn5_MHB6/view?usp=sharing" 
               download
               className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl z-20"
             >

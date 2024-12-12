@@ -4,7 +4,7 @@ import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 
 export const SocialConnect = () => (
-  <Card className="h-[320px] p-6 col-span-1 md:col-span-3 shadow-lg to-gray-900 overflow-hidden">
+  <Card className="h-[380px] p-6 col-span-1 md:col-span-3 shadow-lg to-gray-900 overflow-hidden md:h-[320px]">
     <CardHeader
       title="Let&apos;s Build Together"
       description="Collaboration > Solo Hustle"

@@ -188,13 +188,13 @@ export const ContactSection = () => {
 
                 {/* Additional text below the Send button */}
                 <p className="text-sm text-gray-500 text-center mt-4">
-                  Or reach out to me via these platforms:
+                  Reach out me 
                 </p>
 
                 {/* Social media icons below */}
                 <div className="flex justify-center gap-6 mt-4">
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-white rounded-full"
@@ -202,7 +202,7 @@ export const ContactSection = () => {
                     <FaInstagram className="text-2xl text-gray-700 hover:text-gray-900 transition" />
                   </a>
                   <a
-                    href="https://wa.me"
+                    href="https://wa.me/7639096688"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-white rounded-full"
@@ -210,7 +210,7 @@ export const ContactSection = () => {
                     <FaWhatsapp className="text-2xl text-gray-700 hover:text-gray-900 transition" />
                   </a>
                   <a
-                    href="mailto:someone@example.com"
+                    href="mailto:navaneethanvs18@gmail.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-white rounded-full"
@@ -218,7 +218,7 @@ export const ContactSection = () => {
                     <FaEnvelope className="text-2xl text-gray-700 hover:text-gray-900 transition" />
                   </a>
                   <a
-                    href="tel:+123456789"
+                    href="tel:+6380939303"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-white rounded-full"
@@ -226,7 +226,7 @@ export const ContactSection = () => {
                     <FaPhone className="text-2xl text-gray-700 hover:text-gray-900 transition" />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="www.linkedin.com/in/navaneethan-k-v-546a9025b"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-2 bg-white rounded-full"
