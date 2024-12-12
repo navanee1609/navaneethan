@@ -12,8 +12,8 @@ export const SocialConnect = () => (
     />
 
     <div className="p-4 rounded-lg text-white">
-      <p className="text-lg font-medium">
-        Code doesn&apos;t have to be a solo journey. Let&apos;s team up, share ideas, and bring creativity to life! Hit me up on social media – let&apos;s create something next-level!
+      <p className="text-sm text-white/60">
+      Code doesn&apos;t have to be a solo journey. Let&apos;s team up, share ideas, and bring creativity to life! is a great invitation for collaboration and community-building in the world of coding. It highlights the importance of working together to turn ideas into reality and creates an open space for creativity to flourish.
       </p>
     </div>
   </Card>
