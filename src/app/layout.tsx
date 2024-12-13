@@ -13,6 +13,10 @@ const calistoga = Calistoga({
 export const metadata: Metadata = {
   title: "Navaneethan _ Front-End Developer",
   description: "Developer portfolio of Navaneethan KV",
+  icons: {
+    icon: "/favicon.webp", // Use favicon from the public folder
+    apple: "/favicon.webp", // Apple touch icon
+  },
 };
 
 export default function RootLayout({
@@ -23,9 +27,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Ensure favicon is correctly linked */}
+        <link rel="icon" href="/favicon.webp" type="image/webp" />
+        <link rel="apple-touch-icon" href="/favicon.webp" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
