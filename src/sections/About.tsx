@@ -209,11 +209,11 @@ export const AboutSection = () => {
           className="text-teal-300 font-semibold italic"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.3 }}
           whileHover={{
             scale: 1.1,
             color: '#00bfae', // Hover color
-            transition: { type: 'spring', stiffness: 300 },
+            transition: { type: 'spring', stiffness: 100 },
           }}
         >
           Don’t hesitate to reach out, I’m up for a tech chat or a virtual coffee! ☕

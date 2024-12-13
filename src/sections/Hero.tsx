@@ -85,8 +85,8 @@ export const HeroSection = () => {
           <div className="flex flex-col items-center">
             <Image
               src={navaneethan}
-              className="size-[150px] rounded-full"
-              alt="Person seeking behind computer"
+              className="size-[200px] rounded-full"
+              alt="Navaneethan"
             />
             <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
               <div className="bg-green-500 w-2.5 h-2.5 rounded-full relative">
