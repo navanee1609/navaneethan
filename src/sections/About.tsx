@@ -366,13 +366,7 @@ export const AboutSection = () => {
 
 <ContactAnimation/>
 
-
-
 </div>
-
-
-
-
 
         </div>
       </div>
