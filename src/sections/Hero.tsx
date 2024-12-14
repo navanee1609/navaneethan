@@ -5,7 +5,7 @@ import grainImage from "@/assets/images/grain.jpg"; // Importing a grain texture
 import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
-import navaneethan from "@/assets/images/Navaneethan.png"
+import Navaneethan from "@/assets/images/Navaneethan.jpeg"
 
 export const HeroSection = () => {
   // Function to scroll to the contact section
@@ -84,7 +84,7 @@ export const HeroSection = () => {
         <div className="container">
           <div className="flex flex-col items-center">
             <Image
-              src={navaneethan}
+              src={Navaneethan}
               className="size-[200px] rounded-full"
               alt="Navaneethan"
             />

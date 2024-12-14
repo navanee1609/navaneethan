@@ -1,23 +1,10 @@
 "use client"
 import { Card } from "@/components/Card";
 import { SectionHeader } from "./SectionHeader";
-import book from "@/assets/images/book-cover.png";
-import Navaneethan from "@/assets/images/Navaneethan.jpeg"
-import Image from "next/image";
-import JavascriptIcon from "@/assets/icons/square-js.svg";
-import Html from "@/assets/icons/html5.svg";
-import Css from "@/assets/icons/css3.svg";
 import React from "@/assets/icons/react.svg";
-import Github from "@/assets/icons/github.svg";
-import Chrome from "@/assets/icons/chrome.svg";
-import Map from "@/assets/images/map.png";
-import Smile from "@/assets/images/memoji-smile.png";
 import { CardHeader } from "@/components/Cardheader";
-import { ToolboxItems } from "@/components/ToolboxItems";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { Timeline } from "./Timeline";
-import { FaEnvelope, FaGithub, FaInstagram, FaLinkedin, FaPhone, FaWhatsapp } from "react-icons/fa";
 import { faDatabase, faLink, faBoxes, faSquare, faTree, faNetworkWired, faBrain, faSort, faSearch, faLightbulb, faSyncAlt, faCog, faFont, faTimes } from '@fortawesome/free-solid-svg-icons';
 import grainImage from "@/assets/images/grain.jpg"
 
@@ -27,15 +14,8 @@ import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { SocialConnect } from "./SocialConnect";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg"
 import { twMerge } from "tailwind-merge";
-import Draggable from "react-draggable";
 
-import { PhoneIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
-import {
-  ChatBubbleLeftEllipsisIcon as WhatsAppIcon,
-  CameraIcon as InstagramIcon,
-  BriefcaseIcon as LinkedInIcon,
-  CodeBracketIcon as GitHubIcon,
-} from "@heroicons/react/24/outline";
+
 import ContactAnimation from "./ContactAnimation";
 
 
