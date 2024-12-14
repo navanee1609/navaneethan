@@ -48,3 +48,25 @@ html{
     padding-right: 8px;  /* Add space to avoid the scrollbar overlapping content */
   }
   
+  @keyframes shake {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-4px);
+    }
+    50% {
+      transform: translateX(4px);
+    }
+    75% {
+      transform: translateX(-4px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  .animate-shake {
+    animation: shake 0.6s ease-in-out;
+  }
+  

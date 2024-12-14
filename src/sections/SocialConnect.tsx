@@ -10,10 +10,10 @@ export const SocialConnect = () => {
   const [isQuestionVisible, setIsQuestionVisible] = useState<boolean>(true);
 
   // The correct answer for the radio buttons
-  const correctAnswer = "useEffect";
+  const correctAnswer = "Event Loop";
 
   // Radio button options (single word)
-  const options = ["useEffect", "useLayoutEffect", "useState", "ReactDOM"];
+  const options = ["Event Loop", "Callback", "Closure", "Promise"];
 
   // Handling the answer selection
   const handleAnswerSelection = (answer: string) => {
@@ -33,19 +33,19 @@ export const SocialConnect = () => {
   return (
     <Card className="h-[380px] p-6 col-span-1 md:col-span-3 shadow-lg to-gray-900 overflow-hidden md:h-[320px] relative">
       <CardHeader
-        title="Challenge Yourself!"
-        description="What is the primary React Hook for handling side effects?"
-        className="mb-6 text-white text-center"
+        title="Can You Crack This React Question?"
+        description="What is the mechanism that handles asynchronous JavaScript operations?"
+        className="mb-4 text-white"
       />
 
       {/* Question and options */}
       {isQuestionVisible && (
-        <div className="p-4 text-white space-y-6">
-          <p className="text-sm text-justify text-white/70">
-            Choose the correct hook for handling side effects in React.
+        <div className="p-2 text-white space-y-6">
+          <p className="text-sm text-white/70">
+            Select the correct mechanism that handles asynchronous JavaScript operations.
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {options.map((option) => (
               <div
                 key={option}
@@ -55,7 +55,7 @@ export const SocialConnect = () => {
                       ? "text-green-500"
                       : "text-red-500"
                     : "text-white"
-                }`}
+                } ${!isAnsweredCorrectly && selectedOption === option ? "animate-shake" : ""}`} // Apply shake animation on incorrect answer
                 onClick={() => handleAnswerSelection(option)}
               >
                 {/* Custom Radio Button */}
@@ -82,21 +82,20 @@ export const SocialConnect = () => {
 
       {/* If the answer is correct, show the success message */}
       {!isQuestionVisible && isAnsweredCorrectly && (
-        <div className="p-4 text-center text-white space-y-4">
-          <p className="text-xl font-bold">Great job!</p>
-          <p>You've answered correctly! Now, let’s connect.</p>
-          <div className="mt-4">
-            <p>Feel free to reach out for collaboration opportunities!</p>
-            <p className="mt-2">Contact me through my email or LinkedIn.</p>
+        <div className="p-6 text-center text-white space-y-6 bg-white/10 backdrop-blur-xl rounded-xl shadow-xl animate-fadeIn transition-all duration-700 mt-8 mb-8">
+          <p className="text-2xl font-semibold text-white">🎉 Well done!</p>
+          <p className="text-lg text-white/80">You got the correct answer! Now, let's connect.</p>
+          <div className="mt-4 space-y-2">
+            <p className="text-white">I'm always open to collaboration opportunities. Reach out to me!</p>
           </div>
         </div>
       )}
 
       {/* If the answer is incorrect, show the retry message */}
       {!isQuestionVisible && !isAnsweredCorrectly && (
-        <div className="p-4 text-center text-white space-y-4">
+        <div className="p-6 text-center text-white space-y-6 bg-white/10 backdrop-blur-xl rounded-xl shadow-xl animate-fadeIn transition-all duration-700 mt-8 mb-8">
           <p className="text-xl font-bold text-red-500">Oops! Incorrect answer</p>
-          <p>Please try again and select the correct option.</p>
+          <p className="text-white/80">Please try again and select the correct option.</p>
         </div>
       )}
     </Card>
