@@ -3,7 +3,7 @@
 import Image from "next/image"; 
 import { FaWhatsapp, FaInstagram, FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Replaced FaPhone with FaPhoneAlt
 import { motion } from "framer-motion"; 
-import Navaneethan from "@/assets/images/Navaneethan.jpeg"; 
+import Navaneethan from "@/assets/images/Navaneethan.png"; 
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 

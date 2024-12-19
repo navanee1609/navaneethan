@@ -5,7 +5,7 @@ import grainImage from "@/assets/images/grain.jpg"; // Importing a grain texture
 import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
-import Navaneethan from "@/assets/images/Navaneethan.jpeg"
+import Navaneethan from "@/assets/images/Navaneethan.png"
 
 export const HeroSection = () => {
   // Function to scroll to the contact section
