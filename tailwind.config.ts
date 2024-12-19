@@ -30,6 +30,8 @@ const config: Config = {
         'move-left': "move-left 30s linear infinite",
         'move-left-card': "move-left-card 60s linear infinite",
         'move-right-card': "move-right-card 60s linear infinite",
+        bounceIn: "bounceIn 1.2s ease-out forwards",
+        fadeInZoom: "fadeInZoom 1.5s ease-out forwards",
       },
       keyframes: {
         'ping-large': {
@@ -49,6 +51,15 @@ const config: Config = {
         'move-right-card': {
           '0': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
+        },
+        bounceIn: {
+          "0%": { opacity: "0", transform: "scale(0.5)" },
+          "60%": { opacity: "1", transform: "scale(1.2)" },
+          "100%": { transform: "scale(1)" },
+        },
+        fadeInZoom: {
+          "0%": { opacity: "0", transform: "scale(0.8)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
       },
       // Add custom class for paused animation on hover
