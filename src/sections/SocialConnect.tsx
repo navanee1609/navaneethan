@@ -84,9 +84,9 @@ export const SocialConnect = () => {
       {!isQuestionVisible && isAnsweredCorrectly && (
         <div className="p-6 text-center text-white space-y-6 bg-white/10 backdrop-blur-xl rounded-xl shadow-xl animate-fadeIn transition-all duration-700 mt-8 mb-8">
           <p className="text-2xl font-semibold text-white">🎉 Well done!</p>
-          <p className="text-lg text-white/80">You got the correct answer! Now, let's connect.</p>
+          <p className="text-lg text-white/80">You got the correct answer! Now, let&apos;s connect.</p>
           <div className="mt-4 space-y-2">
-            <p className="text-white">I'm always open to collaboration opportunities. Reach out to me!</p>
+            <p className="text-white">I&apos;m always open to collaboration opportunities. Reach out to me!</p>
           </div>
         </div>
       )}
