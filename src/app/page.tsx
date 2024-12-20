@@ -7,6 +7,7 @@ import { ProjectsSection } from "@/sections/Projects";
 import { TapeSection } from "@/sections/Tape";
 import { Articles } from "@/sections/Article";
 import { Timeline } from "@/sections/Timeline";
+import { FixedChatIcon } from "@/sections/FixedIcon";
 
 export default function Home() {
   return (
@@ -29,6 +30,8 @@ export default function Home() {
      <ContactSection/>
      {/* Footer section */}
      <Footer/>
+     {/* fixed icon */}
+     <FixedChatIcon/>
     </div>
   );
 }
