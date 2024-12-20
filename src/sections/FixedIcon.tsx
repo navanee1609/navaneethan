@@ -53,9 +53,9 @@ export const FixedChatIcon = () => {
 
               {/* Modal Content with scroll */}
               <div className="text-white overflow-y-auto max-h-[400px]">
-                <h2 className="text-xl font-semibold mb-4">Let's Make Magic Happen!</h2>
+                <h2 className="text-xl font-semibold mb-4">Let&apos;s Make Magic Happen!</h2>
                 <p className="text-sm text-gray-300">
-                Whether you have a groundbreaking idea or just want to chat, I'm all ears! Reach out, and let's explore new possibilities together.                
+                Whether you have a groundbreaking idea or just want to chat, I&apos;m all ears! Reach out, and let&apos;s explore new possibilities together.                
                 </p>
                 <a
   href="https://www.linkedin.com/in/navaneethan-k-v-546a9025b"
