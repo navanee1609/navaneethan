@@ -14,8 +14,8 @@ export const metadata: Metadata = {
   title: "Navaneethan _ Front-End Developer",
   description: "Developer portfolio of Navaneethan KV",
   icons: {
-    icon: "/favicon.webp", // Use favicon from the public folder
-    apple: "/favicon.webp", // Apple touch icon
+    icon: "/favicon.png", // Use favicon from the public folder
+    apple: "/favicon.png", // Apple touch icon
   },
 };
 
@@ -28,8 +28,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Ensure favicon is correctly linked */}
-        <link rel="icon" href="/favicon.webp" type="image/webp" />
-        <link rel="apple-touch-icon" href="/favicon.webp" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
