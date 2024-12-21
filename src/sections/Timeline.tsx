@@ -11,37 +11,38 @@ const timelineData = [
     title: "Front-End Developer",
     company: "Spritle Software",
     description: "Started my full-time role as a front-end developer and expanded my skillset with new frameworks and tools.",
-    icon: <FaBriefcase size={28} />, // Icon for this entry
+    icon: <FaBriefcase size={28} />,
   },
   {
     date: "2023",
     title: "Building Projects",
     company: "Self-Learn",
     description: "Contributed to several open-source projects on GitHub, improving my collaboration skills and coding practices.",
-    icon: <FaLaptopCode size={28} />, // Icon for this entry (since it was coding work)
+    icon: <FaLaptopCode size={28} />,
   },
   {
     date: "2022",
     title: "Started learning Programming",
     company: "Youtube Learning",
     description: "Mastered React concepts like hooks, context API, and state management, launching several personal projects.",
-    icon: <FaReact size={28} />, // Icon for this entry
+    icon: <FaReact size={28} />,
   },
   {
-    date: "2018 -2022",
+    date: "2018 - 2022",
     title: "Bachelor of Mechanical Engineering",
     company: "Dhanalakshmi Srinivasan Engineering College",
-    description: "Created a personal portfolio website and integrated React into my projects, focusing on front-end development.",
-    icon: <FaGraduationCap size={28} />, // Icon for this entry (represents graduation)
+    description: "Graduated with a CGPA of 8.2. Created a personal portfolio website and integrated React into my projects, focusing on front-end development.",
+    icon: <FaGraduationCap size={28} />,
   },
   {
     date: "2017",
     title: "Higher Secondary",
-    company: "Vivekananda Higher Sec.School",
-    description: "I started learning the basics of JavaScript, HTML, and CSS, which sparked my interest in coding.",
-    icon: <FaLaptopCode size={28} />, // Icon for this entry (first step into coding)
+    company: "Vivekananda Higher Sec. School",
+    description: "Secured 92% in Higher Secondary exams. Started learning the basics of JavaScript, HTML, and CSS, which sparked my interest in coding.",
+    icon: <FaLaptopCode size={28} />,
   },
 ];
+
 
 export const Timeline = () => {
   return (
