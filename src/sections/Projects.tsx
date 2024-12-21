@@ -180,7 +180,7 @@ export const ProjectsSection = () => {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    className="mt-8 -mb-4 rounded-md md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none"
+                    className="mt-8 -mb-4 rounded-2xl md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none"
                   />
                 </div>
               </div>

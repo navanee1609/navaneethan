@@ -5,25 +5,38 @@ import { CardHeader } from "@/components/Cardheader";
 
 export const SocialConnect = () => {
   return (
-    <Card className="h-[400px] p-6 col-span-1 md:col-span-3 shadow-lg to-gray-900 overflow-hidden md:h-[320px] relative">
+    <Card className="h-auto p-6 col-span-1 md:col-span-3 shadow-lg overflow-hidden md:h-[320px] relative">
       <CardHeader
-        title="Connect with Me"
+        title="Connect Beyond Limits"
         description=""
-        className="mb-2 text-white"
+        className="text-center text-white mb-6"
       />
 
-      {/* Content Section with Enhanced Animations */}
-      <div className="p-6 text-center text-white space-y-6 bg-white/10 backdrop-blur-xl rounded-xl shadow-xl transition-all duration-700 mt-8 mb-8">
-        {/* Heading Animation */}
-        <h2 className="text-3xl font-semibold animate-bounceIn">
-          Let’s Connect!
-        </h2>
+      {/* Main Content */}
+      <div className="relative flex flex-col items-center justify-center md:h-full">
+        {/* Floating 3D Ring - Hidden on small devices */}
+        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-48 h-48 border-8 border-t-transparent border-white/20 rounded-full animate-spin-slow md:block hidden"></div>
 
-        {/* Paragraph Animation */}
-        <p className="text-lg text-white/80 animate-fadeInZoom">
-          I&apos;m always open to collaboration opportunities and new connections. 
-          Let&apos;s discuss exciting ideas, projects, or just share a conversation. Reach out anytime!
-        </p>
+        {/* Centerpiece Glow Orb - Visible on all screen sizes */}
+        <div className="relative z-10 w-32 h-32 bg-gradient-to-br from-white to-purple-300 rounded-full shadow-xl flex items-center justify-center animate-pulse">
+          <p className="text-xl font-bold text-gray-800">Evolve</p>
+        </div>
+
+        {/* Abstract Floating Particles - Hidden on small devices */}
+        <div className="absolute w-4 h-4 bg-white/20 rounded-full animate-floating particle-1 md:block hidden"></div>
+        <div className="absolute w-6 h-6 bg-white/30 rounded-full animate-floating particle-2 md:block hidden"></div>
+        <div className="absolute w-3 h-3 bg-white/10 rounded-full animate-floating particle-3 md:block hidden"></div>
+
+        {/* Caption Section - Hidden on small devices */}
+        <div className="lg:mt-12 text-center space-y-4">
+          <h2 className="text-3xl font-extrabold text-white">
+            Build, Create, Inspire
+          </h2>
+          <p className="text-white/80 max-w-lg mx-auto">
+            Unlock new dimensions of creativity and collaboration. Let&apos;s
+            transform visions into reality with ideas that transcend boundaries.
+          </p>
+        </div>
       </div>
     </Card>
   );
