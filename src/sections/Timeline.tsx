@@ -23,7 +23,7 @@ const timelineData = [
   {
     date: "2022",
     title: "Started learning Programming",
-    company: "Youtube Learning",
+    company: "Self-Learning",
     description: "Mastered React concepts like hooks, context API, and state management, launching several personal projects.",
     icon: <FaReact size={28} />,
   },
