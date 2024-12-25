@@ -17,9 +17,13 @@ export const SocialConnect = () => {
         {/* Floating 3D Ring - Hidden on small devices */}
         <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-48 h-48 border-8 border-t-transparent border-white/20 rounded-full animate-spin-slow md:block hidden"></div>
 
-        {/* Centerpiece Glow Orb - Visible on all screen sizes */}
-        <div className="relative z-10 w-32 h-32 bg-gradient-to-br from-white to-purple-300 rounded-full shadow-xl flex items-center justify-center animate-pulse">
-          <p className="text-xl font-bold text-gray-800">Evolve</p>
+        {/* Centerpiece Glow Orb - Hover Effect */}
+        <div className="relative z-10 w-32 h-32 bg-gradient-to-br from-white to-purple-300 rounded-full shadow-xl flex items-center justify-center animate-pulse group hover:scale-110 transition-transform duration-300 hover:bg-gradient-to-br hover:from-emerald-400 hover:to-indigo-500">
+          <p className="text-sm md:text-xl font-bold text-gray-800 group-hover:text-white text-center transition-colors duration-300">
+            Unleash
+          </p>
+          {/* Border Glow Effect */}
+          <div className="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-white group-hover:animate-ping"></div>
         </div>
 
         {/* Abstract Floating Particles - Hidden on small devices */}
