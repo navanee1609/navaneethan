@@ -46,22 +46,23 @@ export const SkillsToolsSection = () => {
                 description="These are the technologies I use to build web applications."
                 className="mb-6 text-white"
               />
-              <div className="relative w-full h-80 bg-gray-800/90 rounded-md overflow-hidden">
-                <div className="grid grid-cols-2 gap-4 p-4">
+              <div className="relative w-full min-h-[200px] bg-gray-800/90 rounded-md overflow-hidden p-4">
+                <div className="grid grid-cols-2 gap-4">
                   {frontEndSkills.map((skill, index) => (
-                    <Draggable key={index}>
+                    <Draggable key={index} bounds="parent">
                       <div
-                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-grab"
+                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-move"
                         style={{
                           transition: "all 0.2s ease",
                         }}
                       >
-                        {/* Using <Image /> with automatic optimization */}
                         <Image 
                           src={skill.imageUrl} 
-                          alt={skill.title} 
-                          width={32} // Adjusted dimensions for optimized delivery
+                          alt={`${skill.title} logo`} 
+                          width={32} 
                           height={32} 
+                          loader={({ src }) => src} // Handle external images
+                          priority={index < 4} // Prioritize above-the-fold images
                         />
                         <span className="text-white text-sm">{skill.title}</span>
                       </div>
@@ -78,22 +79,23 @@ export const SkillsToolsSection = () => {
                 description="Here are the tools I use to streamline my development workflow."
                 className="mb-6 text-white"
               />
-              <div className="relative w-full h-80 bg-gray-800/90 rounded-md overflow-hidden flex items-center justify-center">
-                <div className="grid grid-cols-2 gap-4 p-4 w-full">
+              <div className="relative w-full min-h-[200px] bg-gray-800/90 rounded-md overflow-hidden p-4 flex items-center justify-center">
+                <div className="flex flex-wrap gap-4 justify-center">
                   {tools.map((tool, index) => (
-                    <Draggable key={index}>
+                    <Draggable key={index} bounds="parent">
                       <div
-                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-grab"
+                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-move"
                         style={{
                           transition: "all 0.2s ease",
                         }}
                       >
-                        {/* Using <Image /> for optimization */}
                         <Image 
                           src={tool.imageUrl} 
-                          alt={tool.title} 
+                          alt={`${tool.title} logo`} 
                           width={32} 
                           height={32} 
+                          loader={({ src }) => src} // Handle external images
+                          priority={index < 4} // Prioritize above-the-fold images
                         />
                         <span className="text-white text-sm">{tool.title}</span>
                       </div>
