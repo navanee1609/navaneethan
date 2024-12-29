@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image"; 
-import { FaWhatsapp, FaInstagram, FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; // Replaced FaPhone with FaPhoneAlt
+import { FaWhatsapp, FaInstagram, FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; 
 import { motion } from "framer-motion"; 
 import Navaneethan from "@/assets/images/Navaneethan.png"; 
 import { Card } from "@/components/Card";
@@ -9,10 +9,9 @@ import { CardHeader } from "@/components/Cardheader";
 
 const ContactAnimation = () => {
   const socialMedia = [
-    { icon: FaWhatsapp, link: "https://wa.me/7639096688"
-      , color: "#25D366" },
-    { icon: FaInstagram, link: "https://https://spritle.slack.com/archives/D072P4WGGEB/p1734005101081149", color: "#E4405F" },
-    { icon: FaLinkedin, link: "www.linkedin.com/in/navaneethacn-k-v-546a9025b", color: "#0077B5" },
+    { icon: FaWhatsapp, link: "https://wa.me/7639096688", color: "#25D366" },
+    { icon: FaInstagram, link: "https://www.instagram.com", color: "#E4405F" },
+    { icon: FaLinkedin, link: "https://www.linkedin.com/in/navaneethacn-k-v-546a9025b", color: "#0077B5" },
     { icon: FaGithub, link: "https://github.com/navanee1609", color: "#333" },
     { icon: FaEnvelope, link: "mailto:navaneethanvs18@gmail.com", color: "#D44638" },
     { icon: FaPhoneAlt, link: "tel:+6380939303", color: "#25D366" },
@@ -55,30 +54,18 @@ const ContactAnimation = () => {
                   <motion.div
                     className="w-12 h-12 bg-gray-800/90 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-white transition duration-300"
                     whileHover={{
-                      scale: 1.4, // Larger scale on hover
-                      rotate: 0, // No rotation on hover
-                      opacity: 1, // Full opacity on hover
+                      scale: 1.1, // Slightly larger scale on hover
                       transition: { duration: 0.2 }, // Smooth transition for hover
                     }}
                     whileTap={{
-                      scale: 0.9, // Shrink the icon when clicked
-                    }}
-                    animate={{
-                      y: [0, -15, 0], // Bounce animation with more amplitude
-                      opacity: [1, 0.8, 1], // Pulse effect for opacity
-                    }}
-                    transition={{
-                      duration: 0.6, // Smooth and long transition for the bounce
-                      repeat: Infinity, // Continuous bounce
-                      repeatType: 'reverse', // Reverse the animation to create a ping effect
-                      ease: "easeOut", // Smooth easing for the bouncing effect
+                      scale: 0.95, // Slightly shrink the icon when clicked
                     }}
                   >
                     <motion.div
                       className="w-6 h-6"
                       initial={{ color: "gray" }} // Default color is gray
                       whileHover={{ color: social.color }} // On hover, change to the original color
-                      transition={{ duration: 0.3 }} // Smooth transition for the color change
+                      transition={{ duration: 0.2 }} // Smooth transition for the color change
                     >
                       {/* Type Assertion: Explicitly assert that icon is a valid JSX element */}
                       <social.icon className="w-6 h-6" />

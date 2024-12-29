@@ -2,6 +2,7 @@
 
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
+import { FaGithub } from "react-icons/fa"; // Import GitHub icon
 
 export const SocialConnect = () => {
   return (
@@ -19,9 +20,27 @@ export const SocialConnect = () => {
 
         {/* Centerpiece Glow Orb - Hover Effect */}
         <div className="relative z-10 w-32 h-32 bg-gradient-to-br from-white to-purple-300 rounded-full shadow-xl flex items-center justify-center animate-pulse group hover:scale-110 transition-transform duration-300 hover:bg-gradient-to-br hover:from-emerald-400 hover:to-indigo-500">
-          <p className="text-sm md:text-xl font-bold text-gray-800 group-hover:text-white text-center transition-colors duration-300">
+          {/* Unleash Link with Tooltip */}
+          <a
+            href="https://github.com/navanee1609" // Replace with your GitHub URL
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm md:text-xl font-bold text-gray-800 group-hover:text-white text-center transition-colors duration-300 relative"
+          >
             Unleash
-          </p>
+            {/* Tooltip with GitHub Icon and Text */}
+            <a
+              href="https://github.com/navanee1609" // Same link as above
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-black/90 text-white text-xs px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap z-20 flex items-center gap-2"
+            >
+              <FaGithub className="size-4" /> {/* GitHub Icon */}
+              <span>navanee1609</span> {/* GitHub Username */}
+              {/* Tooltip Arrow */}
+              <span className="absolute -top-1.5 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-black/90 rotate-45"></span>
+            </a>
+          </a>
           {/* Border Glow Effect */}
           <div className="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-white group-hover:animate-ping"></div>
         </div>
