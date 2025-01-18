@@ -225,7 +225,7 @@ export const AboutSection = () => {
 
           <div className="flex justify-center mt-4">
   <a
-    href="https://drive.google.com/file/d/1Qd8cFOhMg41pVCECXCUp799tIn5_MHB6/view?usp=sharing"  
+    href="https://drive.google.com/file/d/1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG/view?usp=drive_link"  
     download="Navaneethan KV.pdf"  
     className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
   >

@@ -109,7 +109,7 @@ export const HeroSection = () => {
           <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
             {/* Explore my work Button */}
             <a
-              href="https://drive.google.com/file/d/1Qd8cFOhMg41pVCECXCUp799tIn5_MHB6/view?usp=sharing" 
+              href="https://drive.google.com/file/d/1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG/view?usp=drive_link" 
               download
               className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl z-20"
             >
