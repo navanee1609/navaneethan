@@ -6,7 +6,11 @@ import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
 import Navaneethan from "@/assets/images/Navaneethan.png"
-
+import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+// import NavaneethanResume from "../../public/Navaneethan_resume.pdf";
 export const HeroSection = () => {
   // Function to scroll to the contact section
   const handleScrollToContact = () => {
@@ -15,6 +19,47 @@ export const HeroSection = () => {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+
+  const [resumeModalVisible, setResumeModalVisible] = useState(false);
+  const [showResume, setShowResume] = useState(false);
+
+  const resumeUrl =
+    "https://drive.google.com/file/d/1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG/view"; // Google Drive view link
+
+  // Prevent scrolling when modal is open
+  useEffect(() => {
+    if (resumeModalVisible) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [resumeModalVisible]);
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href =
+      "https://drive.google.com/uc?export=download&id=1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG"; // Direct download link
+    link.setAttribute("download", "Navaneethan_KV.pdf"); // Ensures file is downloaded
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setResumeModalVisible(false);
+  };
+
+  const handleViewResume = () => {
+    setShowResume(true);
+  };
+
+  const closeModal = () => {
+    setResumeModalVisible(false);
+    setShowResume(false);
+  };
+
+  
 
   return (
     <section id="home">
@@ -108,14 +153,98 @@ export const HeroSection = () => {
 
           <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
             {/* Explore my work Button */}
-            <a
-              href="https://drive.google.com/file/d/1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG/view?usp=drive_link" 
-              download
-              className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl z-20"
+            <div className="relative">
+      {/* Explore my work Button */}
+      <a
+        onClick={() => setResumeModalVisible(true)}
+        className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl z-20 cursor-pointer"
+      >
+        <span className="font-semibold">Explore my work</span>
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </a>
+
+      {/* Modal */}
+      {resumeModalVisible && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+          onClick={closeModal}
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-gray-800 rounded-2xl p-6 w-full max-w-lg relative mx-4 shadow-lg overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Background grain image */}
+            <div
+              className="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage: `url(${grainImage.src})`,
+                zIndex: -1,
+              }}
+            ></div>
+
+            {/* Close button */}
+            <button
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
+              onClick={closeModal}
             >
-              <span className="font-semibold">Explore my work</span>
-              <ArrowIcon className="w-4 h-4" />
-            </a>
+              <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
+            </button>
+
+            {/* Modal Title */}
+            <h2 className="text-lg font-semibold text-white text-center mb-4">
+              {showResume ? "Resume Preview" : "What would you like to do?"}
+            </h2>
+
+            {/* Buttons Row */}
+            {!showResume ? (
+              <div className="flex gap-4 justify-center">
+                {/* Download Button */}
+                <button
+                  onClick={handleDownload}
+                  className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition font-medium"
+                >
+                  <FontAwesomeIcon icon={faArrowDown} />
+                  Download Resume
+                </button>
+
+                {/* View Button */}
+                <button
+                  onClick={handleViewResume}
+                  className="flex items-center gap-2 px-4 py-2 border border-white text-white rounded-lg hover:bg-white/10 transition font-medium"
+                >
+                  <FontAwesomeIcon icon={faEye} />
+                  View Resume
+                </button>
+              </div>
+            ) : (
+              <div className="mt-4">
+                {/* Resume Opens Directly in Modal */}
+                <iframe
+  src="/Navaneethan_Resume.pdf"
+  className="w-full h-[80vh] rounded-lg border border-white/20"
+></iframe>
+
+
+              </div>
+            )}
+          </motion.div>
+        </div>
+      )}
+    </div>
+
+
 
             {/* Let's Connect Button */}
             <button
@@ -131,4 +260,6 @@ export const HeroSection = () => {
     </section>
   );
 };
+
+
 
