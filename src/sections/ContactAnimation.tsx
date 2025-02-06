@@ -14,7 +14,7 @@ const ContactAnimation = () => {
       <div className="absolute inset-0 rounded-3xl overflow-hidden">
         {/* Wrap the map container in an anchor tag for redirection */}
         <a 
-          href="https://www.google.com/maps?q=13.0678784,80.1767424"  // Link to the desired location
+          href="https://www.google.com/maps?q=13.0678784,80.1767424" 
           target="_blank"  // Open the link in a new tab
           rel="noopener noreferrer"  // For security reasons
           className="relative w-full h-full"
