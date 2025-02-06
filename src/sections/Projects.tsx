@@ -125,7 +125,7 @@ export const ProjectsSection = () => {
           Outside the world of pixels and vectors, I am a full-time dog mom and explorer.
           I love spending my time of leisure traveling and meeting new people.
           Practicing yoga is my safe space; I love the peace and quiet it gives me.
-          Art has been another enriching aspect of my life. Whether it's exploring local galleries during my travels
+          Art has been another enriching aspect of my life. Whether it&apos;s exploring local galleries during my travels
           or finding inspiration from the landscapes and cultures I encounter, art has offered me a unique perspective on the world!
         </p>
       </div>
