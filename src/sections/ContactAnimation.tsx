@@ -10,7 +10,7 @@ import { CardHeader } from "@/components/Cardheader";
 const ContactAnimation = () => {
   const socialMedia = [
     { icon: FaWhatsapp, link: "https://wa.me/7639096688", color: "#25D366" },
-    { icon: FaInstagram, link: "https://www.instagram.com", color: "#E4405F" },
+    { icon: FaInstagram, link: "https://www.instagram.com/navneethkrishna_05/", color: "#E4405F" },
     { icon: FaLinkedin, link: "https://www.linkedin.com/in/navaneethacn-k-v-546a9025b", color: "#0077B5" },
     { icon: FaGithub, link: "https://github.com/navanee1609", color: "#333" },
     { icon: FaEnvelope, link: "mailto:navaneethanvs18@gmail.com", color: "#D44638" },

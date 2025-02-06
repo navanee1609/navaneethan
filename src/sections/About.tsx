@@ -342,7 +342,7 @@ export const AboutSection = () => {
   {/* Social Media Section */}
   <SocialConnect/>
 
-  {/* Map Box */}
+  {/* Contact Animation Box */}
 
 <ContactAnimation/>
 
