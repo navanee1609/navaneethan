@@ -2,6 +2,7 @@
 import { motion } from "framer-motion"; // Import motion for animations
 import { FaLaptopCode, FaGraduationCap, FaReact, FaBriefcase, FaSchool, FaUserGraduate } from "react-icons/fa"; // Import icons
 import { SectionHeader } from "./SectionHeader";
+import { Nutshell } from "./Nutshell";
 
 // Data for the timeline in reversed order
 const timelineData = [
@@ -57,7 +58,8 @@ const timelineData = [
 
 export const Timeline = () => {
   return (
-    <section id="timeline" className="px-8 py-16 bg-gray-900 text-white">
+    <section>
+      <section id="timeline" className="px-8 py-8 bg-gray-900 text-white">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="My Journey & Growth"
@@ -118,6 +120,11 @@ export const Timeline = () => {
           </ul>
         </div>
       </div>
+    </section>
+
+    {/* Nutshell */}
+
+    <Nutshell/>
     </section>
   );
 };

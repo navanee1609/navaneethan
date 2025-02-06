@@ -353,6 +353,7 @@ export const AboutSection = () => {
     </div>
     
     <SkillsToolsSection/>
+
     </section>
   );
 };

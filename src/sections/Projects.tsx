@@ -10,7 +10,7 @@ import shopcart from "@/assets/images/shopcart.png"
 import sbg from "@/assets/images/sbg.png"
 import notekeeper from "@/assets/images/notekeeper.png"
 import cookio from "@/assets/images/cookio.png"
-import nutshellImage from "@/assets/images/nutshellImage.png"
+
 const portfolioProjects = [
   {
     company: "Spritle Software",
@@ -106,6 +106,9 @@ const portfolioProjects = [
 ];
 
 
+
+
+
 // Tech colors array (will repeat)
 const techColors = [
   { bg: "bg-[#AFD5F0]", text: "text-[#085063]" }, // Dark teal for blue
@@ -117,19 +120,8 @@ const techColors = [
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="pb-16">
-      <div className="container flex flex-col items-center text-center mb-16">
-        {/* Me in a Nutshell Section */}
-        <Image src={nutshellImage} alt="Me in a Nutshell" className="w-32 h-32" />
-        <h2 className="mt-6 text-3xl font-bold">Me in a Nutshell</h2>
-        <p className="mt-4 max-w-2xl text-lg text-gray-400">
-          Outside the world of pixels and vectors, I am a full-time dog mom and explorer.
-          I love spending my time of leisure traveling and meeting new people.
-          Practicing yoga is my safe space; I love the peace and quiet it gives me.
-          Art has been another enriching aspect of my life. Whether it&apos;s exploring local galleries during my travels
-          or finding inspiration from the landscapes and cultures I encounter, art has offered me a unique perspective on the world!
-        </p>
-      </div>
-      <div className="container">
+      
+<div className="container">
       <SectionHeader
   eyebrow="Real-World Impact"
   title="Showcasing My Featured Projects"
@@ -156,6 +148,12 @@ export const ProjectsSection = () => {
                     </div>
                   </div>
                   <h3 className="font-serif text-2xl md:text-4xl md:mt-5">{project.title}</h3>
+                  <a href={project.link}>
+                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
+                      <span>View Live Site</span>
+                      <ArrowUpIcon className="size-4" />
+                    </button>
+                  </a>
                   <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
                   <ul className="flex flex-col gap-4 mt-4">
                     {project.results.map((result, index) => (
@@ -181,21 +179,18 @@ export const ProjectsSection = () => {
                     })}
                   </div>
 
-                  <a href={project.link}>
-                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
-                      <span>View Live Site</span>
-                      <ArrowUpIcon className="size-4" />
-                    </button>
-                  </a>
+
                 </div>
 
                 <div className="relative">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    className="mt-8 -mb-4 rounded-2xl md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none"
-                  />
-                </div>
+  <Image
+    src={project.image}
+    alt={project.title}
+    className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none 
+               rounded-tr-2xl rounded-br-2xl rounded-tl-2xl" 
+  />
+</div>
+
               </div>
             </Card>
           ))}
