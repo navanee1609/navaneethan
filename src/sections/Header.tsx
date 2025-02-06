@@ -60,7 +60,7 @@ export const Header = () => {
           {/* Logo */}
           <Link href="/" className="text-white text-lg font-semibold">
             <Image
-              src={logo} // Replace with the path to your logo image
+              src={logo} 
               alt="Logo"
               width={30}
               height={30} // Adjust dimensions as needed
