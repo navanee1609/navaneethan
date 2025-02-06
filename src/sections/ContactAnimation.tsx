@@ -1,82 +1,71 @@
 "use client";
 
-import Image from "next/image"; 
-import { FaWhatsapp, FaInstagram, FaLinkedin, FaGithub, FaEnvelope, FaPhoneAlt } from "react-icons/fa"; 
-import { motion } from "framer-motion"; 
-import Navaneethan from "@/assets/images/Navaneethan.png"; 
+import Image from "next/image";
+import { motion } from "framer-motion";
+import Navaneethan from "@/assets/images/Navaneethan.png";
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
+import { FaMapPin } from "react-icons/fa";
 
 const ContactAnimation = () => {
-  const socialMedia = [
-    { icon: FaWhatsapp, link: "https://wa.me/7639096688", color: "#25D366" },
-    { icon: FaInstagram, link: "https://www.instagram.com/navneethkrishna_05/", color: "#E4405F" },
-    { icon: FaLinkedin, link: "https://www.linkedin.com/in/navaneethacn-k-v-546a9025b", color: "#0077B5" },
-    { icon: FaGithub, link: "https://github.com/navanee1609", color: "#333" },
-    { icon: FaEnvelope, link: "mailto:navaneethanvs18@gmail.com", color: "#D44638" },
-    { icon: FaPhoneAlt, link: "tel:+6380939303", color: "#25D366" },
-  ];
-
   return (
-    <Card className="h-[320px] p-6 relative col-span-1 md:col-span-2">
+    <Card className="h-[320px] p-6 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl">
       <CardHeader title="Reach me" description="" className="mb-6 text-white" />
-      <div className="absolute mt-7 size-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full after:content-[''] after:absolute after:inset-0 after:outline after-outline-2 after-outline-offset-2 after:rounded-full after:outline-gray-950/30">
-        {/* Ping animation background */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r bg-emerald-300 to-sky-400 -z-20 animate-ping"></div>
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r bg-emerald-300 to-sky-400 -z-10"></div>
+      <div className="absolute inset-0 rounded-3xl overflow-hidden">
+        {/* Wrap the map container in an anchor tag for redirection */}
+        <a 
+          href="https://www.google.com/maps?q=13.0678784,80.1767424"  // Link to the desired location
+          target="_blank"  // Open the link in a new tab
+          rel="noopener noreferrer"  // For security reasons
+          className="relative w-full h-full"
+        >
+          {/* Local Video Background */}
+          <div className="relative w-full h-full">
+            <video
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ zIndex: 0 }}
+            >
+              <source src="/video/mapvideo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            {/* Optional: Add a blur effect or overlay if needed */}
+            <div className="absolute inset-0 bg-black opacity-20"></div>
+          </div>
+        </a>
 
-        {/* Navaneethan Image */}
-        <Image src={Navaneethan} alt="smile" className="size-20 rounded-full" />
-
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-[240px] h-[240px]">
-            {/* Mapping Social Media Icons */}
-            {socialMedia.map((social, index) => {
-              const angle = (360 / 6) * index; // Calculate angle for even spacing
-              const radian = (angle * Math.PI) / 180;
-              const x = Math.cos(radian) * 100; // Radius of 100px for spacing around the image
-              const y = Math.sin(radian) * 100; // Same for y-axis
-
-              return (
-                <a
-                  key={index}
-                  href={social.link}
-                  className="absolute"
-                  style={{
-                    left: `calc(50% + ${x}px)`,
-                    top: `calc(50% + ${y}px)`,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* Icon Styling: Rounded, Shadow, Hover Effects with Framer Motion for animation */}
-                  <motion.div
-                    className="w-12 h-12 bg-gray-800/90 rounded-full flex items-center justify-center shadow-md hover:shadow-lg hover:bg-white transition duration-300"
-                    whileHover={{
-                      scale: 1.1, // Slightly larger scale on hover
-                      transition: { duration: 0.2 }, // Smooth transition for hover
-                    }}
-                    whileTap={{
-                      scale: 0.95, // Slightly shrink the icon when clicked
-                    }}
-                  >
-                    <motion.div
-                      className="w-6 h-6"
-                      initial={{ color: "gray" }} // Default color is gray
-                      whileHover={{ color: social.color }} // On hover, change to the original color
-                      transition={{ duration: 0.2 }} // Smooth transition for the color change
-                    >
-                      {/* Type Assertion: Explicitly assert that icon is a valid JSX element */}
-                      <social.icon className="w-6 h-6" />
-                    </motion.div>
-                  </motion.div>
-                </a>
-              );
-            })}
+        {/* Centered Avatar with Animation */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="relative size-20">
+            {/* Ping animation background */}
+            <div className="absolute inset-0 rounded-full bg-emerald-300/50 -z-20 animate-ping"></div>
+            <div className="absolute inset-0 rounded-full bg-emerald-300/50 -z-10"></div>
+            
+            {/* Profile Image */}
+            <Image 
+              src={Navaneethan || "/placeholder.svg"} 
+              alt="profile" 
+              className="size-20 rounded-full relative z-10 border-2 border-white"
+            />
           </div>
         </div>
-      </div>
+
+        {/* Location Label */}
+        <motion.div 
+          className="absolute bottom-6 left-6 z-20"  
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-gray-900/70 backdrop-blur-sm">
+            <FaMapPin className="w-5 h-5 text-pink-500" />
+            <span className="text-white text-lg font-semibold">Chennai, India</span>
+          </div>
+        </motion.div>
+      </div>  
     </Card>
   );
 };
