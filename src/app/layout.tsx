@@ -28,8 +28,8 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Ensure favicon is correctly linked */}
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.avif" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.avif" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body
