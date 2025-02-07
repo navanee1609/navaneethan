@@ -136,7 +136,7 @@ export const Nutshell = () => {
             variants={itemVariants}
             className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-4"
           >
-            Partnership FAQs
+            
           </motion.h2>
           {nutshellData.map((item, index) => (
             <motion.div 
