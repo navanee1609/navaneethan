@@ -59,7 +59,7 @@ const timelineData = [
 export const Timeline = () => {
   return (
     <section>
-      <section id="timeline" className="px-8 py-8 bg-gray-900 text-white">
+      <section id="timeline" className="px-8 py-4 mt-12 bg-gray-900 text-white">
       <div className="container mx-auto">
         <SectionHeader
           eyebrow="My Journey & Growth"

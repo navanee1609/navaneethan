@@ -11,7 +11,7 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  title: "Navaneethan _ Front-End Developer",
+  title: "DevFolio | Navaneethan KV",
   description: "Developer portfolio of Navaneethan KV",
   icons: {
     icon: "/favicon.png", // Use favicon from the public folder

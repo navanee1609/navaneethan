@@ -30,7 +30,7 @@ const tools = [
 export const SkillsToolsSection = () => {
   return (
     <section id="skills-tools">
-      <div className="py-20">
+      <div className="py-4 mt-12">
         <div className="container">
           <SectionHeader 
             eyebrow="Technical Mastery" 

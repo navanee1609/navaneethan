@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image"; // Import next/image for logo
 import logo from "@/assets/images/mobile-logo.png";
-import { CgMenuMotion } from "react-icons/cg";
+import { HiMenuAlt4 } from "react-icons/hi";
 
 export const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
@@ -51,7 +51,7 @@ export const Header = () => {
     <header className="fixed top-3 left-0 right-0 flex justify-center items-center w-full z-10">
       {/* Mobile Navbar & Expanded Menu Together */}
       <div
-        className={`md:hidden flex flex-col w-[75%] bg-white/30 backdrop-blur-lg rounded-3xl border border-white/20 transition-all duration-300 ${
+        className={`md:hidden flex flex-col w-[78%] bg-white/30 backdrop-blur-lg rounded-3xl border border-white/20 transition-all duration-300 ${
           isMobileMenuOpen ? "rounded-3xl" : ""
         }`}
       >
@@ -62,7 +62,7 @@ export const Header = () => {
             <Image
               src={logo} 
               alt="Logo"
-              width={30}
+              width={40}
               height={30} // Adjust dimensions as needed
               className="object-contain"
             />
@@ -70,7 +70,7 @@ export const Header = () => {
 
           {/* Hamburger Menu */}
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white transition-transform duration-300">
-            {isMobileMenuOpen ? <X size={28} /> : <CgMenuMotion size={28} />}
+            {isMobileMenuOpen ? <X size={28} /> : <HiMenuAlt4 size={28} />}
           </button>
         </div>
 

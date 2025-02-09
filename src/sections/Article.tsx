@@ -40,8 +40,8 @@ const articles = [
 export const Articles = () => {
   return (
     <section id="article">
-      <div className="py-16 lg:my-20">
-        <div className="container">
+      <div className="py-4">
+        <div className="lg:container">
           {/* Updated Section Header */}
           <SectionHeader
             eyebrow="Latest Articles & Insights"
