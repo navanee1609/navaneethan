@@ -6,17 +6,14 @@ import SparkleIcon from "@/assets/icons/star.svg";
 
 export const MyPersona = () => {
   const personaTags = [
-    "Frontend",
     "React",
     "Next.js",
     "Performance",
     "Reusable",
-    "Maintainable",
     "Cross-Browser",
     "JavaScript",
     "TypeScript",
     "API",
-    "Fetching",
     "Innovation",
   ];
 
