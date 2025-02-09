@@ -21,7 +21,7 @@ export const MyPersona = () => {
   ];
 
   return (
-    <Card className="p-6 col-span-1 md:col-span-3 overflow-hidden h-[320px] relative bg-gradient-to-br from-[#1b2a3c] to-[#12202f]">
+    <Card className="p-6 col-span-1 md:col-span-3 overflow-hidden h-[420px] sm:h-[320px] relative bg-gradient-to-br from-[#1b2a3c] to-[#12202f]">
 
       {/* Heading Section */}
       <div className="flex flex-col group relative">

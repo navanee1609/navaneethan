@@ -85,7 +85,7 @@ export const AboutSection = () => {
 
 
 {/* second card */}
-<Card className="h-[420px] md:h-[320px] col-span-1 md:col-span-3 p-4 relative overflow-hidden flex flex-col justify-between bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg">
+<Card className="h-[320px] col-span-1 md:col-span-3 p-4 relative overflow-hidden flex flex-col justify-between bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg">
       {/* Text Section */}
       <div className="flex flex-col">
         <div className="flex items-center gap-2">
@@ -129,7 +129,7 @@ export const AboutSection = () => {
         </div>
 
         {/* Code Editor with Typing Animation */}
-        <div className="p-4 text-white font-mono text-sm flex-grow overflow-hidden">
+        <div className="p-1 md:p-4 text-white font-mono text-sm flex-grow overflow-hidden">
           {codeLines.map((line, i) => (
             <motion.pre
               key={i}
