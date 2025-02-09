@@ -27,7 +27,7 @@ const codeLines = [
   { text: ``, color: "" },
   { text: `function Devfolio() {`, color: "text-blue-400" },
   { text: `  return (`, color: "text-yellow-400" },
-  { text: `    "Elevating the Digital Experiences"`, color: "text-white" },
+  { text: `    "Elevating Digital Experiences"`, color: "text-white" },
   { text: `  );`, color: "text-yellow-400" },
   { text: `}`, color: "text-blue-400" },
   { text: ``, color: "" },
