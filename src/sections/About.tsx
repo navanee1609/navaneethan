@@ -12,7 +12,6 @@ import DiverseNeeds from "./DiverseNeeds";
 import { X } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 
-
 const textVariants = {
   hidden: { opacity: 0 },
   visible: (i: number) => ({
@@ -20,8 +19,6 @@ const textVariants = {
     
   }),
 };
-
-
 const codeLines = [
   { text: `import React from 'react';`, color: "text-blue-400" },
   { text: ``, color: "" },
