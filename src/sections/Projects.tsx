@@ -149,7 +149,7 @@ export const ProjectsSection = () => {
                       <span>{project.year}</span>
                     </div>
                   </div>
-                  <h3 className="font-serif text-2xl md:text-4xl md:mt-5">{project.title}</h3>
+                  <h3 className="font-serif text-2xl md:mt-5">{project.title}</h3>
                   <a href={project.link}>
                     <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
                       <span>View Live Site</span>
