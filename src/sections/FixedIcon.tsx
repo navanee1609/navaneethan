@@ -81,7 +81,7 @@ export const FixedChatIcon = () => {
         }}
         className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full shadow-lg hover:scale-110 hover:shadow-xl transition-all duration-300 ease-in-out cursor-pointer"
       >
-        <SparkleIcon className="w-10 h-10" />
+        <SparkleIcon className="w-10 h-10 transform rotate-12" />
       </a>
     </div>
   );
