@@ -25,7 +25,7 @@ export const HeroSection = () => {
   const [showResume, setShowResume] = useState(false);
 
   const resumeUrl =
-    "https://drive.google.com/file/d/1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG/view"; // Google Drive view link
+    "https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing"; // Google Drive view link
 
   // Prevent scrolling when modal is open
   useEffect(() => {
