@@ -41,14 +41,14 @@ export const HeroSection = () => {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href =
-      "https://drive.google.com/uc?export=download&id=1ImDljm1VBgIdV9Airxm8VHmd-UEo12pG"; // Direct download link
+    link.href = "https://drive.google.com/uc?export=download&id=10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx"; // Updated direct download link
     link.setAttribute("download", "Navaneethan_KV.pdf"); // Ensures file is downloaded
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
     setResumeModalVisible(false);
   };
+  
 
   const handleViewResume = () => {
     setShowResume(true);
