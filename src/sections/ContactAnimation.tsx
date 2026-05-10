@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Navaneethan from "@/assets/images/Navaneethan.png";
+import Navanee from "@/assets/images/Navanee.png";
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 import { FaMapPin } from "react-icons/fa";
@@ -46,9 +46,9 @@ const ContactAnimation = () => {
             
             {/* Profile Image */}
             <Image 
-              src={Navaneethan || "/placeholder.svg"} 
+              src={Navanee || "/placeholder.svg"} 
               alt="profile" 
-              className="size-20 rounded-full relative z-10 border-2 border-white"
+              className="size-20 rounded-full relative z-10 border-2 border-white object-cover object-top"
             />
           </div>
         </div>

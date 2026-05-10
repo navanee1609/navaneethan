@@ -3,7 +3,7 @@ import { Card } from "@/components/Card";
 import { SectionHeader } from "./SectionHeader";
 import React from "@/assets/icons/react.svg";
 import { motion } from "framer-motion";
-import navaneethan from "@/assets/images/Navaneethan.png";
+import navanee from "@/assets/images/Navanee.png";
 import SparkleIcon from "@/assets/icons/star.svg";
 import { SkillsToolsSection } from "./Skills";
 import { MyPersona } from "./MyPersona";

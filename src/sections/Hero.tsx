@@ -5,7 +5,7 @@ import grainImage from "@/assets/images/grain.jpg"; // Importing a grain texture
 import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
-import Navaneethan from "@/assets/images/Navaneethan.png"
+import Navanee from "@/assets/images/Navanee.png"
 import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -129,8 +129,8 @@ export const HeroSection = () => {
         <div className="container">
           <div className="flex flex-col items-center">
             <Image
-              src={Navaneethan}
-              className="size-[200px] rounded-full"
+              src={Navanee}
+              className="size-[200px] rounded-full object-cover object-top"
               alt="Navaneethan"
             />
             <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">

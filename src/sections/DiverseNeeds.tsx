@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowRight, ArrowUp, MousePointer2 as LuMousePointer2 } from "lucide-react";
-import Navaneethan from "@/assets/images/Navaneethan.png";
+import Navanee from "@/assets/images/Navanee.png";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -46,7 +46,7 @@ export default function DiverseNeeds() {
                 <div className="bg-white p-5 mb-6 md:mb-2 rounded-xl rotate-3 shadow-xl">
                   <div className="relative aspect-[3/4] w-full">
                     <Image
-                      src={Navaneethan}
+                      src={Navanee}
                       alt="Portrait photo"
                       fill
                       className="object-cover rounded-lg"
