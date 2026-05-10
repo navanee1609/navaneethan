@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { motion, AnimatePresence } from 'framer-motion';
 import SparkleIcon from "@/assets/icons/star.svg";
 import grainImage from "@/assets/images/grain.jpg"
 import { FaLinkedin } from 'react-icons/fa';
@@ -20,22 +21,37 @@ export const FixedChatIcon = () => {
     } else {
       document.body.style.overflow = 'auto';
     }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
   }, [isModalOpen]);
 
   return (
     <div className="fixed bottom-6 right-6 z-[100]">
       {/* Blur background when modal opens */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[9998] bg-black bg-opacity-50 backdrop-blur-sm">
-          {/* Modal */}
-          <div
-            className={`fixed bottom-16 right-6 z-[9999] flex items-center justify-center bg-transparent`}
-            onClick={() => closeModal()}
+      <AnimatePresence mode="wait">
+        {isModalOpen && (
+          <motion.div
+            key="fixed-chat-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: 'easeInOut', when: 'beforeChildren' }}
+            className="fixed inset-0 z-[9998] bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={closeModal}
           >
-            <div
-              className="bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden transition-all transform duration-500 ease-out scale-95 opacity-100"
+            {/* Modal */}
+            <motion.div
+              className="fixed bottom-16 right-6 z-[9999] flex items-center justify-center bg-transparent"
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.98 }}
+              transition={{ duration: 0.35, ease: 'easeInOut' }}
               onClick={(e) => e.stopPropagation()}
             >
+              <div
+                className="bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden"
+              >
               {/* Close button */}
               <button
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
@@ -69,9 +85,10 @@ export const FixedChatIcon = () => {
 
               </div>
             </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Icon */}
       <a

@@ -3,9 +3,9 @@ import { ArrowRight, ArrowUp, MousePointer2 as LuMousePointer2 } from "lucide-re
 import Navanee from "@/assets/images/Navanee.png";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import grainImage from "@/assets/images/grain.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import { SectionHeader } from "./SectionHeader";
 
@@ -13,6 +13,17 @@ export default function DiverseNeeds() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isModalOpen]);
 
   return (
     <div className="container text-white">
@@ -67,19 +78,27 @@ export default function DiverseNeeds() {
 
 
         {/* Modal */}
-        {isModalOpen && (
-          <div
-            className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div
-              className={twMerge(
-                "bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
-                "transition-all transform duration-500 ease-out opacity-0 scale-95",
-                isModalOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
-              )}
-              onClick={(e) => e.stopPropagation()}
+        <AnimatePresence mode="wait">
+          {isModalOpen && (
+            <motion.div
+              key="diverse-needs-modal"
+              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
+              onClick={closeModal}
             >
+              <motion.div
+                className={twMerge(
+                  "bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]"
+                )}
+                initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                onClick={(e) => e.stopPropagation()}
+              >
               {/* Close button */}
               <button
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
@@ -193,9 +212,10 @@ export default function DiverseNeeds() {
                   <ArrowUp className="text-xl" />
                 </a>
               </div>
-            </div>
-          </div>
-        )}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

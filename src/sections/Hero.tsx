@@ -8,7 +8,7 @@ import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle ico
 import Navanee from "@/assets/images/Navanee.png"
 import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 // import NavaneethanResume from "../../public/Navaneethan_resume.pdf";
 export const HeroSection = () => {
@@ -173,88 +173,94 @@ export const HeroSection = () => {
       </a>
 
       {/* Modal */}
-      {resumeModalVisible && (
-  <div
-    className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
-    onClick={closeModal}
-  >
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9, rotateY: 90 }}
-      animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-      exit={{ opacity: 0, scale: 0.9, rotateY: -90 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="bg-gray-800 rounded-2xl p-6 w-full max-w-lg relative mx-4 shadow-lg overflow-hidden"
-      onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-    >
-      {/* Background Grain Effect */}
-      <div
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: `url(${grainImage.src})`,
-          zIndex: -1,
-        }}
-      ></div>
-
-      {/* Close Button */}
-      <button
-        className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
-        onClick={closeModal}
-      >
-        <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-      </button>
-
-      {/* Modal Title */}
-      <h2 className="text-lg font-semibold text-white text-center mb-4">
-        {showResume ? "Resume Preview" : "What would you like to do?"}
-      </h2>
-
-      {/* Buttons Row */}
-      {!showResume ? (
-       <div className="flex flex-col md:flex-row gap-4 justify-center w-auto">
-       {/* Download Button */}
-       <button
-         onClick={handleDownload}
-         className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition font-medium w-50"
-       >
-         <FontAwesomeIcon icon={faArrowDown} />
-         Download Resume
-       </button>
-     
-       {/* View Button */}
-       <button
-         onClick={handleViewResume}
-         className="flex items-center gap-2 px-4 py-2 border border-white text-white rounded-lg hover:bg-white/10 transition font-medium w-auto"
-       >
-         <FontAwesomeIcon icon={faEye} />
-         View Resume
-       </button>
-     </div>
-     
-      ) : (
-        // 🚀 3D Tilt Effect Resume Card
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, rotateY: 90 }}
-          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-          exit={{ opacity: 0, scale: 0.9, rotateY: -90 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="relative w-full max-w-lg h-auto bg-gray-900 rounded-lg shadow-xl overflow-hidden"
-        >
+      <AnimatePresence mode="wait">
+        {resumeModalVisible && (
           <motion.div
-            whileHover={{ rotateX: 10, rotateY: 10 }}
-            transition={{ type: "spring", stiffness: 200, damping: 10 }}
-            className="p-4"
+            key="resume-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+            onClick={closeModal}
           >
-            <img
-              src="/Navaneethan_Resume.jpg" // Ensure the image is in public folder
-              alt="Resume"
-              className="w-full h-full object-cover rounded-lg border border-white/20"
-            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98, rotateY: 12 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              exit={{ opacity: 0, scale: 0.98, rotateY: -12 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="bg-gray-800 rounded-2xl p-6 w-full max-w-lg relative mx-4 shadow-lg overflow-hidden"
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+            >
+              {/* Background Grain Effect */}
+              <div
+                className="absolute inset-0 opacity-10 pointer-events-none"
+                style={{
+                  backgroundImage: `url(${grainImage.src})`,
+                  zIndex: -1,
+                }}
+              ></div>
+
+              {/* Close Button */}
+              <button
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
+                onClick={closeModal}
+              >
+                <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
+              </button>
+
+              {/* Modal Title */}
+              <h2 className="text-lg font-semibold text-white text-center mb-4">
+                {showResume ? "Resume Preview" : "What would you like to do?"}
+              </h2>
+
+              {/* Buttons Row */}
+              {!showResume ? (
+                <div className="flex flex-col md:flex-row gap-4 justify-center w-auto">
+                  {/* Download Button */}
+                  <button
+                    onClick={handleDownload}
+                    className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition font-medium w-50"
+                  >
+                    <FontAwesomeIcon icon={faArrowDown} />
+                    Download Resume
+                  </button>
+
+                  {/* View Button */}
+                  <button
+                    onClick={handleViewResume}
+                    className="flex items-center gap-2 px-4 py-2 border border-white text-white rounded-lg hover:bg-white/10 transition font-medium w-auto"
+                  >
+                    <FontAwesomeIcon icon={faEye} />
+                    View Resume
+                  </button>
+                </div>
+              ) : (
+                // 🚀 3D Tilt Effect Resume Card
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9, rotateY: 90 }}
+                  animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+                  exit={{ opacity: 0, scale: 0.9, rotateY: -90 }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="relative w-full max-w-lg h-auto bg-gray-900 rounded-lg shadow-xl overflow-hidden"
+                >
+                  <motion.div
+                    whileHover={{ rotateX: 10, rotateY: 10 }}
+                    transition={{ type: "spring", stiffness: 200, damping: 10 }}
+                    className="p-4"
+                  >
+                    <img
+                      src="/Navaneethan_Resume.jpg" // Ensure the image is in public folder
+                      alt="Resume"
+                      className="w-full h-full object-cover rounded-lg border border-white/20"
+                    />
+                  </motion.div>
+                </motion.div>
+              )}
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </motion.div>
-  </div>
-)}
+        )}
+      </AnimatePresence>
 
     </div>
 

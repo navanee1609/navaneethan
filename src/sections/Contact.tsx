@@ -1,8 +1,8 @@
 "use client"
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion } from "framer-motion"; // Import Framer Motion
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
+import { useEffect, useState } from "react";
 import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt, FaLinkedin } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg"
@@ -51,6 +51,17 @@ export const ContactSection = () => {
     setIsSending(false); // Reset sending state
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isOpen]);
+
   return (
     <section id="contact">
       <div className="py-16 pt-12">
@@ -79,22 +90,28 @@ export const ContactSection = () => {
           </div>
         </div>
 
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <AnimatePresence mode="wait">
+          {isOpen && (
             <motion.div
-              className={twMerge(
-                "bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
-                "transition-all duration-500 ease-out"
-              )}
-              onClick={(e) => e.stopPropagation()}
+              key="contact-modal"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-xl"
+              onClick={closeModal}
             >
+              <motion.div
+                className={twMerge(
+                  "bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
+                  "transition-all duration-500 ease-out"
+                )}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                onClick={(e) => e.stopPropagation()}
+              >
               <button
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
                 onClick={closeModal}
@@ -238,6 +255,7 @@ export const ContactSection = () => {
             </motion.div>
           </motion.div>
         )}
+      </AnimatePresence>
       </div>
     </section>
   );

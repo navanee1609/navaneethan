@@ -85,8 +85,7 @@ export const Header = () => {
               <Link
                 key={section}
                 href={`#${section}`}
-                className={`block text-2xl font-bold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent p-3 m-2 transition-all duration-300"
-                }`}
+                className={`block text-2xl font-bold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent p-3 m-2 transition-all duration-300`}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
