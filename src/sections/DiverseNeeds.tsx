@@ -39,7 +39,7 @@ export default function DiverseNeeds() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start my-8">
             <div className="space-y-6">
               <p className="text-[#9BA1A6] leading-relaxed text-lg w-full text-justify mx-auto font-manrope">
-                I'm a front-end developer with hands-on experience building product UIs with Angular and client-facing web apps with React.js and Next.js. My background in Mechanical Engineering shapes how I approach front-end work — breaking problems down systematically and optimizing for performance, not just polish. That mindset has translated into real results, including a 20% reduction in page load times on past projects. I care about interfaces that are fast and functional first, visually refined second — because the best-looking UI is worthless if it's slow.
+                I&apos;m a front-end developer with hands-on experience building product UIs with Angular and client-facing web apps with React.js and Next.js. My background in Mechanical Engineering shapes how I approach front-end work — breaking problems down systematically and optimizing for performance, not just polish. That mindset has translated into real results, including a 20% reduction in page load times on past projects. I care about interfaces that are fast and functional first, visually refined second — because the best-looking UI is worthless if it&apos;s slow.
               </p>
 
               <motion.button

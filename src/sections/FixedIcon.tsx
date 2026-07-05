@@ -100,7 +100,7 @@ export const FixedChatIcon = () => {
                   </div>
 
                   <p className="text-sm text-white/50 text-center leading-relaxed mb-6">
-                    Whether you have a groundbreaking idea or just want to chat, I'm all ears. Let's explore new possibilities together.
+                    Whether you have a groundbreaking idea or just want to chat, I&apos;m all ears. Let&apos;s explore new possibilities together.
                   </p>
 
                   <a

@@ -261,7 +261,7 @@ export const HeroSection = () => {
                     transition={{ type: "spring", stiffness: 200, damping: 10 }}
                     className="p-4"
                   >
-                    <img
+                    <Image
                       src="/Navaneethan_Resume.jpg" // Ensure the image is in public folder
                       alt="Resume"
                       className="w-full h-full object-cover rounded-lg border border-white/20"

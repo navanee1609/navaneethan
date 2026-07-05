@@ -240,7 +240,6 @@ export const MyPersona = () => {
     className="absolute w-16 h-16 border border-emerald-400/20 rounded-full"
   />
 
-  {/* Dynamic Orbit Pills */}
   {orbitPills?.length > 0 &&
     orbitPills.map((pill, index) => {
       console.log("Orbit Pill:", pill.label);
@@ -321,7 +320,6 @@ export const MyPersona = () => {
     </span>
   </motion.div>
 
-  {console.log("Dynamic Orbit Pills Rendered")}
 </div>
 
 
