@@ -32,24 +32,27 @@ export default function DiverseNeeds() {
         <div className="relative">
           <SectionHeader
             eyebrow="Who I Am"
-            title="My journey in a few words"
+            title="From Blueprints to Browsers"
             description=""
           />
           {/* Reduced overall vertical margin on the grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start my-8">
             <div className="space-y-6">
-            <p className="text-[#9BA1A6] leading-relaxed text-lg w-full text-justify mx-auto font-manrope">
-  I’m a passionate front-end developer with 1 year of experience dedicated to crafting pixel-perfect, responsive web experiences. Leveraging modern technologies like HTML, CSS, and JavaScript—along with libraries such as React and frameworks like Next.js — I transform innovative ideas into interactive, user-friendly interfaces. With a keen eye for detail and a commitment to quality, I merge design and functionality to build digital solutions that not only look great but perform flawlessly.
-</p>
+              <p className="text-[#9BA1A6] leading-relaxed text-lg w-full text-justify mx-auto font-manrope">
+                I'm a front-end developer with hands-on experience building product UIs with Angular and client-facing web apps with React.js and Next.js. My background in Mechanical Engineering shapes how I approach front-end work — breaking problems down systematically and optimizing for performance, not just polish. That mindset has translated into real results, including a 20% reduction in page load times on past projects. I care about interfaces that are fast and functional first, visually refined second — because the best-looking UI is worthless if it's slow.
+              </p>
 
-              <button
+              <motion.button
           onClick={openModal}
+          whileHover={{ scale: 1.03, y: -2 }}
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
           className="px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2 lg:mx-0 mt-8"
         >
           <span className="font-semibold">Know More</span>
           <ArrowRight className="w-5 h-5" />
 
-        </button>
+        </motion.button>
             </div>
             <div className="relative flex justify-center">
               <div className="relative w-[350px]">
@@ -100,12 +103,15 @@ export default function DiverseNeeds() {
                 onClick={(e) => e.stopPropagation()}
               >
               {/* Close button */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.08, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 270, damping: 20 }}
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
                 onClick={closeModal}
               >
                 <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-              </button>
+              </motion.button>
 
               {/* Background grain image */}
               <div
@@ -203,14 +209,17 @@ export default function DiverseNeeds() {
                 </motion.div>
               </div>
               <div className="flex justify-center mt-4">
-                <a
+                <motion.a
                   href="https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing"
                   download="Navaneethan KV.pdf"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
                   className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
                 >
                   <span className="font-semibold">Check Resume</span>
                   <ArrowUp className="text-xl" />
-                </a>
+                </motion.a>
               </div>
               </motion.div>
             </motion.div>

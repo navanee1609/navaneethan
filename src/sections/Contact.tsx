@@ -79,13 +79,16 @@ export const ContactSection = () => {
             </div>
 
             <div className="lg:w-1/4 lg:flex lg:justify-end z-[1000]">
-              <button
-                className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-6 lg:mt-0 transition-transform transform hover:scale-105"
+              <motion.button
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-6 lg:mt-0"
                 onClick={openModal}
               >
                 <span className="font-semibold">Contact Me</span>
                 <ArrowUp className="size4" />
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -112,12 +115,15 @@ export const ContactSection = () => {
                 transition={{ duration: 0.35, ease: "easeInOut" }}
                 onClick={(e) => e.stopPropagation()}
               >
-              <button
+              <motion.button
+                whileHover={{ scale: 1.08, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
                 onClick={closeModal}
               >
                 <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-              </button>
+              </motion.button>
 
               <div
                 className="absolute inset-0 opacity-5 pointer-events-none"
@@ -194,8 +200,11 @@ export const ContactSection = () => {
                   transition={{ duration: 0.3 }}
                 ></motion.textarea>
 
-                <button
+                <motion.button
                   type="submit"
+                  whileHover={{ scale: 1.01, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 220, damping: 18 }}
                   className="w-full bg-gray-900 text-white py-2 rounded-md"
                 >
                   {isSending
@@ -203,7 +212,7 @@ export const ContactSection = () => {
                     : isSuccess
                     ? "Thanks for Contacting!"
                     : "Send"}
-                </button>
+                </motion.button>
               </form>
 
               <p className="text-sm text-gray-500 text-center mt-4">

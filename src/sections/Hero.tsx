@@ -137,7 +137,7 @@ export const HeroSection = () => {
               <div className="bg-green-500 w-2.5 h-2.5 rounded-full relative">
                 <div className="bg-green-500 absolute inset-0 rounded-full animate-ping-large"></div>
               </div>
-              <div className="text-sm font-medium">Front End Developer</div>
+              <div className="text-sm font-medium">Front End Developer | Perfectionist  </div>
             </div>
           </div>
 
@@ -146,8 +146,8 @@ export const HeroSection = () => {
               Navaneethan KV
             </h1>
             <p className="mt-4 text-center text-white/60 md:text-lg">
-  Passionate Front End Developer focused on creating responsive, user-friendly websites with clean code, performance optimization, and seamless digital experiences.
-</p>
+              Front-End Developer who builds responsive, performance-driven websites with clean code and a keen eye for detail.
+            </p>
 
           </div>
 
@@ -155,8 +155,11 @@ export const HeroSection = () => {
             {/* Explore my work Button */}
             <div className="relative">
       {/* Explore my work Button */}
-      <a
+      <motion.a
         onClick={() => setResumeModalVisible(true)}
+        whileHover={{ scale: 1.03, y: -2 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
         className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl z-20 cursor-pointer"
       >
         <span className="font-semibold">Explore my work</span>
@@ -170,7 +173,7 @@ export const HeroSection = () => {
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7"></path>
         </svg>
-      </a>
+      </motion.a>
 
       {/* Modal */}
       <AnimatePresence mode="wait">
@@ -202,12 +205,15 @@ export const HeroSection = () => {
               ></div>
 
               {/* Close Button */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.08, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
                 onClick={closeModal}
               >
                 <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-              </button>
+              </motion.button>
 
               {/* Modal Title */}
               <h2 className="text-lg font-semibold text-white text-center mb-4">
@@ -218,22 +224,28 @@ export const HeroSection = () => {
               {!showResume ? (
                 <div className="flex flex-col md:flex-row gap-4 justify-center w-auto">
                   {/* Download Button */}
-                  <button
+                  <motion.button
                     onClick={handleDownload}
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
                     className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition font-medium w-50"
                   >
                     <FontAwesomeIcon icon={faArrowDown} />
                     Download Resume
-                  </button>
+                  </motion.button>
 
                   {/* View Button */}
-                  <button
+                  <motion.button
                     onClick={handleViewResume}
+                    whileHover={{ scale: 1.03, y: -1 }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
                     className="flex items-center gap-2 px-4 py-2 border border-white text-white rounded-lg hover:bg-white/10 transition font-medium w-auto"
                   >
                     <FontAwesomeIcon icon={faEye} />
                     View Resume
-                  </button>
+                  </motion.button>
                 </div>
               ) : (
                 // 🚀 3D Tilt Effect Resume Card
@@ -267,13 +279,16 @@ export const HeroSection = () => {
 
 
             {/* Let's Connect Button */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
               className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl z-20"
               onClick={handleScrollToContact} // Scroll to contact section
             >
               <span>👋</span>
               <span className="font-semibold">Let&apos;s Connect</span>
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

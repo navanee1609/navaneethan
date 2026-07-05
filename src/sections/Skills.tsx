@@ -1,30 +1,45 @@
 "use client";
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
-import Draggable from "react-draggable"; // For drag functionality
-import Image from "next/image"; // Import the Next.js Image component
+import Draggable from "react-draggable";
 import { SectionHeader } from "./SectionHeader";
+import {
+  SiHtml5,
+  SiCss3,
+  SiBootstrap,
+  SiTailwindcss,
+  SiJavascript,
+  SiReact,
+  SiRedux,
+  SiAngular,
+  SiNextdotjs,
+  SiVisualstudiocode,
+  SiGit,
+  SiGithub,
+  SiNetlify,
+  SiVite,
+  SiGooglechrome,
+} from "react-icons/si";
 
-// Data for Front-End Skills with SVG Links
 const frontEndSkills = [
-  { title: "HTML", imageUrl: "https://www.w3.org/html/logo/badge/html5-badge-h-solo.png" },
-  { title: "CSS", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/62/CSS3_logo.svg" },
-  { title: "Bootstrap", imageUrl: "https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-shadow.png" },
-  { title: "Tailwind", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" },
-  { title: "JavaScript", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png" },
-  { title: "React", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" },
-  { title: "React-Redux", imageUrl: "https://d33wubrfki0l68.cloudfront.net/0834d0215db51e91525a25acf97433051f280f2f/c30f5/img/redux.svg" },
-  { title: "Next.js", imageUrl: "https://seeklogo.com/images/N/next-js-logo-8FCFF51DD2-seeklogo.com.png" },
+  { title: "HTML", icon: SiHtml5, color: "#E34F26" },
+  { title: "CSS", icon: SiCss3, color: "#1572B6" },
+  { title: "Bootstrap", icon: SiBootstrap, color: "#7952B3" },
+  { title: "Tailwind", icon: SiTailwindcss, color: "#06B6D4" },
+  { title: "JavaScript", icon: SiJavascript, color: "#F7DF1E" },
+  { title: "React", icon: SiReact, color: "#61DAFB" },
+  { title: "React-Redux", icon: SiRedux, color: "#764ABC" },
+  { title: "Angular", icon: SiAngular, color: "#DD0031" },
+  { title: "Next.js", icon: SiNextdotjs, color: "#FFFFFF" },
 ];
 
-// Data for Tools with SVG Links
 const tools = [
-  { title: "VS Code", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" },
-  { title: "Git", imageUrl: "https://seeklogo.com/images/G/git-logo-CD8D6F1C09-seeklogo.com.png" },
-  { title: "GitHub", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" },
-  { title: "Netlify", imageUrl: "https://seeklogo.com/images/N/netlify-logo-BD8F8A77E2-seeklogo.com.png" },
-  { title: "Vite", imageUrl: "https://vitejs.dev/logo.svg" },
-  { title: "Chrome DevTools", imageUrl: "https://seeklogo.com/images/G/google-chrome-dev-logo-375457E020-seeklogo.com.png" },
+  { title: "VS Code", icon: SiVisualstudiocode, color: "#007ACC" },
+  { title: "Git", icon: SiGit, color: "#F05032" },
+  { title: "GitHub", icon: SiGithub, color: "#FFFFFF" },
+  { title: "Netlify", icon: SiNetlify, color: "#00C7B7" },
+  { title: "Vite", icon: SiVite, color: "#646CFF" },
+  { title: "Chrome DevTools", icon: SiGooglechrome, color: "#4285F4" },
 ];
 
 export const SkillsToolsSection = () => {
@@ -32,14 +47,13 @@ export const SkillsToolsSection = () => {
     <section id="skills-tools">
       <div className="py-4 mt-12">
         <div className="container">
-          <SectionHeader 
-            eyebrow="Technical Mastery" 
-            title="Skills & Tools That Empower My Creations" 
-            description="A glimpse into the technologies and tools I leverage to craft seamless and innovative web experiences." 
+          <SectionHeader
+            eyebrow="Technical Mastery"
+            title="Skills & Tools That Empower My Creations"
+            description="A glimpse into the technologies and tools I leverage to craft seamless and innovative web experiences."
           />
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 my-14">
-            {/* Front-End Skills Card */}
             <Card className="h-auto p-6 shadow-lg bg-gray-900 overflow-hidden">
               <CardHeader
                 title="Front-End Skills"
@@ -48,31 +62,24 @@ export const SkillsToolsSection = () => {
               />
               <div className="relative w-full min-h-[200px] bg-gray-800/90 rounded-md overflow-hidden p-4">
                 <div className="grid grid-cols-2 gap-4">
-                  {frontEndSkills.map((skill, index) => (
-                    <Draggable key={index} bounds="parent">
-                      <div
-                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-move"
-                        style={{
-                          transition: "all 0.2s ease",
-                        }}
-                      >
-                        <Image 
-                          src={skill.imageUrl} 
-                          alt={`${skill.title} logo`} 
-                          width={32} 
-                          height={32} 
-                          loader={({ src }) => src} // Handle external images
-                          priority={index < 4} // Prioritize above-the-fold images
-                        />
-                        <span className="text-white text-sm">{skill.title}</span>
-                      </div>
-                    </Draggable>
-                  ))}
+                  {frontEndSkills.map((skill, index) => {
+                    const Icon = skill.icon;
+                    return (
+                      <Draggable key={index} bounds="parent">
+                        <div
+                          className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-move"
+                          style={{ transition: "all 0.2s ease" }}
+                        >
+                          <Icon size={32} color={skill.color} aria-hidden />
+                          <span className="text-white text-sm">{skill.title}</span>
+                        </div>
+                      </Draggable>
+                    );
+                  })}
                 </div>
               </div>
             </Card>
 
-            {/* Tools Card */}
             <Card className="h-auto p-6 shadow-lg bg-gray-900 overflow-hidden">
               <CardHeader
                 title="Tools"
@@ -81,26 +88,20 @@ export const SkillsToolsSection = () => {
               />
               <div className="relative w-full min-h-[200px] bg-gray-800/90 rounded-md overflow-hidden p-4 flex items-center justify-center">
                 <div className="flex flex-wrap gap-4 justify-center">
-                  {tools.map((tool, index) => (
-                    <Draggable key={index} bounds="parent">
-                      <div
-                        className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-move"
-                        style={{
-                          transition: "all 0.2s ease",
-                        }}
-                      >
-                        <Image 
-                          src={tool.imageUrl} 
-                          alt={`${tool.title} logo`} 
-                          width={32} 
-                          height={32} 
-                          loader={({ src }) => src} // Handle external images
-                          priority={index < 4} // Prioritize above-the-fold images
-                        />
-                        <span className="text-white text-sm">{tool.title}</span>
-                      </div>
-                    </Draggable>
-                  ))}
+                  {tools.map((tool, index) => {
+                    const Icon = tool.icon;
+                    return (
+                      <Draggable key={index} bounds="parent">
+                        <div
+                          className="flex items-center justify-center gap-4 px-4 py-2 bg-gray-700 rounded-lg shadow-lg cursor-move"
+                          style={{ transition: "all 0.2s ease" }}
+                        >
+                          <Icon size={32} color={tool.color} aria-hidden />
+                          <span className="text-white text-sm">{tool.title}</span>
+                        </div>
+                      </Draggable>
+                    );
+                  })}
                 </div>
               </div>
             </Card>

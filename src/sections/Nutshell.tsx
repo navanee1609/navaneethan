@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { ChevronDown, ChevronUp, ArrowUp } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import nutshellImage from "@/assets/images/nutshellImage.png";
@@ -111,8 +111,9 @@ export const Nutshell = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-xl" />
               <div className="absolute bottom-0 left-0 right-0 p-6 space-y-4">
                 <motion.button 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
                   className="bg-white/90 text-[#0B162F] px-8 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all mx-auto"
                   onClick={openModal}
                 >
@@ -177,134 +178,151 @@ export const Nutshell = () => {
       </motion.div>
 
       {/* Modal */}
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1] transition-all transform duration-500 ease-out opacity-100 scale-100"
-            onClick={(e) => e.stopPropagation()}
+      <AnimatePresence mode="wait">
+        {isModalOpen && (
+          <motion.div
+            key="nutshell-modal"
+            className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut", when: "beforeChildren" }}
+            onClick={closeModal}
           >
-            <button
-              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
-              onClick={closeModal}
+            <motion.div
+              className="bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]"
+              initial={{ opacity: 0, y: 20, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.96 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-            </button>
-
-            <div
-              className="absolute inset-0 opacity-5 pointer-events-none"
-              style={{
-                backgroundImage: `url(${grainImage.src})`,
-                zIndex: -1,
-              }}
-            ></div>
-
-            <SectionHeader eyebrow="Dive Into My World" title="" description="" />
-
-            <div className="space-y-4 text-gray-300 text-sm leading-relaxed max-h-[400px] overflow-y-auto">
-              <motion.p
-                className="text-lg font-bold text-teal-400"
-                initial={{ opacity: 0, y: -40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: 'easeOut' }}
+              <motion.button
+                whileHover={{ scale: 1.08, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
+                onClick={closeModal}
               >
-                React & Next.js Developer | Building Seamless User Experiences
-              </motion.p>
+                <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
+              </motion.button>
 
-              <motion.p
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-              >
-                Passionate about creating responsive and engaging web apps with React, Next.js, and modern web technologies.
-              </motion.p>
+              <div
+                className="absolute inset-0 opacity-5 pointer-events-none"
+                style={{
+                  backgroundImage: `url(${grainImage.src})`,
+                  zIndex: -1,
+                }}
+              ></div>
 
-              <motion.p
-                className="text-teal-300 font-medium"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              >
-                Why work with me?
-              </motion.p>
+              <SectionHeader eyebrow="Dive Into My World" title="" description="" />
 
-              <motion.ul
-                className="list-disc pl-5 space-y-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-              >
-                <motion.li>Creative & Clean Designs</motion.li>
-                <motion.li>Innovative Problem Solving</motion.li>
-                <motion.li>Constant Learning & Growth</motion.li>
-              </motion.ul>
-
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 0.8 }}
-              >
-                Let&apos;s collaborate and build something exceptional together!
-              </motion.p>
-
-              <motion.div
-                className="flex items-center space-x-2 mt-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, delay: 1.2 }}
-              >
+              <div className="space-y-4 text-gray-300 text-sm leading-relaxed max-h-[400px] overflow-y-auto">
                 <motion.p
-                  className="text-teal-300 font-semibold italic"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                  whileHover={{
-                    scale: 1.1,
-                    color: '#00bfae',
-                    transition: { type: 'spring', stiffness: 100 },
-                  }}
+                  className="text-lg font-bold text-teal-400"
+                  initial={{ opacity: 0, y: -30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
                 >
-                  Don’t hesitate to reach out, I’m up for a tech chat or a virtual coffee! ☕
+                  React & Next.js Developer | Building Seamless User Experiences
                 </motion.p>
 
-                <motion.a
-                  href="tel:6380939303"
-                  className="w-8 h-8"
-                  whileHover={{
-                    scale: 1.5,
-                    rotate: 20,
-                    y: -10,
-                    transition: { type: 'spring', stiffness: 300 },
-                  }}
-                  whileTap={{ scale: 0.9 }}
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
                 >
-                  <motion.div
-                    className="text-teal-400"
+                  Passionate about creating responsive and engaging web apps with React, Next.js, and modern web technologies.
+                </motion.p>
+
+                <motion.p
+                  className="text-teal-300 font-medium"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  Why work with me?
+                </motion.p>
+
+                <motion.ul
+                  className="list-disc pl-5 space-y-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                >
+                  <motion.li>Creative & Clean Designs</motion.li>
+                  <motion.li>Innovative Problem Solving</motion.li>
+                  <motion.li>Constant Learning & Growth</motion.li>
+                </motion.ul>
+
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.5 }}
+                >
+                  Let&apos;s collaborate and build something exceptional together!
+                </motion.p>
+
+                <motion.div
+                  className="flex items-center space-x-2 mt-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.7, delay: 0.6 }}
+                >
+                  <motion.p
+                    className="text-teal-300 font-semibold italic"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
+                    transition={{ duration: 0.3 }}
+                    whileHover={{
+                      scale: 1.03,
+                      color: '#00bfae',
+                      transition: { type: 'spring', stiffness: 100 },
+                    }}
                   >
-                    <ArrowUp className="text-xl" />
-                  </motion.div>
-                </motion.a>
-              </motion.div>
-            </div>
+                    Don’t hesitate to reach out, I’m up for a tech chat or a virtual coffee! ☕
+                  </motion.p>
 
-            <div className="flex justify-center mt-4">
-              <a
-                href="https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing?usp=drive_link"  
-                download="Navaneethan KV.pdf"  
-                className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
-              >
-                <span className="font-semibold">Check Resume</span>
-                <ArrowUp className="text-xl" />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+                  <motion.a
+                    href="tel:6380939303"
+                    className="w-8 h-8"
+                    whileHover={{
+                      scale: 1.4,
+                      rotate: 20,
+                      y: -6,
+                      transition: { type: 'spring', stiffness: 300 },
+                    }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <motion.div
+                      className="text-teal-400"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.7 }}
+                    >
+                      <ArrowUp className="text-xl" />
+                    </motion.div>
+                  </motion.a>
+                </motion.div>
+              </div>
+
+              <div className="flex justify-center mt-4">
+                <motion.a
+                  href="https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing?usp=drive_link"
+                  download="Navaneethan KV.pdf"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
+                >
+                  <span className="font-semibold">Check Resume</span>
+                  <ArrowUp className="text-xl" />
+                </motion.a>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
