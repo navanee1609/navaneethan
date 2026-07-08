@@ -3,10 +3,37 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import { useEffect, useState } from "react";
-import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
+
+const contactLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
+    icon: FaInstagram,
+    color: "#E4405F",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/7639096688",
+    icon: FaWhatsapp,
+    color: "#25D366",
+  },
+  {
+    label: "Email",
+    href: "mailto:navaneethanvs18@gmail.com",
+    icon: FaEnvelope,
+    color: "#38BDF8",
+  },
+  {
+    label: "Phone",
+    href: "tel:+6380939303",
+    icon: FaPhoneAlt,
+    color: "#34D399",
+  },
+];
 
 export const ContactSection = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -101,8 +128,7 @@ export const ContactSection = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-xl"
-              onClick={closeModal}
+              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
             >
               <motion.div
                 className={twMerge(
@@ -113,7 +139,6 @@ export const ContactSection = () => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 20, scale: 0.95 }}
                 transition={{ duration: 0.35, ease: "easeInOut" }}
-                onClick={(e) => e.stopPropagation()}
               >
               <motion.button
                 whileHover={{ scale: 1.08, rotate: 90 }}
@@ -219,47 +244,41 @@ export const ContactSection = () => {
                 Reach out me
               </p>
 
-              <div className="flex justify-center gap-6 mt-4">
-                <a
-                  href="https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full"
-                >
-                  <FaInstagram className="text-2xl text-gray-700 hover:text-gray-900 transition" />
-                </a>
-                <a
-                  href="https://wa.me/7639096688"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full"
-                >
-                  <FaWhatsapp className="text-2xl text-gray-700 hover:text-gray-900 transition" />
-                </a>
-                <a
-                  href="mailto:navaneethanvs18@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full"
-                >
-                  <FaEnvelope className="text-2xl text-gray-700 hover:text-gray-900 transition" />
-                </a>
-                <a
-                  href="tel:+6380939303"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full"
-                >
-                  <FaPhoneAlt className="text-2xl text-gray-700 hover:text-gray-900 transition" />
-                </a>
-                <a
-                  href="www.linkedin.com/in/navaneethan-k-v-546a9025b"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 bg-white rounded-full"
-                >
-                  <FaLinkedin className="text-2xl text-gray-700 hover:text-gray-900 transition" />
-                </a>
+              <div className="mt-4 flex items-center justify-center gap-4">
+                {contactLinks.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <motion.a
+                      key={item.label}
+                      href={item.href}
+                      target={item.href.startsWith("http") ? "_blank" : undefined}
+                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                      whileHover={{
+                        y: -3,
+                        scale: 1.02,
+                        borderColor: `${item.color}66`,
+                      }}
+                      whileTap={{ scale: 0.97 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                      aria-label={item.label}
+                      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-gray-700/70 shadow-lg backdrop-blur-sm"
+                    >
+                      <div
+                        className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                        style={{
+                          background: `linear-gradient(135deg, ${item.color}1f, transparent 60%)`,
+                        }}
+                      />
+                      <Icon
+                        className="relative transition-transform duration-300 group-hover:scale-110"
+                        size={22}
+                        color={item.color}
+                        aria-hidden
+                      />
+                    </motion.a>
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>

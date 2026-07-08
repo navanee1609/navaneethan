@@ -185,7 +185,6 @@ export const HeroSection = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
-            onClick={closeModal}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.98, rotateY: 12 }}
@@ -193,7 +192,6 @@ export const HeroSection = () => {
               exit={{ opacity: 0, scale: 0.98, rotateY: -12 }}
               transition={{ duration: 0.35, ease: "easeInOut" }}
               className="bg-gray-800 rounded-2xl p-6 w-full max-w-lg relative mx-4 shadow-lg overflow-hidden"
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
             >
               {/* Background Grain Effect */}
               <div

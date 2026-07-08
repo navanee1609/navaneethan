@@ -90,7 +90,6 @@ export default function DiverseNeeds() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
-              onClick={closeModal}
             >
               <motion.div
                 className={twMerge(
@@ -100,7 +99,6 @@ export default function DiverseNeeds() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.98 }}
                 transition={{ duration: 0.35, ease: "easeInOut" }}
-                onClick={(e) => e.stopPropagation()}
               >
               {/* Close button */}
               <motion.button
