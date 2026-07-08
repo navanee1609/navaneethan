@@ -10,6 +10,7 @@ import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 // import NavaneethanResume from "../../public/Navaneethan_resume.pdf";
 export const HeroSection = () => {
   // Function to scroll to the contact section
@@ -23,9 +24,14 @@ export const HeroSection = () => {
 
   const [resumeModalVisible, setResumeModalVisible] = useState(false);
   const [showResume, setShowResume] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const resumeUrl =
     "https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing"; // Google Drive view link
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Prevent scrolling when modal is open
   useEffect(() => {
@@ -162,7 +168,7 @@ export const HeroSection = () => {
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
         className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl z-20 cursor-pointer"
       >
-        <span className="font-semibold">Explore my work</span>
+        <span className="font-semibold">View Resume</span>
         <svg
           className="w-4 h-4"
           fill="none"
@@ -176,6 +182,8 @@ export const HeroSection = () => {
       </motion.a>
 
       {/* Modal */}
+      {isMounted &&
+        createPortal(
       <AnimatePresence mode="wait">
         {resumeModalVisible && (
           <motion.div
@@ -183,94 +191,87 @@ export const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm"
+            onClick={closeModal}
           >
+            {/* Side Panel */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.98, rotateY: 12 }}
-              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-              exit={{ opacity: 0, scale: 0.98, rotateY: -12 }}
-              transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="bg-gray-800 rounded-2xl p-6 w-full max-w-lg relative mx-4 shadow-lg overflow-hidden"
+              initial={{ x: "100%", opacity: 0.5 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.5 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute right-0 top-0 bottom-0 w-full sm:w-[480px] lg:w-[520px] bg-gray-800 border-l border-white/20 shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
             >
-              {/* Background Grain Effect */}
               <div
-                className="absolute inset-0 opacity-10 pointer-events-none"
-                style={{
-                  backgroundImage: `url(${grainImage.src})`,
-                  zIndex: -1,
-                }}
-              ></div>
+                className="absolute inset-0 opacity-5 pointer-events-none"
+                style={{ backgroundImage: `url(${grainImage.src})` }}
+              />
+              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60" />
 
-              {/* Close Button */}
-              <motion.button
-                whileHover={{ scale: 1.08, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
-                onClick={closeModal}
-              >
-                <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-              </motion.button>
-
-              {/* Modal Title */}
-              <h2 className="text-lg font-semibold text-white text-center mb-4">
-                {showResume ? "Resume Preview" : "What would you like to do?"}
-              </h2>
-
-              {/* Buttons Row */}
-              {!showResume ? (
-                <div className="flex flex-col md:flex-row gap-4 justify-center w-auto">
-                  {/* Download Button */}
+              {/* Top bar */}
+              <div className="relative z-10 flex items-center justify-between px-6 py-5 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-emerald-300 to-sky-400 opacity-50 blur-sm" />
+                    <div className="relative w-9 h-9 rounded-full bg-gray-900 border border-white/20 flex items-center justify-center overflow-hidden">
+                      <Image src={Navanee} alt="Navaneethan" fill className="object-cover object-top" sizes="36px" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white tracking-tight">Navaneethan KV</h3>
+                    <p className="text-[10px] text-emerald-300/70">Resume</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
                   <motion.button
                     onClick={handleDownload}
-                    whileHover={{ scale: 1.03, y: -1 }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition font-medium w-50"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-300/30 rounded-lg text-xs text-emerald-300 hover:text-emerald-200 transition-all duration-300"
                   >
-                    <FontAwesomeIcon icon={faArrowDown} />
-                    Download Resume
+                    <FontAwesomeIcon icon={faArrowDown} className="text-[10px]" />
+                    <span className="font-medium hidden sm:inline">Download</span>
                   </motion.button>
-
-                  {/* View Button */}
                   <motion.button
-                    onClick={handleViewResume}
-                    whileHover={{ scale: 1.03, y: -1 }}
-                    whileTap={{ scale: 0.97 }}
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
                     transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                    className="flex items-center gap-2 px-4 py-2 border border-white text-white rounded-lg hover:bg-white/10 transition font-medium w-auto"
+                    className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white/50 hover:text-white transition-all duration-300"
+                    onClick={closeModal}
                   >
-                    <FontAwesomeIcon icon={faEye} />
-                    View Resume
+                    <FontAwesomeIcon icon={faTimes} className="text-xs" />
                   </motion.button>
                 </div>
-              ) : (
-                // 🚀 3D Tilt Effect Resume Card
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9, rotateY: 90 }}
-                  animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, rotateY: -90 }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="relative w-full max-w-lg h-auto bg-gray-900 rounded-lg shadow-xl overflow-hidden"
-                >
-                  <motion.div
-                    whileHover={{ rotateX: 10, rotateY: 10 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                    className="p-4"
-                  >
+              </div>
+
+              {/* Resume Image */}
+              <div className="relative z-10 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                <div className="p-6">
+                  <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-gray-900/70 shadow-lg shadow-black/40">
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60 z-10" />
                     <Image
-                      src="/Navaneethan_Resume.jpg" // Ensure the image is in public folder
+                      src="/Navaneethan_Resume.jpg"
                       alt="Resume"
-                      className="w-full h-full object-cover rounded-lg border border-white/20"
+                      width={800}
+                      height={1132}
+                      className="w-full h-auto"
+                      priority
                     />
-                  </motion.div>
-                </motion.div>
-              )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom hint */}
+              <div className="relative z-10 px-6 py-3 border-t border-white/10 text-center">
+                <p className="text-[10px] text-white/25 tracking-wider">Click outside or swipe right to close</p>
+              </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+      , document.body)}
 
     </div>
 
@@ -293,6 +294,4 @@ export const HeroSection = () => {
     </section>
   );
 };
-
-
 

@@ -7,31 +7,31 @@ import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa"
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
+import instagramImg from "@/assets/images/instagram.png"
+import whatsappImg from "@/assets/images/whatsapp.png"
+import mailImg from "@/assets/images/mail.png"
+import phoneImg from "@/assets/images/phone.png"
 
 const contactLinks = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
-    icon: FaInstagram,
-    color: "#E4405F",
+    img: instagramImg,
   },
   {
     label: "WhatsApp",
     href: "https://wa.me/7639096688",
-    icon: FaWhatsapp,
-    color: "#25D366",
+    img: whatsappImg,
   },
   {
     label: "Email",
     href: "mailto:navaneethanvs18@gmail.com",
-    icon: FaEnvelope,
-    color: "#38BDF8",
+    img: mailImg,
   },
   {
     label: "Phone",
     href: "tel:+6380939303",
-    icon: FaPhoneAlt,
-    color: "#34D399",
+    img: phoneImg,
   },
 ];
 
@@ -132,7 +132,7 @@ export const ContactSection = () => {
             >
               <motion.div
                 className={twMerge(
-                  "bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
+                  "bg-gray-800 bg-gradient-to-br from-emerald-400/6 via-sky-400/6 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
                   "transition-all duration-500 ease-out"
                 )}
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -244,42 +244,52 @@ export const ContactSection = () => {
                 Reach out me
               </p>
 
-              <div className="mt-4 flex items-center justify-center gap-4">
-                {contactLinks.map((item) => {
-                  const Icon = item.icon;
+              <div className="mt-6 flex items-end justify-center gap-3">
+  {contactLinks.map((item, i) => {
+    const img = item.img;
 
-                  return (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      target={item.href.startsWith("http") ? "_blank" : undefined}
-                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      whileHover={{
-                        y: -3,
-                        scale: 1.02,
-                        borderColor: `${item.color}66`,
-                      }}
-                      whileTap={{ scale: 0.97 }}
-                      transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                      aria-label={item.label}
-                      className="group relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-gray-700/70 shadow-lg backdrop-blur-sm"
-                    >
-                      <div
-                        className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                        style={{
-                          background: `linear-gradient(135deg, ${item.color}1f, transparent 60%)`,
-                        }}
-                      />
-                      <Icon
-                        className="relative transition-transform duration-300 group-hover:scale-110"
-                        size={22}
-                        color={item.color}
-                        aria-hidden
-                      />
-                    </motion.a>
-                  );
-                })}
-              </div>
+    return (
+      <motion.a
+        key={item.label}
+        href={item.href}
+        target={item.href.startsWith("http") ? "_blank" : undefined}
+        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: i * 0.06, type: "spring", stiffness: 300, damping: 20 }}
+        whileHover={{ 
+          y: -10, 
+          scale: 1.25,
+          transition: { type: "spring", stiffness: 400, damping: 17 }
+        }}
+        whileTap={{ 
+          scale: 0.9,
+          transition: { type: "spring", stiffness: 500, damping: 15 }
+        }}
+        aria-label={item.label}
+        className="group relative flex flex-col items-center"
+      >
+        {/* Icon container */}
+        <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/[0.08] shadow-lg overflow-hidden hover:border-emerald-500/20 transition-all duration-300">
+          {/* Glossy top highlight */}
+          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+          
+          {/* Icon */}
+          <img 
+            src={img.src ?? img} 
+            alt={item.label} 
+            className="relative h-5 w-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+          />
+        </div>
+
+        {/* Tooltip label */}
+        <span className="absolute -top-7 px-2 py-0.5 bg-black/80 rounded-md text-[10px] text-white/70 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+          {item.label}
+        </span>
+      </motion.a>
+    );
+  })}
+</div>
             </motion.div>
           </motion.div>
         )}

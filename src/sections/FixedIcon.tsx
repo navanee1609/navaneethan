@@ -49,6 +49,7 @@ export const FixedChatIcon = () => {
                     backgroundImage: `url(${grainImage.src})`,
                   }}
                 />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60" />
 
                 <motion.button
                   whileHover={{ scale: 1.08, rotate: 90 }}
@@ -67,8 +68,8 @@ export const FixedChatIcon = () => {
                   <div className="flex flex-wrap items-start gap-4 mb-5">
                     {/* Avatar with story ring */}
                     <div className="relative shrink-0">
-                      <div className="absolute -inset-[2px] rounded-full bg-gradient-to-tr from-emerald-300 via-emerald-400 to-sky-400" />
-                      <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden border-[2.5px] border-emerald-500/40  bg-gradient-to-br from-[#1a1a2e] to-[#0f3460]">
+                      <div className="absolute -inset-[2px] rounded-full bg-gradient-to-tr from-emerald-300 to-sky-400" />
+                      <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden border-[2.5px] border-gray-800 bg-gray-900">
                         <Image
                           src={Navanee}
                           alt="Navaneethan Vetriselvan"
@@ -158,12 +159,12 @@ export const FixedChatIcon = () => {
                     href="https://www.linkedin.com/in/navaneethan-k-v-546a9025b"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group relative flex items-center justify-center w-full gap-3 px-6 py-4 bg-gradient-to-r from-[#0077b5]/20 via-[#0077b5]/10 to-[#0077b5]/20 hover:from-[#0077b5]/30 hover:via-[#0077b5]/20 hover:to-[#0077b5]/30 border border-[#0077b5]/30 hover:border-[#0077b5]/50 rounded-2xl transition-all duration-500 overflow-hidden"
+                    className="group relative flex items-center justify-center w-full gap-3 px-6 py-4 bg-gradient-to-r from-emerald-300/10 to-sky-400/10 hover:from-emerald-300/20 hover:to-sky-400/20 border border-white/10 hover:border-emerald-300/30 rounded-2xl transition-all duration-500 overflow-hidden"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#0077b5]/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
-                    <FaLinkedin className="w-6 h-6 text-[#0077b5] relative z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                    <FaLinkedin className="w-6 h-6 text-sky-300 relative z-10" />
                     <span className="text-sm font-semibold text-white/90 group-hover:text-white relative z-10 transition-colors">Connect on LinkedIn</span>
-                    <svg className="w-4 h-4 text-white/30 group-hover:text-[#0077b5] group-hover:translate-x-1 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                    <svg className="w-4 h-4 text-white/30 group-hover:text-emerald-300 group-hover:translate-x-1 transition-all duration-300 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </a>
@@ -179,7 +180,7 @@ export const FixedChatIcon = () => {
 
       <motion.button
         onClick={openModal}
-        onMouseEnter={openModal}
+        // onMouseEnter={openModal}
         onFocus={openModal}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
@@ -188,18 +189,24 @@ export const FixedChatIcon = () => {
         aria-haspopup="dialog"
         aria-expanded={isModalOpen}
       >
-        <div className="absolute -inset-4 rounded-full border border-emerald-500/20 group-hover:border-emerald-500/40 transition-all duration-700 animate-[spin_8s_linear_infinite]" />
-        <div className="absolute -inset-8 rounded-full border border-cyan-500/10 group-hover:border-cyan-500/20 transition-all duration-700 animate-[spin_12s_linear_infinite_reverse]" />
-        <div className="absolute inset-0 rounded-full bg-emerald-500/20 blur-xl group-hover:bg-emerald-500/30 transition-all duration-500" />
-        <div className="relative w-14 h-14 rounded-full bg-gradient-to-br from-[#1a1a2e] via-[#16213e] to-[#0f3460] border border-emerald-500/30 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 group-hover:border-emerald-500/50 transition-all duration-300 flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-cyan-500/10" />
-          <SparkleIcon className="w-7 h-7 text-emerald-400 relative z-10" />
+        <div className="absolute -inset-4 rounded-full border border-white/10 group-hover:border-emerald-300/30 transition-all duration-700 animate-[spin_8s_linear_infinite]" />
+        <div className="absolute -inset-8 rounded-full border border-sky-400/10 group-hover:border-sky-400/20 transition-all duration-700 animate-[spin_12s_linear_infinite_reverse]" />
+        <div className="absolute inset-0 rounded-full bg-emerald-300/20 blur-xl group-hover:bg-emerald-300/30 transition-all duration-500" />
+        <div className="relative w-14 h-14 rounded-full bg-gray-800 border border-white/20 shadow-lg shadow-black/40 group-hover:shadow-emerald-300/20 group-hover:border-emerald-300/40 transition-all duration-300 flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-300/10 to-sky-400/10" />
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `url(${grainImage.src})`,
+            }}
+          />
+          <SparkleIcon className="w-7 h-7 text-emerald-300 relative z-10" />
           <motion.div
   className="absolute inset-1 z-20 pointer-events-none"
   animate={{ rotate: 360 }}
   transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
 >
-  <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#1a1a2e] shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
+  <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-300 border-2 border-gray-800 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
 </motion.div>
         </div>
       </motion.button>
