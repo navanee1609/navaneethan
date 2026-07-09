@@ -24,7 +24,7 @@ const CAREER_DATA = [
     color: "emerald",
     logo: "https://www.agilysys.com/en/wp-content/uploads/Agilysys-Logo-v1.png",
     current: true,
-    skills: ["React", "Next.js", "TypeScript", "Node.js"],
+    skills: ["Angular", "TypeScript", "Tailwind"],
   },
   {
     date: "2024",
@@ -341,14 +341,14 @@ export const Timeline = () => {
         />
 
         {/* Mobile: Simple stacked cards */}
-        <div className="sm:hidden mt-16 space-y-6">
+        <div className="md:hidden mt-16 space-y-6">
           {CAREER_DATA.map((item, index) => (
             <MobileCareerCard key={item.date} item={item} index={index} />
           ))}
         </div>
 
         {/* Desktop: Zigzag timeline */}
-        <div className="hidden sm:block mt-20 relative">
+        <div className="hidden md:block mt-20 relative">
           <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2">
             <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/40 via-cyan-500/30 via-purple-500/20 to-white/5" />
             <div className="absolute inset-0 blur-sm bg-gradient-to-b from-emerald-500/20 via-cyan-500/15 to-transparent" />
@@ -377,14 +377,14 @@ export const Timeline = () => {
         </motion.div>
 
         {/* Mobile: Simple stacked education cards */}
-        <div className="sm:hidden space-y-6">
+        <div className="md:hidden space-y-6">
           {EDUCATION_DATA.map((item, index) => (
             <MobileEducationCard key={item.date} item={item} index={index} />
           ))}
         </div>
 
         {/* Desktop: Zigzag education timeline */}
-        <div className="hidden sm:block relative">
+        <div className="hidden md:block relative">
           <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-white/10 to-transparent" />
           <div className="space-y-20">
             {EDUCATION_DATA.map((item, index) => (
