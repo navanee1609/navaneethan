@@ -7,6 +7,7 @@ import { ProjectsSection } from "@/sections/Projects";
 import { TapeSection } from "@/sections/Tape";
 import { Articles } from "@/sections/Article";
 import { Timeline } from "@/sections/Timeline";
+import { AwardsSection } from "@/sections/Awards";
 import { FixedChatIcon } from "@/sections/FixedIcon";
 
 export default function Home() {
@@ -26,6 +27,8 @@ export default function Home() {
      <Articles/>
      {/* Importing timeline */}
     <Timeline/>
+     {/* Awards & Achievements Section */}
+     <AwardsSection />
      {/* Contact Section */}
      <ContactSection/>
      {/* Footer section */}

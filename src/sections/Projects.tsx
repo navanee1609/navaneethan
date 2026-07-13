@@ -23,7 +23,7 @@ const portfolioProjects = [
     ],
     link: "https://haleon-test.spritle.com/products",
     image: haleon,
-    techStack: ["HTML","CSS","Bootstrap","Javascript", "ruby-on-rails","Spree"],
+    techStack: ["HTML", "CSS", "Bootstrap", "Javascript", "ruby-on-rails", "Spree"],
   },
   {
     company: "Spritle Software",
@@ -36,7 +36,7 @@ const portfolioProjects = [
     ],
     link: "https://cque-archie.vercel.app/",
     image: cque,
-    techStack: ["Reactjs","Tailwind CSS","Magic UI"]
+    techStack: ["Reactjs", "Tailwind CSS", "Magic UI"]
   },
   {
     company: "Spritle Software",
@@ -49,7 +49,7 @@ const portfolioProjects = [
     ],
     link: "https://teknomaju.my/",
     image: sbg,
-    techStack: ["HTML","CSS","Bootstrap","Javascript"],
+    techStack: ["HTML", "CSS", "Bootstrap", "Javascript"],
   },
   {
     company: "Personal Project",
@@ -62,7 +62,7 @@ const portfolioProjects = [
     ],
     link: "https://retrorift-gaming-paradise.netlify.app/",
     image: retrorift,
-    techStack: ["React","React-Redux", "RAWG.API - Axios"],
+    techStack: ["React", "React-Redux", "RAWG.API - Axios"],
   },
   {
     company: "Personal Project",
@@ -88,7 +88,7 @@ const portfolioProjects = [
     ],
     link: "https://notekeeper-dailynotes.netlify.app/",
     image: notekeeper,
-    techStack: ["HTML","CSS","Javascript"],
+    techStack: ["HTML", "CSS", "Javascript"],
   },
   {
     company: "Personal Project",
@@ -120,13 +120,13 @@ const techColors = [
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="pb-16">
-      
-<div className="container">
-      <SectionHeader
-  eyebrow="Real-World Impact"
-  title="Showcasing My Featured Projects"
-  description="Discover how I bring ideas to life, creating seamless and transformative digital experiences."
-/>
+
+      <div className="container">
+        <SectionHeader
+          eyebrow="Real-World Impact"
+          title="Showcasing My Featured Projects"
+          description="Discover how I bring ideas to life, creating seamless and transformative digital experiences."
+        />
 
 
         <div className="mt-10 md:mt-20 flex flex-col gap-14">
@@ -139,7 +139,7 @@ export const ProjectsSection = () => {
                 top: `calc(64px + ${projectIndex * 40}px)`,
               }}
             >
-             
+
               <div className="lg:grid lg:grid-cols-2 lg:gap-20">
                 <div className="lg:pb-16">
                   <div className="flex justify-between">
@@ -185,13 +185,13 @@ export const ProjectsSection = () => {
                 </div>
 
                 <div className="relative">
-  <Image
-    src={project.image}
-    alt={project.title}
-    className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none 
-               rounded-tr-2xl rounded-br-2xl rounded-tl-2xl" 
-  />
-</div>
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute h-full lg:w-auto lg:max-w-none 
+               rounded-tr-2xl rounded-br-2xl rounded-tl-2xl"
+                  />
+                </div>
 
               </div>
             </Card>
