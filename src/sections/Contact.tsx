@@ -128,7 +128,7 @@ export const ContactSection = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black bg-opacity-50 backdrop-blur-sm"
+              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black/60 backdrop-blur-sm"
             >
               <motion.div
                 className={twMerge(
@@ -140,160 +140,160 @@ export const ContactSection = () => {
                 exit={{ opacity: 0, y: 20, scale: 0.95 }}
                 transition={{ duration: 0.35, ease: "easeInOut" }}
               >
-              <motion.button
-                whileHover={{ scale: 1.08, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
-                onClick={closeModal}
-              >
-                <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-              </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.08, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
+                  onClick={closeModal}
+                >
+                  <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
+                </motion.button>
 
-              <div
-                className="absolute inset-0 opacity-5 pointer-events-none"
-                style={{
-                  backgroundImage: `url(${grainImage.src})`,
-                  zIndex: -1,
-                }}
-              ></div>
+                <div
+                  className="absolute inset-0 opacity-5 pointer-events-none"
+                  style={{
+                    backgroundImage: `url(${grainImage.src})`,
+                    zIndex: -1,
+                  }}
+                ></div>
 
-              <h2 className="text-xl font-semibold mb-4 text-center text-white">Contact Me</h2>
+                <h2 className="text-xl font-semibold mb-4 text-center text-white">Contact Me</h2>
 
-              <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                onSubmit={handleSubmit}
-                className="space-y-4"
-              >
-                <input
-                  type="hidden"
-                  name="access_key"
-                  value="89c046ff-8f76-47dd-9562-7105809a3576"
-                />
-                <div className="flex flex-col md:flex-row gap-4">
+                <form
+                  action="https://api.web3forms.com/submit"
+                  method="POST"
+                  onSubmit={handleSubmit}
+                  className="space-y-4"
+                >
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="89c046ff-8f76-47dd-9562-7105809a3576"
+                  />
+                  <div className="flex flex-col md:flex-row gap-4">
+                    <motion.input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+                      required
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                    <motion.input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email"
+                      className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+                      required
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+
+                  <motion.input
+                    type="tel"
+                    name="phone"
+                    placeholder="Your Phone"
+                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+                    required
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
                   <motion.input
                     type="text"
-                    name="name"
-                    placeholder="Your Name"
+                    name="subject"
+                    placeholder="Subject"
                     className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
                     required
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <motion.input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
+                  <motion.textarea
+                    name="message"
+                    placeholder="Your Message"
                     className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+                    rows={4}
                     required
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                  />
+                  ></motion.textarea>
+
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.01, y: -1 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 220, damping: 18 }}
+                    className="w-full bg-gray-900 text-white py-2 rounded-md"
+                  >
+                    {isSending
+                      ? "Sending..."
+                      : isSuccess
+                        ? "Thanks for Contacting!"
+                        : "Send"}
+                  </motion.button>
+                </form>
+
+                <p className="text-sm text-gray-500 text-center mt-4">
+                  Reach out me
+                </p>
+
+                <div className="mt-6 flex items-end justify-center gap-3">
+                  {contactLinks.map((item, i) => {
+                    const img = item.img;
+
+                    return (
+                      <motion.a
+                        key={item.label}
+                        href={item.href}
+                        target={item.href.startsWith("http") ? "_blank" : undefined}
+                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.06, type: "spring", stiffness: 300, damping: 20 }}
+                        whileHover={{
+                          y: -10,
+                          scale: 1.25,
+                          transition: { type: "spring", stiffness: 400, damping: 17 }
+                        }}
+                        whileTap={{
+                          scale: 0.9,
+                          transition: { type: "spring", stiffness: 500, damping: 15 }
+                        }}
+                        aria-label={item.label}
+                        className="group relative flex flex-col items-center"
+                      >
+                        {/* Icon container */}
+                        <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/[0.08] shadow-lg overflow-hidden hover:border-emerald-500/20 transition-all duration-300">
+                          {/* Glossy top highlight */}
+                          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+                          {/* Icon */}
+                          <img
+                            src={img.src ?? img}
+                            alt={item.label}
+                            className="relative h-5 w-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                          />
+                        </div>
+
+                        {/* Tooltip label */}
+                        <span className="absolute -top-7 px-2 py-0.5 bg-black/80 rounded-md text-[10px] text-white/70 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                          {item.label}
+                        </span>
+                      </motion.a>
+                    );
+                  })}
                 </div>
-
-                <motion.input
-                  type="tel"
-                  name="phone"
-                  placeholder="Your Phone"
-                  className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                  required
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.input
-                  type="text"
-                  name="subject"
-                  placeholder="Subject"
-                  className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                  required
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <motion.textarea
-                  name="message"
-                  placeholder="Your Message"
-                  className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                  rows={4}
-                  required
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                ></motion.textarea>
-
-                <motion.button
-                  type="submit"
-                  whileHover={{ scale: 1.01, y: -1 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                  className="w-full bg-gray-900 text-white py-2 rounded-md"
-                >
-                  {isSending
-                    ? "Sending..."
-                    : isSuccess
-                    ? "Thanks for Contacting!"
-                    : "Send"}
-                </motion.button>
-              </form>
-
-              <p className="text-sm text-gray-500 text-center mt-4">
-                Reach out me
-              </p>
-
-              <div className="mt-6 flex items-end justify-center gap-3">
-  {contactLinks.map((item, i) => {
-    const img = item.img;
-
-    return (
-      <motion.a
-        key={item.label}
-        href={item.href}
-        target={item.href.startsWith("http") ? "_blank" : undefined}
-        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.06, type: "spring", stiffness: 300, damping: 20 }}
-        whileHover={{ 
-          y: -10, 
-          scale: 1.25,
-          transition: { type: "spring", stiffness: 400, damping: 17 }
-        }}
-        whileTap={{ 
-          scale: 0.9,
-          transition: { type: "spring", stiffness: 500, damping: 15 }
-        }}
-        aria-label={item.label}
-        className="group relative flex flex-col items-center"
-      >
-        {/* Icon container */}
-        <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/[0.08] shadow-lg overflow-hidden hover:border-emerald-500/20 transition-all duration-300">
-          {/* Glossy top highlight */}
-          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          
-          {/* Icon */}
-          <img 
-            src={img.src ?? img} 
-            alt={item.label} 
-            className="relative h-5 w-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
-          />
-        </div>
-
-        {/* Tooltip label */}
-        <span className="absolute -top-7 px-2 py-0.5 bg-black/80 rounded-md text-[10px] text-white/70 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-          {item.label}
-        </span>
-      </motion.a>
-    );
-  })}
-</div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

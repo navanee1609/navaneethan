@@ -19,6 +19,8 @@ import {
   SiNetlify,
   SiVite,
   SiGooglechrome,
+  SiVercel,
+  SiGooglegemini,
 } from "react-icons/si";
 
 const frontEndSkills = [
@@ -40,6 +42,8 @@ const tools = [
   { title: "Netlify", icon: SiNetlify, color: "#00C7B7" },
   { title: "Vite", icon: SiVite, color: "#646CFF" },
   { title: "Chrome DevTools", icon: SiGooglechrome, color: "#4285F4" },
+  { title: "Antigravity", icon: SiGooglegemini, color: "#8E75FF" },
+  { title: "Vercel", icon: SiVercel, color: "#FFFFFF" },
 ];
 
 export const SkillsToolsSection = () => {
