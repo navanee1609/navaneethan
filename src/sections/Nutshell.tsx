@@ -1,37 +1,37 @@
 "use client";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
-import { ChevronDown, ChevronUp, ArrowUp } from "lucide-react";
+import Image from "next/image";
+import { Plus, Minus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import nutshellImage from "@/assets/images/nutshellImage.png";
 import faq from "@/assets/images/faq.png";
-import grainImage from "@/assets/images/grain.jpg";
 import { SectionHeader } from "./SectionHeader";
+import { DiveIntoMyWorldModal } from "@/components/DiveIntoMyWorldModal";
 
 const nutshellData = [
   {
     question: "How do you ensure project deadlines are met?",
-    answer: "I implement agile methodologies with bi-weekly sprints and daily standups. Using project management tools like Jira, I maintain clear communication and provide progress updates to ensure timely delivery."
+    answer: "I implement agile methodologies with bi-weekly sprints and daily standups. Using project management tools like Jira, I maintain transparent progress updates to ensure on-time delivery."
   },
   {
     question: "What industries have you worked with?",
-    answer: "I've delivered solutions for fintech, healthcare, e-commerce, and SaaS platforms. My adaptable approach allows me to meet diverse regulatory and user experience requirements."
+    answer: "I've delivered hospitality, fintech, SaaS, and enterprise web platforms — including hotel management product screens at Agilysys."
   },
   {
     question: "Can you integrate with our existing systems?",
-    answer: "Absolutely. I specialize in REST API and GraphQL integrations, with experience connecting to payment gateways, CRM platforms, and custom enterprise systems."
+    answer: "I specialize in REST API and GraphQL integrations, connecting payment gateways, CRM platforms, and custom backend microservices with zero workflow disruption."
   },
   {
-    question: "What about post-launch support?",
-    answer: "I offer tiered support packages including bug fixes, performance optimization, and feature updates. All clients receive detailed documentation and priority support access."
+    question: "What about post-launch support & updates?",
+    answer: "I provide continuous post-launch maintenance including performance monitoring, UI component scaling, and priority bug fixes for complete peace of mind."
   }
 ];
 
 export const Nutshell = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeHotspot, setActiveHotspot] = useState<number | null>(null);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -56,6 +56,12 @@ export const Nutshell = () => {
     hidden: { y: 20, opacity: 0 },
     visible: { y: 0, opacity: 1 }
   };
+
+  const hotspots = [
+    { id: 1, x: "28%", y: "28%", icon: "⚡", title: "20% Page Load Speedup", detail: "Optimized component render cycles & asset chunking" },
+    { id: 2, x: "72%", y: "40%", icon: "🎨", title: "Clean UI Craft", detail: "Modular React & Angular component design system" },
+    { id: 3, x: "42%", y: "62%", icon: "🤝", title: "Agile Sprint Ready", detail: "REST APIs, bi-weekly sprints & daily standups" },
+  ];
 
   return (
     <section className="text-white w-[95%] px-0 lg:max-w-5xl mx-auto py-16">
@@ -91,243 +97,177 @@ export const Nutshell = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-4 rounded-none sm:rounded-2xl border border-white/10 backdrop-blur-sm bg-gradient-to-br from-[#0B162F]/30 to-[#121D3A]/20"
+        className="flex flex-col lg:flex-row gap-8 lg:gap-10 p-4 sm:p-6 rounded-2xl border border-white/10 backdrop-blur-sm bg-gradient-to-br from-[#0B162F]/40 to-[#121D3A]/30"
       >
 
-        {/* Left Section - Image Card */}
+        {/* Left Section - Interactive Parallax Hotspot Card */}
         <motion.div 
           variants={itemVariants}
-          className="w-full lg:w-1/2 flex flex-col items-center text-center space-y-4 sm:space-y-6"
+          className="w-full lg:w-1/2 flex flex-col items-center text-center space-y-4"
         >
           <motion.h2 
             variants={itemVariants}
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-4"
+            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-2"
           >
             Let&apos;s Build Something Remarkable
           </motion.h2>
+
           <div className="w-full relative group">
-            <div className="w-full aspect-square relative overflow-hidden rounded-xl">
+            {/* Clean Razor-Sharp Frame Container */}
+            <div className="w-full aspect-[4/3] sm:aspect-square relative overflow-hidden rounded-2xl border border-white/15 bg-gray-950 shadow-2xl">
               <Image
                 src={faq}
                 alt="Collaboration Process"
-                className="object-cover"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                priority
               />
-              <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-cyan-400/30 to-transparent rounded-l-xl" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent rounded-xl" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 space-y-4">
-                <motion.button 
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                  className="bg-white/90 text-[#0B162F] px-8 py-3 rounded-xl font-semibold flex items-center gap-2 shadow-lg hover:shadow-xl transition-all mx-auto"
-                  onClick={openModal}
-                >
-                  👋 Let&apos;s talk
-                </motion.button>
-                <p className="text-gray-200/90 text-sm font-medium">
-                  Average response time: 45 minutes
-                </p>
+
+              {/* Clean Dark Vignette Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
+
+              {/* Top Status Bar */}
+              <div className="absolute top-3.5 left-3.5 right-3.5 z-20 flex items-center justify-between pointer-events-none">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/15 text-[10.5px] sm:text-[11px] font-bold text-white/90 shadow-md">
+                  <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Interactive Blueprint • Tap Hotspots
+                </div>
               </div>
+
+              {/* Interactive Floating Hotspots */}
+              {hotspots.map((spot) => (
+                <div
+                  key={spot.id}
+                  style={{ top: spot.y, left: spot.x }}
+                  className="absolute z-30 -translate-x-1/2 -translate-y-1/2"
+                  onMouseEnter={() => setActiveHotspot(spot.id)}
+                  onMouseLeave={() => setActiveHotspot(null)}
+                >
+                  <motion.button
+                    whileHover={{ scale: 1.25 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
+                    aria-label={`View ${spot.title}`}
+                    className={`relative flex h-7 w-7 items-center justify-center rounded-full backdrop-blur-md text-xs font-extrabold cursor-pointer shadow-xl transition-all duration-300 ${
+                      activeHotspot === spot.id
+                        ? "bg-emerald-400 text-gray-950 ring-4 ring-emerald-400/40"
+                        : "bg-gray-900/80 border border-emerald-400/50 text-emerald-300 hover:border-emerald-300"
+                    }`}
+                  >
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-40" />
+                    <span>{spot.icon}</span>
+                  </motion.button>
+                </div>
+              ))}
+
+              {/* Dynamic Hotspot Information Banner */}
+              <AnimatePresence>
+                {activeHotspot !== null && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute bottom-3 left-3 right-3 z-30 p-3 sm:p-3.5 rounded-2xl bg-gray-950/95 border border-emerald-400/40 backdrop-blur-md text-left shadow-2xl flex items-start gap-2.5"
+                  >
+                    <span className="text-base select-none p-1.5 rounded-xl bg-emerald-400/10 border border-emerald-400/20 text-emerald-300 shrink-0">
+                      {hotspots.find((s) => s.id === activeHotspot)?.icon}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-1 mb-0.5">
+                        <p className="text-[12px] sm:text-[13px] font-bold text-white tracking-tight truncate">
+                          {hotspots.find((s) => s.id === activeHotspot)?.title}
+                        </p>
+                        <button 
+                          onClick={(e) => { e.stopPropagation(); setActiveHotspot(null); }}
+                          className="text-white/40 hover:text-white text-xs px-1.5 py-0.5 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
+                          aria-label="Close hotspot detail"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                      <p className="text-[10.5px] sm:text-[11px] text-white/70 leading-relaxed">
+                        {hotspots.find((s) => s.id === activeHotspot)?.detail}
+                      </p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-            <div className="absolute -inset-px rounded-xl bg-gradient-to-r from-cyan-400/20 to-transparent pointer-events-none z-0" />
+
+            {/* Card Action & Response Subtext (Original) */}
+            <div className="w-full space-y-2 mt-4 text-center">
+              <button 
+                className="bg-white/90 text-[#0B162F] px-8 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all mx-auto cursor-pointer"
+                onClick={openModal}
+              >
+                👋 Let&apos;s talk
+              </button>
+
+              <p className="text-gray-200/90 text-sm font-medium">
+                Average response time: 45 minutes
+              </p>
+            </div>
           </div>
         </motion.div>
 
-        {/* Right Section - Accordion */}
+        {/* Right Section - Minimalist Apple-Style Accordion */}
         <motion.div 
           variants={containerVariants}
-          className="w-full lg:w-1/2 flex flex-col gap-4 sm:gap-6 px-2 sm:px-0"
+          className="w-full lg:w-1/2 flex flex-col justify-center py-2 divide-y divide-white/10"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent mb-4"
-          >
-            
-          </motion.h2>
-          {nutshellData.map((item, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants}
-              className="p-4 sm:p-5 rounded-xl border border-white/10 bg-[#121D3A] hover:border-cyan-400/30 transition-all"
-            >
-              <button
-                className="flex justify-between items-center w-full text-left gap-3"
-                onClick={() => toggleAccordion(index)}
+          {nutshellData.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <motion.div 
+                key={index}
+                variants={itemVariants}
+                className="py-4 first:pt-0 last:pb-0"
               >
-                <span className="text-base sm:text-lg font-medium text-cyan-100">
-                  {item.question}
-                </span>
-                <span className="text-cyan-400">
-                  {openIndex === index ? (
-                    <ChevronUp className="h-5 w-5 sm:h-6 sm:w-6" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6" />
+                <button
+                  className="flex items-center justify-between w-full text-left gap-4 cursor-pointer group py-1"
+                  onClick={() => toggleAccordion(index)}
+                  aria-expanded={isOpen}
+                >
+                  <h3 className={`text-base sm:text-lg font-medium tracking-tight transition-colors duration-300 ${
+                    isOpen ? "text-emerald-300 font-semibold" : "text-white/85 group-hover:text-white"
+                  }`}>
+                    {item.question}
+                  </h3>
+
+                  <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
+                    isOpen
+                      ? "bg-emerald-400/10 border-emerald-400/40 text-emerald-300"
+                      : "bg-white/5 border-white/10 text-white/40 group-hover:text-white group-hover:bg-white/10"
+                  }`}>
+                    {isOpen ? <Minus className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <p className="pt-3 pb-1 text-white/70 leading-relaxed text-sm sm:text-[14.5px]">
+                        {item.answer}
+                      </p>
+                    </motion.div>
                   )}
-                </span>
-              </button>
-              <motion.div
-                initial={false}
-                animate={{
-                  height: openIndex === index ? "auto" : 0,
-                  opacity: openIndex === index ? 1 : 0
-                }}
-                className="overflow-hidden"
-              >
-                <p className="pt-3 sm:pt-4 text-gray-300/90 leading-relaxed">
-                  {item.answer}
-                </p>
+                </AnimatePresence>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </motion.div>
 
-      {/* Modal */}
-      <AnimatePresence mode="wait">
-        {isModalOpen && (
-          <motion.div
-            key="nutshell-modal"
-            className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black/60 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut", when: "beforeChildren" }}
-          >
-            <motion.div
-              className="bg-gray-800 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]"
-              initial={{ opacity: 0, y: 20, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.96 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <motion.button
-                whileHover={{ scale: 1.08, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
-                onClick={closeModal}
-              >
-                <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-              </motion.button>
-
-              <div
-                className="absolute inset-0 opacity-5 pointer-events-none"
-                style={{
-                  backgroundImage: `url(${grainImage.src})`,
-                  zIndex: -1,
-                }}
-              ></div>
-
-              <SectionHeader eyebrow="Dive Into My World" title="" description="" />
-
-              <div className="space-y-4 text-gray-300 text-sm leading-relaxed max-h-[400px] overflow-y-auto">
-                <motion.p
-                  className="text-lg font-bold text-teal-400"
-                  initial={{ opacity: 0, y: -30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                >
-                  React & Next.js Developer | Building Seamless User Experiences
-                </motion.p>
-
-                <motion.p
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                >
-                  Passionate about creating responsive and engaging web apps with React, Next.js, and modern web technologies.
-                </motion.p>
-
-                <motion.p
-                  className="text-teal-300 font-medium"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  Why work with me?
-                </motion.p>
-
-                <motion.ul
-                  className="list-disc pl-5 space-y-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.3 }}
-                >
-                  <motion.li>Creative & Clean Designs</motion.li>
-                  <motion.li>Innovative Problem Solving</motion.li>
-                  <motion.li>Constant Learning & Growth</motion.li>
-                </motion.ul>
-
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.5 }}
-                >
-                  Let&apos;s collaborate and build something exceptional together!
-                </motion.p>
-
-                <motion.div
-                  className="flex items-center space-x-2 mt-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.7, delay: 0.6 }}
-                >
-                  <motion.p
-                    className="text-teal-300 font-semibold italic"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    whileHover={{
-                      scale: 1.03,
-                      color: '#00bfae',
-                      transition: { type: 'spring', stiffness: 100 },
-                    }}
-                  >
-                    Don’t hesitate to reach out, I’m up for a tech chat or a virtual coffee! ☕
-                  </motion.p>
-
-                  <motion.a
-                    href="tel:6380939303"
-                    className="w-8 h-8"
-                    whileHover={{
-                      scale: 1.4,
-                      rotate: 20,
-                      y: -6,
-                      transition: { type: 'spring', stiffness: 300 },
-                    }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <motion.div
-                      className="text-teal-400"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.7 }}
-                    >
-                      <ArrowUp className="text-xl" />
-                    </motion.div>
-                  </motion.a>
-                </motion.div>
-              </div>
-
-              <div className="flex justify-center mt-4">
-                <motion.a
-                  href="https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing?usp=drive_link"
-                  download="Navaneethan KV.pdf"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                  className="mt-4 px-6 py-3 bg-white text-black border border-gray-300 rounded-lg hover:bg-gray-200 transition flex items-center gap-2"
-                >
-                  <span className="font-semibold">Check Resume</span>
-                  <ArrowUp className="text-xl" />
-                </motion.a>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Reusable Dive Into My World Modal */}
+      <DiveIntoMyWorldModal isOpen={isModalOpen} onClose={closeModal} />
     </section>
   );
 };
