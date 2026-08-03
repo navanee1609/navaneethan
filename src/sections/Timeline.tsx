@@ -1,96 +1,131 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { Briefcase, GraduationCap, X, ArrowRight } from "lucide-react";
+import { Briefcase, GraduationCap, ChevronDown, Sparkles, Building2, Calendar, Award } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { Nutshell } from "./Nutshell";
 import { Card } from "@/components/Card";
 
 const CAREER_DATA = [
   {
-    date: "2025",
-    endDate: "Present",
+    id: "agilysys",
+    date: "2025 — Present",
+    yearDisplay: "2025",
     title: "Associate Software Analyst",
     company: "Agilysys Technologies",
-    teaser: "Working on 'Stay' — a key PMS product powering Marriott Hotels.",
     description:
-      "Working on 'Stay' — a key PMS product powering Marriott Hotels. Streamlining booking, check-in, and service management with modern front-end frameworks.",
+      "Engineering core modules for 'Stay' — a next-gen Property Management System (PMS) powering Marriott Hotels globally. Streamlining booking, check-in, and service management with modern front-end frameworks.",
+    highlights: [
+      "Streamlined guest check-in, reservation management, and front-desk operational flows.",
+      "Optimized modular Angular components and TypeScript data structures for maximum performance.",
+      "Collaborated with engineering leads to ensure strict enterprise UX and accessibility standards."
+    ],
     icon: Briefcase,
     color: "emerald",
     logo: "https://www.agilysys.com/en/wp-content/uploads/Agilysys-Logo-v1.png",
     current: true,
-    skills: ["Angular", "TypeScript", "Tailwind"],
+    skills: ["Angular", "TypeScript", "Tailwind CSS", "RxJS", "REST APIs", "Micro-Frontends"],
   },
   {
+    id: "spritle",
     date: "2024",
+    yearDisplay: "2024",
     title: "Front-End Developer",
     company: "Spritle Software",
-    teaser: "Developed responsive UIs using React, Next.js, and Tailwind CSS.",
     description:
-      "Developed responsive UIs using React, Next.js, and Tailwind CSS. Collaborated with back-end engineering teams to deliver seamless user experiences across multiple client projects.",
+      "Crafted responsive UIs and web applications using React, Next.js, and Tailwind CSS across client projects.",
+    highlights: [
+      "Built modern interactive user interfaces with seamless state management and custom React hooks.",
+      "Integrated backend endpoints and ensured strict cross-browser performance.",
+      "Accelerated page load performance by implementing efficient component architecture."
+    ],
     icon: Briefcase,
     color: "cyan",
     logo: "https://www.spritle.com/assets/img/logo/logo.svg",
-    skills: ["React", "Next.js", "Tailwind", "HTML/CSS"],
+    skills: ["React", "Next.js", "Tailwind CSS", "JavaScript", "HTML/CSS"],
   },
   {
+    id: "projects",
     date: "2023",
-    title: "Building Projects",
-    company: "Open Source & Self-Learning",
-    teaser: "Contributed to open-source projects on GitHub, honing collaboration skills.",
+    yearDisplay: "2023",
+    title: "Project Development & Open Source",
+    company: "Independent & Open Source",
     description:
-      "Contributed to open-source projects on GitHub, honing collaboration skills and adopting industry best practices in software development.",
+      "Fostered deep hands-on expertise by engineering web applications and contributing to open-source GitHub projects.",
+    highlights: [
+      "Designed and launched production-ready web apps using modern JavaScript frameworks.",
+      "Adopted industry standards for Git workflows, code reviews, and project architecture.",
+      "Mastered dynamic animation principles using Framer Motion."
+    ],
     icon: Briefcase,
     color: "purple",
-    skills: ["Git", "GitHub", "Open Source", "Collaboration"],
+    skills: ["Git & GitHub", "React", "Open Source", "System Design", "UI/UX"],
   },
   {
+    id: "fundamentals",
     date: "2022",
-    title: "Started Programming",
-    company: "Self-Learning Journey",
-    teaser: "Dived deep into programming fundamentals, mastering key concepts.",
+    yearDisplay: "2022",
+    title: "Programming Foundation",
+    company: "Self-Driven Learning",
     description:
-      "Dived deep into programming fundamentals, mastering key concepts and building a strong foundation through hands-on projects.",
+      "Initiated intensive practical learning in software engineering fundamentals, algorithms, and core web technologies.",
+    highlights: [
+      "Mastered JavaScript ES6+, semantic HTML5 structures, and responsive CSS layouts.",
+      "Built foundational projects to solve practical coding problems."
+    ],
     icon: Briefcase,
     color: "amber",
-    skills: ["JavaScript", "Python", "Problem Solving"],
+    skills: ["JavaScript ES6+", "Python", "Problem Solving", "Web Fundamentals"],
   },
 ];
 
 const EDUCATION_DATA = [
   {
+    id: "be",
     date: "2018 — 2022",
+    yearDisplay: "2018–22",
     title: "B.E. Mechanical Engineering",
     school: "Dhanalakshmi Srinivasan Engineering College",
-    teaser: "Graduated with strong academic record, developing problem-solving skills.",
     description:
-      "Graduated with strong academic record, developing problem-solving skills and passion for technology.",
+      "Graduated with a strong academic record, developing analytical problem-solving capabilities and transitioning passion into software engineering.",
+    percentage: "86% (First Class with Distinction)",
+    highlights: [
+      "Developed quantitative problem-solving and analytical reasoning mindset.",
+      "Led student tech initiatives and project demonstrations."
+    ],
     icon: GraduationCap,
-    percentage: "86%",
     color: "emerald",
   },
   {
+    id: "hsc",
     date: "2017",
-    title: "Higher Secondary",
+    yearDisplay: "2017",
+    title: "Higher Secondary (HSC)",
     school: "Vivekananda Higher Sec. School",
-    teaser: "Excelled academically with keen interest in analytical thinking.",
     description:
-      "Excelled academically with keen interest in analytical thinking and logical problem-solving.",
-    icon: GraduationCap,
+      "Excelled academically with focused coursework in Mathematics, Physics, and Computer Science fundamentals.",
     percentage: "91.7%",
+    highlights: [
+      "Achieved top distinction marks across core analytical subjects."
+    ],
+    icon: GraduationCap,
     color: "cyan",
   },
   {
+    id: "sslc",
     date: "2015",
+    yearDisplay: "2015",
     title: "SSLC",
     school: "Vivekananda Higher Sec. School",
-    teaser: "Achieved academic excellence with strong aptitude for learning.",
     description:
-      "Achieved academic excellence with strong aptitude for learning and disciplined approach to education.",
-    icon: GraduationCap,
+      "Demonstrated foundational academic excellence and consistent dedication to learning.",
     percentage: "95%",
+    highlights: [
+      "Recognized among top academic rank holders."
+    ],
+    icon: GraduationCap,
     color: "purple",
   },
 ];
@@ -98,177 +133,248 @@ const EDUCATION_DATA = [
 const COLOR_MAP = {
   emerald: {
     text: "text-emerald-400",
-    border: "border-emerald-400",
-    badge: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400",
+    border: "border-white/10 hover:border-emerald-500/40",
+    badge: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
+    hoverGlow: "hover:shadow-[0_0_20px_rgba(16,185,129,0.12)]",
+    nodeBg: "bg-emerald-400",
+    nodeRing: "ring-emerald-500/20",
+    gradText: "from-white via-white/90 to-emerald-300",
   },
   cyan: {
     text: "text-cyan-400",
-    border: "border-cyan-400",
-    badge: "bg-cyan-500/10 border-cyan-500/25 text-cyan-400",
+    border: "border-white/10 hover:border-cyan-500/40",
+    badge: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
+    hoverGlow: "hover:shadow-[0_0_20px_rgba(6,182,212,0.12)]",
+    nodeBg: "bg-cyan-400",
+    nodeRing: "ring-cyan-500/20",
+    gradText: "from-white via-white/90 to-cyan-300",
   },
   purple: {
     text: "text-purple-400",
-    border: "border-purple-400",
-    badge: "bg-purple-500/10 border-purple-500/25 text-purple-400",
+    border: "border-white/10 hover:border-purple-500/40",
+    badge: "bg-purple-500/10 border-purple-500/20 text-purple-400",
+    hoverGlow: "hover:shadow-[0_0_20px_rgba(168,85,247,0.12)]",
+    nodeBg: "bg-purple-400",
+    nodeRing: "ring-purple-500/20",
+    gradText: "from-white via-white/90 to-purple-300",
   },
   amber: {
     text: "text-amber-400",
-    border: "border-amber-400",
-    badge: "bg-amber-500/10 border-amber-500/25 text-amber-400",
+    border: "border-white/10 hover:border-amber-500/40",
+    badge: "bg-amber-500/10 border-amber-500/20 text-amber-400",
+    hoverGlow: "hover:shadow-[0_0_20px_rgba(245,158,11,0.12)]",
+    nodeBg: "bg-amber-400",
+    nodeRing: "ring-amber-500/20",
+    gradText: "from-white via-white/90 to-amber-300",
   },
 };
 
-const TimelineItem = ({
+const OppositeDateBadge = ({
   item,
-  index,
+  isEven,
   type,
-  onOpenDetails,
 }: {
   item: any;
-  index: number;
+  isEven: boolean;
   type: "career" | "education";
-  onOpenDetails: (item: any) => void;
 }) => {
+  const c = COLOR_MAP[item.color as keyof typeof COLOR_MAP] || COLOR_MAP.emerald;
+
+  return (
+    <div
+      className={`hidden md:flex flex-col justify-center ${
+        isEven ? "items-start pl-10 text-left" : "items-end pr-10 text-right"
+      }`}
+    >
+      <span className={`text-4xl lg:text-5xl font-black tracking-tight bg-gradient-to-r ${c.gradText} bg-clip-text text-transparent font-mono`}>
+        {item.yearDisplay}
+      </span>
+      <div className={`flex items-center gap-2 mt-2 ${isEven ? "flex-row" : "flex-row-reverse"}`}>
+        <span className={`h-[2px] w-8 rounded-full ${c.nodeBg} opacity-70`} />
+        <span className="text-xs font-semibold uppercase tracking-wider text-white/50">
+          {type === "career" ? item.company : item.school}
+        </span>
+      </div>
+      {item.current && (
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 mt-3 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          Active Role
+        </span>
+      )}
+    </div>
+  );
+};
+
+const TimelineCard = ({
+  item,
+  type,
+}: {
+  item: any;
+  type: "career" | "education";
+}) => {
+  const [isExpanded, setIsExpanded] = useState(false);
   const c = COLOR_MAP[item.color as keyof typeof COLOR_MAP] || COLOR_MAP.emerald;
   const Icon = item.icon;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
-      className="relative pl-10 md:pl-16 pb-12 last:pb-0 group text-left"
-    >
-      {/* Dynamic Spring-Scaling Node Dot */}
-      <motion.div
-        initial={{ scale: 0.8 }}
-        whileInView={{ scale: 1.2 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className={`absolute left-[14px] top-8 w-3 h-3 rounded-full bg-gray-900 border-2 ${c.border} z-10 group-hover:scale-130 transition duration-300`}
-      />
-
-      <Card className="p-6 md:p-8 hover:-translate-y-1 transition-all duration-300 border border-white/5 hover:border-white/10 shadow-xl shadow-black/10">
-        <div className="flex flex-col gap-4">
-          
-          {/* Header Row: Date & Icon Badges */}
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border ${c.badge} backdrop-blur-sm`}>
-              {item.date}
-              {item.endDate && ` — ${item.endDate}`}
-              {item.current && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
-            </span>
-
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
-                <Icon className={`w-4 h-4 ${c.text}`} />
-              </div>
-              {type === "education" && item.percentage && (
-                <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ${c.badge}`}>
-                  {item.percentage}
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Title & Organization */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mt-1">
-            <div>
-              <h3 className="text-xl font-bold text-white tracking-tight">
-                {item.title}
-              </h3>
-              <p className="text-sm font-semibold text-white/50 mt-0.5">
-                {type === "career" ? item.company : item.school}
-              </p>
-            </div>
-
-            {type === "career" && item.logo && (
-              <Image
-                src={item.logo}
-                alt={item.company}
-                width={80}
-                height={24}
-                className="object-contain opacity-60 h-5 w-auto"
-                unoptimized
-              />
+    <Card className={`p-6 md:p-7 border backdrop-blur-xl bg-gray-900/50 transition-all duration-300 group relative ${c.border} ${c.hoverGlow}`}>
+      {/* Top Bar: Date Badge & Type Icon */}
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div className="flex items-center gap-2">
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase border ${c.badge}`}>
+            <Calendar className="w-3 h-3 text-white/60" />
+            {item.date}
+            {item.current && (
+              <span className="flex h-2 w-2 relative ml-1">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
             )}
-          </div>
-
-          {/* Teaser Description */}
-          <p className="text-sm text-white/70 leading-relaxed font-light mt-1">
-            {item.teaser}
-          </p>
-
-          {/* Footer: View Details CTA */}
-          <div className="mt-2 pt-4 border-t border-white/[0.05] flex items-center">
-            <button
-              onClick={() => onOpenDetails(item)}
-              className="bg-white text-gray-950 h-10 px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-2 cursor-pointer hover:bg-white/90 transition duration-300 text-xs"
-            >
-              <span>View Details</span>
-              <ArrowRight className="size-3.5" />
-            </button>
-          </div>
-
+          </span>
+          {item.current && (
+            <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/40 border border-emerald-500/20 px-2.5 py-0.5 rounded-md">
+              Current Role
+            </span>
+          )}
         </div>
-      </Card>
-    </motion.div>
+
+        <div className="flex items-center gap-2">
+          {type === "education" && item.percentage && (
+            <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border ${c.badge}`}>
+              <Award className="w-3 h-3 text-white/60" />
+              {item.percentage}
+            </span>
+          )}
+          <div className="w-8 h-8 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-105 transition duration-200">
+            <Icon className={`w-4 h-4 ${c.text}`} />
+          </div>
+        </div>
+      </div>
+
+      {/* Main Title & Organization */}
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h3 className="text-xl font-bold text-white tracking-tight group-hover:text-white/90 transition-colors duration-200">
+            {item.title}
+          </h3>
+          <p className="text-sm font-medium text-white/50 mt-1 flex items-center gap-2">
+            <Building2 className="w-3.5 h-3.5 text-white/40" />
+            {type === "career" ? item.company : item.school}
+          </p>
+        </div>
+
+        {type === "career" && item.logo && (
+          <div className="p-1.5 rounded-xl bg-white/5 border border-white/10">
+            <Image
+              src={item.logo}
+              alt={item.company}
+              width={75}
+              height={22}
+              className="object-contain opacity-70 h-5 w-auto filter grayscale group-hover:grayscale-0 transition duration-300"
+              unoptimized
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Description */}
+      <p className="text-sm text-white/70 leading-relaxed font-light mt-3">
+        {item.description}
+      </p>
+
+      {/* Direct Tech Stack Badges Inline */}
+      {item.skills && (
+        <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap gap-1.5">
+          {item.skills.map((skill: string) => (
+            <span
+              key={skill}
+              className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-white/[0.04] border border-white/10 text-white/75 hover:bg-white/10 hover:text-white transition duration-200"
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {/* Expandable Key Highlights */}
+      {item.highlights && item.highlights.length > 0 && (
+        <div className="mt-4 pt-3 border-t border-white/5">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center gap-2 text-xs font-semibold text-white/50 hover:text-white/90 transition duration-200 cursor-pointer w-full text-left"
+          >
+            <Sparkles className={`w-3.5 h-3.5 ${c.text}`} />
+            <span>{isExpanded ? "Hide Highlights" : "Key Highlights & Impact"}</span>
+            <ChevronDown
+              className={`w-4 h-4 ml-auto transition-transform duration-300 ${
+                isExpanded ? "rotate-180 text-white" : "text-white/40"
+              }`}
+            />
+          </button>
+
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.ul
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="mt-3 space-y-2 overflow-hidden"
+              >
+                {item.highlights.map((point: string, idx: number) => (
+                  <li key={idx} className="text-xs text-white/70 flex items-start gap-2 leading-relaxed">
+                    <span className={`w-1.5 h-1.5 rounded-full ${c.nodeBg} mt-1.5 shrink-0 opacity-80`} />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
+        </div>
+      )}
+    </Card>
   );
 };
 
 export const Timeline = () => {
   const [activeTab, setActiveTab] = useState<"career" | "education">("career");
-  const [activeMilestone, setActiveMilestone] = useState<any | null>(null);
-
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Track scroll position relative to the timeline container list
+  // Track scroll position relative to timeline list
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end end"],
   });
 
-  // Transform scroll range to scaleY progress line
   const scaleY = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
 
-  // Disable background scrolling when modal is active
-  useEffect(() => {
-    if (activeMilestone) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [activeMilestone]);
+  const items = activeTab === "career" ? CAREER_DATA : EDUCATION_DATA;
 
   return (
     <section id="timeline" className="py-24 px-4 sm:px-8 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-5xl mx-auto">
         <SectionHeader
           eyebrow="My Journey & Growth"
           title="Professional Milestones"
-          description="Key moments that shaped my development career and academic foundation."
+          description="A chronological timeline of key career roles, open-source projects, and academic background."
         />
 
-        {/* sliding Tab selector */}
+        {/* Sliding Tab Selector */}
         <div className="flex justify-center mt-12 mb-16">
           <div className="flex p-1 border border-white/10 rounded-full bg-white/5 backdrop-blur-md relative">
-            {["career", "education"].map((tab) => (
+            {(["career", "education"] as const).map((tab) => (
               <button
                 key={tab}
-                onClick={() => setActiveTab(tab as any)}
-                className={`relative px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer ${
-                  activeTab === tab ? "text-black" : "text-white/60 hover:text-white"
+                onClick={() => setActiveTab(tab)}
+                className={`relative px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                  activeTab === tab ? "text-black font-bold" : "text-white/60 hover:text-white"
                 }`}
               >
                 {activeTab === tab && (
                   <motion.div
-                    layoutId="timeline-active-tab"
-                    className="absolute inset-0 bg-white rounded-full -z-10"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    layoutId="timeline-active-tab-indicator"
+                    className="absolute inset-0 bg-white rounded-full -z-10 shadow-[0_0_15px_rgba(255,255,255,0.2)]"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
                   />
                 )}
                 {tab === "career" ? "Career Experience" : "Education"}
@@ -277,131 +383,73 @@ export const Timeline = () => {
           </div>
         </div>
 
-        {/* Milestone Timeline List container */}
-        <div ref={containerRef} className="max-w-2xl mx-auto relative mt-16 pl-2">
+        {/* Timeline Container */}
+        <div ref={containerRef} className="relative mt-12">
           
-          {/* Background Track Line (Muted) */}
-          <div className="absolute left-[19px] top-8 bottom-8 w-[2px] bg-white/5" />
+          {/* Desktop Central Track Line */}
+          <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1px] -translate-x-1/2 bg-white/10" />
 
-          {/* Animated Glowing Progress Line */}
+          {/* Desktop Animated Progress Line */}
           <motion.div
             style={{ scaleY }}
-            className="absolute left-[19px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-emerald-400 via-sky-400 to-emerald-500 origin-top z-0"
+            className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1.5px] -translate-x-1/2 bg-gradient-to-b from-emerald-400 via-sky-400 to-purple-400 origin-top z-0 shadow-[0_0_8px_rgba(52,211,153,0.3)]"
           />
 
-          {activeTab === "career"
-            ? CAREER_DATA.map((item, index) => (
-                <TimelineItem
-                  key={item.date}
-                  item={item}
-                  index={index}
-                  type="career"
-                  onOpenDetails={(val) => setActiveMilestone(val)}
-                />
-              ))
-            : EDUCATION_DATA.map((item, index) => (
-                <TimelineItem
-                  key={item.date}
-                  item={item}
-                  index={index}
-                  type="education"
-                  onOpenDetails={(val) => setActiveMilestone(val)}
-                />
-              ))}
+          {/* Mobile Left Track Line */}
+          <div className="md:hidden absolute left-[19px] top-4 bottom-4 w-[1px] bg-white/10" />
+
+          {/* Mobile Animated Progress Line */}
+          <motion.div
+            style={{ scaleY }}
+            className="md:hidden absolute left-[19px] top-4 bottom-4 w-[1.5px] -translate-x-1/2 bg-gradient-to-b from-emerald-400 via-sky-400 to-purple-400 origin-top z-0 shadow-[0_0_8px_rgba(52,211,153,0.3)]"
+          />
+
+          {/* Timeline Items */}
+          <div className="space-y-12 md:space-y-16">
+            {items.map((item, index) => {
+              const isEven = index % 2 === 0;
+              const c = COLOR_MAP[item.color as keyof typeof COLOR_MAP] || COLOR_MAP.emerald;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.05 }}
+                  className="relative flex flex-col md:grid md:grid-cols-2 gap-8 items-center"
+                >
+                  {/* Left Side Slot */}
+                  <div className={`w-full pl-12 md:pl-0 ${isEven ? "md:pr-10" : "order-2 md:order-1"}`}>
+                    {isEven ? (
+                      <TimelineCard item={item} type={activeTab} />
+                    ) : (
+                      <OppositeDateBadge item={item} isEven={isEven} type={activeTab} />
+                    )}
+                  </div>
+
+                  {/* Right Side Slot */}
+                  <div className={`w-full pl-12 md:pl-0 ${isEven ? "order-2 md:order-2" : "order-1 md:order-2"}`}>
+                    {isEven ? (
+                      <OppositeDateBadge item={item} isEven={isEven} type={activeTab} />
+                    ) : (
+                      <TimelineCard item={item} type={activeTab} />
+                    )}
+                  </div>
+
+                  {/* Central Node Marker */}
+                  <div className="absolute left-[19px] md:left-1/2 top-8 md:top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center">
+                    <motion.div
+                      whileHover={{ scale: 1.2 }}
+                      className={`w-3.5 h-3.5 rounded-full ${c.nodeBg} border-2 border-gray-950 ring-2 ${c.nodeRing} flex items-center justify-center transition-all duration-300`}
+                    />
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </div>
-
-      {/* Milestone Details Modal */}
-      <AnimatePresence>
-        {activeMilestone && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm cursor-default pointer-events-auto"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="relative max-w-2xl w-full bg-gray-900 border border-white/10 rounded-3xl p-6 md:p-8 shadow-2xl backdrop-blur-md text-white flex flex-col gap-6"
-            >
-              {/* Close Button */}
-              <div className="absolute top-6 right-6 z-20">
-                <button
-                  onClick={() => setActiveMilestone(null)}
-                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white transition-all cursor-pointer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Modal Header */}
-              <div className="flex flex-col gap-3 pr-12">
-                <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase border ${
-                  COLOR_MAP[activeMilestone.color as keyof typeof COLOR_MAP]?.badge
-                } backdrop-blur-sm w-max`}>
-                  {activeMilestone.date}
-                  {activeMilestone.endDate && <span className="text-white/30">— {activeMilestone.endDate}</span>}
-                  {activeMilestone.current && <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />}
-                </span>
-                
-                <h3 className="text-2xl font-bold text-white tracking-tight mt-1">
-                  {activeMilestone.title}
-                </h3>
-                <div className="flex items-center gap-3">
-                  <p className="text-base font-semibold text-white/60">
-                    {activeMilestone.company || activeMilestone.school}
-                  </p>
-                  {activeMilestone.logo && (
-                    <Image
-                      src={activeMilestone.logo}
-                      alt={activeMilestone.company}
-                      width={80}
-                      height={24}
-                      className="object-contain opacity-80 h-5 w-auto"
-                      unoptimized
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Modal Body */}
-              <div className="border-t border-white/[0.08] pt-6 flex flex-col gap-4">
-                <p className="text-white/80 leading-relaxed text-sm md:text-base font-light">
-                  {activeMilestone.description}
-                </p>
-              </div>
-
-              {/* Modal Footer: Skills or Performance indicator */}
-              {activeMilestone.skills && (
-                <div className="border-t border-white/[0.08] pt-6 flex flex-col gap-3">
-                  <span className="text-[10px] font-bold text-white/30 tracking-widest uppercase">Key Skills & Technologies</span>
-                  <div className="flex flex-wrap gap-2">
-                    {activeMilestone.skills.map((skill: string) => (
-                      <span key={skill} className="px-3 py-1 rounded-md text-xs font-semibold bg-white/5 border border-white/10 text-white/70">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {activeMilestone.percentage && (
-                <div className="border-t border-white/[0.08] pt-6 flex justify-between items-center">
-                  <span className="text-xs font-bold text-white/30 tracking-widest uppercase">Academic Performance</span>
-                  <span className={`px-3 py-1 rounded-full text-xs font-extrabold border ${
-                    COLOR_MAP[activeMilestone.color as keyof typeof COLOR_MAP]?.badge
-                  }`}>
-                    {activeMilestone.percentage}
-                  </span>
-                </div>
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <Nutshell />
     </section>

@@ -5,6 +5,7 @@ import { Header } from "@/sections/Header";
 import { HeroSection } from "@/sections/Hero";
 import { ProjectsSection } from "@/sections/Projects";
 import { TapeSection } from "@/sections/Tape";
+import { AiWorkflowSection } from "@/sections/AiWorkflow";
 import { Articles } from "@/sections/Article";
 import { Timeline } from "@/sections/Timeline";
 import { AwardsSection } from "@/sections/Awards";
@@ -23,6 +24,8 @@ export default function Home() {
      <ProjectsSection/>
      {/*Importing Tape Section  */}
      <TapeSection/>
+     {/* AI Collaboration & Workflow Section */}
+     <AiWorkflowSection/>
      {/* Importing article section */}
      <Articles/>
      {/* Importing timeline */}

@@ -3,35 +3,36 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import { useEffect, useState } from "react";
-import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
+import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt, FaLinkedin } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg"
 import grainImage from "@/assets/images/grain.jpg"
-import instagramImg from "@/assets/images/instagram.png"
-import whatsappImg from "@/assets/images/whatsapp.png"
-import mailImg from "@/assets/images/mail.png"
-import phoneImg from "@/assets/images/phone.png"
 
 const contactLinks = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
-    img: instagramImg,
+    icon: FaInstagram,
   },
   {
     label: "WhatsApp",
     href: "https://wa.me/7639096688",
-    img: whatsappImg,
+    icon: FaWhatsapp,
   },
   {
     label: "Email",
     href: "mailto:navaneethanvs18@gmail.com",
-    img: mailImg,
+    icon: FaEnvelope,
   },
   {
     label: "Phone",
     href: "tel:+6380939303",
-    img: phoneImg,
+    icon: FaPhoneAlt,
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/navaneethan-k-v-546a9025b",
+    icon: FaLinkedin,
   },
 ];
 
@@ -244,22 +245,22 @@ export const ContactSection = () => {
                   Reach out me
                 </p>
 
-                <div className="mt-6 flex items-end justify-center gap-3">
+                <div className="mt-6 flex items-center justify-center gap-4">
                   {contactLinks.map((item, i) => {
-                    const img = item.img;
+                    const Icon = item.icon;
 
                     return (
                       <motion.a
                         key={item.label}
                         href={item.href}
-                        target={item.href.startsWith("http") ? "_blank" : undefined}
-                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: i * 0.06, type: "spring", stiffness: 300, damping: 20 }}
                         whileHover={{
-                          y: -10,
-                          scale: 1.25,
+                          y: -6,
+                          scale: 1.15,
                           transition: { type: "spring", stiffness: 400, damping: 17 }
                         }}
                         whileTap={{
@@ -269,21 +270,13 @@ export const ContactSection = () => {
                         aria-label={item.label}
                         className="group relative flex flex-col items-center"
                       >
-                        {/* Icon container */}
-                        <div className="relative flex items-center justify-center w-11 h-11 rounded-2xl bg-gradient-to-b from-white/[0.1] to-white/[0.02] border border-white/[0.08] shadow-lg overflow-hidden hover:border-emerald-500/20 transition-all duration-300">
-                          {/* Glossy top highlight */}
-                          <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-
-                          {/* Icon */}
-                          <img
-                            src={img.src ?? img}
-                            alt={item.label}
-                            className="relative h-5 w-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
-                          />
+                        {/* White circular icon container matching changes branch style */}
+                        <div className="p-2.5 bg-white rounded-full flex items-center justify-center shadow-md group-hover:bg-gray-100 transition-colors">
+                          <Icon className="text-2xl text-gray-700 group-hover:text-gray-900 transition-colors" />
                         </div>
 
                         {/* Tooltip label */}
-                        <span className="absolute -top-7 px-2 py-0.5 bg-black/80 rounded-md text-[10px] text-white/70 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                        <span className="absolute -top-7 px-2 py-0.5 bg-black/80 rounded-md text-[10px] text-white/80 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                           {item.label}
                         </span>
                       </motion.a>
