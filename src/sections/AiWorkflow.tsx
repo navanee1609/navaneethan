@@ -13,7 +13,11 @@ const AI_FEATURES = [
     title: "Agentic Pair Programming",
     description:
       "Partnering daily with autonomous AI coding agents and reasoning LLMs to architect complex systems, refactor state modules, and resolve tricky logic in real time.",
-    badges: ["Claude 3.7", "Antigravity IDE", "Copilot"],
+    badges: [
+      { name: "Claude 3.7", style: "bg-amber-500/10 border-amber-500/25 text-amber-400" },
+      { name: "Antigravity IDE", style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
+      { name: "Copilot", style: "bg-cyan-500/10 border-cyan-500/25 text-cyan-400" },
+    ],
     color: "emerald",
   },
   {
@@ -23,7 +27,11 @@ const AI_FEATURES = [
     title: "10x Prototyping Velocity",
     description:
       "Transforming concepts into production-grade web applications in hours—eliminating repetitive boilerplate and focusing on user experience.",
-    badges: ["Rapid Iteration", "Next.js", "Component Specs"],
+    badges: [
+      { name: "Rapid Iteration", style: "bg-cyan-500/10 border-cyan-500/25 text-cyan-400" },
+      { name: "Next.js", style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
+      { name: "Component Specs", style: "bg-purple-500/10 border-purple-500/25 text-purple-400" },
+    ],
     color: "cyan",
   },
   {
@@ -33,33 +41,40 @@ const AI_FEATURES = [
     title: "Automated QA & Code Auditing",
     description:
       "Enforcing strict type safety, edge-case checking, and performance tuning using AI-assisted code reviews before shipping to production.",
-    badges: ["Code Audits", "Type Safety", "Optimization"],
+    badges: [
+      { name: "Code Audits", style: "bg-purple-500/10 border-purple-500/25 text-purple-400" },
+      { name: "Type Safety", style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
+      { name: "Optimization", style: "bg-amber-500/10 border-amber-500/25 text-amber-400" },
+    ],
     color: "purple",
   },
 ];
 
 const AI_TOOLS = [
-  { name: "Antigravity IDE", icon: Terminal },
-  { name: "Claude 3.7", icon: Cpu },
-  { name: "GitHub Copilot", icon: Bot },
-  { name: "GPT-4o", icon: Wand2 },
-  { name: "v0.dev / WebGL", icon: Sparkles },
+  { name: "Antigravity IDE", icon: Terminal, style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
+  { name: "Claude 3.7", icon: Cpu, style: "bg-amber-500/10 border-amber-500/25 text-amber-400" },
+  { name: "GitHub Copilot", icon: Bot, style: "bg-cyan-500/10 border-cyan-500/25 text-cyan-400" },
+  { name: "GPT-4o", icon: Wand2, style: "bg-purple-500/10 border-purple-500/25 text-purple-400" },
+  { name: "v0.dev / WebGL", icon: Sparkles, style: "bg-pink-500/10 border-pink-500/25 text-pink-400" },
 ];
 
 const COLOR_STYLES = {
   emerald: {
     iconBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
-    border: "border-white/10 hover:border-emerald-500/30",
+    border: "border-white/10 hover:border-emerald-500/40",
+    glow: "hover:shadow-[0_0_25px_rgba(16,185,129,0.12)]",
     stepColor: "text-emerald-400/40",
   },
   cyan: {
     iconBg: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-    border: "border-white/10 hover:border-cyan-500/30",
+    border: "border-white/10 hover:border-cyan-500/40",
+    glow: "hover:shadow-[0_0_25px_rgba(6,182,212,0.12)]",
     stepColor: "text-cyan-400/40",
   },
   purple: {
     iconBg: "bg-purple-500/10 text-purple-400 border-purple-500/20",
-    border: "border-white/10 hover:border-purple-500/30",
+    border: "border-white/10 hover:border-purple-500/40",
+    glow: "hover:shadow-[0_0_25px_rgba(168,85,247,0.12)]",
     stepColor: "text-purple-400/40",
   },
 };
@@ -75,7 +90,7 @@ export const AiWorkflowSection = () => {
         <SectionHeader
           eyebrow="AI-Powered Engineering"
           title="Accelerating Digital Creation"
-          description=""
+          description="Discover how I harness artificial intelligence to bring ideas to life, supercharge productivity, and create seamless digital experiences."
         />
 
         {/* Side-by-Side Split Grid */}
@@ -93,10 +108,10 @@ export const AiWorkflowSection = () => {
             </h2>
 
             <p className="text-base text-white/70 font-light leading-relaxed">
-              Software engineering isn't just about writing code—it's about orchestrating intelligence. I integrate state-of-the-art AI agents and LLMs directly into my workflow to accelerate prototyping, catch edge cases early, and ship production-grade applications at 10x speed.
+              Software engineering is not just about writing code—it is about orchestrating intelligence. I integrate state-of-the-art AI agents and LLMs directly into my workflow to accelerate prototyping, catch edge cases early, and ship production-grade applications at 10x speed.
             </p>
 
-            {/* Primary AI Stack Badge Row */}
+            {/* Primary AI Stack Badge Row with Vibrant Colors */}
             <div className="pt-4 border-t border-white/10 space-y-3">
               <span className="text-xs font-bold uppercase tracking-widest text-white/40 block">
                 Everyday AI Pair Stack
@@ -105,13 +120,14 @@ export const AiWorkflowSection = () => {
                 {AI_TOOLS.map((tool) => {
                   const ToolIcon = tool.icon;
                   return (
-                    <span
+                    <motion.span
                       key={tool.name}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/[0.04] border border-white/10 text-white/80 hover:bg-white/10 transition duration-200"
+                      whileHover={{ scale: 1.05 }}
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border backdrop-blur-sm transition duration-200 cursor-default ${tool.style}`}
                     >
-                      <ToolIcon className="w-3.5 h-3.5 text-white/60" />
+                      <ToolIcon className="w-3.5 h-3.5" />
                       {tool.name}
-                    </span>
+                    </motion.span>
                   );
                 })}
               </div>
@@ -148,7 +164,7 @@ export const AiWorkflowSection = () => {
                   viewport={{ once: true, margin: "-40px" }}
                   transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
                 >
-                  <Card className={`p-6 border backdrop-blur-xl bg-gray-900/40 transition-all duration-300 ${style.border} group relative`}>
+                  <Card className={`p-6 border backdrop-blur-xl bg-gray-900/40 transition-all duration-300 ${style.border} ${style.glow} group relative`}>
 
                     {/* Step Number Backdrop */}
                     <span className={`absolute top-4 right-6 font-mono text-2xl font-extrabold ${style.stepColor} select-none`}>
@@ -171,14 +187,14 @@ export const AiWorkflowSection = () => {
                           {feature.description}
                         </p>
 
-                        {/* Tech Pills */}
+                        {/* Tech Pills with Vibrant Color Styles */}
                         <div className="flex flex-wrap gap-1.5 pt-2">
                           {feature.badges.map((badge) => (
                             <span
-                              key={badge}
-                              className="px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-white/[0.04] border border-white/10 text-white/75 group-hover:border-white/20 transition duration-200"
+                              key={badge.name}
+                              className={`px-2.5 py-0.5 rounded-md text-[11px] font-semibold border backdrop-blur-sm transition duration-200 ${badge.style}`}
                             >
-                              {badge}
+                              {badge.name}
                             </span>
                           ))}
                         </div>

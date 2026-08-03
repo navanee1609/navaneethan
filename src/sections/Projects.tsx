@@ -3,13 +3,13 @@ import CheckIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpIcon from "@/assets/icons/arrow-up-right.svg";
 import { SectionHeader } from "./SectionHeader";
 import { Card } from "@/components/Card";
-import retrorift from "@/assets/images/retrorift.png"
-import cque from "@/assets/images/cque.png"
-import haleon from "@/assets/images/haleon.png"
-import shopcart from "@/assets/images/shopcart.png"
-import sbg from "@/assets/images/sbg.png"
-import notekeeper from "@/assets/images/notekeeper.png"
-import cookio from "@/assets/images/cookio.png"
+import retrorift from "@/assets/images/retrorift.png";
+import cque from "@/assets/images/cque.png";
+import haleon from "@/assets/images/haleon.png";
+import shopcart from "@/assets/images/shopcart.png";
+import sbg from "@/assets/images/sbg.png";
+import notekeeper from "@/assets/images/notekeeper.png";
+import cookio from "@/assets/images/cookio.png";
 
 const portfolioProjects = [
   {
@@ -23,7 +23,7 @@ const portfolioProjects = [
     ],
     link: "https://haleon-test.spritle.com/products",
     image: haleon,
-    techStack: ["HTML", "CSS", "Bootstrap", "Javascript", "ruby-on-rails", "Spree"],
+    techStack: ["HTML", "CSS", "Bootstrap", "Javascript", "Ruby on Rails", "Spree"],
   },
   {
     company: "Spritle Software",
@@ -36,7 +36,7 @@ const portfolioProjects = [
     ],
     link: "https://cque-archie.vercel.app/",
     image: cque,
-    techStack: ["Reactjs", "Tailwind CSS", "Magic UI"]
+    techStack: ["React.js", "Tailwind CSS", "Magic UI"],
   },
   {
     company: "Spritle Software",
@@ -62,7 +62,7 @@ const portfolioProjects = [
     ],
     link: "https://retrorift-gaming-paradise.netlify.app/",
     image: retrorift,
-    techStack: ["React", "React-Redux", "RAWG.API - Axios"],
+    techStack: ["React", "React-Redux", "RAWG API"],
   },
   {
     company: "Personal Project",
@@ -75,7 +75,7 @@ const portfolioProjects = [
     ],
     link: "https://shopcart-ecommerce-project.netlify.app/",
     image: shopcart,
-    techStack: ["Reactjs", "Bootstrap"],
+    techStack: ["React.js", "Bootstrap", "Firebase"],
   },
   {
     company: "Personal Project",
@@ -101,26 +101,21 @@ const portfolioProjects = [
     ],
     link: "https://cookio-recipehub.netlify.app/",
     image: cookio,
-    techStack: ["HTML", "CSS", "Javascript", "Edaman API"],
+    techStack: ["HTML", "CSS", "Javascript", "Edamam API"],
   },
 ];
 
-
-
-
-
-// Tech colors array (will repeat)
+// Color-coded badge styles matching Timeline & AI Workflow section pills
 const techColors = [
-  { bg: "bg-[#AFD5F0]", text: "text-[#085063]" }, // Dark teal for blue
-  { bg: "bg-[#F8C8DC]", text: "text-[#9B3253]" }, // Dark burgundy for pink
-  { bg: "bg-[#FEDD9E]", text: "text-[#7A4C11]" }, // Dark amber for yellow
+  { style: "bg-emerald-500/10 border border-emerald-500/25 text-emerald-400" },
+  { style: "bg-cyan-500/10 border border-cyan-500/25 text-cyan-400" },
+  { style: "bg-purple-500/10 border border-purple-500/25 text-purple-400" },
+  { style: "bg-amber-500/10 border border-amber-500/25 text-amber-400" },
 ];
-
 
 export const ProjectsSection = () => {
   return (
     <section id="projects" className="pb-16">
-
       <div className="container">
         <SectionHeader
           eyebrow="Real-World Impact"
@@ -128,9 +123,7 @@ export const ProjectsSection = () => {
           description="Discover how I bring ideas to life, creating seamless and transformative digital experiences."
         />
 
-
         <div className="mt-10 md:mt-20 flex flex-col gap-14">
-
           {portfolioProjects.map((project, projectIndex) => (
             <Card
               className="px-8 pb-0 pt-8 md:pt-12 md:px-10 lg:pt-16 lg:px-20 sticky"
@@ -139,7 +132,6 @@ export const ProjectsSection = () => {
                 top: `calc(64px + ${projectIndex * 40}px)`,
               }}
             >
-
               <div className="lg:grid lg:grid-cols-2 lg:gap-20">
                 <div className="lg:pb-16">
                   <div className="flex justify-between">
@@ -150,8 +142,8 @@ export const ProjectsSection = () => {
                     </div>
                   </div>
                   <h3 className="font-serif text-2xl md:mt-5">{project.title}</h3>
-                  <a href={project.link}>
-                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer">
+                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8 cursor-pointer hover:bg-white/90 transition duration-300">
                       <span>View Live Site</span>
                       <ArrowUpIcon className="size-4" />
                     </button>
@@ -166,22 +158,20 @@ export const ProjectsSection = () => {
                     ))}
                   </ul>
 
-                  {/* Tech Stack Display */}
-                  <div className="mt-6 flex gap-4 flex-wrap">
+                  {/* Tech Stack Display matching AI Section Pills */}
+                  <div className="mt-6 flex gap-2 flex-wrap pb-8 lg:pb-0">
                     {project.techStack.map((tech, index) => {
-                      const colorIndex = index % techColors.length; // To repeat the colors
+                      const colorStyle = techColors[index % techColors.length].style;
                       return (
                         <span
                           key={index}
-                          className={`text-xs font-semibold px-4 py-1 rounded-full ${techColors[colorIndex].bg} ${techColors[colorIndex].text}`}
+                          className={`text-xs font-semibold px-3 py-1.5 rounded-lg backdrop-blur-sm transition duration-200 ${colorStyle}`}
                         >
                           {tech}
                         </span>
                       );
                     })}
                   </div>
-
-
                 </div>
 
                 <div className="relative">
@@ -192,7 +182,6 @@ export const ProjectsSection = () => {
                rounded-tr-2xl rounded-br-2xl rounded-tl-2xl"
                   />
                 </div>
-
               </div>
             </Card>
           ))}
