@@ -62,19 +62,19 @@ const COLOR_STYLES = {
   emerald: {
     iconBg: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
     border: "border-white/10 hover:border-emerald-500/40",
-    glow: "hover:shadow-[0_0_25px_rgba(16,185,129,0.12)]",
+    glow: "",
     stepColor: "text-emerald-400/40",
   },
   cyan: {
     iconBg: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
     border: "border-white/10 hover:border-cyan-500/40",
-    glow: "hover:shadow-[0_0_25px_rgba(6,182,212,0.12)]",
+    glow: "",
     stepColor: "text-cyan-400/40",
   },
   purple: {
     iconBg: "bg-purple-500/10 text-purple-400 border-purple-500/20",
     border: "border-white/10 hover:border-purple-500/40",
-    glow: "hover:shadow-[0_0_25px_rgba(168,85,247,0.12)]",
+    glow: "",
     stepColor: "text-purple-400/40",
   },
 };
@@ -82,10 +82,7 @@ const COLOR_STYLES = {
 export const AiWorkflowSection = () => {
   return (
     <section id="ai-workflow" className="py-24 px-4 sm:px-8 relative overflow-hidden">
-      {/* Background Radial Aura */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-r from-emerald-500/10 via-cyan-500/5 to-purple-500/10 blur-[100px] rounded-full pointer-events-none -z-10" />
-
-      <div className="max-w-6xl mx-auto space-y-16">
+      <div className="container space-y-16">
         {/* Section Header */}
         <SectionHeader
           eyebrow="AI-Powered Engineering"

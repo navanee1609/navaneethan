@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, Award, X, ExternalLink, Download, Sparkles, CheckCircle2, ZoomIn, ShieldCheck } from "lucide-react";
 import { Card } from "@/components/Card";
 import { SectionHeader } from "./SectionHeader";
 import rockstarImage from "@/assets/images/rockstar.jpg";
 import supersquadImage from "@/assets/images/supersquad.jpg";
+import grainImage from "@/assets/images/grain.jpg";
 
 interface AwardItem {
   id: string;
@@ -47,6 +49,11 @@ const AWARDS_DATA: AwardItem[] = [
 
 export const AwardsSection = () => {
   const [activeAward, setActiveAward] = useState<AwardItem | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Disable background scrolling & calculate dynamic scrollbar padding
   useEffect(() => {
@@ -68,6 +75,171 @@ export const AwardsSection = () => {
       };
     }
   }, [activeAward]);
+
+  const modalContent = (
+    <AnimatePresence>
+      {activeAward && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          onClick={() => setActiveAward(null)}
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md cursor-default pointer-events-auto overflow-y-auto"
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0, y: 24 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.95, opacity: 0, y: 24 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-4xl max-h-[90vh] bg-gray-800 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden relative my-auto text-white flex flex-col after:absolute after:inset-0 after:border-2 after:border-white/10 after:rounded-3xl after:pointer-events-none"
+          >
+            {/* Background grain texture */}
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage: `url(${grainImage.src})`,
+                zIndex: 0,
+              }}
+            />
+
+            {/* Top gradient accent line */}
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60 z-20" />
+
+            {/* Modal Header */}
+            <div className="relative z-10 px-5 sm:px-7 py-4 sm:py-5 border-b border-white/10 flex items-center justify-between bg-white/[0.02] shrink-0">
+              <div className="flex items-center gap-3 min-w-0">
+                <div className="w-9 h-9 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-300 shrink-0 shadow-sm">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-300">
+                      VERIFIED CREDENTIAL
+                    </span>
+                    <span className="text-white/30">•</span>
+                    <span className="text-[10px] font-mono text-white/50">{activeAward.date}</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight truncate">
+                    {activeAward.title}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Action Buttons matching standard application style */}
+              <div className="flex items-center gap-2 shrink-0">
+                <motion.a
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  href={activeAward.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer shadow-md"
+                  title="Open Full Image"
+                >
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </motion.a>
+
+                <motion.a
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  href={activeAward.image}
+                  download={`${activeAward.title}.jpg`}
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer shadow-md"
+                  title="Download Certificate"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                </motion.a>
+
+                <motion.button
+                  whileHover={{ scale: 1.08, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                  onClick={() => setActiveAward(null)}
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer shadow-md"
+                  aria-label="Close award modal"
+                >
+                  <X className="w-4 h-4" />
+                </motion.button>
+              </div>
+            </div>
+
+            {/* Modal Body: Dual Pane Layout */}
+            <div className="relative z-10 p-5 sm:p-8 overflow-y-auto flex-1">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+
+                {/* Left Column (7 cols): Certificate Image Spotlight */}
+                <div className="lg:col-span-7 flex flex-col items-center">
+                  <div className="relative w-full overflow-hidden rounded-2xl border border-white/20 bg-gray-900/80 p-3 shadow-2xl flex items-center justify-center group/cert backdrop-blur-sm">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-sky-500/10 rounded-2xl blur-xl opacity-0 group-hover/cert:opacity-100 transition-opacity duration-500 -z-10" />
+                    <img
+                      src={activeAward.image}
+                      alt={activeAward.title}
+                      className="max-h-[46vh] sm:max-h-[52vh] w-auto max-w-full rounded-xl object-contain shadow-2xl transition-transform duration-500 group-hover/cert:scale-[1.02]"
+                    />
+                  </div>
+                </div>
+
+                {/* Right Column (5 cols): Editorial Narrative Details */}
+                <div className="lg:col-span-5 flex flex-col gap-4">
+                  <div>
+                    <p className="text-xs font-mono font-bold text-emerald-300 uppercase tracking-widest mb-1">
+                      {activeAward.organization}
+                    </p>
+                    <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                      {activeAward.title}
+                    </h4>
+                  </div>
+
+                  <div className="border-t border-white/10 pt-3.5">
+                    <p className="text-white/70 leading-relaxed text-xs sm:text-sm font-normal">
+                      {activeAward.description}
+                    </p>
+                  </div>
+
+                  {/* Key Impact Tags */}
+                  <div className="space-y-2 border-t border-white/10 pt-3.5">
+                    <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
+                      KEY DELIVERABLES
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {activeAward.highlights.map((h, hIdx) => (
+                        <span
+                          key={hIdx}
+                          className="px-3 py-1 rounded-full bg-emerald-300/10 border border-emerald-300/20 text-xs font-semibold text-emerald-300 shadow-sm"
+                        >
+                          ✓ {h}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Verified Credential Spec */}
+                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 mt-1">
+                    <div className="grid grid-cols-2 gap-3 text-xs font-mono">
+                      <div>
+                        <span className="text-white/40 block text-[9.5px]">RECIPIENT</span>
+                        <span className="text-white font-medium">Navaneethan KV</span>
+                      </div>
+                      <div>
+                        <span className="text-white/40 block text-[9.5px]">VERIFICATION</span>
+                        <span className="text-emerald-300 font-bold flex items-center gap-1">
+                          <ShieldCheck className="w-3.5 h-3.5 inline text-emerald-400" /> Verified
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   return (
     <section id="awards" className="py-24 px-4 sm:px-8">
@@ -160,148 +332,9 @@ export const AwardsSection = () => {
         </div>
       </div>
 
-      {/* Redesigned Dual-Pane Certificate Modal */}
-      <AnimatePresence>
-        {activeAward && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveAward(null)}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-xl cursor-default pointer-events-auto overflow-y-auto"
-          >
-            <motion.div
-              initial={{ scale: 0.94, opacity: 0, y: 16 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.94, opacity: 0, y: 16 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-4xl rounded-3xl bg-gray-950 border border-white/15 shadow-2xl overflow-hidden relative my-auto text-white"
-            >
-              {/* Modal Top Header with Icon-Only Action Buttons */}
-              <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-black/50 backdrop-blur-md shrink-0">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-300 shrink-0">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-emerald-400">
-                        VERIFIED CREDENTIAL
-                      </span>
-                      <span className="text-white/30">•</span>
-                      <span className="text-[10px] font-mono text-white/50">{activeAward.date}</span>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold text-white tracking-tight truncate">
-                      {activeAward.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {/* Strictly Icon-Only Action Buttons (Matching Why Hire Me modal) */}
-                <div className="flex items-center gap-2 shrink-0">
-                  <a
-                    href={activeAward.image}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white/80 hover:text-white transition-all cursor-pointer shadow-md"
-                    title="Open Full Image"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                  </a>
-
-                  <a
-                    href={activeAward.image}
-                    download={`${activeAward.title}.jpg`}
-                    className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white/80 hover:text-white transition-all cursor-pointer shadow-md"
-                    title="Download Certificate"
-                  >
-                    <Download className="w-4 h-4" />
-                  </a>
-
-                  <button
-                    onClick={() => setActiveAward(null)}
-                    className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white/80 hover:text-white transition-all cursor-pointer shadow-md"
-                    aria-label="Close award modal"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-
-              {/* Modal Body: Dual Pane Layout */}
-              <div className="p-5 sm:p-8 overflow-y-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-
-                  {/* Left Column (7 cols): Certificate Image Spotlight */}
-                  <div className="lg:col-span-7 flex flex-col items-center">
-                    <div className="relative w-full overflow-hidden rounded-2xl border border-white/15 bg-black/70 p-2.5 shadow-2xl flex items-center justify-center group/cert">
-                      <img
-                        src={activeAward.image}
-                        alt={activeAward.title}
-                        className="max-h-[46vh] sm:max-h-[52vh] w-auto max-w-full rounded-xl object-contain shadow-2xl transition-transform duration-500 group-hover/cert:scale-[1.01]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Right Column (5 cols): Editorial Narrative Details */}
-                  <div className="lg:col-span-5 flex flex-col gap-4">
-                    <div>
-                      <p className="text-[10.5px] font-mono font-extrabold text-emerald-400 uppercase tracking-widest mb-1">
-                        {activeAward.organization}
-                      </p>
-                      <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                        {activeAward.title}
-                      </h4>
-                    </div>
-
-                    <div className="border-t border-white/10 pt-3.5">
-                      <p className="text-white/75 leading-relaxed text-xs sm:text-sm font-light">
-                        {activeAward.description}
-                      </p>
-                    </div>
-
-                    {/* Key Impact Tags */}
-                    <div className="space-y-2 border-t border-white/10 pt-3.5">
-                      <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
-                        KEY DELIVERABLES
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {activeAward.highlights.map((h, hIdx) => (
-                          <span
-                            key={hIdx}
-                            className="px-2.5 py-1 rounded-lg bg-emerald-400/10 border border-emerald-400/20 text-[11px] font-bold text-emerald-300"
-                          >
-                            ✓ {h}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Verified Credential Spec */}
-                    <div className="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 mt-1">
-                      <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-                        <div>
-                          <span className="text-white/40 block text-[9.5px]">RECIPIENT</span>
-                          <span className="text-white font-medium">Navaneethan KV</span>
-                        </div>
-                        <div>
-                          <span className="text-white/40 block text-[9.5px]">VERIFICATION</span>
-                          <span className="text-emerald-400 font-bold flex items-center gap-1">
-                            <ShieldCheck className="w-3.5 h-3.5 inline" /> Verified
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Redesigned Dual-Pane Certificate Modal (Rendered via Portal) */}
+      {isMounted && createPortal(modalContent, document.body)}
     </section>
   );
 };
+

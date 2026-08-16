@@ -11,28 +11,28 @@ const articles = [
     domain: "Web Development",
     description:
       "Explore how Web Components are changing front-end development by enabling reusable, modular, and interoperable designs that enhance scalability and efficiency.",
-    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_frontenddevelopment-webcomponents-modulardesign-activity-7205554564538728448-6_tz?utm_source=share&utm_medium=member_desktop", 
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_frontenddevelopment-webcomponents-modulardesign-activity-7205554564538728448-6_tz?utm_source=share&utm_medium=member_desktop",
   },
   {
     name: "Code Quality Practices",
     domain: "Web Performance",
     description:
       "Discover essential practices for maintaining code quality and optimizing performance to achieve faster load times, better architecture, and improved usability.",
-    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_codequality-webperformance-seo-activity-7203374051715596288-iPHR?utm_source=share&utm_medium=member_desktop", 
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_codequality-webperformance-seo-activity-7203374051715596288-iPHR?utm_source=share&utm_medium=member_desktop",
   },
   {
     name: "The Rise of PWAs",
     domain: "Progressive Web Apps",
     description:
       "Dive into how Progressive Web Apps merge web and mobile app capabilities, offering offline functionality, fast performance, and seamless experiences.",
-    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_progressivewebapps-pwas-webdevelopment-activity-7195827416991248387-nL_B?utm_source=share&utm_medium=member_desktop", 
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_progressivewebapps-pwas-webdevelopment-activity-7195827416991248387-nL_B?utm_source=share&utm_medium=member_desktop",
   },
   {
     name: "Power of Animation",
     domain: "Web Design",
     description:
       "Learn how animations enhance usability, engage users, and reinforce branding, helping developers and designers create stunning digital experiences.",
-    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_webdesign-animation-userexperience-activity-7195824917169201153-m4ZO?utm_source=share&utm_medium=member_desktop", 
+    articleLink: "https://www.linkedin.com/posts/navaneethan-k-v-546a9025b_webdesign-animation-userexperience-activity-7195824917169201153-m4ZO?utm_source=share&utm_medium=member_desktop",
   },
 ];
 

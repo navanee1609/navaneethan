@@ -97,7 +97,7 @@ export const Nutshell = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="flex flex-col lg:flex-row gap-8 lg:gap-10 p-4 sm:p-6 rounded-2xl border border-white/10 backdrop-blur-sm bg-gradient-to-br from-[#0B162F]/40 to-[#121D3A]/30"
+        className="flex flex-col lg:flex-row gap-8 lg:gap-10 p-4 sm:p-6 rounded-2xl border border-white/10 backdrop-blur-sm bg-gray-900/50"
       >
 
         {/* Left Section - Interactive Parallax Hotspot Card */}
@@ -199,7 +199,7 @@ export const Nutshell = () => {
             {/* Card Action & Response Subtext (Original) */}
             <div className="w-full space-y-2 mt-4 text-center">
               <button 
-                className="bg-white/90 text-[#0B162F] px-8 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all mx-auto cursor-pointer"
+                className="bg-white text-gray-950 px-8 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:bg-gray-100 transition-all mx-auto cursor-pointer"
                 onClick={openModal}
               >
                 👋 Let&apos;s talk
@@ -251,12 +251,17 @@ export const Nutshell = () => {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      className="overflow-hidden"
+                      transition={{
+                        height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                        opacity: { duration: 0.25, ease: "easeInOut" },
+                      }}
+                      className="overflow-hidden transform-gpu"
                     >
-                      <p className="pt-3 pb-1 text-white/70 leading-relaxed text-sm sm:text-[14.5px]">
-                        {item.answer}
-                      </p>
+                      <div className="pt-3 pb-1">
+                        <p className="text-white/70 leading-relaxed text-sm sm:text-[14.5px]">
+                          {item.answer}
+                        </p>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>

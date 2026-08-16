@@ -21,25 +21,41 @@
 html{
   scroll-behavior: smooth;
 }
-/* Customize the scrollbar */
-/* width */
+/* Customize global scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
   background: #000;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Scoped Custom Scrollbar ONLY for Code Snippet Card */
+.custom-code-scrollbar::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-code-scrollbar::-webkit-scrollbar-track {
+  background: rgba(3, 7, 18, 0.9);
+  border-radius: 4px;
+}
+
+.custom-code-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.4);
+  border-radius: 4px;
+}
+
+.custom-code-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.8);
 }
   /* Ensure the modal's scrollable content is properly styled */
   .modal-content {

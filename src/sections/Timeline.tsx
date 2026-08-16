@@ -135,7 +135,7 @@ const COLOR_MAP = {
     text: "text-emerald-400",
     border: "border-white/10 hover:border-emerald-500/40",
     badge: "bg-emerald-500/10 border-emerald-500/20 text-emerald-400",
-    hoverGlow: "hover:shadow-[0_0_20px_rgba(16,185,129,0.12)]",
+    hoverGlow: "",
     nodeBg: "bg-emerald-400",
     nodeRing: "ring-emerald-500/20",
     gradText: "from-white via-white/90 to-emerald-300",
@@ -144,7 +144,7 @@ const COLOR_MAP = {
     text: "text-cyan-400",
     border: "border-white/10 hover:border-cyan-500/40",
     badge: "bg-cyan-500/10 border-cyan-500/20 text-cyan-400",
-    hoverGlow: "hover:shadow-[0_0_20px_rgba(6,182,212,0.12)]",
+    hoverGlow: "",
     nodeBg: "bg-cyan-400",
     nodeRing: "ring-cyan-500/20",
     gradText: "from-white via-white/90 to-cyan-300",
@@ -153,7 +153,7 @@ const COLOR_MAP = {
     text: "text-purple-400",
     border: "border-white/10 hover:border-purple-500/40",
     badge: "bg-purple-500/10 border-purple-500/20 text-purple-400",
-    hoverGlow: "hover:shadow-[0_0_20px_rgba(168,85,247,0.12)]",
+    hoverGlow: "",
     nodeBg: "bg-purple-400",
     nodeRing: "ring-purple-500/20",
     gradText: "from-white via-white/90 to-purple-300",
@@ -162,7 +162,7 @@ const COLOR_MAP = {
     text: "text-amber-400",
     border: "border-white/10 hover:border-amber-500/40",
     badge: "bg-amber-500/10 border-amber-500/20 text-amber-400",
-    hoverGlow: "hover:shadow-[0_0_20px_rgba(245,158,11,0.12)]",
+    hoverGlow: "",
     nodeBg: "bg-amber-400",
     nodeRing: "ring-amber-500/20",
     gradText: "from-white via-white/90 to-amber-300",
@@ -182,9 +182,8 @@ const OppositeDateBadge = ({
 
   return (
     <div
-      className={`hidden md:flex flex-col justify-center ${
-        isEven ? "items-start pl-10 text-left" : "items-end pr-10 text-right"
-      }`}
+      className={`hidden md:flex flex-col justify-center ${isEven ? "items-start pl-10 text-left" : "items-end pr-10 text-right"
+        }`}
     >
       <span className={`text-4xl lg:text-5xl font-black tracking-tight bg-gradient-to-r ${c.gradText} bg-clip-text text-transparent font-mono`}>
         {item.yearDisplay}
@@ -196,7 +195,7 @@ const OppositeDateBadge = ({
         </span>
       </div>
       {item.current && (
-        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 mt-3 shadow-[0_0_12px_rgba(16,185,129,0.15)]">
+        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 mt-3">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
           Active Role
         </span>
@@ -270,7 +269,7 @@ const TimelineCard = ({
               alt={item.company}
               width={75}
               height={22}
-              className="object-contain opacity-70 h-5 w-auto filter grayscale group-hover:grayscale-0 transition duration-300"
+              className="object-contain h-5 w-auto"
               unoptimized
             />
           </div>
@@ -306,20 +305,22 @@ const TimelineCard = ({
             <Sparkles className={`w-3.5 h-3.5 ${c.text}`} />
             <span>{isExpanded ? "Hide Highlights" : "Key Highlights & Impact"}</span>
             <ChevronDown
-              className={`w-4 h-4 ml-auto transition-transform duration-300 ${
-                isExpanded ? "rotate-180 text-white" : "text-white/40"
-              }`}
+              className={`w-4 h-4 ml-auto transition-transform duration-300 ${isExpanded ? "rotate-180 text-white" : "text-white/40"
+                }`}
             />
           </button>
 
-          <AnimatePresence>
+          <AnimatePresence initial={false}>
             {isExpanded && (
               <motion.ul
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.25, ease: "easeInOut" }}
-                className="mt-3 space-y-2 overflow-hidden"
+                transition={{
+                  height: { duration: 0.32, ease: [0.16, 1, 0.3, 1] },
+                  opacity: { duration: 0.22, ease: "easeInOut" },
+                }}
+                className="mt-3 space-y-2 overflow-hidden transform-gpu"
               >
                 {item.highlights.map((point: string, idx: number) => (
                   <li key={idx} className="text-xs text-white/70 flex items-start gap-2 leading-relaxed">
@@ -366,9 +367,8 @@ export const Timeline = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`relative px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
-                  activeTab === tab ? "text-black font-bold" : "text-white/60 hover:text-white"
-                }`}
+                className={`relative px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 cursor-pointer ${activeTab === tab ? "text-black font-bold" : "text-white/60 hover:text-white"
+                  }`}
               >
                 {activeTab === tab && (
                   <motion.div
@@ -385,7 +385,7 @@ export const Timeline = () => {
 
         {/* Timeline Container */}
         <div ref={containerRef} className="relative mt-12">
-          
+
           {/* Desktop Central Track Line */}
           <div className="hidden md:block absolute left-1/2 top-4 bottom-4 w-[1px] -translate-x-1/2 bg-white/10" />
 
