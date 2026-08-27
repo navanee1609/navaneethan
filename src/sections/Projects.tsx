@@ -2,7 +2,7 @@ import Image from "next/image";
 import CheckIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpIcon from "@/assets/icons/arrow-up-right.svg";
 import { SectionHeader } from "./SectionHeader";
-import { Card } from "@/components/Card";
+import { Card, AppButton, PillBadge } from "@/components";
 import retrorift from "@/assets/images/retrorift.png";
 import cque from "@/assets/images/cque.png";
 import haleon from "@/assets/images/haleon.png";
@@ -142,12 +142,15 @@ export const ProjectsSection = () => {
                     </div>
                   </div>
                   <h3 className="font-serif text-2xl md:mt-5">{project.title}</h3>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer">
-                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8 cursor-pointer hover:bg-white/90 transition duration-300">
-                      <span>View Live Site</span>
-                      <ArrowUpIcon className="size-4" />
-                    </button>
-                  </a>
+                  <AppButton
+                    href={project.link}
+                    target="_blank"
+                    icon={<ArrowUpIcon className="size-4" />}
+                    fullWidthOnMobile
+                    className="mt-8 h-12 px-6"
+                  >
+                    View Live Site
+                  </AppButton>
                   <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
                   <ul className="flex flex-col gap-4 mt-4">
                     {project.results.map((result, index) => (
@@ -158,19 +161,13 @@ export const ProjectsSection = () => {
                     ))}
                   </ul>
 
-                  {/* Tech Stack Display matching AI Section Pills */}
+                  {/* Tech Stack Display using Reusable PillBadge */}
                   <div className="mt-6 flex gap-2 flex-wrap pb-8 lg:pb-0">
-                    {project.techStack.map((tech, index) => {
-                      const colorStyle = techColors[index % techColors.length].style;
-                      return (
-                        <span
-                          key={index}
-                          className={`text-xs font-semibold px-3 py-1.5 rounded-lg backdrop-blur-sm transition duration-200 ${colorStyle}`}
-                        >
-                          {tech}
-                        </span>
-                      );
-                    })}
+                    {project.techStack.map((tech, index) => (
+                      <PillBadge key={index} colorIndex={index}>
+                        {tech}
+                      </PillBadge>
+                    ))}
                   </div>
                 </div>
 

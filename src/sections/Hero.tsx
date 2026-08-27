@@ -193,7 +193,6 @@ export const HeroSection = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm"
-            onClick={closeModal}
           >
             {/* Side Panel */}
             <motion.div

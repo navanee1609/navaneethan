@@ -22,10 +22,10 @@ export const FixedChatIcon = () => {
   };
 
   useEffect(() => {
-    // Show tooltip after 1.5 seconds and keep it visible while modal is closed
+    // Show "Connect with me! 👋" pill tooltip after 5.5 seconds (right after Welcome Toast auto-dismisses)
     const timer = setTimeout(() => {
       if (!isModalOpen) setShowTooltip(true);
-    }, 1500);
+    }, 5500);
 
     return () => {
       clearTimeout(timer);
@@ -127,7 +127,6 @@ export const FixedChatIcon = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
               className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm"
-              onClick={closeModal}
             />
 
             {/* Modal Dialog Container */}
@@ -142,18 +141,18 @@ export const FixedChatIcon = () => {
                 aria-labelledby="chat-modal-title"
                 className={`relative w-full ${
                   isResumeExpanded ? 'max-w-[95vw] sm:w-[860px]' : 'sm:w-[380px]'
-                } bg-gray-800 border border-white/20 rounded-3xl shadow-2xl shadow-black/60 overflow-hidden pointer-events-auto transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]`}
+                } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none`}
                 initial={{ opacity: 0, y: 24, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 24, scale: 0.96 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               >
-                {/* Background Grain */}
+                {/* Background Grain Texture matching Application Modals */}
                 <div
                   className="absolute inset-0 opacity-5 pointer-events-none"
                   style={{
                     backgroundImage: `url(${grainImage.src})`,
-                    zIndex: -1,
+                    zIndex: 0,
                   }}
                 />
 

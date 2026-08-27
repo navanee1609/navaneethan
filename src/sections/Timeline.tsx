@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Briefcase, GraduationCap, ChevronDown, Sparkles, Building2, Calendar, Award } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { Nutshell } from "./Nutshell";
-import { Card } from "@/components/Card";
+import { Card, PillBadge } from "@/components";
 
 const CAREER_DATA = [
   {
@@ -204,6 +204,14 @@ const OppositeDateBadge = ({
   );
 };
 
+// Color-coded pill badge styles matching Awards & Projects sections
+const pillColors = [
+  { style: "bg-emerald-500/10 border border-emerald-500/25 text-emerald-400" },
+  { style: "bg-cyan-500/10 border border-cyan-500/25 text-cyan-400" },
+  { style: "bg-purple-500/10 border border-purple-500/25 text-purple-400" },
+  { style: "bg-amber-500/10 border border-amber-500/25 text-amber-400" },
+];
+
 const TimelineCard = ({
   item,
   type,
@@ -281,16 +289,13 @@ const TimelineCard = ({
         {item.description}
       </p>
 
-      {/* Direct Tech Stack Badges Inline */}
+      {/* Direct Tech Stack Badges Inline using Reusable PillBadge */}
       {item.skills && (
         <div className="mt-4 pt-3 border-t border-white/5 flex flex-wrap gap-1.5">
-          {item.skills.map((skill: string) => (
-            <span
-              key={skill}
-              className="px-2.5 py-1 rounded-md text-[11px] font-medium bg-white/[0.04] border border-white/10 text-white/75 hover:bg-white/10 hover:text-white transition duration-200"
-            >
+          {item.skills.map((skill: string, idx: number) => (
+            <PillBadge key={skill} colorIndex={idx}>
               {skill}
-            </span>
+            </PillBadge>
           ))}
         </div>
       )}

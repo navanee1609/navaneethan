@@ -1,14 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Award, X, ExternalLink, Download, Sparkles, CheckCircle2, ZoomIn, ShieldCheck } from "lucide-react";
-import { Card } from "@/components/Card";
+import {
+  Trophy,
+  Award,
+  X,
+  ExternalLink,
+  Download,
+  Sparkles,
+  CheckCircle2,
+  FileText,
+  Camera,
+  ArrowRight,
+  Maximize2,
+} from "lucide-react";
+import { Card, AppModal, AppButton, PillBadge } from "@/components";
 import { SectionHeader } from "./SectionHeader";
+
 import rockstarImage from "@/assets/images/rockstar.jpg";
+import rockstarCertImage from "@/assets/images/rockstar certificate.jpg";
 import supersquadImage from "@/assets/images/supersquad.jpg";
-import grainImage from "@/assets/images/grain.jpg";
+import supersquadCertImage from "@/assets/images/super squad certificate.jpg";
 
 interface AwardItem {
   id: string;
@@ -19,7 +32,8 @@ interface AwardItem {
   highlights: string[];
   icon: any;
   color: "emerald" | "cyan";
-  image: string;
+  certificateImage: string;
+  awardImage: string;
 }
 
 const AWARDS_DATA: AwardItem[] = [
@@ -28,218 +42,56 @@ const AWARDS_DATA: AwardItem[] = [
     title: "Rockstar Award",
     organization: "Agilysys Technologies",
     date: "2025",
-    description: "Awarded for outstanding contributions to the Stay R&D team, most notably for leading the 'Post Taxes for Tax Exemption' feature. Navigated multiple complex folio flows with thorough analysis and attention to detail, ensuring a smooth, minimal-defect delivery that significantly enhanced release quality.",
+    description:
+      "Awarded for outstanding contributions to the Stay R&D team, most notably for leading the 'Post Taxes for Tax Exemption' feature. Navigated multiple complex folio flows with thorough analysis and attention to detail, ensuring a smooth, minimal-defect delivery that significantly enhanced release quality.",
     highlights: ["Stay R&D Lead Contribution", "Tax Exemption Folio Flow", "Zero-Defect Release Quality"],
     icon: Trophy,
     color: "emerald",
-    image: rockstarImage.src,
+    certificateImage: rockstarCertImage.src,
+    awardImage: rockstarImage.src,
   },
   {
     id: "super-squad-2025",
     title: "Super Squad Award",
     organization: "Agilysys Technologies",
     date: "2025",
-    description: "Recognized in the Stay R&D team alongside my squad for playing a pivotal role during the critical bug-fix phase of Shared Reservations. Coordinated effectively across engineering teams to deliver high-quality, reliable fixes under tight production deadlines.",
+    description:
+      "Recognized in the Stay R&D team alongside my squad for playing a pivotal role during the critical bug-fix phase of Shared Reservations. Coordinated effectively across engineering teams to deliver high-quality, reliable fixes under tight production deadlines.",
     highlights: ["Shared Reservations Architecture", "Critical Production Phase", "Cross-Team Engineering Sync"],
     icon: Award,
     color: "cyan",
-    image: supersquadImage.src,
+    certificateImage: supersquadCertImage.src,
+    awardImage: supersquadImage.src,
   },
 ];
 
 export const AwardsSection = () => {
   const [activeAward, setActiveAward] = useState<AwardItem | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
+  const [activeMediaTab, setActiveMediaTab] = useState<"certificate" | "photo">("certificate");
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+  const openModal = (award: AwardItem) => {
+    setActiveAward(award);
+    setActiveMediaTab("certificate");
+    setIsLightboxOpen(false);
+  };
 
-  // Disable background scrolling & calculate dynamic scrollbar padding
-  useEffect(() => {
-    if (activeAward) {
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      document.body.style.overflow = "hidden";
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-      }
+  const closeModal = () => {
+    setActiveAward(null);
+    setIsLightboxOpen(false);
+  };
 
-      const handleKeyDown = (e: KeyboardEvent) => {
-        if (e.key === "Escape") setActiveAward(null);
-      };
-      window.addEventListener("keydown", handleKeyDown);
-      return () => {
-        window.removeEventListener("keydown", handleKeyDown);
-        document.body.style.overflow = "";
-        document.body.style.paddingRight = "";
-      };
-    }
-  }, [activeAward]);
+  const activeImageSrc = activeAward
+    ? activeMediaTab === "certificate"
+      ? activeAward.certificateImage
+      : activeAward.awardImage
+    : "";
 
-  const modalContent = (
-    <AnimatePresence>
-      {activeAward && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => setActiveAward(null)}
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/75 backdrop-blur-md cursor-default pointer-events-auto overflow-y-auto"
-        >
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0, y: 24 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 24 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-4xl max-h-[90vh] bg-gray-800 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden relative my-auto text-white flex flex-col after:absolute after:inset-0 after:border-2 after:border-white/10 after:rounded-3xl after:pointer-events-none"
-          >
-            {/* Background grain texture */}
-            <div
-              className="absolute inset-0 opacity-5 pointer-events-none"
-              style={{
-                backgroundImage: `url(${grainImage.src})`,
-                zIndex: 0,
-              }}
-            />
-
-            {/* Top gradient accent line */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60 z-20" />
-
-            {/* Modal Header */}
-            <div className="relative z-10 px-5 sm:px-7 py-4 sm:py-5 border-b border-white/10 flex items-center justify-between bg-white/[0.02] shrink-0">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-9 h-9 rounded-2xl bg-emerald-400/10 border border-emerald-400/30 flex items-center justify-center text-emerald-300 shrink-0 shadow-sm">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-emerald-300">
-                      VERIFIED CREDENTIAL
-                    </span>
-                    <span className="text-white/30">•</span>
-                    <span className="text-[10px] font-mono text-white/50">{activeAward.date}</span>
-                  </div>
-                  <h3 className="text-base sm:text-lg font-bold text-white tracking-tight truncate">
-                    {activeAward.title}
-                  </h3>
-                </div>
-              </div>
-
-              {/* Action Buttons matching standard application style */}
-              <div className="flex items-center gap-2 shrink-0">
-                <motion.a
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.92 }}
-                  href={activeAward.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer shadow-md"
-                  title="Open Full Image"
-                >
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </motion.a>
-
-                <motion.a
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.92 }}
-                  href={activeAward.image}
-                  download={`${activeAward.title}.jpg`}
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer shadow-md"
-                  title="Download Certificate"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                </motion.a>
-
-                <motion.button
-                  whileHover={{ scale: 1.08, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                  onClick={() => setActiveAward(null)}
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer shadow-md"
-                  aria-label="Close award modal"
-                >
-                  <X className="w-4 h-4" />
-                </motion.button>
-              </div>
-            </div>
-
-            {/* Modal Body: Dual Pane Layout */}
-            <div className="relative z-10 p-5 sm:p-8 overflow-y-auto flex-1">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
-
-                {/* Left Column (7 cols): Certificate Image Spotlight */}
-                <div className="lg:col-span-7 flex flex-col items-center">
-                  <div className="relative w-full overflow-hidden rounded-2xl border border-white/20 bg-gray-900/80 p-3 shadow-2xl flex items-center justify-center group/cert backdrop-blur-sm">
-                    <div className="absolute -inset-1 bg-gradient-to-r from-emerald-500/10 to-sky-500/10 rounded-2xl blur-xl opacity-0 group-hover/cert:opacity-100 transition-opacity duration-500 -z-10" />
-                    <img
-                      src={activeAward.image}
-                      alt={activeAward.title}
-                      className="max-h-[46vh] sm:max-h-[52vh] w-auto max-w-full rounded-xl object-contain shadow-2xl transition-transform duration-500 group-hover/cert:scale-[1.02]"
-                    />
-                  </div>
-                </div>
-
-                {/* Right Column (5 cols): Editorial Narrative Details */}
-                <div className="lg:col-span-5 flex flex-col gap-4">
-                  <div>
-                    <p className="text-xs font-mono font-bold text-emerald-300 uppercase tracking-widest mb-1">
-                      {activeAward.organization}
-                    </p>
-                    <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                      {activeAward.title}
-                    </h4>
-                  </div>
-
-                  <div className="border-t border-white/10 pt-3.5">
-                    <p className="text-white/70 leading-relaxed text-xs sm:text-sm font-normal">
-                      {activeAward.description}
-                    </p>
-                  </div>
-
-                  {/* Key Impact Tags */}
-                  <div className="space-y-2 border-t border-white/10 pt-3.5">
-                    <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
-                      KEY DELIVERABLES
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {activeAward.highlights.map((h, hIdx) => (
-                        <span
-                          key={hIdx}
-                          className="px-3 py-1 rounded-full bg-emerald-300/10 border border-emerald-300/20 text-xs font-semibold text-emerald-300 shadow-sm"
-                        >
-                          ✓ {h}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Verified Credential Spec */}
-                  <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 mt-1">
-                    <div className="grid grid-cols-2 gap-3 text-xs font-mono">
-                      <div>
-                        <span className="text-white/40 block text-[9.5px]">RECIPIENT</span>
-                        <span className="text-white font-medium">Navaneethan KV</span>
-                      </div>
-                      <div>
-                        <span className="text-white/40 block text-[9.5px]">VERIFICATION</span>
-                        <span className="text-emerald-300 font-bold flex items-center gap-1">
-                          <ShieldCheck className="w-3.5 h-3.5 inline text-emerald-400" /> Verified
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
+  const activeImageTitle = activeAward
+    ? activeMediaTab === "certificate"
+      ? `${activeAward.title} - Official Certificate`
+      : `${activeAward.title} - Award Ceremony`
+    : "";
 
   return (
     <section id="awards" className="py-24 px-4 sm:px-8">
@@ -250,7 +102,7 @@ export const AwardsSection = () => {
           description="Honors and awards received for outstanding contributions and professional performance."
         />
 
-        {/* Retained Homepage Award Cards with Live Certificate Thumbnail Previews */}
+        {/* Homepage Award Cards */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
           {AWARDS_DATA.map((award, index) => {
             const isEmerald = award.color === "emerald";
@@ -263,68 +115,66 @@ export const AwardsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="group cursor-pointer"
-                onClick={() => setActiveAward(award)}
+                className="group"
               >
-                <Card className="relative h-full p-6 sm:p-7 rounded-3xl bg-gray-800 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl shadow-black/50 flex flex-col justify-between border border-white/10 hover:border-emerald-400/40 overflow-hidden">
-
-                  {/* Top Header: Icon & Verified Pill */}
+                <Card className="relative h-full p-6 sm:p-8 rounded-3xl bg-gray-800 transition-all duration-500 hover:-translate-y-1 hover:shadow-xl shadow-black/40 flex flex-col justify-between border border-white/10 hover:border-white/25 overflow-hidden">
                   <div>
-                    <div className="flex justify-between items-center mb-5">
-                      <div className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-emerald-400/40 group-hover:bg-emerald-400/10 shadow-md">
-                        <Icon className={`w-5 h-5 ${isEmerald ? "text-emerald-400" : "text-cyan-400"}`} />
+                    {/* Top Header: Icon & Verified Pill */}
+                    <div className="flex flex-wrap justify-between items-center gap-3 mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-colors duration-300 group-hover:bg-white/10">
+                        <Icon className={`w-6 h-6 ${isEmerald ? "text-emerald-400" : "text-cyan-400"}`} />
                       </div>
-                      <span className="px-3 py-1 rounded-full text-[10.5px] font-mono font-extrabold tracking-widest uppercase border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 backdrop-blur-sm flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <PillBadge
+                        customStyle="px-3 py-1 rounded-full text-[10.5px] font-mono font-extrabold tracking-widest uppercase border border-white/15 bg-white/5 text-emerald-400"
+                        icon={<span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />}
+                      >
                         {award.date} • VERIFIED
-                      </span>
+                      </PillBadge>
                     </div>
 
-                    {/* Certificate Thumbnail Preview Frame */}
-                    <div className="relative w-full aspect-[16/9] rounded-2xl border border-white/10 bg-black/60 overflow-hidden mb-5 group/img">
-                      <img
-                        src={award.image}
-                        alt={award.title}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-105 opacity-85 group-hover/img:opacity-100"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-                      {/* Zoom Overlay Badge */}
-                      <div className="absolute bottom-3 right-3 px-3 py-1.5 rounded-xl bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-bold text-white flex items-center gap-1.5 shadow-lg group-hover/img:bg-white group-hover/img:text-gray-950 transition-colors">
-                        <ZoomIn className="w-3.5 h-3.5" />
-                        <span>Inspect Certificate</span>
-                      </div>
-                    </div>
-
-                    {/* Title & Organization */}
-                    <p className="text-[10px] font-mono font-extrabold tracking-[0.2em] text-white/40 uppercase mb-1">
+                    {/* Organization & Title */}
+                    <p className="text-[11px] font-mono font-extrabold tracking-[0.2em] text-emerald-400 uppercase mb-1.5">
                       {award.organization}
                     </p>
-                    <h3 className="text-xl font-bold text-white tracking-tight mb-2 group-hover:text-emerald-300 transition-colors duration-300">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-4 group-hover:text-emerald-300 transition-colors duration-300">
                       {award.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-white/70 leading-relaxed text-xs font-normal line-clamp-3">
+                    <p className="text-white/70 leading-relaxed text-sm font-normal mb-6">
                       {award.description}
                     </p>
-                  </div>
 
-                  {/* Card Footer */}
-                  <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
-                    <button
-                      className="bg-white hover:bg-gray-100 text-gray-950 h-9 px-5 rounded-xl font-bold inline-flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all duration-300 text-xs"
-                    >
-                      <span>View Certificate</span>
-                      <ExternalLink className="size-3.5" />
-                    </button>
-
-                    <div className="flex items-center gap-1.5 text-white/40 group-hover:text-emerald-300 transition-colors">
-                      <Sparkles className="w-4 h-4" />
-                      <span className="text-[10.5px] font-mono font-bold tracking-wider uppercase">AGILYSYS R&D</span>
+                    {/* Key Deliverables Highlights with Reusable PillBadge */}
+                    <div className="space-y-2 border-t border-white/10 pt-5 mb-6">
+                      <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
+                        KEY DELIVERABLES
+                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {award.highlights.map((h, hIdx) => (
+                          <PillBadge key={hIdx} colorIndex={hIdx}>
+                            ✓ {h}
+                          </PillBadge>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
+                  {/* Card Footer Action */}
+                  <div className="pt-5 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <AppButton
+                      onClick={() => openModal(award)}
+                      icon={<ArrowRight className="w-4 h-4" />}
+                      fullWidthOnMobile
+                    >
+                      View Certificate & Media
+                    </AppButton>
+
+                    <div className="flex items-center gap-1.5 text-white/40 group-hover:text-white/70 transition-colors justify-end sm:justify-start">
+                      <Sparkles className="w-4 h-4 text-emerald-400" />
+                      <span className="text-[10.5px] font-mono font-bold tracking-wider uppercase">AGILYSYS R&D</span>
+                    </div>
+                  </div>
                 </Card>
               </motion.div>
             );
@@ -332,9 +182,199 @@ export const AwardsSection = () => {
         </div>
       </div>
 
-      {/* Redesigned Dual-Pane Certificate Modal (Rendered via Portal) */}
-      {isMounted && createPortal(modalContent, document.body)}
+      {/* Reusable AppModal Component for Certificate Details */}
+      <AppModal
+        isOpen={!!activeAward}
+        onClose={closeModal}
+        title={activeAward?.title}
+        badgeDate={activeAward?.date}
+        headerActions={
+          <>
+            <motion.a
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              href={activeImageSrc}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+              title="Open Full Image in New Tab"
+            >
+              <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </motion.a>
+
+            <motion.a
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.92 }}
+              href={activeImageSrc}
+              download={`${activeAward?.title}-${activeMediaTab}.jpg`}
+              className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
+              title="Download File"
+            >
+              <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            </motion.a>
+          </>
+        }
+      >
+        {activeAward && (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+            {/* Left Column (7 cols): Media Tabs & Display */}
+            <div className="lg:col-span-7 flex flex-col items-center gap-4">
+              {/* Media Tab Switcher */}
+              <div className="w-full p-1.5 rounded-2xl bg-white/5 border border-white/10 flex items-center gap-2">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setActiveMediaTab("certificate")}
+                  title="Official Certificate"
+                  aria-label="Official Certificate"
+                  className={`flex-1 py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-300 cursor-pointer ${
+                    activeMediaTab === "certificate"
+                      ? "bg-white text-gray-950 font-bold shadow-md"
+                      : "text-white/70 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  <FileText className="w-4 h-4" />
+                  <span className="hidden md:inline">Official Certificate</span>
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setActiveMediaTab("photo")}
+                  title="Award Photo"
+                  aria-label="Award Photo"
+                  className={`flex-1 py-2 sm:py-2.5 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-300 cursor-pointer ${
+                    activeMediaTab === "photo"
+                      ? "bg-white text-gray-950 font-bold shadow-md"
+                      : "text-white/70 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  <Camera className="w-4 h-4" />
+                  <span className="hidden md:inline">Award Photo</span>
+                </motion.button>
+              </div>
+
+              {/* Image Display Card */}
+              <div className="relative w-full overflow-hidden rounded-2xl border border-white/15 bg-black/80 p-3 flex items-center justify-center group/cert min-h-[260px] sm:min-h-[380px]">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={activeMediaTab}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
+                    src={activeImageSrc}
+                    alt={activeImageTitle}
+                    className="max-h-[44vh] sm:max-h-[50vh] w-auto max-w-full rounded-xl object-contain shadow-lg"
+                  />
+                </AnimatePresence>
+
+                {/* Expand Zoom Button */}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsLightboxOpen(true);
+                  }}
+                  className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-black/80 border border-white/20 text-[11px] sm:text-xs font-semibold text-white flex items-center gap-1.5 hover:bg-white hover:text-gray-950 transition-colors cursor-pointer shadow-lg"
+                  title="Expand Lightbox"
+                  aria-label="Expand Lightbox"
+                >
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span className="hidden md:inline">Click to Expand</span>
+                </motion.button>
+              </div>
+            </div>
+
+            {/* Right Column (5 cols): Narrative Details & Specs */}
+            <div className="lg:col-span-5 flex flex-col gap-4">
+              <div>
+                <p className="text-xs font-mono font-bold text-emerald-400 uppercase tracking-widest mb-1.5">
+                  {activeAward.organization}
+                </p>
+                <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                  {activeAward.title}
+                </h4>
+              </div>
+
+              <div className="border-t border-white/10 pt-4">
+                <p className="text-white/80 leading-relaxed text-xs sm:text-sm font-normal">
+                  {activeAward.description}
+                </p>
+              </div>
+
+              {/* Key Impact Tags with Reusable PillBadge */}
+              <div className="space-y-2 border-t border-white/10 pt-4">
+                <span className="text-[10px] font-mono font-bold text-white/50 uppercase tracking-wider block">
+                  KEY DELIVERABLES & IMPACT
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {activeAward.highlights.map((h, hIdx) => (
+                    <PillBadge
+                      key={hIdx}
+                      colorIndex={hIdx}
+                      icon={<CheckCircle2 className="w-3.5 h-3.5 shrink-0" />}
+                    >
+                      {h}
+                    </PillBadge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Verified Credential Spec */}
+              <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 mt-2 space-y-3">
+                <div className="grid grid-cols-2 gap-3 text-xs font-mono">
+                  <div>
+                    <span className="text-white/40 block text-[9.5px] uppercase tracking-wider">RECIPIENT</span>
+                    <span className="text-white font-bold">Navaneethan KV</span>
+                  </div>
+                  <div>
+                    <span className="text-white/40 block text-[9.5px] uppercase tracking-wider">VERIFICATION</span>
+                    <span className="text-emerald-400 font-bold flex items-center gap-1">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Authenticated
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-white/50">
+                  <span>ISSUER: AGILYSYS R&D</span>
+                  <span>YEAR: {activeAward.date}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </AppModal>
+
+      {/* Lightbox Zoom Overlay */}
+      {isLightboxOpen && activeAward && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-10 bg-black/95 cursor-default"
+        >
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsLightboxOpen(false)}
+            className="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white flex items-center justify-center transition-all cursor-pointer shadow-xl z-20"
+            aria-label="Close Lightbox"
+          >
+            <X className="w-6 h-6" />
+          </motion.button>
+
+          <div className="relative max-w-6xl max-h-[90vh] flex items-center justify-center p-2">
+            <img
+              src={activeImageSrc}
+              alt={activeImageTitle}
+              className="max-h-[88vh] max-w-[92vw] w-auto h-auto rounded-2xl object-contain shadow-2xl border border-white/20"
+            />
+          </div>
+        </motion.div>
+      )}
     </section>
   );
 };
-

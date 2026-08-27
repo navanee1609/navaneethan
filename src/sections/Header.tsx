@@ -81,16 +81,34 @@ export const Header = () => {
           }`}
         >
           <div className="flex flex-col">
-            {["home", "about", "projects", "contact"].map((section) => (
-              <Link
-                key={section}
-                href={`#${section}`}
-                className={`block text-2xl font-bold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent p-3 m-2 transition-all duration-300`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </Link>
-            ))}
+            {["home", "about", "projects", "contact"].map((section) => {
+              const isActive = activeSection === section;
+              return (
+                <Link
+                  key={section}
+                  href={`#${section}`}
+                  className={`flex items-center justify-between p-3.5 m-1.5 transition-all duration-300 rounded-2xl ${
+                    isActive
+                      ? "bg-white text-gray-950 font-bold shadow-lg"
+                      : "hover:bg-white/10"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span
+                    className={
+                      isActive
+                        ? "text-2xl font-bold tracking-widest text-gray-950"
+                        : "text-2xl font-bold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-transparent"
+                    }
+                  >
+                    {section.charAt(0).toUpperCase() + section.slice(1)}
+                  </span>
+                  {isActive && (
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)] shrink-0" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

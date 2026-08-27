@@ -26,6 +26,12 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
   useEffect(() => {
     if (!isOpen) return;
 
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
+    }
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setIsResumeExpanded(false);
@@ -34,7 +40,11 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = "auto";
+      document.body.style.paddingRight = "0px";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isOpen, onClose]);
 
   return (
@@ -47,7 +57,6 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={handleClose}
         >
           <motion.div
             ref={modalRef}
