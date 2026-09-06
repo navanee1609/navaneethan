@@ -1,49 +1,104 @@
-"use client"
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
-import { useEffect, useState } from "react";
-import { FaInstagram, FaWhatsapp, FaEnvelope, FaPhoneAlt, FaLinkedin } from "react-icons/fa";
+"use client";
+
+import { motion } from "framer-motion";
+import { useState } from "react";
+import {
+  FaInstagram,
+  FaWhatsapp,
+  FaEnvelope,
+  FaPhoneAlt,
+  FaLinkedin,
+  FaCopy,
+  FaCheck,
+  FaMapMarkerAlt,
+  FaPaperPlane,
+} from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
-import ArrowUp from "@/assets/icons/arrow-up-right.svg"
-import grainImage from "@/assets/images/grain.jpg"
+import ArrowUp from "@/assets/icons/arrow-up-right.svg";
+import grainImage from "@/assets/images/grain.jpg";
+import { SectionHeader } from "@/sections/SectionHeader";
+import { AppButton } from "@/components/AppButton";
 
 const contactLinks = [
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
-    icon: FaInstagram,
-  },
-  {
-    label: "WhatsApp",
-    href: "https://wa.me/7639096688",
-    icon: FaWhatsapp,
-  },
-  {
-    label: "Email",
-    href: "mailto:navaneethanvs18@gmail.com",
-    icon: FaEnvelope,
-  },
-  {
-    label: "Phone",
-    href: "tel:+6380939303",
-    icon: FaPhoneAlt,
-  },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/navaneethan-k-v-546a9025b",
     icon: FaLinkedin,
+    color: "hover:text-[#0A66C2]",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!",
+    icon: FaWhatsapp,
+    color: "hover:text-[#25D366]",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
+    icon: FaInstagram,
+    color: "hover:text-[#E4405F]",
+  },
+  {
+    label: "Email",
+    href: "mailto:navaneethanvs18@gmail.com?subject=Portfolio%20Inquiry",
+    icon: FaEnvelope,
+    color: "hover:text-emerald-400",
+  },
+  {
+    label: "Phone",
+    href: "tel:+917639096688",
+    icon: FaPhoneAlt,
+    color: "hover:text-sky-400",
   },
 ];
 
 export const ContactSection = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const emailAddress = "[navaneethanvs18@gmail.com](mailto:navaneethanvs18@gmail.com)";
+
+  const openLink = (href: string) => {
+    console.log("openLink triggered:", href);
+    console.log("Current screen width:", window.innerWidth);
+
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+      window.location.href = href;
+    } else {
+      const newWindow = window.open(
+        href,
+        "_blank",
+        "noopener,noreferrer"
+      );
+
+      console.log("Window opened:", newWindow);
+    }
+
+
+  };
+
+  const handleCopyEmail = () => {
+    console.log("Copy email clicked:", emailAddress);
+
+    navigator.clipboard.writeText(emailAddress);
+    setCopied(true);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 2500);
+
+
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+
+    console.log("Contact form submitted");
+
     setIsSending(true);
+
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
 
@@ -54,240 +109,426 @@ export const ContactSection = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Form submitted successfully:", data);
+
         setIsSuccess(true);
         setIsSending(false);
 
+        form.reset();
+
         setTimeout(() => {
-          setIsOpen(false);
-        }, 1000); // Close modal after 1 second
+          setIsSuccess(false);
+        }, 5000);
       })
       .catch((error) => {
         console.error("Form submission error:", error);
+
         setIsSending(false);
       });
+
+
   };
 
-  const openModal = () => {
-    setIsOpen(true);
-    setIsSuccess(false); // Reset success message when opening modal
-    setIsSending(false); // Reset sending state
-  };
+  return (<section
+    id="contact"
+    className="py-16 md:py-24 relative overflow-hidden"
+  >
+    {/* Background Ambient Glows */} <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-400/10 blur-[130px] rounded-full -z-10 pointer-events-none" />
 
-  const closeModal = () => {
-    setIsOpen(false);
-    setIsSuccess(false); // Reset success state when closing the modal
-    setIsSending(false); // Reset sending state
-  };
+    <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-sky-400/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
+    <div className="container px-4 mx-auto">
+      {/* Section Header */}
+      <SectionHeader
+        eyebrow="GET IN TOUCH"
+        title="Let's Build Something Amazing Together"
+        description="Have a project idea, a job opportunity, or just want to connect? Send a message below or reach out directly!"
+      />
 
-  return (
-    <section id="contact">
-      <div className="py-16 pt-12">
-        <div className="container">
-          <div
-            className="bg-gradient-to-r from-emerald-300 to-sky-400 text-gray-900 py-6 px-8 rounded-3xl flex flex-col lg:flex-row items-center justify-between text-center lg:text-left gap-4 lg:gap-6 relative overflow-hidden"
-          >
-            <div className="lg:w-3/4">
-              <h2 className="text-2xl font-serif leading-snug">
-                Let&apos;s Create Something Amazing Together
-              </h2>
-              <p className="text-md mt-2 leading-relaxed">
-                I&apos;m passionate about building unique and impactful solutions. Let&apos;s work together to bring your vision to life, combining creativity with precision.
+      {/* Feature Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-12 relative isolate">
+        {/* LEFT COLUMN */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+          className="lg:col-span-7 relative z-10"
+        >
+          {/* Live Availability Card */}
+          <div className="bg-gray-800/70 border border-emerald-500/30 rounded-3xl p-6 relative overflow-hidden backdrop-blur-md shadow-xl group isolate">
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage: `url(${grainImage.src})`,
+              }}
+            />
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3">
+                <span className="relative flex h-3.5 w-3.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+
+                  <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500" />
+                </span>
+
+                <span className="text-emerald-300 font-semibold text-sm tracking-wide uppercase">
+                  Available for Hire & Collaboration
+                </span>
+              </div>
+
+              <h3 className="text-xl font-serif text-white mt-3 leading-snug">
+                Open for full-time roles, freelance projects & exciting tech
+                ideas.
+              </h3>
+
+              <p className="text-white/60 text-sm mt-2 leading-relaxed">
+                Fast turnarounds, clean modular code, and high-impact designs
+                tailored to your vision.
               </p>
             </div>
+          </div>
 
-            <div className="lg:w-1/4 lg:flex lg:justify-end z-[1000]">
-              <motion.button
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 mt-6 lg:mt-0"
-                onClick={openModal}
+          {/* DIRECT CONTACT CARDS */}
+          <div className="bg-gray-800/80 border border-white/15 rounded-3xl p-6 backdrop-blur-md shadow-xl space-y-5 relative overflow-hidden isolate">
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage: `url(${grainImage.src})`,
+              }}
+            />
+
+            <div className="relative z-10 space-y-5">
+              {/* EMAIL */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-400/40 transition-colors">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <div className="p-3 bg-emerald-400/10 text-emerald-400 rounded-xl flex-shrink-0">
+                    <FaEnvelope className="text-lg" />
+                  </div>
+
+                  <div className="truncate">
+                    <p className="text-xs text-white/50 font-medium uppercase tracking-wider">
+                      Direct Email
+                    </p>
+
+                    <a
+                      href={`mailto:${emailAddress}`}
+                      onClick={(e) => {
+                        console.log("Email clicked");
+
+                        e.preventDefault();
+
+                        openLink(`mailto:${emailAddress}`);
+                      }}
+                      className="text-sm font-medium text-white hover:text-emerald-300 transition-colors truncate block cursor-pointer"
+                    >
+                      {emailAddress}
+                    </a>
+                  </div>
+                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleCopyEmail}
+                  className="flex items-center justify-center gap-1.5 px-3 py-2 text-xs font-semibold rounded-xl bg-white/10 hover:bg-emerald-400 hover:text-gray-900 text-white transition-all duration-200 flex-shrink-0 cursor-pointer"
+                >
+                  {copied ? (
+                    <>
+                      <FaCheck className="text-xs text-emerald-400 group-hover:text-gray-900" />
+
+                      <span>Copied!</span>
+                    </>
+                  ) : (
+                    <>
+                      <FaCopy className="text-xs" />
+
+                      <span>Copy</span>
+                    </>
+                  )}
+                </motion.button>
+              </div>
+
+              {/* LOCATION */}
+              <a
+                href="https://www.google.com/maps?q=13.0678784,80.1767424"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  console.log("Location clicked");
+
+                  e.preventDefault();
+
+                  openLink(
+                    "https://www.google.com/maps?q=13.0678784,80.1767424"
+                  );
+                }}
+                className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors group cursor-pointer"
               >
-                <span className="font-semibold">Contact Me</span>
-                <ArrowUp className="size4" />
-              </motion.button>
+                <div className="p-3 bg-sky-400/10 text-sky-400 rounded-xl flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <FaMapMarkerAlt className="text-lg" />
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/50 font-medium uppercase tracking-wider">
+                    Location
+                  </p>
+
+                  <p className="text-sm font-medium text-white group-hover:text-sky-300 transition-colors">
+                    Chennai, Tamil Nadu, India
+                  </p>
+                </div>
+              </a>
+
+              {/* PHONE / WHATSAPP */}
+              <a
+                href="https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  console.log("WhatsApp card clicked");
+
+                  e.preventDefault();
+
+                  openLink(
+                    "https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
+                  );
+                }}
+                className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-400/40 transition-colors group cursor-pointer"
+              >
+                <div className="p-3 bg-emerald-400/10 text-emerald-400 rounded-xl flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <FaPhoneAlt className="text-lg" />
+                </div>
+
+                <div>
+                  <p className="text-xs text-white/50 font-medium uppercase tracking-wider">
+                    Phone / WhatsApp
+                  </p>
+
+                  <span className="text-sm font-medium text-white group-hover:text-emerald-300 transition-colors">
+                    +91 76390 96688
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
-        </div>
 
-        <AnimatePresence mode="wait">
-          {isOpen && (
-            <motion.div
-              key="contact-modal"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: "easeInOut", when: "beforeChildren" }}
-              className="fixed inset-0 z-[9999] flex items-center justify-center mx-2 bg-black/60 backdrop-blur-sm"
-            >
-              <motion.div
-                className={twMerge(
-                  "bg-gray-800 bg-gradient-to-br from-emerald-400/6 via-sky-400/6 rounded-3xl p-6 w-full max-w-md relative z-0 overflow-hidden after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none after:z-[-1]",
-                  "transition-all duration-500 ease-out"
-                )}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+          {/* SOCIAL CONNECT ICONS */}
+          <div className="bg-gray-800/80 border border-white/15 rounded-3xl p-6 backdrop-blur-md shadow-xl relative overflow-hidden">
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{ backgroundImage: `url(${grainImage.src})` }}
+            />
+
+            <div className="relative z-10">
+              <p className="text-xs text-white/50 font-semibold uppercase tracking-wider mb-4">
+                Connect Across Platforms
+              </p>
+
+              <div className="flex items-center gap-3 flex-wrap">
+                {contactLinks.map((item) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={
+                        item.href.startsWith("mailto:") || item.href.startsWith("tel:")
+                          ? undefined
+                          : "_blank"
+                      }
+                      rel="noopener noreferrer"
+                      onClick={() => {
+                        console.log("Social link clicked:", item.label);
+                        console.log("Screen width:", window.innerWidth);
+                        console.log("URL:", item.href);
+                      }}
+                      aria-label={item.label}
+                      className={twMerge(
+                        "flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-white/30 hover:scale-105 active:scale-95 transition-all duration-200 shadow-md group cursor-pointer relative",
+                        item.color
+                      )}
+                    >
+                      <Icon className="text-lg transition-transform group-hover:scale-110" />
+
+                      <span className="text-xs font-semibold">
+                        {item.label}
+                      </span>
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* RIGHT COLUMN */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            delay: 0.15,
+            ease: "easeOut",
+          }}
+          className="lg:col-span-7 relative z-10"
+        >
+          <div className="bg-gray-800/90 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden isolate">
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage: `url(${grainImage.src})`,
+              }}
+            />
+
+            <div className="relative z-10">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-serif text-white">
+                    Send a Message
+                  </h3>
+
+                  <p className="text-white/60 text-sm mt-1">
+                    Fill in the details below and I&apos;ll get back to you
+                    promptly.
+                  </p>
+                </div>
+
+                <div className="hidden sm:flex items-center justify-center p-3 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-sky-400/20 border border-white/10">
+                  <FaPaperPlane className="text-emerald-300 text-xl" />
+                </div>
+              </div>
+
+              <form
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                onSubmit={handleSubmit}
+                className="space-y-4"
               >
-                <motion.button
-                  whileHover={{ scale: 1.08, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                  className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition"
-                  onClick={closeModal}
-                >
-                  <FontAwesomeIcon icon={faTimes} className="text-xl text-black" />
-                </motion.button>
+                <input
+                  type="hidden"
+                  name="access_key"
+                  value="89c046ff-8f76-47dd-9562-7105809a3576"
+                />
 
-                <div
-                  className="absolute inset-0 opacity-5 pointer-events-none"
-                  style={{
-                    backgroundImage: `url(${grainImage.src})`,
-                    zIndex: -1,
-                  }}
-                ></div>
+                {/* NAME + EMAIL */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-medium text-white/70 mb-1.5">
+                      Your Name{" "}
+                      <span className="text-emerald-400">*</span>
+                    </label>
 
-                <h2 className="text-xl font-semibold mb-4 text-center text-white">Contact Me</h2>
-
-                <form
-                  action="https://api.web3forms.com/submit"
-                  method="POST"
-                  onSubmit={handleSubmit}
-                  className="space-y-4"
-                >
-                  <input
-                    type="hidden"
-                    name="access_key"
-                    value="89c046ff-8f76-47dd-9562-7105809a3576"
-                  />
-                  <div className="flex flex-col md:flex-row gap-4">
-                    <motion.input
+                    <input
                       type="text"
                       name="name"
-                      placeholder="Your Name"
-                      className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+                      placeholder="John Doe"
+                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
                       required
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.input
-                      type="email"
-                      name="email"
-                      placeholder="Your Email"
-                      className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                      required
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3 }}
                     />
                   </div>
 
-                  <motion.input
-                    type="tel"
-                    name="phone"
-                    placeholder="Your Phone"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                    required
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <motion.input
-                    type="text"
-                    name="subject"
-                    placeholder="Subject"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
-                    required
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <motion.textarea
+                  <div>
+                    <label className="block text-xs font-medium text-white/70 mb-1.5">
+                      Your Email{" "}
+                      <span className="text-emerald-400">*</span>
+                    </label>
+
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* PHONE + SUBJECT */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-medium text-white/70 mb-1.5">
+                      Phone Number
+                    </label>
+
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-medium text-white/70 mb-1.5">
+                      Subject{" "}
+                      <span className="text-emerald-400">*</span>
+                    </label>
+
+                    <input
+                      type="text"
+                      name="subject"
+                      placeholder="Project Discussion / Inquiry"
+                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* MESSAGE */}
+                <div>
+                  <label className="block text-xs font-medium text-white/70 mb-1.5">
+                    Your Message{" "}
+                    <span className="text-emerald-400">*</span>
+                  </label>
+
+                  <textarea
                     name="message"
-                    placeholder="Your Message"
-                    className="w-full px-4 py-2 border border-emerald-400 rounded-md text-gray-500 bg-transparent"
+                    placeholder="Hi Navaneethan, I'd like to discuss a project regarding..."
+                    className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
                     rows={4}
                     required
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                  ></motion.textarea>
-
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.01, y: -1 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 220, damping: 18 }}
-                    className="w-full bg-gray-900 text-white py-2 rounded-md"
-                  >
-                    {isSending
-                      ? "Sending..."
-                      : isSuccess
-                        ? "Thanks for Contacting!"
-                        : "Send"}
-                  </motion.button>
-                </form>
-
-                <p className="text-sm text-gray-500 text-center mt-4">
-                  Reach out me
-                </p>
-
-                <div className="mt-6 flex items-center justify-center gap-4">
-                  {contactLinks.map((item, i) => {
-                    const Icon = item.icon;
-
-                    return (
-                      <motion.a
-                        key={item.label}
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.06, type: "spring", stiffness: 300, damping: 20 }}
-                        whileHover={{
-                          y: -6,
-                          scale: 1.15,
-                          transition: { type: "spring", stiffness: 400, damping: 17 }
-                        }}
-                        whileTap={{
-                          scale: 0.9,
-                          transition: { type: "spring", stiffness: 500, damping: 15 }
-                        }}
-                        aria-label={item.label}
-                        className="group relative flex flex-col items-center"
-                      >
-                        {/* White circular icon container matching changes branch style */}
-                        <div className="p-2.5 bg-white rounded-full flex items-center justify-center shadow-md group-hover:bg-gray-100 transition-colors">
-                          <Icon className="text-2xl text-gray-700 group-hover:text-gray-900 transition-colors" />
-                        </div>
-
-                        {/* Tooltip label */}
-                        <span className="absolute -top-7 px-2 py-0.5 bg-black/80 rounded-md text-[10px] text-white/80 font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                          {item.label}
-                        </span>
-                      </motion.a>
-                    );
-                  })}
+                  />
                 </div>
+
+                {/* SUBMIT */}
+                <AppButton
+                  type="submit"
+                  variant="primary"
+                  disabled={isSending}
+                  icon={
+                    !isSending && !isSuccess ? (
+                      <ArrowUp className="size-4" />
+                    ) : undefined
+                  }
+                  className="w-full mt-2 h-12 text-sm font-semibold cursor-pointer"
+                >
+                  {isSending
+                    ? "Sending Message..."
+                    : isSuccess
+                      ? "Message Sent Successfully!"
+                      : "Send Message"}
+                </AppButton>
+              </form>
+            </div>
+
+            {isSuccess && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="relative z-10 mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-sm text-center font-medium"
+              >
+                🎉 Thank you for reaching out! Your message has been
+                received. I will reply shortly.
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </div>
+  </section>
+
+
   );
 };
