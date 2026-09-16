@@ -22,33 +22,38 @@ import { AppButton } from "@/components/AppButton";
 const contactLinks = [
   {
     label: "LinkedIn",
+    handle: "@navaneethan-k-v",
     href: "https://www.linkedin.com/in/navaneethan-k-v-546a9025b",
     icon: FaLinkedin,
-    color: "hover:text-[#0A66C2]",
+    color: "hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:shadow-lg hover:shadow-[#0A66C2]/20 hover:bg-[#0A66C2]/10",
   },
   {
     label: "WhatsApp",
+    handle: "Chat on WhatsApp",
     href: "https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!",
     icon: FaWhatsapp,
-    color: "hover:text-[#25D366]",
+    color: "hover:text-[#25D366] hover:border-[#25D366]/50 hover:shadow-lg hover:shadow-[#25D366]/20 hover:bg-[#25D366]/10",
   },
   {
     label: "Instagram",
+    handle: "@navneethkrishna_05",
     href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
     icon: FaInstagram,
-    color: "hover:text-[#E4405F]",
+    color: "hover:text-[#E4405F] hover:border-[#E4405F]/50 hover:shadow-lg hover:shadow-[#E4405F]/20 hover:bg-[#E4405F]/10",
   },
   {
     label: "Email",
+    handle: "navaneethanvs18@gmail.com",
     href: "mailto:navaneethanvs18@gmail.com?subject=Portfolio%20Inquiry",
     icon: FaEnvelope,
-    color: "hover:text-emerald-400",
+    color: "hover:text-emerald-400 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-400/20 hover:bg-emerald-400/10",
   },
   {
     label: "Phone",
+    handle: "+91 76390 96688",
     href: "tel:+917639096688",
     icon: FaPhoneAlt,
-    color: "hover:text-sky-400",
+    color: "hover:text-sky-400 hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-400/20 hover:bg-sky-400/10",
   },
 ];
 
@@ -57,26 +62,9 @@ export const ContactSection = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const emailAddress = "[navaneethanvs18@gmail.com](mailto:navaneethanvs18@gmail.com)";
-
-  const openLink = (href: string) => {
-    console.log("openLink triggered:", href);
-    console.log("Current screen width:", window.innerWidth);
-
-    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
-      window.location.href = href;
-    } else {
-      const newWindow = window.open(
-        href,
-        "_blank",
-        "noopener,noreferrer"
-      );
-
-      console.log("Window opened:", newWindow);
-    }
+  const emailAddress = "navaneethanvs18@gmail.com";
 
 
-  };
 
   const handleCopyEmail = () => {
     console.log("Copy email clicked:", emailAddress);
@@ -145,14 +133,14 @@ export const ContactSection = () => {
       />
 
       {/* Feature Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-12 relative isolate">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mt-12 relative">
         {/* LEFT COLUMN */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-          className="lg:col-span-7 relative z-10"
+          className="lg:col-span-5 relative z-20 space-y-6"
         >
           {/* Live Availability Card */}
           <div className="bg-gray-800/70 border border-emerald-500/30 rounded-3xl p-6 relative overflow-hidden backdrop-blur-md shadow-xl group isolate">
@@ -212,13 +200,6 @@ export const ContactSection = () => {
 
                     <a
                       href={`mailto:${emailAddress}`}
-                      onClick={(e) => {
-                        console.log("Email clicked");
-
-                        e.preventDefault();
-
-                        openLink(`mailto:${emailAddress}`);
-                      }}
                       className="text-sm font-medium text-white hover:text-emerald-300 transition-colors truncate block cursor-pointer"
                     >
                       {emailAddress}
@@ -254,13 +235,8 @@ export const ContactSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => {
-                  console.log("Location clicked");
-
                   e.preventDefault();
-
-                  openLink(
-                    "https://www.google.com/maps?q=13.0678784,80.1767424"
-                  );
+                  window.open("https://www.google.com/maps?q=13.0678784,80.1767424", "_blank", "noopener,noreferrer");
                 }}
                 className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-sky-400/40 transition-colors group cursor-pointer"
               >
@@ -285,13 +261,8 @@ export const ContactSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => {
-                  console.log("WhatsApp card clicked");
-
                   e.preventDefault();
-
-                  openLink(
-                    "https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
-                  );
+                  window.open("https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!", "_blank", "noopener,noreferrer");
                 }}
                 className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-400/40 transition-colors group cursor-pointer"
               >
@@ -312,17 +283,22 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          {/* SOCIAL CONNECT ICONS */}
-          <div className="bg-gray-800/80 border border-white/15 rounded-3xl p-6 backdrop-blur-md shadow-xl relative overflow-hidden">
+          {/* SLEEK SOCIAL CONNECT DOCK */}
+          <div className="bg-gray-800/80 border border-white/15 rounded-3xl p-6 backdrop-blur-md shadow-xl relative z-30 overflow-hidden">
             <div
               className="absolute inset-0 opacity-5 pointer-events-none"
               style={{ backgroundImage: `url(${grainImage.src})` }}
             />
 
-            <div className="relative z-10">
-              <p className="text-xs text-white/50 font-semibold uppercase tracking-wider mb-4">
-                Connect Across Platforms
-              </p>
+            <div className="relative z-10 space-y-4">
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-white/50 font-semibold uppercase tracking-wider">
+                  Connect Across Platforms
+                </p>
+                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 rounded-full">
+                  ⚡ Direct Channels
+                </span>
+              </div>
 
               <div className="flex items-center gap-3 flex-wrap">
                 {contactLinks.map((item) => {
@@ -338,22 +314,27 @@ export const ContactSection = () => {
                           : "_blank"
                       }
                       rel="noopener noreferrer"
-                      onClick={() => {
-                        console.log("Social link clicked:", item.label);
-                        console.log("Screen width:", window.innerWidth);
-                        console.log("URL:", item.href);
+                      onClick={(e) => {
+                        if (item.href.startsWith("mailto:") || item.href.startsWith("tel:")) {
+                          window.location.href = item.href;
+                        } else {
+                          e.preventDefault();
+                          window.open(item.href, "_blank", "noopener,noreferrer");
+                        }
                       }}
                       aria-label={item.label}
                       className={twMerge(
-                        "flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-white/80 hover:text-white hover:border-white/30 hover:scale-105 active:scale-95 transition-all duration-200 shadow-md group cursor-pointer relative",
+                        "group relative flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white/80 transition-all duration-300 shadow-md cursor-pointer hover:-translate-y-1 active:translate-y-0 active:scale-95",
                         item.color
                       )}
                     >
-                      <Icon className="text-lg transition-transform group-hover:scale-110" />
+                      <Icon className="text-lg transition-transform duration-300 group-hover:scale-110" />
 
-                      <span className="text-xs font-semibold">
+                      <span className="text-xs font-semibold tracking-wide">
                         {item.label}
                       </span>
+
+                      <ArrowUp className="w-3 h-3 text-white/30 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
                     </a>
                   );
                 })}
@@ -372,9 +353,9 @@ export const ContactSection = () => {
             delay: 0.15,
             ease: "easeOut",
           }}
-          className="lg:col-span-7 relative z-10"
+          className="lg:col-span-7 relative z-0 pointer-events-none"
         >
-          <div className="bg-gray-800/90 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden isolate">
+          <div className="pointer-events-auto bg-gray-800/90 border border-white/15 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative overflow-hidden isolate">
             <div
               className="absolute inset-0 opacity-5 pointer-events-none"
               style={{
