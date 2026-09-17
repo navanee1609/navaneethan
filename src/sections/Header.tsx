@@ -2,79 +2,81 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import Image from "next/image"; // Import next/image for logo
+import { X } from "lucide-react";
+import Image from "next/image";
 import logo from "@/assets/images/mobile-logo.png";
 import { HiMenuAlt4 } from "react-icons/hi";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const Header = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Once set to true, stays true permanently
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
+    const allSections = ["home", "about", "projects", "contact"];
+    let lastSection = "";
+
     const handleScroll = () => {
-      const sections = ["home", "about", "projects", "contact"];
-      const scrollY = window.scrollY + window.innerHeight / 2;
+      // Use getBoundingClientRect for accuracy with sticky children
       let currentSection = "";
+      const mid = window.innerHeight / 2;
 
-      for (let i = 0; i < sections.length; i++) {
-        const section = sections[i];
-        const sectionElement = document.getElementById(section);
-        const isLastSection = i === sections.length - 1;
-
-        if (sectionElement) {
-          const { offsetTop, offsetHeight } = sectionElement;
-
-          if (
-            (isLastSection && window.innerHeight + window.scrollY >= document.body.offsetHeight) ||
-            (offsetTop <= scrollY && offsetTop + offsetHeight > scrollY)
-          ) {
-            currentSection = section;
+      for (let i = allSections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(allSections[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= mid) {
+            currentSection = allSections[i];
             break;
           }
         }
       }
 
-      if (currentSection && currentSection !== activeSection) {
+      if (!currentSection) currentSection = "home";
+
+      // Only update state & history when section actually changed
+      if (currentSection !== lastSection) {
+        lastSection = currentSection;
         setActiveSection(currentSection);
         window.history.replaceState(null, "", `#${currentSection}`);
       }
+
+      // Once projects section or beyond is visible → show Contact pill permanently
+      const projectsEl = document.getElementById("projects");
+      if (projectsEl) {
+        const projectsRect = projectsEl.getBoundingClientRect();
+        if (projectsRect.top <= mid) {
+          setShowContact(true);
+        }
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [activeSection]);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // check on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const desktopSections = ["home", "about", "projects"];
 
   return (
-    <header className="fixed top-3 left-0 right-0 flex justify-center items-center w-full z-10">
-      {/* Mobile Navbar & Expanded Menu Together */}
-      <div
-        className={`md:hidden flex flex-col w-[78%] bg-white/30 backdrop-blur-lg rounded-3xl border border-white/20 transition-all duration-300 ${
-          isMobileMenuOpen ? "rounded-3xl" : ""
-        }`}
-      >
-        {/* Top Section (Logo + Hamburger) */}
-        <div className="flex justify-between items-center px-4 py-2">
-          {/* Logo */}
-          <Link href="/" className="text-white text-lg font-semibold">
-            <Image
-              src={logo} 
-              alt="Logo"
-              width={40}
-              height={30} // Adjust dimensions as needed
-              className="object-contain"
-            />
-          </Link>
+    <header className="fixed top-3 left-0 right-0 flex justify-center items-center w-full z-50">
 
-          {/* Hamburger Menu */}
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-white transition-transform duration-300">
+      {/* ── Mobile Navbar ─────────────────────────────────── */}
+      <div className="md:hidden flex flex-col w-[78%] bg-white/30 backdrop-blur-lg rounded-3xl border border-white/20 transition-all duration-300">
+        <div className="flex justify-between items-center px-4 py-2">
+          <Link href="/" className="text-white text-lg font-semibold">
+            <Image src={logo} alt="Logo" width={40} height={30} className="object-contain" />
+          </Link>
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="text-white transition-transform duration-300"
+          >
             {isMobileMenuOpen ? <X size={28} /> : <HiMenuAlt4 size={28} />}
           </button>
         </div>
 
-        {/* Smoothly Expanding Mobile Menu */}
         <div
           className={`overflow-hidden transition-all duration-500 ${
             isMobileMenuOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
@@ -113,21 +115,45 @@ export const Header = () => {
         </div>
       </div>
 
-      {/* Desktop & Tablet Navbar */}
-      <nav className="hidden md:flex gap-1 p-1 border border-white/25 rounded-full bg-white/20 backdrop-blur-lg">
-        {["home", "about", "projects", "contact"].map((section) => (
+      {/* ── Desktop Navbar ─────────────────────────────────── */}
+      <nav className="hidden md:flex items-center gap-1 p-1 border border-white/25 rounded-full bg-white/20 backdrop-blur-lg">
+        {desktopSections.map((section) => (
           <Link
             key={section}
             href={`#${section}`}
-            className={`nav-item px-4 py-2 rounded-full transition-all duration-300 ${
+            className={`nav-item px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
               activeSection === section
-                ? "bg-white text-black" // Keep this consistent
+                ? "bg-white text-black"
                 : "text-white hover:scale-105 hover:bg-white/20"
             }`}
           >
             {section.charAt(0).toUpperCase() + section.slice(1)}
           </Link>
         ))}
+
+        {/* Contact pill — slides in once Projects is crossed, never leaves */}
+        <AnimatePresence>
+          {showContact && (
+            <motion.div
+              key="contact-pill"
+              initial={{ opacity: 0, x: 24, scale: 0.85 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ type: "spring", stiffness: 340, damping: 28 }}
+              style={{ flexShrink: 0 }}
+            >
+              <Link
+                href="#contact"
+                className={`nav-item block px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
+                  activeSection === "contact"
+                    ? "bg-white text-black"
+                    : "text-white hover:scale-105 hover:bg-white/20"
+                }`}
+              >
+                Contact
+              </Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
     </header>
   );

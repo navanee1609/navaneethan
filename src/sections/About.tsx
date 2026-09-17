@@ -64,7 +64,7 @@ export const AboutSection = () => {
           <div className="mt-20 flex flex-col gap-8">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-5 md:gap-8">
               {/* First Card */}
-              <Card className="h-[320px] col-span-1 md:col-span-2 p-0">
+              <Card className="min-h-[320px] col-span-1 md:col-span-2 p-0">
                 <div className="flex flex-col h-full">
                   {/* Video Section */}
 
@@ -100,7 +100,7 @@ export const AboutSection = () => {
 
 
               {/* second card */}
-              <Card className="h-[320px] col-span-1 md:col-span-3 p-4 relative overflow-hidden flex flex-col justify-between bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg">
+              <Card className="min-h-[320px] col-span-1 md:col-span-3 p-4 relative overflow-hidden flex flex-col justify-between bg-gradient-to-b from-gray-800 to-gray-900 shadow-lg">
                 {/* Text Section */}
                 <div className="flex flex-col">
                   <div className="flex items-center gap-2">

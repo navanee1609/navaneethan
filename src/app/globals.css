@@ -18,8 +18,12 @@
         }
     }
 }
-html{
+html {
   scroll-behavior: smooth;
+  /* Offset anchor scrolls so content doesn't land under the fixed header */
+  scroll-padding-top: 80px;
+  /* Buttery smooth momentum scrolling on iOS Safari */
+  -webkit-overflow-scrolling: touch;
 }
 /* Customize global scrollbar */
 ::-webkit-scrollbar {

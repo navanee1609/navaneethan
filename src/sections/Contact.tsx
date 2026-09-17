@@ -118,7 +118,7 @@ export const ContactSection = () => {
 
   return (<section
     id="contact"
-    className="py-16 md:py-24 relative overflow-hidden"
+    className="py-16 md:py-24 relative"
   >
     {/* Background Ambient Glows */} <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-400/10 blur-[130px] rounded-full -z-10 pointer-events-none" />
 
