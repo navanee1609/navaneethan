@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import {
   FaInstagram,
@@ -22,40 +22,129 @@ import { AppButton } from "@/components/AppButton";
 const contactLinks = [
   {
     label: "LinkedIn",
-    handle: "@navaneethan-k-v",
+    handle: "navaneethan-k-v",
     href: "https://www.linkedin.com/in/navaneethan-k-v-546a9025b",
     icon: FaLinkedin,
-    color: "hover:text-[#0A66C2] hover:border-[#0A66C2]/50 hover:shadow-lg hover:shadow-[#0A66C2]/20 hover:bg-[#0A66C2]/10",
+    brandColor: "#0A66C2",
+    hoverBorder: "hover:border-[#0A66C2]/50 hover:shadow-[0_4px_20px_rgba(10,102,194,0.25)] hover:bg-[#0A66C2]/10",
   },
   {
     label: "WhatsApp",
-    handle: "Chat on WhatsApp",
+    handle: "+91 76390 96688",
     href: "https://wa.me/917639096688?text=Hi%20Navaneethan,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!",
     icon: FaWhatsapp,
-    color: "hover:text-[#25D366] hover:border-[#25D366]/50 hover:shadow-lg hover:shadow-[#25D366]/20 hover:bg-[#25D366]/10",
+    brandColor: "#25D366",
+    hoverBorder: "hover:border-[#25D366]/50 hover:shadow-[0_4px_20px_rgba(37,211,102,0.25)] hover:bg-[#25D366]/10",
   },
   {
     label: "Instagram",
     handle: "@navneethkrishna_05",
     href: "https://www.instagram.com/navneethkrishna_05/profilecard/?igsh=enk2MzVleHo5NTZl",
     icon: FaInstagram,
-    color: "hover:text-[#E4405F] hover:border-[#E4405F]/50 hover:shadow-lg hover:shadow-[#E4405F]/20 hover:bg-[#E4405F]/10",
+    brandColor: "#E4405F",
+    hoverBorder: "hover:border-[#E4405F]/50 hover:shadow-[0_4px_20px_rgba(228,64,95,0.25)] hover:bg-[#E4405F]/10",
   },
   {
     label: "Email",
     handle: "navaneethanvs18@gmail.com",
     href: "mailto:navaneethanvs18@gmail.com?subject=Portfolio%20Inquiry",
     icon: FaEnvelope,
-    color: "hover:text-emerald-400 hover:border-emerald-400/50 hover:shadow-lg hover:shadow-emerald-400/20 hover:bg-emerald-400/10",
+    brandColor: "#10B981",
+    hoverBorder: "hover:border-emerald-400/50 hover:shadow-[0_4px_20px_rgba(16,185,129,0.25)] hover:bg-emerald-400/10",
   },
   {
     label: "Phone",
     handle: "+91 76390 96688",
     href: "tel:+917639096688",
     icon: FaPhoneAlt,
-    color: "hover:text-sky-400 hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-400/20 hover:bg-sky-400/10",
+    brandColor: "#38BDF8",
+    hoverBorder: "hover:border-sky-400/50 hover:shadow-[0_4px_20px_rgba(56,189,248,0.25)] hover:bg-sky-400/10",
   },
 ];
+
+function ContactPill({ item }: { item: (typeof contactLinks)[number] }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const Icon = item.icon;
+
+  const actionTag = item.href.startsWith("mailto:")
+    ? "Mail"
+    : item.href.startsWith("tel:")
+    ? "Call"
+    : "Visit";
+
+  return (
+    <div className="relative">
+      <div className="absolute -top-12 inset-x-0 flex justify-center z-50 pointer-events-none">
+        <AnimatePresence>
+          {isHovered && (
+            <motion.div
+              initial={{ opacity: 0, y: 8, scale: 0.88 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.88 }}
+              transition={{ type: "spring", stiffness: 450, damping: 25 }}
+              className="relative"
+            >
+              {/* Dynamic Island style glass capsule */}
+              <div className="relative bg-gray-950/90 border border-white/20 text-white font-mono text-[11px] px-3.5 py-1.5 rounded-full shadow-2xl backdrop-blur-xl flex items-center gap-2.5 whitespace-nowrap">
+                <span
+                  className="w-2 h-2 rounded-full flex-shrink-0 animate-pulse"
+                  style={{ backgroundColor: item.brandColor }}
+                />
+
+                <span className="text-white/90 font-medium tracking-tight">
+                  {item.handle}
+                </span>
+
+                <span className="text-[9px] text-emerald-400 font-semibold uppercase tracking-wider bg-emerald-400/10 border border-emerald-400/20 px-1.5 py-0.5 rounded-full flex items-center gap-0.5">
+                  {actionTag} ↗
+                </span>
+              </div>
+
+              {/* Arrow pointer */}
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-950/90 border-b border-r border-white/20 rotate-45" />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      <motion.a
+        href={item.href}
+        target={
+          item.href.startsWith("mailto:") || item.href.startsWith("tel:")
+            ? undefined
+            : "_blank"
+        }
+        rel="noopener noreferrer"
+        onClick={(e) => {
+          if (item.href.startsWith("mailto:") || item.href.startsWith("tel:")) {
+            window.location.href = item.href;
+          } else {
+            e.preventDefault();
+            window.open(item.href, "_blank", "noopener,noreferrer");
+          }
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        whileHover={{ y: -2, scale: 1.02 }}
+        whileTap={{ scale: 0.97 }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        aria-label={item.label}
+        className={twMerge(
+          "group flex items-center justify-between px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white transition-all duration-300 shadow-sm cursor-pointer hover:border-emerald-400/40 hover:bg-white/10 hover:shadow-lg hover:shadow-emerald-500/10"
+        )}
+      >
+        <div className="flex items-center gap-3 min-w-0">
+          <Icon className="text-white text-base transition-transform duration-300 group-hover:scale-110 flex-shrink-0" />
+          <span className="text-xs font-semibold tracking-wide text-white/90 group-hover:text-white truncate">
+            {item.label}
+          </span>
+        </div>
+
+        <ArrowUp className="w-3.5 h-3.5 text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200 flex-shrink-0 ml-1" />
+      </motion.a>
+    </div>
+  );
+}
 
 export const ContactSection = () => {
   const [isSending, setIsSending] = useState(false);
@@ -283,8 +372,8 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          {/* SLEEK SOCIAL CONNECT DOCK */}
-          <div className="bg-gray-800/80 border border-white/15 rounded-3xl p-6 backdrop-blur-md shadow-xl relative z-30 overflow-hidden">
+          {/* FROSTED BADGES — 2 COLUMNS WITH HOVER TOOLTIPS */}
+          <div className="bg-gray-800/60 border border-white/10 rounded-3xl p-6 backdrop-blur-xl shadow-xl relative z-30">
             <div
               className="absolute inset-0 opacity-5 pointer-events-none"
               style={{ backgroundImage: `url(${grainImage.src})` }}
@@ -295,49 +384,16 @@ export const ContactSection = () => {
                 <p className="text-xs text-white/50 font-semibold uppercase tracking-wider">
                   Connect Across Platforms
                 </p>
-                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 rounded-full">
-                  ⚡ Direct Channels
+                <span className="text-[11px] font-mono text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-2.5 py-0.5 rounded-full flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Direct Channels
                 </span>
               </div>
 
-              <div className="flex items-center gap-3 flex-wrap">
-                {contactLinks.map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      target={
-                        item.href.startsWith("mailto:") || item.href.startsWith("tel:")
-                          ? undefined
-                          : "_blank"
-                      }
-                      rel="noopener noreferrer"
-                      onClick={(e) => {
-                        if (item.href.startsWith("mailto:") || item.href.startsWith("tel:")) {
-                          window.location.href = item.href;
-                        } else {
-                          e.preventDefault();
-                          window.open(item.href, "_blank", "noopener,noreferrer");
-                        }
-                      }}
-                      aria-label={item.label}
-                      className={twMerge(
-                        "group relative flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-white/5 border border-white/10 text-white/80 transition-all duration-300 shadow-md cursor-pointer hover:-translate-y-1 active:translate-y-0 active:scale-95",
-                        item.color
-                      )}
-                    >
-                      <Icon className="text-lg transition-transform duration-300 group-hover:scale-110" />
-
-                      <span className="text-xs font-semibold tracking-wide">
-                        {item.label}
-                      </span>
-
-                      <ArrowUp className="w-3 h-3 text-white/30 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
-                    </a>
-                  );
-                })}
+              <div className="grid grid-cols-2 gap-3">
+                {contactLinks.map((item) => (
+                  <ContactPill key={item.label} item={item} />
+                ))}
               </div>
             </div>
           </div>
