@@ -12,6 +12,9 @@ import {
   FaCheck,
   FaMapMarkerAlt,
   FaPaperPlane,
+  FaCheckCircle,
+  FaClock,
+  FaRedo,
 } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg";
@@ -429,146 +432,233 @@ export const ContactSection = () => {
             />
 
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <h3 className="text-2xl font-serif text-white">
-                    Send a Message
-                  </h3>
+              <AnimatePresence mode="wait">
+                {isSuccess ? (
+                  <motion.div
+                    key="success-card"
+                    initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                    transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                    className="relative flex flex-col items-center justify-center text-center py-4 sm:py-6 px-1 space-y-4 sm:space-y-5"
+                  >
+                    {/* Background Ambient Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-tr from-emerald-500/20 via-teal-400/20 to-sky-500/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
-                  <p className="text-white/60 text-sm mt-1">
-                    Fill in the details below and I&apos;ll get back to you
-                    promptly.
-                  </p>
-                </div>
+                    {/* Animated Checkmark Badge */}
+                    <div className="relative">
+                      <span className="absolute -inset-2.5 rounded-full bg-emerald-400/20 animate-ping opacity-75" />
+                      <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400 opacity-30 blur-md" />
+                      
+                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-950/60 border border-emerald-400/50 flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.35)] backdrop-blur-xl">
+                        <motion.div
+                          initial={{ scale: 0, rotate: -45 }}
+                          animate={{ scale: 1, rotate: 0 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 18, delay: 0.1 }}
+                        >
+                          <FaCheckCircle className="text-emerald-400 text-2xl sm:text-3xl" />
+                        </motion.div>
+                      </div>
+                    </div>
 
-                <div className="hidden sm:flex items-center justify-center p-3 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-sky-400/20 border border-white/10">
-                  <FaPaperPlane className="text-emerald-300 text-xl" />
-                </div>
-              </div>
+                    {/* Text Details */}
+                    <div className="space-y-1.5 max-w-md">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                        Delivered to Inbox
+                      </div>
+                      
+                      <h3 className="text-xl sm:text-2xl font-serif text-white tracking-tight">
+                        Message Sent Successfully!
+                      </h3>
+                      
+                      <p className="text-white/70 text-xs sm:text-sm leading-relaxed px-2">
+                        Thank you for reaching out! Your message has landed safely in Navaneethan&apos;s inbox. I will review it and reply promptly.
+                      </p>
+                    </div>
 
-              <form
-                action="https://api.web3forms.com/submit"
-                method="POST"
-                onSubmit={handleSubmit}
-                className="space-y-4"
-              >
-                <input
-                  type="hidden"
-                  name="access_key"
-                  value="89c046ff-8f76-47dd-9562-7105809a3576"
-                />
+                    {/* Metadata Cards (Side-by-Side 2 Columns on Mobile & Desktop) */}
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full max-w-md text-left">
+                      <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2 sm:gap-2.5 backdrop-blur-md min-w-0">
+                        <div className="p-1.5 sm:p-2 rounded-lg bg-emerald-400/10 text-emerald-400 flex-shrink-0">
+                          <FaClock className="text-xs sm:text-sm" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-white/40 uppercase font-bold text-[9px] sm:text-[10px] tracking-wider truncate">Expected Reply</p>
+                          <p className="text-white text-[11px] sm:text-xs font-semibold truncate">Within 24 Hours</p>
+                        </div>
+                      </div>
 
-                {/* NAME + EMAIL */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-medium text-white/70 mb-1.5">
-                      Your Name{" "}
-                      <span className="text-emerald-400">*</span>
-                    </label>
+                      <div className="p-2.5 sm:p-3 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2 sm:gap-2.5 backdrop-blur-md min-w-0">
+                        <div className="p-1.5 sm:p-2 rounded-lg bg-sky-400/10 text-sky-400 flex-shrink-0">
+                          <FaEnvelope className="text-xs sm:text-sm" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-white/40 uppercase font-bold text-[9px] sm:text-[10px] tracking-wider truncate">Direct Mail</p>
+                          <p className="text-white text-[11px] sm:text-xs font-semibold truncate" title="navaneethanvs18@gmail.com">navaneethanvs18@gmail.com</p>
+                        </div>
+                      </div>
+                    </div>
 
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="John Doe"
-                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
-                      required
-                    />
-                  </div>
+                    {/* Action & Auto-Reset Timer */}
+                    <div className="w-full max-w-md pt-1 space-y-2.5">
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        type="button"
+                        onClick={() => setIsSuccess(false)}
+                        className="w-full h-10 px-4 rounded-xl bg-white/10 hover:bg-emerald-400 hover:text-gray-950 text-white font-semibold text-xs transition-all duration-300 border border-white/15 hover:border-emerald-400 shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
+                      >
+                        <FaRedo className="text-xs group-hover:rotate-180 transition-transform duration-500" />
+                        <span>Send Another Message</span>
+                      </motion.button>
 
-                  <div>
-                    <label className="block text-xs font-medium text-white/70 mb-1.5">
-                      Your Email{" "}
-                      <span className="text-emerald-400">*</span>
-                    </label>
+                      <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden relative">
+                        <motion.div
+                          initial={{ width: "100%" }}
+                          animate={{ width: "0%" }}
+                          transition={{ duration: 5, ease: "linear" }}
+                          className="h-full bg-gradient-to-r from-emerald-400 via-teal-400 to-sky-400 rounded-full"
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="contact-form"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex items-center justify-between mb-6">
+                      <div>
+                        <h3 className="text-2xl font-serif text-white">
+                          Send a Message
+                        </h3>
 
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="john@example.com"
-                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
-                      required
-                    />
-                  </div>
-                </div>
+                        <p className="text-white/60 text-sm mt-1">
+                          Fill in the details below and I&apos;ll get back to you
+                          promptly.
+                        </p>
+                      </div>
 
-                {/* PHONE + SUBJECT */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-medium text-white/70 mb-1.5">
-                      Phone Number
-                    </label>
+                      <div className="hidden sm:flex items-center justify-center p-3 rounded-2xl bg-gradient-to-br from-emerald-400/20 to-sky-400/20 border border-white/10">
+                        <FaPaperPlane className="text-emerald-300 text-xl" />
+                      </div>
+                    </div>
 
-                    <input
-                      type="tel"
-                      name="phone"
-                      placeholder="+91 98765 43210"
-                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
-                    />
-                  </div>
+                    <form
+                      action="https://api.web3forms.com/submit"
+                      method="POST"
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
+                    >
+                      <input
+                        type="hidden"
+                        name="access_key"
+                        value="89c046ff-8f76-47dd-9562-7105809a3576"
+                      />
 
-                  <div>
-                    <label className="block text-xs font-medium text-white/70 mb-1.5">
-                      Subject{" "}
-                      <span className="text-emerald-400">*</span>
-                    </label>
+                      {/* NAME + EMAIL */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-medium text-white/70 mb-1.5">
+                            Your Name{" "}
+                            <span className="text-emerald-400">*</span>
+                          </label>
 
-                    <input
-                      type="text"
-                      name="subject"
-                      placeholder="Project Discussion / Inquiry"
-                      className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
-                      required
-                    />
-                  </div>
-                </div>
+                          <input
+                            type="text"
+                            name="name"
+                            placeholder="John Doe"
+                            className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                            required
+                          />
+                        </div>
 
-                {/* MESSAGE */}
-                <div>
-                  <label className="block text-xs font-medium text-white/70 mb-1.5">
-                    Your Message{" "}
-                    <span className="text-emerald-400">*</span>
-                  </label>
+                        <div>
+                          <label className="block text-xs font-medium text-white/70 mb-1.5">
+                            Your Email{" "}
+                            <span className="text-emerald-400">*</span>
+                          </label>
 
-                  <textarea
-                    name="message"
-                    placeholder="Hi Navaneethan, I'd like to discuss a project regarding..."
-                    className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
-                    rows={4}
-                    required
-                  />
-                </div>
+                          <input
+                            type="email"
+                            name="email"
+                            placeholder="john@example.com"
+                            className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                            required
+                          />
+                        </div>
+                      </div>
 
-                {/* SUBMIT */}
-                <AppButton
-                  type="submit"
-                  variant="primary"
-                  disabled={isSending}
-                  icon={
-                    !isSending && !isSuccess ? (
-                      <ArrowUp className="size-4" />
-                    ) : undefined
-                  }
-                  className="w-full mt-2 h-12 text-sm font-semibold cursor-pointer"
-                >
-                  {isSending
-                    ? "Sending Message..."
-                    : isSuccess
-                      ? "Message Sent Successfully!"
-                      : "Send Message"}
-                </AppButton>
-              </form>
+                      {/* PHONE + SUBJECT */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-medium text-white/70 mb-1.5">
+                            Phone Number
+                          </label>
+
+                          <input
+                            type="tel"
+                            name="phone"
+                            placeholder="+91 98765 43210"
+                            className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-xs font-medium text-white/70 mb-1.5">
+                            Subject{" "}
+                            <span className="text-emerald-400">*</span>
+                          </label>
+
+                          <input
+                            type="text"
+                            name="subject"
+                            placeholder="Project Discussion / Inquiry"
+                            className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      {/* MESSAGE */}
+                      <div>
+                        <label className="block text-xs font-medium text-white/70 mb-1.5">
+                          Your Message{" "}
+                          <span className="text-emerald-400">*</span>
+                        </label>
+
+                        <textarea
+                          name="message"
+                          placeholder="Hi Navaneethan, I'd like to discuss a project regarding..."
+                          className="w-full px-4 py-3 border border-white/15 focus:border-emerald-400 focus:ring-2 focus:ring-emerald-400/20 rounded-xl text-white bg-gray-900/60 placeholder-white/30 outline-none transition-all duration-300"
+                          rows={4}
+                          required
+                        />
+                      </div>
+
+                      {/* SUBMIT */}
+                      <AppButton
+                        type="submit"
+                        variant="primary"
+                        disabled={isSending}
+                        icon={
+                          !isSending && !isSuccess ? (
+                            <ArrowUp className="size-4" />
+                          ) : undefined
+                        }
+                        className="w-full mt-2 h-12 text-sm font-semibold cursor-pointer"
+                      >
+                        {isSending ? "Sending Message..." : "Send Message"}
+                      </AppButton>
+                    </form>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-
-            {isSuccess && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="relative z-10 mt-4 p-4 rounded-xl bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-sm text-center font-medium"
-              >
-                🎉 Thank you for reaching out! Your message has been
-                received. I will reply shortly.
-              </motion.div>
-            )}
           </div>
         </motion.div>
       </div>
