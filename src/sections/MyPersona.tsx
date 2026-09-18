@@ -39,21 +39,108 @@ const orbitPills = [
     className: `
       absolute
       top-[-10px]
-      left-[8%]
+      left-[2%]
 
       sm:top-[-6px]
-      sm:left-[14%]
+      sm:left-[8%]
 
-      lg:top-[2px]
-      lg:left-[30%]
+      lg:top-[0px]
+      lg:left-[22%]
     `,
-    bg: "bg-white/8 border-white/10 text-white/85",
-    glow: "via-white/10",
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
     animation: {
       y: [0, -4, 0],
       rotate: [0, 2, 0],
     },
     duration: 4,
+    linePos: { x2: "22%", y2: "15%" },
+  },
+
+  {
+    label: "Tailwind",
+    className: `
+      absolute
+      top-[-10px]
+      right-[2%]
+
+      sm:top-[-6px]
+      sm:right-[8%]
+
+      lg:top-[0px]
+      lg:right-[22%]
+    `,
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
+    animation: {
+      y: [0, -4, 0],
+      rotate: [0, -2, 0],
+    },
+    duration: 4.5,
+    linePos: { x2: "78%", y2: "15%" },
+  },
+
+  {
+    label: "TypeScript",
+    className: `
+      absolute
+      left-[-5%]
+      top-[38%]
+
+      sm:left-[1%]
+
+      lg:left-[15%]
+    `,
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
+    animation: {
+      x: [0, 3, 0],
+    },
+    duration: 6,
+    linePos: { x2: "14%", y2: "50%" },
+  },
+
+  {
+    label: "Angular",
+    className: `
+      absolute
+      right-[-5%]
+      top-[38%]
+
+      sm:right-[1%]
+
+      lg:right-[15%]
+    `,
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
+    animation: {
+      x: [0, -3, 0],
+    },
+    duration: 5,
+    linePos: { x2: "86%", y2: "50%" },
+  },
+
+  {
+    label: "Redux",
+    className: `
+      absolute
+      bottom-[-10px]
+      left-[2%]
+
+      sm:bottom-[-6px]
+      sm:left-[8%]
+
+      lg:bottom-[0px]
+      lg:left-[22%]
+    `,
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
+    animation: {
+      y: [0, 4, 0],
+      rotate: [0, 2, 0],
+    },
+    duration: 5.5,
+    linePos: { x2: "22%", y2: "85%" },
   },
 
   {
@@ -61,61 +148,43 @@ const orbitPills = [
     className: `
       absolute
       bottom-[-10px]
-      right-[8%]
+      right-[2%]
 
       sm:bottom-[-6px]
-      sm:right-[14%]
+      sm:right-[8%]
 
-      lg:bottom-[2px]
-      lg:right-[29%]
+      lg:bottom-[0px]
+      lg:right-[22%]
     `,
-    bg: "bg-emerald-400/10 border-emerald-400/20 text-emerald-100",
-    glow: "via-emerald-200/10",
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
     animation: {
       y: [0, 4, 0],
       rotate: [0, -2, 0],
     },
     duration: 5,
+    linePos: { x2: "78%", y2: "85%" },
   },
 
   {
-    label: "TypeScript",
+    label: "Vite",
     className: `
       absolute
-      left-[-6%]
-      top-[42%]
+      top-[-14px]
+      left-[42%]
 
-      sm:left-[2%]
+      sm:top-[-12px]
+      sm:left-[45%]
 
-      lg:left-[22%]
-      lg:top-[42%]
+      lg:top-[-10px]
     `,
-    bg: "bg-sky-400/10 border-sky-400/20 text-sky-100",
-    glow: "via-sky-200/10",
+    bg: "bg-white/10 border-white/15 text-white/90",
+    glow: "via-white/15",
     animation: {
-      x: [0, 3, 0],
+      y: [0, -3, 0],
     },
-    duration: 6,
-  },
-
-  /* ADD MORE PILLS LIKE THIS */
-  {
-    label: "Angular",
-    className: `
-      absolute
-      right-[-2%]
-      top-[38%]
-
-      sm:right-[6%]
-
-      lg:right-[20%]
-    `,
-    bg: "bg-sky-400/10 border-sky-400/20 text-sky-100",
-    glow: "via-sky-200/10",
-    animation: {
-      x: [0, -3, 0],
-    },
-    duration: 5,
+    duration: 4.2,
+    linePos: { x2: "50%", y2: "10%" },
   },
 ];
 
@@ -159,172 +228,184 @@ export const MyPersona = () => {
       <div className="relative z-10 h-full flex flex-col justify-between">
 
         {/* Heading Section */}
-<div className="flex items-start justify-between gap-4 relative">
+        <div className="flex items-start justify-between gap-4 relative">
 
-  <div className="flex flex-col">
+          <div className="flex flex-col">
 
-    <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
 
-      {/* Original Icon Style */}
-      <motion.div
-        whileHover={{ rotate: 12 }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 10,
-        }}
-      >
-        <SparkleIcon className="text-emerald-300" />
-      </motion.div>
+              {/* Original Icon Style */}
+              <motion.div
+                whileHover={{ rotate: 12 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 10,
+                }}
+              >
+                <SparkleIcon className="text-emerald-300" />
+              </motion.div>
 
-      {/* Original Heading Style */}
-      <h3 className="text-white text-2xl font-semibold">
-        Frontend Essence
-      </h3>
-    </div>
+              {/* Original Heading Style */}
+              <h3 className="text-white text-2xl font-semibold">
+                Frontend Essence
+              </h3>
+            </div>
 
-    {/* Original Paragraph Style */}
-    <p className="text-md text-white/60 mt-1 max-w-[500px]">
-      Building sleek, scalable and high-performance frontend experiences.
-    </p>
-  </div>
+            {/* Original Paragraph Style */}
+            <p className="text-md text-white/60 mt-1 max-w-[500px]">
+              Building sleek, scalable and high-performance frontend experiences.
+            </p>
+          </div>
 
-  {/* Available Tag */}
-  <motion.div
-    animate={{
-      y: [0, -3, 0],
-    }}
-    transition={{
-      duration: 2,
-      repeat: Infinity,
-    }}
-    className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10"
-  >
-    <div className="w-2 h-2 rounded-full bg-emerald-300" />
+          {/* Available Tag */}
+          <motion.div
+            animate={{
+              y: [0, -3, 0],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+            }}
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/10"
+          >
+            <div className="w-2 h-2 rounded-full bg-emerald-300" />
 
-    <span className="text-[11px] text-emerald-200">
-      Available
-    </span>
-  </motion.div>
-</div>
+            <span className="text-[11px] text-emerald-200">
+              Available
+            </span>
+          </motion.div>
+        </div>
 
 
-{/* Center Visual */}
-{/* Center Visual */}
-{/* Center Visual */}
-<div className="relative flex items-center justify-center my-4 sm:my-3 h-[110px] sm:h-[90px]">
+        {/* Center Visual */}
+        <div className="relative flex items-center justify-center my-4 sm:my-3 h-[110px] sm:h-[90px]">
 
-  {/* Orbit 1 */}
-  <motion.div
-    animate={{
-      rotate: 360,
-    }}
-    transition={{
-      duration: 20,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    className="absolute w-24 h-24 border border-dashed border-white/10 rounded-full"
-  />
+          {/* Interconnecting Circuit/Orbit Stroke Lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
+            {orbitPills.map((pill, idx) => (
+              <line
+                key={`stroke-line-${idx}`}
+                x1="50%"
+                y1="50%"
+                x2={pill.linePos.x2}
+                y2={pill.linePos.y2}
+                stroke="rgba(255, 255, 255, 0.2)"
+                strokeWidth="1.2"
+                strokeDasharray="3 3"
+              />
+            ))}
+          </svg>
 
-  {/* Orbit 2 */}
-  <motion.div
-    animate={{
-      rotate: -360,
-    }}
-    transition={{
-      duration: 15,
-      repeat: Infinity,
-      ease: "linear",
-    }}
-    className="absolute w-16 h-16 border border-emerald-400/20 rounded-full"
-  />
+          {/* Orbit 1 */}
+          <motion.div
+            animate={{
+              rotate: 360,
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute w-24 h-24 border border-dashed border-white/10 rounded-full"
+          />
 
-  {orbitPills?.length > 0 &&
-    orbitPills.map((pill, index) => {
-      console.log("Orbit Pill:", pill.label);
+          {/* Orbit 2 */}
+          <motion.div
+            animate={{
+              rotate: -360,
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            className="absolute w-16 h-16 border border-emerald-400/20 rounded-full"
+          />
 
-      return (
-        <motion.div
-          key={index}
-          animate={pill.animation}
-          transition={{
-            duration: pill.duration,
-            repeat: Infinity,
-          }}
-          whileHover={{
-            scale: 1.08,
-          }}
-          className={pill.className}
-        >
-          <div
-            className={`
-              group
-              relative
-              flex
-              items-center
-              justify-center
-              px-3
-              py-1.5
-              rounded-full
-              backdrop-blur-xl
-              shadow-lg
-              overflow-hidden
-              border
-              ${pill.bg}
-            `}
+          {orbitPills?.length > 0 &&
+            orbitPills.map((pill, index) => {
+              return (
+                <motion.div
+                  key={index}
+                  animate={pill.animation}
+                  transition={{
+                    duration: pill.duration,
+                    repeat: Infinity,
+                  }}
+                  whileHover={{
+                    scale: 1.08,
+                  }}
+                  className={pill.className}
+                >
+                  <div
+                    className={`
+                      group
+                      relative
+                      flex
+                      items-center
+                      justify-center
+                      px-3
+                      py-1.5
+                      rounded-full
+                      backdrop-blur-xl
+                      shadow-lg
+                      overflow-hidden
+                      border
+                      ${pill.bg}
+                    `}
+                  >
+
+                    {/* Glow */}
+                    <div
+                      className={`
+                        absolute
+                        inset-0
+                        bg-gradient-to-r
+                        from-transparent
+                        ${pill.glow}
+                        to-transparent
+                        translate-x-[-120%]
+                        group-hover:translate-x-[120%]
+                        transition
+                        duration-1000
+                      `}
+                    />
+
+                    <span className="relative leading-none text-[11px] font-medium">
+                      {pill.label}
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+
+          {/* Center Core */}
+          <motion.div
+            whileHover={{
+              scale: 1.08,
+              rotate: 6,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 220,
+            }}
+            className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-emerald-300 via-teal-300 to-sky-400 flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.28)]"
           >
 
-            {/* Glow */}
-            <div
-              className={`
-                absolute
-                inset-0
-                bg-gradient-to-r
-                from-transparent
-                ${pill.glow}
-                to-transparent
-                translate-x-[-120%]
-                group-hover:translate-x-[120%]
-                transition
-                duration-1000
-              `}
-            />
+            {/* Pulse Ring */}
+            <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-20" />
 
-            <span className="relative leading-none text-[11px] font-medium">
-              {pill.label}
+            <span className="flex items-center justify-center leading-none text-black font-bold text-[11px] tracking-wide">
+              UI
             </span>
-          </div>
-        </motion.div>
-      );
-    })}
+          </motion.div>
 
-  {/* Center Core */}
-  <motion.div
-    whileHover={{
-      scale: 1.08,
-      rotate: 6,
-    }}
-    transition={{
-      type: "spring",
-      stiffness: 220,
-    }}
-    className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-emerald-300 via-teal-300 to-sky-400 flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.28)]"
-  >
-
-    {/* Pulse Ring */}
-    <div className="absolute inset-0 rounded-full border border-white/20 animate-ping opacity-20" />
-
-    <span className="flex items-center justify-center leading-none text-black font-bold text-[11px] tracking-wide">
-      UI
-    </span>
-  </motion.div>
-
-</div>
+        </div>
 
 
-{/* Bottom Skill Cards */}
-<div className="mt-2">
+        {/* Bottom Skill Cards */}
+        <div className="mt-2">
 
   {/* Desktop / Large Devices */}
   <div className="hidden lg:grid grid-cols-2 lg:grid-cols-4 gap-3">

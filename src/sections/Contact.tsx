@@ -66,11 +66,18 @@ function ContactPill({ item }: { item: (typeof contactLinks)[number] }) {
   const [isHovered, setIsHovered] = useState(false);
   const Icon = item.icon;
 
-  const actionTag = item.href.startsWith("mailto:")
-    ? "Mail"
-    : item.href.startsWith("tel:")
-    ? "Call"
-    : "Visit";
+  const actionTag =
+    item.label === "Email" || item.href.startsWith("mailto:")
+      ? "Mail"
+      : item.label === "Phone" || item.href.startsWith("tel:")
+      ? "Call"
+      : item.label === "Instagram"
+      ? "Explore"
+      : item.label === "LinkedIn"
+      ? "Connect"
+      : item.label === "WhatsApp"
+      ? "Chat"
+      : "Visit";
 
   return (
     <div className="relative">
@@ -205,15 +212,17 @@ export const ContactSection = () => {
 
   };
 
-  return (<section
-    id="contact"
-    className="py-16 md:py-24 relative"
-  >
-    {/* Background Ambient Glows */} <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-400/10 blur-[130px] rounded-full -z-10 pointer-events-none" />
+  return (
+    <section
+      id="contact"
+      className="py-16 md:py-24 relative overflow-hidden"
+    >
+      {/* Background Ambient Glows */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[350px] bg-emerald-400/10 blur-[130px] rounded-full -z-10 pointer-events-none" />
 
-    <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-sky-400/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-full max-w-[400px] h-[300px] bg-sky-400/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
-    <div className="container px-4 mx-auto">
+      <div className="container">
       {/* Section Header */}
       <SectionHeader
         eyebrow="GET IN TOUCH"

@@ -9,63 +9,65 @@ import { FaMapPin } from "react-icons/fa";
 
 const ContactAnimation = () => {
   return (
-    <Card className="h-[320px] p-6 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl">
-      <CardHeader title="Reach me" description="" className="mb-6 text-white" />
-      <div className="absolute inset-0 rounded-3xl overflow-hidden">
-        {/* Wrap the map container in an anchor tag for redirection */}
-        <a 
-          href="https://www.google.com/maps?q=13.0678784,80.1767424" 
-          target="_blank"  // Open the link in a new tab
-          rel="noopener noreferrer"  // For security reasons
-          className="relative w-full h-full"
-        >
-          {/* Local Video Background */}
-          <div className="relative w-full h-full">
-            <video
-              className="w-full h-full object-cover"
-              autoPlay
-              loop
-              muted
-              playsInline
-              style={{ zIndex: 0 }}
-            >
-              <source src="/video/mapvideo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            {/* Optional: Add a blur effect or overlay if needed */}
-            <div className="absolute inset-0 bg-black opacity-20"></div>
-          </div>
-        </a>
+    <Card className="h-[320px] p-0 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl group cursor-pointer">
+      <a
+        href="https://www.google.com/maps?q=13.0678784,80.1767424"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block w-full h-full relative"
+      >
+        {/* Background Video Layer */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <video
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            autoPlay
+            loop
+            muted
+            playsInline
+          >
+            <source src="/video/mapvideo.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {/* Ambient Dark Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-950/90 via-gray-950/40 to-gray-950/60" />
+        </div>
 
-        {/* Centered Avatar with Animation */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="relative size-20">
-            {/* Ping animation background */}
-            <div className="absolute inset-0 rounded-full bg-emerald-300/50 -z-20 animate-ping"></div>
-            <div className="absolute inset-0 rounded-full bg-emerald-300/50 -z-10"></div>
-            
-            {/* Profile Image */}
-            <Image 
-              src={Navanee || "/placeholder.svg"} 
-              alt="profile" 
-              className="size-20 rounded-full relative z-10 border-2 border-white object-cover object-top"
+        {/* Top Header Layer */}
+        <div className="relative z-20 p-6">
+          <CardHeader title="Reach me" description="" className="text-white" />
+        </div>
+
+        {/* Centered Avatar with Glowing Pulse Animation */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+          <div className="relative size-16 sm:size-20">
+            {/* Emerald Glowing Pulse Rings */}
+            <div className="absolute -inset-2 rounded-full bg-emerald-400/50 animate-ping" />
+            <div className="absolute -inset-1 rounded-full bg-emerald-400/40" />
+
+            {/* Profile Avatar Image */}
+            <Image
+              src={Navanee}
+              alt="Navaneethan KV Location"
+              className="size-16 sm:size-20 rounded-full relative z-10 border-2 border-white object-cover object-top shadow-xl"
             />
           </div>
         </div>
 
-        {/* Location Label */}
-        <motion.div 
-          className="absolute bottom-6 left-6 z-20"  
-          initial={{ opacity: 0, y: 20 }}
+        {/* Location Label Badge */}
+        <motion.div
+          className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6 z-20"
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.2 }}
         >
-          <div className="flex items-center gap-2 px-6 py-3 rounded-full bg-gray-900/70 backdrop-blur-sm">
-            <FaMapPin className="w-5 h-5 text-pink-500" />
-            <span className="text-white text-lg font-semibold">Chennai, India</span>
+          <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gray-950/80 border border-white/20 backdrop-blur-md shadow-lg group-hover:border-emerald-400/50 transition-colors">
+            <FaMapPin className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500 animate-bounce" />
+            <span className="text-white text-xs sm:text-sm font-semibold tracking-wide">
+              Chennai, India
+            </span>
           </div>
         </motion.div>
-      </div>  
+      </a>
     </Card>
   );
 };

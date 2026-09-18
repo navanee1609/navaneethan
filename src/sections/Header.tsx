@@ -154,6 +154,15 @@ export const Header = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Command Palette Trigger Badge */}
+        <button
+          onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-xs text-white/90 hover:text-white transition-all cursor-pointer font-mono ml-1 shadow-sm"
+          title="Open Command Palette (Cmd + K)"
+        >
+          <span className="text-[11px] text-emerald-300 font-extrabold tracking-wide">⌘K</span>
+        </button>
       </nav>
     </header>
   );

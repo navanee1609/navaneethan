@@ -11,10 +11,14 @@ import { Timeline } from "@/sections/Timeline";
 import { AwardsSection } from "@/sections/Awards";
 import { FixedChatIcon } from "@/sections/FixedIcon";
 import { WelcomeToast } from "@/sections/WelcomeToast";
+import { CommandPalette } from "@/components";
 
 export default function Home() {
   return (
     <div>
+      {/* Global Command Palette (Cmd + K) */}
+      <CommandPalette />
+
       {/* Welcome Toast Notification */}
       <WelcomeToast />
       

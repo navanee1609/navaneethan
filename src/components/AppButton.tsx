@@ -30,7 +30,7 @@ export const AppButton = ({
   ...props
 }: AppButtonProps) => {
   const baseStyles =
-    "h-10 px-5 rounded-xl font-semibold inline-flex items-center justify-center gap-2 cursor-pointer transition duration-300 text-xs shadow-md";
+    "h-10 px-5 rounded-xl font-semibold inline-flex items-center justify-center gap-2 cursor-pointer transition duration-300 text-xs shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400";
 
   const variantStyles = {
     primary: "bg-white hover:bg-white/90 text-gray-950",

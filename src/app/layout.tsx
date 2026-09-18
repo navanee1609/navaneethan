@@ -11,12 +11,43 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  title: "DevFolio | Navaneethan KV",
-  description: "Developer portfolio of Navaneethan KV",
-  icons: {
-    icon: "/favicon.png", // Use favicon from the public folder
-    apple: "/favicon.png", // Apple touch icon
+  title: "Navaneethan KV | Associate Software Analyst & Front-End Developer",
+  description: "Portfolio of Navaneethan KV — Associate Software Analyst @ Agilysys specializing in Angular, React.js, Next.js, and high-performance front-end architecture.",
+  keywords: ["Navaneethan KV", "Front End Developer", "Angular", "React", "Agilysys", "Next.js", "Software Analyst"],
+  authors: [{ name: "Navaneethan KV" }],
+  openGraph: {
+    title: "Navaneethan KV | Front-End Developer Portfolio",
+    description: "Building responsive, performance-driven web apps with Angular, React.js, and modern UI engineering.",
+    type: "website",
   },
+  icons: {
+    icon: "/favicon.avif",
+    apple: "/favicon.avif",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Navaneethan KV",
+  "jobTitle": "Associate Software Analyst",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Agilysys Technologies"
+  },
+  "knowsAbout": [
+    "Angular",
+    "React.js",
+    "TypeScript",
+    "Next.js",
+    "Tailwind CSS",
+    "Front-End Engineering"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/navaneethan-k-v-546a9025b",
+    "https://github.com/navanee1609",
+    "https://www.instagram.com/navneethkrishna_05"
+  ]
 };
 
 export default function RootLayout({
@@ -31,6 +62,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.avif" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.avif" />
         <link rel="manifest" href="/site.webmanifest" />
+
+        {/* JSON-LD Schema Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body
         className={twMerge(

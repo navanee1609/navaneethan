@@ -7,3 +7,4 @@ export * from "./DiveIntoMyWorldModal";
 export * from "./PillBadge";
 export * from "./AppButton";
 export * from "./AppModal";
+export * from "./CommandPalette";

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { X, Sparkles, CheckCircle2 } from "lucide-react";
+import { X, Sparkles, CheckCircle2, ArrowRight, Mail, Zap, Code2, Rocket } from "lucide-react";
 import Navanee from "@/assets/images/Navanee.png";
 import grainImage from "@/assets/images/grain.jpg";
 
@@ -11,15 +11,15 @@ export const WelcomeToast = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // 1. Pop out from the bottom-right fixed icon 500ms after load
+    // 1. Pop up centered modal 500ms after load
     const showTimer = setTimeout(() => {
       setIsVisible(true);
     }, 500);
 
-    // 2. Display at center for 5 seconds, then auto-disappear back into the icon at 5.5s
+    // 2. Display for 7.5 seconds, then auto-dismiss
     const autoCloseTimer = setTimeout(() => {
       setIsVisible(false);
-    }, 8500);
+    }, 8000);
 
     return () => {
       clearTimeout(showTimer);
@@ -31,14 +31,33 @@ export const WelcomeToast = () => {
     setIsVisible(false);
   };
 
+  const handleNavigate = (targetId: string) => {
+    setIsVisible(false);
+    setTimeout(() => {
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 150);
+  };
+
   useEffect(() => {
     if (isVisible) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isVisible]);
 
@@ -46,104 +65,160 @@ export const WelcomeToast = () => {
     <AnimatePresence>
       {isVisible && (
         <>
-          {/* Full-Screen Backdrop Layer matching application standard */}
+          {/* Soft Translucent Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[9998] bg-black/70 backdrop-blur-md pointer-events-auto"
+            onClick={handleDismiss}
           />
 
-          {/* Modal Container */}
-          <div className="fixed inset-0 pointer-events-none z-[9999] flex items-center justify-center p-4">
+          {/* Centered Modal Wrapper */}
+          <div className="fixed inset-0 pointer-events-none z-[9999] flex items-center justify-center p-4 sm:p-6">
             <motion.div
               initial={{
                 opacity: 0,
-                scale: 0.15,
-                x: "38vw",
-                y: "38vh",
+                scale: 0.9,
+                y: 20,
               }}
               animate={{
                 opacity: 1,
                 scale: 1,
-                x: 0,
                 y: 0,
               }}
               exit={{
                 opacity: 0,
-                scale: 0.15,
-                x: "38vw",
-                y: "38vh",
+                scale: 0.9,
+                y: 20,
               }}
               transition={{
                 type: "spring",
-                stiffness: 300,
-                damping: 28,
-                mass: 0.9,
+                stiffness: 350,
+                damping: 26,
               }}
-              className="w-full max-w-[420px] pointer-events-auto"
+              className="w-full max-w-[460px] relative overflow-hidden rounded-3xl bg-gray-900/95 border border-white/20 shadow-2xl shadow-black/90 text-white p-6 sm:p-8 backdrop-blur-2xl pointer-events-auto"
             >
-              <div className="relative overflow-hidden rounded-3xl bg-gray-900/95 border border-white/20 backdrop-blur-2xl p-5 shadow-2xl shadow-black/90 text-white">
-                {/* Background grain texture */}
-                <div
-                  className="absolute inset-0 opacity-5 pointer-events-none"
-                  style={{
-                    backgroundImage: `url(${grainImage.src})`,
-                  }}
-                />
+              {/* Top Hairline Gradient Accent Line */}
+              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-400" />
 
-                {/* Top Header: Badge & Close Button */}
-                <div className="relative z-10 flex items-center justify-between gap-2 mb-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-mono font-bold uppercase tracking-wider">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Welcome Visitor 👋</span>
-                  </div>
+              {/* Background grain texture */}
+              <div
+                className="absolute inset-0 opacity-5 pointer-events-none"
+                style={{
+                  backgroundImage: `url(${grainImage.src})`,
+                }}
+              />
 
-                  <motion.button
-                    whileHover={{ scale: 1.1, rotate: 90 }}
-                    whileTap={{ scale: 0.9 }}
-                    onClick={handleDismiss}
-                    className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition-all cursor-pointer"
-                    aria-label="Dismiss welcome modal"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </motion.button>
-                </div>
-
-                {/* Card Body */}
-                <div className="relative z-10 flex items-start gap-4">
-                  {/* Profile Image Avatar */}
-                  <div className="relative shrink-0 mt-1">
-                    <div className="w-12 h-12 rounded-full border-2 border-emerald-400/50 overflow-hidden bg-white/10 shadow-lg">
-                      <Image
-                        src={Navanee}
-                        alt="Navaneethan KV"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-500 border-2 border-gray-900" />
-                  </div>
-
-                  {/* Narrative Info */}
-                  <div className="min-w-0 flex-1">
-                    <h4 className="text-base font-bold text-white tracking-tight leading-snug flex items-center gap-1.5">
-                      <span>Glad you&apos;re here!</span>
-                      <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
-                    </h4>
-                    <p className="text-xs text-white/75 leading-relaxed font-normal mt-1.5">
-                      Hi! I&apos;m <strong className="text-white">Navaneethan KV</strong> — Associate Software Analyst @ Agilysys. Crafting high-performance enterprise web applications &amp; modern UI modules.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Footer Spec */}
-                <div className="relative z-10 mt-4 pt-3 border-t border-white/10 flex items-center justify-between gap-3 text-[10.5px] font-mono text-white/50">
-                  <span className="flex items-center gap-1 text-emerald-400 font-semibold">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Enterprise Web Eng
+              {/* Top Header Row: Availability Badge & Close Button */}
+              <div className="relative z-10 flex items-center justify-between gap-2 mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                   </span>
-                  <span className="text-white/40 font-bold uppercase tracking-wider">BANGALORE / CHENNAI</span>
+                  <span>Available for Hire 👋</span>
                 </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={handleDismiss}
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition cursor-pointer"
+                  aria-label="Close welcome modal"
+                >
+                  <X className="w-4 h-4" />
+                </motion.button>
+              </div>
+
+              {/* Profile Intro Section */}
+              <div className="relative z-10 flex items-start gap-4 mb-6">
+                {/* Avatar with Glow Border */}
+                <div className="relative shrink-0 select-none">
+                  <div className="w-16 h-16 rounded-full border-2 border-emerald-400/80 shadow-lg shadow-emerald-500/20 overflow-hidden relative bg-gray-800">
+                    <Image
+                      src={Navanee}
+                      alt="Navaneethan KV"
+                      fill
+                      className="object-cover object-top"
+                      priority
+                    />
+                  </div>
+                  <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-900" />
+                </div>
+
+                {/* Developer Bio */}
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-1.5">
+                    <span>Welcome to my Portfolio!</span>
+                    <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+                  </h3>
+                  <p className="text-xs text-emerald-300/90 font-semibold mt-0.5">
+                    Navaneethan KV{" "}
+                    <span className="text-white/60 font-normal">
+                      • Associate Software Analyst @ Agilysys
+                    </span>
+                  </p>
+                  <p className="text-xs text-white/75 leading-relaxed font-normal mt-2">
+                    Crafting high-performance enterprise web applications &amp; modern UI component systems.
+                  </p>
+                </div>
+              </div>
+
+              {/* Key Highlights List Box */}
+              <div className="relative z-10 p-4 rounded-2xl bg-white/[0.04] border border-white/10 mb-6 space-y-2.5">
+                <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
+                  HIGHLIGHTS & EXPERTISE
+                </span>
+                
+                <div className="space-y-2 text-xs text-white/80">
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-emerald-400 shrink-0" />
+                    <span><strong className="text-white">20% Page Load Speed Optimization</strong> on past builds</span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Code2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                    <span><strong className="text-white">Angular &amp; React.js</strong> Production UI Engineering</span>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <Rocket className="w-4 h-4 text-purple-400 shrink-0" />
+                    <span><strong className="text-white">Scalable Architecture</strong> &amp; Micro-Frontends</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons (2-column Row on all screens) */}
+              <div className="relative z-10 grid grid-cols-2 gap-2.5 sm:gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleNavigate("projects")}
+                  className="w-full py-3 px-2.5 sm:px-4 rounded-xl bg-white text-gray-950 hover:bg-gray-200 text-xs font-bold transition duration-200 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer shadow-lg"
+                >
+                  <span className="truncate">Explore Projects</span>
+                  <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+                </motion.button>
+
+                <motion.button
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => handleNavigate("contact")}
+                  className="w-full py-3 px-2.5 sm:px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white text-xs font-semibold transition duration-200 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer"
+                >
+                  <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span className="truncate">Get in Touch</span>
+                </motion.button>
+              </div>
+
+              {/* Footer Spec */}
+              <div className="relative z-10 mt-5 pt-3 border-t border-white/10 flex items-center justify-between gap-3 text-[10.5px] font-mono text-white/50">
+                <span className="flex items-center gap-1 text-emerald-400 font-semibold">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Enterprise Web Engineer
+                </span>
+                <span className="text-white/40 font-bold uppercase tracking-wider">BANGALORE / CHENNAI</span>
               </div>
             </motion.div>
           </div>
