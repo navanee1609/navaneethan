@@ -78,9 +78,8 @@ export const Header = () => {
         </div>
 
         <div
-          className={`overflow-hidden transition-all duration-500 ${
-            isMobileMenuOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+          className={`overflow-hidden transition-all duration-500 ${isMobileMenuOpen ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <div className="flex flex-col">
             {["home", "about", "projects", "contact"].map((section) => {
@@ -89,11 +88,10 @@ export const Header = () => {
                 <Link
                   key={section}
                   href={`#${section}`}
-                  className={`flex items-center justify-between p-3.5 m-1.5 transition-all duration-300 rounded-2xl ${
-                    isActive
+                  className={`flex items-center justify-between p-3.5 m-1.5 transition-all duration-300 rounded-2xl ${isActive
                       ? "bg-white text-gray-950 font-bold shadow-lg"
                       : "hover:bg-white/10"
-                  }`}
+                    }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <span
@@ -121,11 +119,10 @@ export const Header = () => {
           <Link
             key={section}
             href={`#${section}`}
-            className={`nav-item px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
-              activeSection === section
+            className={`nav-item px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${activeSection === section
                 ? "bg-white text-black"
                 : "text-white hover:scale-105 hover:bg-white/20"
-            }`}
+              }`}
           >
             {section.charAt(0).toUpperCase() + section.slice(1)}
           </Link>
@@ -143,11 +140,10 @@ export const Header = () => {
             >
               <Link
                 href="#contact"
-                className={`nav-item block px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${
-                  activeSection === "contact"
+                className={`nav-item block px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${activeSection === "contact"
                     ? "bg-white text-black"
                     : "text-white hover:scale-105 hover:bg-white/20"
-                }`}
+                  }`}
               >
                 Contact
               </Link>

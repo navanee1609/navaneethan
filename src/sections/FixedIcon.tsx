@@ -56,16 +56,16 @@ export const FixedChatIcon = () => {
       if (e.key === 'Escape') {
         closeModal();
       }
-      
+
       if (e.key === 'Tab') {
         if (!modalRef.current) return;
         const focusableElements = modalRef.current.querySelectorAll(
           'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
         );
-        
+
         const firstElement = focusableElements[0] as HTMLElement;
         const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
-        
+
         if (!firstElement) return;
 
         if (e.shiftKey) {
@@ -83,7 +83,7 @@ export const FixedChatIcon = () => {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    
+
     const timer = setTimeout(() => {
       if (modalRef.current) {
         const firstButton = modalRef.current.querySelector('button');
@@ -139,9 +139,8 @@ export const FixedChatIcon = () => {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="chat-modal-title"
-                className={`relative w-full ${
-                  isResumeExpanded ? 'max-w-[95vw] sm:w-[860px]' : 'sm:w-[380px]'
-                } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none`}
+                className={`relative w-full ${isResumeExpanded ? 'max-w-[95vw] sm:w-[860px]' : 'sm:w-[380px]'
+                  } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none`}
                 initial={{ opacity: 0, y: 24, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 24, scale: 0.96 }}
@@ -170,13 +169,11 @@ export const FixedChatIcon = () => {
                   </svg>
                 </motion.button>
 
-                <div className={`flex flex-col sm:flex-row w-full ${
-                  isResumeExpanded ? 'max-h-[90vh] sm:h-[680px]' : 'max-h-[85vh] sm:max-h-[640px]'
-                } overflow-y-auto sm:overflow-hidden transition-all duration-500`}>
+                <div className={`flex flex-col sm:flex-row w-full ${isResumeExpanded ? 'max-h-[90vh] sm:h-[680px]' : 'max-h-[85vh] sm:max-h-[640px]'
+                  } overflow-y-auto sm:overflow-hidden transition-all duration-500`}>
                   {/* Left Profile Section */}
-                  <div className={`w-full sm:w-[380px] shrink-0 p-6 flex-col justify-between relative z-10 border-b sm:border-b-0 sm:border-r border-white/10 ${
-                    isResumeExpanded ? 'hidden sm:flex' : 'flex'
-                  }`}>
+                  <div className={`w-full sm:w-[380px] shrink-0 p-6 flex-col justify-between relative z-10 border-b sm:border-b-0 sm:border-r border-white/10 ${isResumeExpanded ? 'hidden sm:flex' : 'flex'
+                    }`}>
                     {/* Header Row */}
                     <div className="flex flex-col items-start gap-4 mb-5">
                       <div className="flex items-start gap-4 w-full">
@@ -279,11 +276,10 @@ export const FixedChatIcon = () => {
                         <motion.button
                           whileTap={{ scale: 0.96 }}
                           onClick={() => setIsResumeExpanded(!isResumeExpanded)}
-                          className={`flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border ${
-                            isResumeExpanded
+                          className={`flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border ${isResumeExpanded
                               ? 'border-cyan-300 bg-cyan-400/20 text-white shadow-[0_0_12px_rgba(34,211,238,0.3)]'
                               : 'border-cyan-400/20 bg-cyan-400/5 hover:border-cyan-300/40 hover:bg-cyan-400/10 text-cyan-300'
-                          } text-[10.5px] font-semibold transition-all duration-300 cursor-pointer shadow-sm`}
+                            } text-[10.5px] font-semibold transition-all duration-300 cursor-pointer shadow-sm`}
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
