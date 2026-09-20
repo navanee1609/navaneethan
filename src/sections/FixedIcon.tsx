@@ -177,9 +177,10 @@ export const FixedChatIcon = () => {
                         {/* Avatar with animated story ring */}
                         <div className="relative shrink-0 select-none">
                           <motion.div
-                            className="absolute -inset-[2px] rounded-full bg-gradient-to-tr from-emerald-300 via-sky-400 to-emerald-300"
+                            className="absolute -inset-[2px] rounded-full bg-gradient-to-tr from-emerald-300 via-sky-400 to-emerald-300 transform-gpu"
                             animate={{ rotate: 360 }}
                             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                            style={{ willChange: "transform" }}
                           />
                           <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden border-[2.5px] border-gray-800 bg-gray-900 shadow-md">
                             <Image
@@ -411,8 +412,8 @@ export const FixedChatIcon = () => {
         aria-expanded={isModalOpen}
         aria-label="Open contact modal"
       >
-        <div className="absolute -inset-4 rounded-full border border-white/10 group-hover:border-emerald-300/30 transition-all duration-700 animate-[spin_10s_linear_infinite]" />
-        <div className="absolute -inset-8 rounded-full border border-sky-400/10 group-hover:border-sky-400/20 transition-all duration-700 animate-[spin_15s_linear_infinite_reverse]" />
+        <div className="absolute -inset-4 rounded-full border border-white/10 group-hover:border-emerald-300/30 transition-all duration-700 animate-[spin_10s_linear_infinite] transform-gpu" style={{ willChange: "transform" }} />
+        <div className="absolute -inset-8 rounded-full border border-sky-400/10 group-hover:border-sky-400/20 transition-all duration-700 animate-[spin_15s_linear_infinite_reverse] transform-gpu" style={{ willChange: "transform" }} />
         <div className="absolute inset-0 rounded-full bg-emerald-300/20 blur-xl group-hover:bg-emerald-300/30 transition-all duration-500" />
 
         <div className="relative w-14 h-14 rounded-full bg-gray-800 border border-white/20 shadow-lg shadow-black/40 group-hover:shadow-emerald-300/20 group-hover:border-emerald-300/40 transition-all duration-300 flex items-center justify-center overflow-hidden">
@@ -426,9 +427,10 @@ export const FixedChatIcon = () => {
           <SparkleIcon className="w-6 h-6 text-emerald-300 relative z-10" />
 
           <motion.div
-            className="absolute inset-1 z-20 pointer-events-none"
+            className="absolute inset-1 z-20 pointer-events-none transform-gpu"
             animate={{ rotate: 360 }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            style={{ willChange: "transform" }}
           >
             <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-300 border-2 border-gray-800 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
           </motion.div>

@@ -9,7 +9,7 @@ import { FaMapPin } from "react-icons/fa";
 
 const ContactAnimation = () => {
   return (
-    <Card className="h-[320px] p-0 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl group cursor-pointer transform-gpu isolate">
+    <Card className="h-[320px] md:h-full p-0 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl group cursor-pointer transform-gpu isolate">
       <a
         href="https://www.google.com/maps?q=13.0678784,80.1767424"
         target="_blank"

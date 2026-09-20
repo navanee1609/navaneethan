@@ -50,7 +50,7 @@ export const Articles = () => {
           />
 
           <div className="mt-12 lg:mt-20 flex overflow-x-clip [mask-image: linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
-            <div className="flex gap-8 flex-none animate-move-left-card hover:[animation-play-state:paused]">
+            <div className="flex gap-8 flex-none animate-move-left-card hover:[animation-play-state:paused] transform-gpu" style={{ willChange: "transform" }}>
               {articles.map((article) => (
                 <Card
                   key={article.name}

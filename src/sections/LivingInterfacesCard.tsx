@@ -511,7 +511,7 @@ export const LivingInterfacesCard = () => {
 
         {/* Footer Real-World Impact Badges Marquee Carousel */}
         <div className="pt-3 border-t border-white/10 overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex flex-none gap-3 py-1 animate-move-left min-w-[200%] hover:[animation-play-state:paused]">
+          <div className="flex flex-none gap-3 py-1 animate-move-left min-w-[200%] hover:[animation-play-state:paused] transform-gpu" style={{ willChange: "transform" }}>
             {[...new Array(2)].fill(0).map((_, idx) => (
               <Fragment key={idx}>
                 <div className="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center gap-2.5 shrink-0 min-w-[150px]">
