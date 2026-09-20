@@ -112,7 +112,7 @@ export const FixedChatIcon = () => {
           >
             <div className="absolute bottom-[-6px] right-6 w-3 h-3 bg-gray-900 border-r border-b border-white/20 rotate-45" />
             <span className="flex h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span>Connect with me! 👋</span>
+            <span>Let's build something great! 👋</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -198,7 +198,7 @@ export const FixedChatIcon = () => {
                         {/* Name + Verified Badge + Title */}
                         <div className="flex-1 min-w-0 pt-1">
                           <div className="flex items-center gap-1.5 mb-1">
-                            <h2 id="chat-modal-title" className="text-[17px] font-bold text-white tracking-tight">Navaneethan Vetriselvan</h2>
+                            <h2 id="chat-modal-title" className="text-[17px] font-bold text-white tracking-tight">Navaneethan KV</h2>
                             <span className="flex h-4 w-4 rounded-full bg-emerald-500 items-center justify-center text-white shrink-0 shadow-[0_0_6px_rgba(16,185,129,0.4)] select-none">
                               <svg className="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={4.5}>
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -207,7 +207,7 @@ export const FixedChatIcon = () => {
                           </div>
 
                           <p className="text-[12px] leading-relaxed text-white/50 mb-2.5">
-                            Front-End Developer (Angular | React.js) <span className="text-emerald-300 font-medium">@ Agilysys</span>
+                            Front-End Developer (Angular & React) <span className="text-emerald-300 font-medium">@ Agilysys</span>
                           </p>
 
                           <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/5 text-[10px] text-white/40 hover:bg-white/[0.08] transition-colors duration-300 select-none">
@@ -261,13 +261,12 @@ export const FixedChatIcon = () => {
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
                         </span>
                         <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-300">
-                          Available for UI Work
+                          Available for Front-End Work
                         </span>
                       </div>
 
                       <p className="text-[12.5px] leading-[1.6] text-white/70 mb-3.5">
-                        I shape fast, responsive product screens with clean component systems,
-                        motion details, and production-ready front-end craft.
+                        I build fast, accessible web interfaces with Angular and React — clean component architecture, thoughtful motion, and production-ready code.
                       </p>
 
                       {/* Quick Shortcut Buttons */}
@@ -276,8 +275,8 @@ export const FixedChatIcon = () => {
                           whileTap={{ scale: 0.96 }}
                           onClick={() => setIsResumeExpanded(!isResumeExpanded)}
                           className={`flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border ${isResumeExpanded
-                              ? 'border-cyan-300 bg-cyan-400/20 text-white shadow-[0_0_12px_rgba(34,211,238,0.3)]'
-                              : 'border-cyan-400/20 bg-cyan-400/5 hover:border-cyan-300/40 hover:bg-cyan-400/10 text-cyan-300'
+                            ? 'border-cyan-300 bg-cyan-400/20 text-white shadow-[0_0_12px_rgba(34,211,238,0.3)]'
+                            : 'border-cyan-400/20 bg-cyan-400/5 hover:border-cyan-300/40 hover:bg-cyan-400/10 text-cyan-300'
                             } text-[10.5px] font-semibold transition-all duration-300 cursor-pointer shadow-sm`}
                         >
                           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>

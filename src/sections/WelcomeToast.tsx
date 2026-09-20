@@ -134,17 +134,17 @@ export const WelcomeToast = () => {
                 {/* Developer Bio */}
                 <div className="min-w-0 flex-1">
                   <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-1.5">
-                    <span>Welcome to my space!</span>
+                    <span>Hi, I'm Navaneethan KV</span>
                     <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
                   </h3>
                   <p className="text-xs text-emerald-300/90 font-semibold mt-0.5">
-                    Navaneethan KV{" "}
+                    Front-End Developer (Angular & React){" "}
                     <span className="text-white/60 font-normal">
                       • Associate Software Analyst @ Agilysys
                     </span>
                   </p>
                   <p className="text-xs text-white/75 leading-relaxed font-normal mt-2">
-                    Building high-performance enterprise web apps &amp; modern UI component systems.
+                    Building fast, scalable web apps with Angular, React & Next.js — from enterprise booking platforms to modern UI systems.
                   </p>
                 </div>
               </div>
@@ -154,16 +154,16 @@ export const WelcomeToast = () => {
                 <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
                   EXPERTISE
                 </span>
-                
+
                 <div className="space-y-2 text-xs text-white/80">
                   <div className="flex items-center gap-2">
                     <Zap className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span><strong className="text-white">20% Page Load Speed Optimization</strong> on past builds</span>
+                    <span><strong className="text-white">20% Faster Page Loads</strong> through targeted performance optimizations</span>
                   </div>
 
                   <div className="flex items-center gap-2">
                     <Code2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span><strong className="text-white">Angular &amp; React.js</strong> Production UI Engineering</span>
+                    <span>Production grade</span> <strong className="text-white">Angular &amp; React.js</strong> Development
                   </div>
 
                   <div className="flex items-center gap-2">
@@ -199,9 +199,9 @@ export const WelcomeToast = () => {
               {/* Footer Spec */}
               <div className="relative z-10 mt-5 pt-3 border-t border-white/10 flex items-center justify-between gap-3 text-[10.5px] font-mono text-white/50">
                 <span className="flex items-center gap-1 text-emerald-400 font-semibold">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Enterprise Web Engineer
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" /> Front-End Developer | Chennai
                 </span>
-                <span className="text-white/40 font-bold uppercase tracking-wider">BANGALORE / CHENNAI</span>
+                <span className="text-white/40 font-bold uppercase tracking-wider">	Open to Remote & Chennai-based Roles</span>
               </div>
             </motion.div>
           </div>

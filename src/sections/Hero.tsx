@@ -152,7 +152,7 @@ export const HeroSection = () => {
               Navaneethan KV
             </h1>
             <p className="mt-4 text-center text-white/60 md:text-lg">
-              Front-End Developer who builds responsive, performance-driven websites with clean code and a keen eye for detail.
+              Front-End Developer specializing in Angular & React — building fast, responsive, production-ready web applications with clean, maintainable code.
             </p>
 
           </div>
