@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
 import SparkleIcon from "@/assets/icons/star.svg";
-import Navanee from "@/assets/images/Navanee.png";
+import { PROFILE_IMAGE, RESUME_URL } from "@/constants";
 import grainImage from "@/assets/images/grain.jpg";
 
 export const FixedChatIcon = () => {
@@ -125,8 +125,8 @@ export const FixedChatIcon = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-sm"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-md pointer-events-auto"
             />
 
             {/* Modal Dialog Container */}
@@ -141,10 +141,10 @@ export const FixedChatIcon = () => {
                 aria-labelledby="chat-modal-title"
                 className={`relative w-full ${isResumeExpanded ? 'max-w-[95vw] sm:w-[860px]' : 'sm:w-[380px]'
                   } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none`}
-                initial={{ opacity: 0, y: 24, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: 24, scale: 0.96 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
               >
                 {/* Background Grain Texture matching Application Modals */}
                 <div
@@ -156,10 +156,7 @@ export const FixedChatIcon = () => {
                 />
 
                 {/* Close Button */}
-                <motion.button
-                  whileHover={{ scale: 1.08, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                <button
                   className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/50 hover:text-white transition-all duration-300 cursor-pointer"
                   onClick={closeModal}
                   aria-label="Close details modal"
@@ -167,7 +164,7 @@ export const FixedChatIcon = () => {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                </motion.button>
+                </button>
 
                 <div className={`flex flex-col sm:flex-row w-full ${isResumeExpanded ? 'max-h-[90vh] sm:h-[680px]' : 'max-h-[85vh] sm:max-h-[640px]'
                   } overflow-y-auto sm:overflow-hidden transition-all duration-500`}>
@@ -186,7 +183,7 @@ export const FixedChatIcon = () => {
                           />
                           <div className="relative w-[68px] h-[68px] rounded-full overflow-hidden border-[2.5px] border-gray-800 bg-gray-900 shadow-md">
                             <Image
-                              src={Navanee}
+                              src={PROFILE_IMAGE}
                               alt="Navaneethan Vetriselvan"
                               fill
                               className="object-cover object-top"
@@ -194,6 +191,8 @@ export const FixedChatIcon = () => {
                               priority
                             />
                           </div>
+                          {/* Instagram Active Now Dot */}
+                          <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-900 shadow-sm" />
                         </div>
 
                         {/* Name + Verified Badge + Title */}
@@ -356,7 +355,7 @@ export const FixedChatIcon = () => {
                         {/* Icon-Only Action Buttons */}
                         <div className="flex items-center gap-1.5 shrink-0">
                           <a
-                            href="/Navaneethan_Resume.jpg"
+                            href={RESUME_URL}
                             target="_blank"
                             rel="noopener noreferrer"
                             title="Open Full Screen"
@@ -369,8 +368,8 @@ export const FixedChatIcon = () => {
                           </a>
 
                           <a
-                            href="/Navaneethan_Resume.jpg"
-                            download="Navaneethan_Resume.jpg"
+                            href={RESUME_URL}
+                            download={RESUME_URL.split('/').pop()}
                             title="Download Resume"
                             aria-label="Download Resume"
                             className="w-8 h-8 flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 hover:bg-emerald-400/20 text-emerald-300 transition-all duration-200"
@@ -385,7 +384,7 @@ export const FixedChatIcon = () => {
                       {/* High Resolution Image Container */}
                       <div className="relative flex-1 w-full rounded-2xl border border-white/10 bg-gray-950/70 p-2 flex flex-col items-center overflow-y-auto max-h-[580px] scrollbar-thin shadow-inner">
                         <Image
-                          src="/Navaneethan_Resume.jpg"
+                          src={RESUME_URL}
                           alt="Navaneethan Vetriselvan Resume"
                           width={900}
                           height={1260}

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FaLinkedin } from "react-icons/fa";
-import Navanee from "@/assets/images/Navanee.png";
+import { PROFILE_IMAGE, RESUME_URL } from "@/constants";
 import grainImage from "@/assets/images/grain.jpg";
 
 interface DiveIntoMyWorldModalProps {
@@ -52,7 +52,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
       {isOpen && (
         <motion.div
           key="dive-into-my-world-modal"
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/75 backdrop-blur-md"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md pointer-events-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -65,10 +65,10 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
             aria-labelledby="dive-modal-title"
             className={`bg-gray-900 border border-white/20 rounded-3xl p-5 sm:p-7 w-full ${isResumeExpanded ? "max-w-3xl max-h-[90vh]" : "max-w-lg"
               } relative z-10 overflow-hidden shadow-2xl shadow-black/90 transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/10 after:rounded-3xl after:pointer-events-none`}
-            initial={{ opacity: 0, y: 24, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 24, scale: 0.95 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Background grain texture */}
@@ -81,16 +81,13 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
             />
 
             {/* Close Button */}
-            <motion.button
-              whileHover={{ scale: 1.08, rotate: 90 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+            <button
               className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white transition-all cursor-pointer"
               onClick={handleClose}
               aria-label="Close modal"
             >
               <FontAwesomeIcon icon={faTimes} className="text-sm" />
-            </motion.button>
+            </button>
 
             <AnimatePresence mode="wait">
               {!isResumeExpanded ? (
@@ -111,7 +108,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                       />
                       <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-gray-900 bg-gray-950">
                         <Image
-                          src={Navanee}
+                          src={PROFILE_IMAGE}
                           alt="Navaneethan Vetriselvan"
                           fill
                           className="object-cover object-top"
@@ -119,6 +116,8 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                           priority
                         />
                       </div>
+                      {/* Instagram Active Now Dot */}
+                      <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-900 shadow-sm" />
                     </div>
 
                     <div className="min-w-0 flex-1">
@@ -264,7 +263,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                     {/* Icon-Only Action Buttons */}
                     <div className="flex items-center gap-1.5 shrink-0">
                       <a
-                        href="/Navaneethan_Resume.jpg"
+                        href={RESUME_URL}
                         target="_blank"
                         rel="noopener noreferrer"
                         title="Open Full Screen"
@@ -277,8 +276,8 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                       </a>
 
                       <a
-                        href="/Navaneethan_Resume.jpg"
-                        download="Navaneethan_Resume.jpg"
+                        href={RESUME_URL}
+                        download={RESUME_URL.split('/').pop()}
                         title="Download Resume"
                         aria-label="Download Resume"
                         className="w-8 h-8 flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 hover:bg-emerald-400/20 text-emerald-300 transition-all duration-200"
@@ -293,7 +292,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                   {/* High Resolution Image View Container */}
                   <div className="relative flex-1 w-full rounded-2xl border border-white/10 bg-gray-950/70 p-2 flex flex-col items-center overflow-y-auto max-h-[580px] scrollbar-thin shadow-inner">
                     <Image
-                      src="/Navaneethan_Resume.jpg"
+                      src={RESUME_URL}
                       alt="Navaneethan Vetriselvan Resume"
                       width={900}
                       height={1260}

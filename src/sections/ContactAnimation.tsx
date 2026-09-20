@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Navanee from "@/assets/images/Navanee.png";
+import { PROFILE_IMAGE } from "@/constants";
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 import { FaMapPin } from "react-icons/fa";
 
 const ContactAnimation = () => {
   return (
-    <Card className="h-[320px] p-0 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl group cursor-pointer">
+    <Card className="h-[320px] p-0 relative col-span-1 md:col-span-2 overflow-hidden rounded-3xl group cursor-pointer transform-gpu isolate">
       <a
         href="https://www.google.com/maps?q=13.0678784,80.1767424"
         target="_blank"
@@ -17,13 +17,15 @@ const ContactAnimation = () => {
         className="block w-full h-full relative"
       >
         {/* Background Video Layer */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden transform-gpu">
           <video
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             autoPlay
             loop
             muted
             playsInline
+            // @ts-ignore - Required for older iOS Safari
+            webkit-playsinline="true"
           >
             <source src="/video/mapvideo.mp4" type="video/mp4" />
             Your browser does not support the video tag.
@@ -45,11 +47,15 @@ const ContactAnimation = () => {
             <div className="absolute -inset-1 rounded-full bg-emerald-400/40" />
 
             {/* Profile Avatar Image */}
-            <Image
-              src={Navanee}
-              alt="Navaneethan KV Location"
-              className="size-16 sm:size-20 rounded-full relative z-10 border-2 border-white object-cover object-top shadow-xl"
-            />
+            <div className="relative size-16 sm:size-20 rounded-full z-10 border-2 border-white shadow-xl overflow-hidden transform-gpu">
+              <Image
+                src={PROFILE_IMAGE}
+                alt="Navaneethan KV Location"
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 640px) 64px, 80px"
+              />
+            </div>
           </div>
         </div>
 
@@ -60,7 +66,7 @@ const ContactAnimation = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gray-950/80 border border-white/20 backdrop-blur-md shadow-lg group-hover:border-emerald-400/50 transition-colors">
+          <div className="flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-gray-950/80 border border-white/20 backdrop-blur-md shadow-lg group-hover:border-emerald-400/50 transition-colors transform-gpu isolate">
             <FaMapPin className="w-4 h-4 sm:w-5 sm:h-5 text-pink-500 animate-bounce" />
             <span className="text-white text-xs sm:text-sm font-semibold tracking-wide">
               Chennai, India

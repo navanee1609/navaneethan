@@ -72,13 +72,13 @@ export const AppModal = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-md cursor-default pointer-events-auto overflow-y-auto"
+          className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-md cursor-default pointer-events-auto overflow-y-auto"
         >
           <motion.div
-            initial={{ scale: 0.95, opacity: 0, y: 24 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 24 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={(e) => e.stopPropagation()}
             className={twMerge(
               "w-full max-h-[92vh] bg-gray-900 border border-white/20 rounded-3xl shadow-2xl overflow-hidden relative my-auto text-white flex flex-col",
@@ -127,15 +127,13 @@ export const AppModal = ({
               <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 {headerActions}
 
-                <motion.button
-                  whileHover={{ scale: 1.08, rotate: 90 }}
-                  whileTap={{ scale: 0.92 }}
+                <button
                   onClick={onClose}
                   className="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/80 hover:text-white transition-all cursor-pointer"
                   aria-label="Close modal"
                 >
                   <X className="w-4 h-4" />
-                </motion.button>
+                </button>
               </div>
             </div>
 

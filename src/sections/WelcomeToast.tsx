@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { X, Sparkles, CheckCircle2, ArrowRight, Mail, Zap, Code2, Rocket } from "lucide-react";
-import Navanee from "@/assets/images/Navanee.png";
+import { PROFILE_IMAGE } from "@/constants";
 import grainImage from "@/assets/images/grain.jpg";
 
 export const WelcomeToast = () => {
@@ -70,38 +70,22 @@ export const WelcomeToast = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[9998] bg-black/70 backdrop-blur-md pointer-events-auto"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-md pointer-events-auto"
             onClick={handleDismiss}
           />
 
           {/* Centered Modal Wrapper */}
           <div className="fixed inset-0 pointer-events-none z-[9999] flex items-center justify-center p-4 sm:p-6">
             <motion.div
-              initial={{
-                opacity: 0,
-                scale: 0.9,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                scale: 1,
-                y: 0,
-              }}
-              exit={{
-                opacity: 0,
-                scale: 0.9,
-                y: 20,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 350,
-                damping: 26,
-              }}
-              className="w-full max-w-[460px] relative overflow-hidden rounded-3xl bg-gray-900/95 border border-white/20 shadow-2xl shadow-black/90 text-white p-6 sm:p-8 backdrop-blur-2xl pointer-events-auto"
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
+              className="w-full max-w-[460px] relative overflow-hidden rounded-3xl bg-gray-950/90 border border-white/20 shadow-2xl shadow-black/90 text-white p-6 sm:p-8 backdrop-blur-2xl pointer-events-auto"
             >
               {/* Top Hairline Gradient Accent Line */}
-              <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-400" />
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-400" />
 
               {/* Background grain texture */}
               <div
@@ -113,7 +97,7 @@ export const WelcomeToast = () => {
 
               {/* Top Header Row: Availability Badge & Close Button */}
               <div className="relative z-10 flex items-center justify-between gap-2 mb-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider">
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -121,37 +105,36 @@ export const WelcomeToast = () => {
                   <span>Available for Hire 👋</span>
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
+                <button
                   onClick={handleDismiss}
                   className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-white/70 hover:text-white flex items-center justify-center transition cursor-pointer"
                   aria-label="Close welcome modal"
                 >
                   <X className="w-4 h-4" />
-                </motion.button>
+                </button>
               </div>
 
               {/* Profile Intro Section */}
               <div className="relative z-10 flex items-start gap-4 mb-6">
-                {/* Avatar with Glow Border */}
+                {/* Avatar with Active Dot */}
                 <div className="relative shrink-0 select-none">
                   <div className="w-16 h-16 rounded-full border-2 border-emerald-400/80 shadow-lg shadow-emerald-500/20 overflow-hidden relative bg-gray-800">
                     <Image
-                      src={Navanee}
+                      src={PROFILE_IMAGE}
                       alt="Navaneethan KV"
                       fill
                       className="object-cover object-top"
                       priority
                     />
                   </div>
-                  <span className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-900" />
+                  {/* Instagram Active Now Dot */}
+                  <span className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-gray-950 shadow-sm" />
                 </div>
 
                 {/* Developer Bio */}
                 <div className="min-w-0 flex-1">
                   <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-1.5">
-                    <span>Welcome to my Portfolio!</span>
+                    <span>Welcome to my space!</span>
                     <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
                   </h3>
                   <p className="text-xs text-emerald-300/90 font-semibold mt-0.5">
@@ -161,7 +144,7 @@ export const WelcomeToast = () => {
                     </span>
                   </p>
                   <p className="text-xs text-white/75 leading-relaxed font-normal mt-2">
-                    Crafting high-performance enterprise web applications &amp; modern UI component systems.
+                    Building high-performance enterprise web apps &amp; modern UI component systems.
                   </p>
                 </div>
               </div>
@@ -169,7 +152,7 @@ export const WelcomeToast = () => {
               {/* Key Highlights List Box */}
               <div className="relative z-10 p-4 rounded-2xl bg-white/[0.04] border border-white/10 mb-6 space-y-2.5">
                 <span className="text-[10px] font-mono font-bold text-white/40 uppercase tracking-wider block">
-                  HIGHLIGHTS & EXPERTISE
+                  EXPERTISE
                 </span>
                 
                 <div className="space-y-2 text-xs text-white/80">
@@ -196,9 +179,9 @@ export const WelcomeToast = () => {
                   whileHover={{ scale: 1.02, y: -1 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => handleNavigate("projects")}
-                  className="w-full py-3 px-2.5 sm:px-4 rounded-xl bg-white text-gray-950 hover:bg-gray-200 text-xs font-bold transition duration-200 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer shadow-lg"
+                  className="w-full py-3 px-2.5 sm:px-4 rounded-xl bg-emerald-50 hover:bg-white text-emerald-950 text-xs font-bold transition duration-200 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer shadow-lg"
                 >
-                  <span className="truncate">Explore Projects</span>
+                  <span className="truncate">View Projects</span>
                   <ArrowRight className="w-3.5 h-3.5 shrink-0" />
                 </motion.button>
 

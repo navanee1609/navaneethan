@@ -89,8 +89,8 @@ export const Header = () => {
                   key={section}
                   href={`#${section}`}
                   className={`flex items-center justify-between p-3.5 m-1.5 transition-all duration-300 rounded-2xl ${isActive
-                      ? "bg-white text-gray-950 font-bold shadow-lg"
-                      : "hover:bg-white/10"
+                    ? "bg-white text-gray-950 font-bold shadow-lg"
+                    : "hover:bg-white/10"
                     }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -120,8 +120,8 @@ export const Header = () => {
             key={section}
             href={`#${section}`}
             className={`nav-item px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${activeSection === section
-                ? "bg-white text-black"
-                : "text-white hover:scale-105 hover:bg-white/20"
+              ? "bg-white text-black"
+              : "text-white hover:scale-105 hover:bg-white/20"
               }`}
           >
             {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -141,8 +141,8 @@ export const Header = () => {
               <Link
                 href="#contact"
                 className={`nav-item block px-4 py-2 rounded-full transition-all duration-300 whitespace-nowrap ${activeSection === "contact"
-                    ? "bg-white text-black"
-                    : "text-white hover:scale-105 hover:bg-white/20"
+                  ? "bg-white text-black"
+                  : "text-white hover:scale-105 hover:bg-white/20"
                   }`}
               >
                 Contact

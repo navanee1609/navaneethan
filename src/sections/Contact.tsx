@@ -220,10 +220,6 @@ export const ContactSection = () => {
       id="contact"
       className="py-16 md:py-24 relative overflow-hidden"
     >
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[350px] bg-emerald-400/10 blur-[130px] rounded-full -z-10 pointer-events-none" />
-
-      <div className="absolute bottom-10 right-10 w-full max-w-[400px] h-[300px] bg-sky-400/10 blur-[120px] rounded-full -z-10 pointer-events-none" />
 
       <div className="container">
         {/* Section Header */}

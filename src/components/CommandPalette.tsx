@@ -288,18 +288,18 @@ export const CommandPalette = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-[9998] bg-black/75 backdrop-blur-md pointer-events-auto"
+              className="fixed inset-0 z-[9998] bg-black/60 backdrop-blur-md pointer-events-auto"
             />
 
             {/* Modal Container */}
             <div className="fixed inset-0 z-[9999] flex items-start justify-center pt-14 sm:pt-20 px-4 pointer-events-none">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9, y: -20 }}
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                exit={{ opacity: 0, scale: 0.95, y: 15 }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 className="w-full max-w-lg bg-gray-950/90 border border-white/15 rounded-[32px] sm:rounded-[36px] shadow-[0_25px_80px_rgba(0,0,0,0.9)] overflow-hidden pointer-events-auto relative text-white backdrop-blur-3xl p-3 sm:p-4"
               >
                 {/* Search Bar Capsule */}
@@ -344,19 +344,17 @@ export const CommandPalette = () => {
                           onClick={() => cmd.perform()}
                           onMouseEnter={() => setSelectedIndex(idx)}
                           whileHover={{ x: 2 }}
-                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-full text-left text-xs sm:text-sm transition-all cursor-pointer ${
-                            isSelected
+                          className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-full text-left text-xs sm:text-sm transition-all cursor-pointer ${isSelected
                               ? "bg-white/12 text-white border border-white/20 shadow-md"
                               : "text-white/70 hover:text-white bg-transparent border border-transparent"
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <div
-                              className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${
-                                isSelected
+                              className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${isSelected
                                   ? "bg-emerald-400 text-gray-950 font-bold shadow-sm"
                                   : "bg-white/10 text-emerald-400"
-                              }`}
+                                }`}
                             >
                               <Icon className="w-3.5 h-3.5" />
                             </div>
@@ -373,11 +371,10 @@ export const CommandPalette = () => {
                               </span>
                             )}
                             <ArrowUpRight
-                              className={`w-3.5 h-3.5 transition-transform ${
-                                isSelected
+                              className={`w-3.5 h-3.5 transition-transform ${isSelected
                                   ? "text-emerald-400 opacity-100"
                                   : "text-white/20 opacity-50"
-                              }`}
+                                }`}
                             />
                           </div>
                         </motion.button>

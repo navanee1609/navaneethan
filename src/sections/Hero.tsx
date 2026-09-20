@@ -5,7 +5,7 @@ import grainImage from "@/assets/images/grain.jpg"; // Importing a grain texture
 import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
-import Navanee from "@/assets/images/Navanee.png"
+import { PROFILE_IMAGE, RESUME_URL } from "@/constants";
 import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion";
@@ -135,7 +135,7 @@ export const HeroSection = () => {
         <div className="container">
           <div className="flex flex-col items-center">
             <Image
-              src={Navanee}
+              src={PROFILE_IMAGE}
               className="size-[200px] rounded-full object-cover object-top"
               alt="Navaneethan"
             />
@@ -191,15 +191,16 @@ export const HeroSection = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm"
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-md pointer-events-auto"
+                        onClick={closeModal}
                       >
                         {/* Side Panel */}
                         <motion.div
                           initial={{ x: "100%", opacity: 0.5 }}
                           animate={{ x: 0, opacity: 1 }}
                           exit={{ x: "100%", opacity: 0.5 }}
-                          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                          transition={{ type: "spring", stiffness: 350, damping: 25 }}
                           className="absolute right-0 top-0 bottom-0 w-full sm:w-[480px] lg:w-[520px] bg-gray-800 border-l border-white/20 shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
                           onClick={(e) => e.stopPropagation()}
                         >
@@ -215,7 +216,7 @@ export const HeroSection = () => {
                               <div className="relative">
                                 <div className="absolute -inset-1 rounded-full bg-gradient-to-br from-emerald-300 to-sky-400 opacity-50 blur-sm" />
                                 <div className="relative w-9 h-9 rounded-full bg-gray-900 border border-white/20 flex items-center justify-center overflow-hidden">
-                                  <Image src={Navanee} alt="Navaneethan" fill className="object-cover object-top" sizes="36px" />
+                                  <Image src={PROFILE_IMAGE} alt="Navaneethan" fill className="object-cover object-top" sizes="36px" />
                                 </div>
                               </div>
                               <div>
@@ -233,15 +234,12 @@ export const HeroSection = () => {
                                 <FontAwesomeIcon icon={faArrowDown} className="text-[10px]" />
                                 <span className="font-medium hidden sm:inline">Download</span>
                               </motion.button>
-                              <motion.button
-                                whileHover={{ scale: 1.1, rotate: 90 }}
-                                whileTap={{ scale: 0.9 }}
-                                transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white/50 hover:text-white transition-all duration-300"
+                              <button
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white/50 hover:text-white transition-all duration-300 cursor-pointer"
                                 onClick={closeModal}
                               >
                                 <FontAwesomeIcon icon={faTimes} className="text-xs" />
-                              </motion.button>
+                              </button>
                             </div>
                           </div>
 
@@ -251,7 +249,7 @@ export const HeroSection = () => {
                               <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-gray-900/70 shadow-lg shadow-black/40">
                                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60 z-10" />
                                 <Image
-                                  src="/Navaneethan_Resume.jpg"
+                                  src={RESUME_URL}
                                   alt="Resume"
                                   width={800}
                                   height={1132}

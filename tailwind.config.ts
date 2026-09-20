@@ -22,7 +22,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        Sans: 'var(--font-sans)', // Fixed typo
+        sans: 'var(--font-sans)',
         serif: 'var(--font-serif)',
       },
       animation: {

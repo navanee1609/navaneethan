@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ArrowRight, MousePointer2 as LuMousePointer2 } from "lucide-react";
-import Navanee from "@/assets/images/Navanee.png";
+import { PROFILE_IMAGE } from "@/constants";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { SectionHeader } from "./SectionHeader";
@@ -58,7 +58,7 @@ export default function DiverseNeeds() {
                 <div className="bg-white p-5 mb-6 md:mb-2 rounded-xl rotate-3 shadow-xl">
                   <div className="relative aspect-[3/4] w-full">
                     <Image
-                      src={Navanee}
+                      src={PROFILE_IMAGE}
                       alt="Portrait photo"
                       fill
                       className="object-cover rounded-lg"
