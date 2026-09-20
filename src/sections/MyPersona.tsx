@@ -170,13 +170,13 @@ const orbitPills = [
     label: "Vite",
     className: `
       absolute
-      top-[-14px]
+      top-[-32px]
       left-[42%]
 
-      sm:top-[-12px]
+      sm:top-[-28px]
       sm:left-[45%]
 
-      lg:top-[-10px]
+      lg:top-[-26px]
     `,
     bg: "bg-white/10 border-white/15 text-white/90",
     glow: "via-white/15",
@@ -186,25 +186,28 @@ const orbitPills = [
     duration: 4.2,
     linePos: { x2: "50%", y2: "10%" },
   },
+
 ];
 
 export const MyPersona = () => {
   console.log("My Persona Section Rendered");
 
   return (
-    <Card className="relative overflow-hidden h-[460px] sm:h-[340px] col-span-1 md:col-span-3 bg-gray-950/40 backdrop-blur-3xl border border-white/[0.08] rounded-[32px] p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+    <Card className="relative overflow-hidden h-[580px] sm:h-[380px] col-span-1 md:col-span-3 bg-gray-950/40 backdrop-blur-3xl border border-white/[0.08] rounded-[32px] after:rounded-[32px] p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
 
-      {/* Ambient Widget Glows (Native Apple feel) */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Ambient Widget Glows — clipped to card radius */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[32px]">
         <motion.div
           animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-20 -right-10 w-64 h-64 rounded-full bg-emerald-500/20 blur-[80px]"
+          style={{ willChange: "transform, opacity" }}
+          className="absolute -top-20 -right-10 w-64 h-64 rounded-full bg-emerald-500/20 blur-[80px] transform-gpu"
         />
         <motion.div
           animate={{ scale: [1.05, 1, 1.05], opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-20 -left-10 w-64 h-64 rounded-full bg-sky-500/20 blur-[80px]"
+          style={{ willChange: "transform, opacity" }}
+          className="absolute -bottom-20 -left-10 w-64 h-64 rounded-full bg-sky-500/20 blur-[80px] transform-gpu"
         />
       </div>
 
@@ -237,7 +240,8 @@ export const MyPersona = () => {
           <motion.div
             animate={{ y: [0, -2, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/15 shadow-sm backdrop-blur-md"
+            style={{ willChange: "transform" }}
+            className="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/15 shadow-sm backdrop-blur-md transform-gpu"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -250,7 +254,7 @@ export const MyPersona = () => {
         </div>
 
         {/* Center Visual - Refined iOS Orbits */}
-        <div className="relative flex items-center justify-center my-6 sm:my-4 h-[120px] sm:h-[100px]">
+        <div className="relative flex items-center justify-center my-6 sm:my-4 h-[160px] sm:h-[140px]">
           {/* Interconnecting Circuit/Orbit Stroke Lines */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
             {orbitPills.map((pill, idx) => (
@@ -267,16 +271,17 @@ export const MyPersona = () => {
             ))}
           </svg>
 
-          {/* iOS Style Orbit Rings */}
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute w-28 h-28 border border-white/10 rounded-full"
+            style={{ willChange: "transform" }}
+            className="absolute w-28 h-28 border border-white/10 rounded-full transform-gpu"
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-            className="absolute w-20 h-20 border border-emerald-400/20 rounded-full"
+            style={{ willChange: "transform" }}
+            className="absolute w-20 h-20 border border-emerald-400/20 rounded-full transform-gpu"
           />
 
           {orbitPills?.length > 0 &&
@@ -287,7 +292,8 @@ export const MyPersona = () => {
                   animate={pill.animation}
                   transition={{ duration: pill.duration, repeat: Infinity, ease: "easeInOut" }}
                   whileHover={{ scale: 1.05 }}
-                  className={pill.className}
+                  style={{ willChange: "transform" }}
+                  className={`${pill.className} transform-gpu`}
                 >
                   <div className={`group relative flex items-center justify-center px-3.5 py-1.5 rounded-full backdrop-blur-2xl shadow-[0_4px_12px_rgba(0,0,0,0.2)] overflow-hidden border border-white/[0.12] bg-white/[0.06] hover:bg-white/[0.1] transition-colors`}>
                     <span className="relative z-10 leading-none text-[11px] font-semibold text-white/90">
@@ -302,54 +308,26 @@ export const MyPersona = () => {
           <motion.div
             whileHover={{ scale: 1.05, rotate: 5 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-[14px] bg-gradient-to-br from-emerald-300 via-emerald-400 to-teal-500 flex items-center justify-center shadow-[0_8px_24px_rgba(16,185,129,0.3)] border border-white/20 z-10"
+            className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-br from-emerald-300 via-emerald-400 to-teal-500 flex items-center justify-center shadow-[0_8px_24px_rgba(16,185,129,0.3)] border border-white/20 z-10"
           >
-            <div className="absolute inset-0 rounded-[14px] bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
             <span className="flex items-center justify-center leading-none text-white font-extrabold text-[13px] tracking-wide relative z-10 drop-shadow-sm">
               UI
             </span>
           </motion.div>
         </div>
 
-        {/* Bottom Skill Cards - iOS App Library / Widget Style */}
+        {/* Bottom Skill Cards — Infinite horizontal scroll on all screen sizes */}
         <div className="mt-4 sm:mt-2">
-          {/* Desktop / Large Devices */}
-          <div className="hidden lg:grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {skills.map((item, index) => {
-              return (
-                <motion.div
-                  key={index}
-                  whileHover={{ y: -3, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className="group relative overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.06] px-4 py-3.5 backdrop-blur-3xl transition-colors cursor-default shadow-sm"
-                >
-                  <div className="relative z-10 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[12px] bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
-                      {item.icon}
-                    </div>
-                    <div className="flex flex-col justify-center">
-                      <span className="text-white text-[13px] font-semibold tracking-tight leading-tight">
-                        {item.title}
-                      </span>
-                      <span className="text-[11px] text-white/50 mt-0.5 font-medium">
-                        {item.sub}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Mobile / Tablet Infinite Carousel */}
-          <div className="relative overflow-hidden lg:hidden mt-4">
+          <div className="relative overflow-hidden">
             <div className="absolute left-0 top-0 z-20 h-full w-12 bg-gradient-to-r from-[#0a0f16] to-transparent pointer-events-none" />
             <div className="absolute right-0 top-0 z-20 h-full w-12 bg-gradient-to-l from-[#0a0f16] to-transparent pointer-events-none" />
 
             <motion.div
               animate={{ x: ["0%", "-50%"] }}
-              transition={{ duration: 16, repeat: Infinity, ease: "linear" }}
-              className="flex gap-3 w-max"
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              style={{ willChange: "transform" }}
+              className="flex gap-3 w-max transform-gpu"
             >
               {[...skills, ...skills].map((item, index) => {
                 return (

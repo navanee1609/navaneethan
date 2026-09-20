@@ -16,7 +16,8 @@ export const HeroOrbit = ({
       <div
         className={twMerge(shouldOrbit === true && "animate-spin")} 
         style={{
-            animationDuration:orbitDuration,
+            animationDuration: orbitDuration,
+            willChange: 'transform',
         }}
       >
         {/* Rotating container */}
@@ -28,7 +29,10 @@ export const HeroOrbit = ({
             width: `${size}px`,
           }}
         >
-            <div className={twMerge(shouldSpin === true && "animate-spin")} style={{animationDuration:spinDuration}}>
+            <div
+              className={twMerge(shouldSpin === true && "animate-spin")}
+              style={{ animationDuration: spinDuration, willChange: 'transform' }}
+            >
                  {/* Counter-rotated child element */}
           <div
             className="inline-flex"

@@ -41,15 +41,15 @@ const config: Config = {
           }
         },
         'move-left': {
-          '0': { transform: 'translateX(0%)' },
+          '0%': { transform: 'translateX(0%)', willChange: 'transform' },
           '100%': { transform: 'translateX(-50%)' },
         },
         'move-left-card': {
-          '0': { transform: 'translateX(0%)' },
+          '0%': { transform: 'translateX(0%)', willChange: 'transform' },
           '100%': { transform: 'translateX(-50%)' },
         },
         'move-right-card': {
-          '0': { transform: 'translateX(-50%)' },
+          '0%': { transform: 'translateX(-50%)', willChange: 'transform' },
           '100%': { transform: 'translateX(0%)' },
         },
         bounceIn: {

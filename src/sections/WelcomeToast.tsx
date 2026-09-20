@@ -8,22 +8,20 @@ import { PROFILE_IMAGE } from "@/constants";
 import grainImage from "@/assets/images/grain.jpg";
 
 export const WelcomeToast = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    // 1. Pop up centered modal 500ms after load
-    const showTimer = setTimeout(() => {
-      setIsVisible(true);
-    }, 500);
+    // Lock scroll immediately — modal is visible from first render
+    document.body.style.overflow = "hidden";
 
-    // 2. Display for 7.5 seconds, then auto-dismiss
+    // Auto-dismiss after 8 seconds
     const autoCloseTimer = setTimeout(() => {
       setIsVisible(false);
     }, 8000);
 
     return () => {
-      clearTimeout(showTimer);
       clearTimeout(autoCloseTimer);
+      document.body.style.overflow = "";
     };
   }, []);
 
@@ -42,9 +40,7 @@ export const WelcomeToast = () => {
   };
 
   useEffect(() => {
-    if (isVisible) {
-      document.body.style.overflow = "hidden";
-    } else {
+    if (!isVisible) {
       document.body.style.overflow = "";
     }
 
@@ -56,7 +52,6 @@ export const WelcomeToast = () => {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
-      document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isVisible]);

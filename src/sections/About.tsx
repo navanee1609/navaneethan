@@ -49,6 +49,7 @@ const textVariants = {
 };
 
 
+
 export const AboutSection = () => {
 
   return (
