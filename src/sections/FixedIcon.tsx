@@ -112,7 +112,7 @@ export const FixedChatIcon = () => {
           >
             <div className="absolute bottom-[-6px] right-6 w-3 h-3 bg-gray-900 border-r border-b border-white/20 rotate-45" />
             <span className="flex h-2 w-2 rounded-full bg-emerald-300 shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
-            <span>Let's build something great! 👋</span>
+            <span>Let&apos;s build something great! 👋</span>
           </motion.div>
         )}
       </AnimatePresence>

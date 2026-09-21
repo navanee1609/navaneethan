@@ -46,7 +46,7 @@ export const Articles = () => {
           <SectionHeader
             eyebrow="Latest Articles & Insights"
             title="Discover My Latest LinkedIn Articles"
-            description="Explore in-depth articles that dive into the world of frontend development, design thinking, and web technologies. Gain insights from real-world experiences and case studies."
+            description="Explore articles on front-end development, Angular, React, and modern web architecture — drawn from real-world engineering experience."
           />
 
           <div className="mt-12 lg:mt-20 flex overflow-x-clip [mask-image: linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">

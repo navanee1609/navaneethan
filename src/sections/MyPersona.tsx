@@ -32,7 +32,7 @@ const skills = [
     sub: "Reusable Systems",
   },
 ];
-{/* Orbit Pills Data */}
+{/* Orbit Pills Data */ }
 const orbitPills = [
   {
     label: "React",
@@ -170,11 +170,11 @@ const orbitPills = [
     label: "Vite",
     className: `
       absolute
-      top-[-32px]
-      left-[42%]
+      top-[-20px]
+      
 
-      sm:top-[-28px]
-      sm:left-[45%]
+      sm:top-[-18px]
+      
 
       lg:top-[-26px]
     `,
@@ -193,7 +193,7 @@ export const MyPersona = () => {
   console.log("My Persona Section Rendered");
 
   return (
-    <Card className="relative overflow-hidden h-[580px] sm:h-[380px] col-span-1 md:col-span-3 bg-gray-950/40 backdrop-blur-3xl border border-white/[0.08] rounded-[32px] after:rounded-[32px] p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
+    <Card className="relative overflow-hidden h-[420px] sm:h-[380px] col-span-1 md:col-span-3 bg-gray-950/40 backdrop-blur-3xl border border-white/[0.08] rounded-[32px] after:rounded-[32px] p-6 sm:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
 
       {/* Ambient Widget Glows — clipped to card radius */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[32px]">
@@ -215,7 +215,7 @@ export const MyPersona = () => {
       <div className="absolute inset-0 opacity-[0.04] bg-[url('/noise.png')] mix-blend-overlay pointer-events-none" />
 
       <div className="relative z-10 h-full flex flex-col justify-between">
-        
+
         {/* iOS Widget Style Header */}
         <div className="flex items-start justify-between gap-4 relative">
           <div className="flex flex-col">
@@ -254,7 +254,7 @@ export const MyPersona = () => {
         </div>
 
         {/* Center Visual - Refined iOS Orbits */}
-        <div className="relative flex items-center justify-center my-6 sm:my-4 h-[160px] sm:h-[140px]">
+        <div className="relative flex items-center justify-center my-2 sm:my-4 h-[120px] sm:h-[140px]">
           {/* Interconnecting Circuit/Orbit Stroke Lines */}
           <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
             {orbitPills.map((pill, idx) => (
@@ -275,13 +275,13 @@ export const MyPersona = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
             style={{ willChange: "transform" }}
-            className="absolute w-28 h-28 border border-white/10 rounded-full transform-gpu"
+            className="absolute w-20 h-20 sm:w-28 sm:h-28 border border-white/10 rounded-full transform-gpu"
           />
           <motion.div
             animate={{ rotate: -360 }}
             transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
             style={{ willChange: "transform" }}
-            className="absolute w-20 h-20 border border-emerald-400/20 rounded-full transform-gpu"
+            className="absolute w-14 h-14 sm:w-20 sm:h-20 border border-emerald-400/20 rounded-full transform-gpu"
           />
 
           {orbitPills?.length > 0 &&

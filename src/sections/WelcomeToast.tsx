@@ -129,7 +129,7 @@ export const WelcomeToast = () => {
                 {/* Developer Bio */}
                 <div className="min-w-0 flex-1">
                   <h3 className="text-xl font-bold text-white tracking-tight flex items-center gap-1.5">
-                    <span>Hi, I'm Navaneethan KV</span>
+                    <span>Hi, I&apos;m Navaneethan KV</span>
                     <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
                   </h3>
                   <p className="text-xs text-emerald-300/90 font-semibold mt-0.5">

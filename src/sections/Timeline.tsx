@@ -19,7 +19,7 @@ const CAREER_DATA = [
       "Engineering core modules for 'Stay' — a next-gen Property Management System (PMS) powering Marriott Hotels globally. Streamlining booking, check-in, and service management with modern front-end frameworks.",
     highlights: [
       "Streamlined guest check-in, reservation management, and front-desk operational flows.",
-      "Optimized modular Angular components and TypeScript data structures for maximum performance.",
+      "Optimized modular Angular components and TypeScript data structures to improve performance.",
       "Collaborated with engineering leads to ensure strict enterprise UX and accessibility standards."
     ],
     icon: Briefcase,
@@ -37,8 +37,8 @@ const CAREER_DATA = [
     description:
       "Crafted responsive UIs and web applications using React, Next.js, and Tailwind CSS across client projects.",
     highlights: [
-      "Built modern interactive user interfaces with seamless state management and custom React hooks.",
-      "Integrated backend endpoints and ensured strict cross-browser performance.",
+      "Built interactive user interfaces with custom React hooks and structured state management.",
+      "Integrated backend endpoints and tested across multiple browsers for consistent performance.",
       "Accelerated page load performance by implementing efficient component architecture."
     ],
     icon: Briefcase,
@@ -53,11 +53,11 @@ const CAREER_DATA = [
     title: "Project Development & Open Source",
     company: "Independent & Open Source",
     description:
-      "Fostered deep hands-on expertise by engineering web applications and contributing to open-source GitHub projects.",
+      "Built hands-on expertise by developing web applications and contributing to open-source GitHub projects.",
     highlights: [
       "Designed and launched production-ready web apps using modern JavaScript frameworks.",
       "Adopted industry standards for Git workflows, code reviews, and project architecture.",
-      "Mastered dynamic animation principles using Framer Motion."
+      "Implemented animations and micro-interactions using Framer Motion."
     ],
     icon: Briefcase,
     color: "purple",
@@ -72,7 +72,7 @@ const CAREER_DATA = [
     description:
       "Initiated intensive practical learning in software engineering fundamentals, algorithms, and core web technologies.",
     highlights: [
-      "Mastered JavaScript ES6+, semantic HTML5 structures, and responsive CSS layouts.",
+      "Learned JavaScript ES6+, semantic HTML5 structures, and responsive CSS layouts.",
       "Built foundational projects to solve practical coding problems."
     ],
     icon: Briefcase,
@@ -89,8 +89,8 @@ const EDUCATION_DATA = [
     title: "B.E. Mechanical Engineering",
     school: "Dhanalakshmi Srinivasan Engineering College",
     description:
-      "Graduated with a strong academic record, developing analytical problem-solving capabilities and transitioning passion into software engineering.",
-    percentage: "86% (First Class with Distinction)",
+      "Graduated with a strong academic record; the analytical problem-solving foundation from this degree directly shaped my transition into front-end software engineering.",
+    percentage: "86%",
     highlights: [
       "Developed quantitative problem-solving and analytical reasoning mindset.",
       "Led student tech initiatives and project demonstrations."

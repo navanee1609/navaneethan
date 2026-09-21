@@ -10,9 +10,9 @@ const AI_FEATURES = [
     id: "pair-programming",
     step: "01",
     icon: Bot,
-    title: "Agentic Pair Programming",
+    title: "AI-Assisted Pair Programming",
     description:
-      "Partnering daily with autonomous AI coding agents and reasoning LLMs to architect complex systems, refactor state modules, and resolve tricky logic in real time.",
+      "Using AI coding assistants to work through complex logic, refactor components, and speed up debugging — with me reviewing and owning every change.",
     badges: [
       { name: "Claude 3.7", style: "bg-amber-500/10 border-amber-500/25 text-amber-400" },
       { name: "Antigravity IDE", style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
@@ -24,9 +24,9 @@ const AI_FEATURES = [
     id: "rapid-velocity",
     step: "02",
     icon: Zap,
-    title: "10x Prototyping Velocity",
+    title: "Faster Prototyping",
     description:
-      "Transforming concepts into production-grade web applications in hours—eliminating repetitive boilerplate and focusing on user experience.",
+      "Using AI to eliminate repetitive boilerplate so I can spend more time on architecture, UX, and edge cases.",
     badges: [
       { name: "Rapid Iteration", style: "bg-cyan-500/10 border-cyan-500/25 text-cyan-400" },
       { name: "Next.js", style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
@@ -38,9 +38,9 @@ const AI_FEATURES = [
     id: "quality-audits",
     step: "03",
     icon: ShieldCheck,
-    title: "Automated QA & Code Auditing",
+    title: "AI-Assisted Code Review",
     description:
-      "Enforcing strict type safety, edge-case checking, and performance tuning using AI-assisted code reviews before shipping to production.",
+      "Using AI tools to catch type errors, edge cases, and performance issues early, as one layer of my QA process before shipping.",
     badges: [
       { name: "Code Audits", style: "bg-purple-500/10 border-purple-500/25 text-purple-400" },
       { name: "Type Safety", style: "bg-emerald-500/10 border-emerald-500/25 text-emerald-400" },
@@ -87,7 +87,7 @@ export const AiWorkflowSection = () => {
         <SectionHeader
           eyebrow="AI-Powered Engineering"
           title="Accelerating Digital Creation"
-          description="Discover how I harness artificial intelligence to bring ideas to life, supercharge productivity, and create seamless digital experiences."
+          description="I integrate AI tools into my development workflow to move faster, catch issues earlier, and ship more reliable code."
         />
 
         {/* Side-by-Side Split Grid */}
@@ -105,7 +105,7 @@ export const AiWorkflowSection = () => {
             </h2>
 
             <p className="text-base text-white/70 font-light leading-relaxed">
-              Software engineering is not just about writing code—it is about orchestrating intelligence. I integrate state-of-the-art AI agents and LLMs directly into my workflow to accelerate prototyping, catch edge cases early, and ship production-grade applications at 10x speed.
+              I use AI coding assistants and LLMs as part of my daily workflow — for faster prototyping, catching edge cases earlier, and reducing repetitive work — while still owning the architecture, logic, and code quality myself.
             </p>
 
             {/* Primary AI Stack Badge Row with Vibrant Colors */}
