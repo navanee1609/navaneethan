@@ -8,6 +8,7 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaLinkedin,
+  FaGithub,
   FaCopy,
   FaCheck,
   FaMapMarkerAlt,
@@ -63,6 +64,14 @@ const contactLinks = [
     brandColor: "#38BDF8",
     hoverBorder: "hover:border-sky-400/50 hover:shadow-[0_4px_20px_rgba(56,189,248,0.25)] hover:bg-sky-400/10",
   },
+  {
+    label: "GitHub",
+    handle: "navanee1609",
+    href: "https://github.com/navanee1609",
+    icon: FaGithub,
+    brandColor: "#E2E8F0",
+    hoverBorder: "hover:border-slate-300/50 hover:shadow-[0_4px_20px_rgba(226,232,240,0.15)] hover:bg-slate-300/10",
+  },
 ];
 
 function ContactPill({ item }: { item: (typeof contactLinks)[number] }) {
@@ -80,7 +89,9 @@ function ContactPill({ item }: { item: (typeof contactLinks)[number] }) {
             ? "Connect"
             : item.label === "WhatsApp"
               ? "Chat"
-              : "Visit";
+              : item.label === "GitHub"
+                ? "View"
+                : "Visit";
 
   return (
     <div className="relative">

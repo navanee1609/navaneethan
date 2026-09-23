@@ -24,131 +24,137 @@ type ViewState = "before" | "after";
 
 const CASE_STUDIES = [
   {
-    id: "load-time-optimization",
-    title: "Page Load & Asset Optimization",
-    category: "Performance Engineering",
+    id: "core-web-vitals-lcp",
+    title: "LCP & Core Web Vitals Fix",
+    category: "SEO Performance",
     icon: Zap,
-    metricHighlight: "20% Speed Boost",
+    metricHighlight: "LCP: 4.2s → 1.1s",
     before: {
-      tag: "Unoptimized Legacy Build",
-      loadTime: "3.8s",
-      fcp: "2.4s",
-      score: 58,
-      statusText: "Slow load times, uncompressed raw assets, render-blocking scripts",
+      tag: "Poor Core Web Vitals",
+      loadTime: "4.2s LCP",
+      fcp: "CLS: 0.31",
+      score: 41,
+      statusText: "Failed Core Web Vitals hurting Google ranking signals & organic CTR",
       issues: [
-        "Uncompressed images causing network bottlenecks",
-        "Render-blocking scripts delaying First Contentful Paint",
-        "Large monolithic bundle causing high TTFB",
+        "Largest Contentful Paint (LCP) above 4s due to unoptimized hero images",
+        "Cumulative Layout Shift (CLS) of 0.31 from un-sized media & web fonts",
+        "High Total Blocking Time (TBT) from render-blocking third-party scripts",
       ],
-      codeSnippet: `// ❌ Legacy: Render-blocking monolithic import
-import MassiveLibrary from "heavy-library";
-import BigAsset from "./assets/huge-image.png";
+      codeSnippet: `// ❌ Poor SEO: Unoptimized hero image blocks LCP
+<img src="/hero-banner.jpg" />
 
-export default function Page() {
-  return <img src={BigAsset} />;
-}`,
+// No size attrs → layout shift (CLS penalty)
+// No preload → delayed LCP signal to Googlebot`,
     },
     after: {
-      tag: "Optimized Production Build",
-      loadTime: "0.6s",
-      fcp: "0.4s",
-      score: 100,
-      statusText: "Instant load, WebP Next.js images, dynamic code splitting",
+      tag: "Passing Core Web Vitals",
+      loadTime: "1.1s LCP",
+      fcp: "CLS: 0.02",
+      score: 97,
+      statusText: "All Core Web Vitals in 'Good' range — eligible for Google Top Stories",
       improvements: [
-        "20% load time reduction on production client builds",
-        "Next.js dynamic imports & automatic WebP image optimization",
-        "Critical CSS inline with zero render-blocking JS",
+        "LCP reduced from 4.2s → 1.1s via Next.js Image & preload hints",
+        "CLS eliminated with explicit width/height & font-display: swap",
+        "TBT cut 80% by deferring non-critical scripts & lazy loading ads",
       ],
-      codeSnippet: `// ✅ Solution: Dynamic import & Next.js Image
-import dynamic from "next/dynamic";
+      codeSnippet: `// ✅ SEO Fix: Optimized LCP with preload & Next Image
 import Image from "next/image";
 
-const FastComponent = dynamic(() => import("./FastComponent"));`,
+<Image
+  src="/hero-banner.webp"
+  width={1200} height={630}
+  priority  // preloads for LCP
+  alt="Descriptive alt text for Google Image Search"
+/>`,
     },
   },
   {
-    id: "state-refactoring",
-    title: "State Refactoring & Re-renders",
-    category: "Architecture & React",
+    id: "structured-data-schema",
+    title: "Schema Markup & Rich Results",
+    category: "Structured Data & SERP",
     icon: Code2,
-    metricHighlight: "98% Fewer Renders",
+    metricHighlight: "+34% Click-Through Rate",
     before: {
-      tag: "Legacy Prop Drilling",
-      loadTime: "45 renders/action",
-      fcp: "120ms lag",
-      score: 62,
-      statusText: "Deep prop drilling, context bloat causing main-thread stutter",
+      tag: "No Structured Data",
+      loadTime: "Plain Blue Link",
+      fcp: "0 Rich Snippets",
+      score: 48,
+      statusText: "Missing JSON-LD schema losing rich result eligibility & SERP real estate",
       issues: [
-        "Passing state through 6 nested levels of component props",
-        "Monolithic context re-rendering screen on every keystroke",
-        "Laggy typing experience on mid-tier mobile devices",
+        "No JSON-LD markup — ineligible for FAQ, HowTo & Article rich results",
+        "Product pages missing Review, Price & Availability schema signals",
+        "Google Search Console reporting 0 valid structured data items",
       ],
-      codeSnippet: `// ❌ Legacy: Prop drilling 6 levels deep
-<Parent state={state}>
-  <Child1 state={state}>
-    <Child2 state={state}>
-      <Input value={state.val} />
-    </Child2>
-  </Child1>
-</Parent>`,
+      codeSnippet: `// ❌ No schema: Plain HTML with zero structured data
+<h1>Best Running Shoes 2024</h1>
+<p>Rating: 4.8 stars — $129.99</p>
+
+// Googlebot can't extract entities → no rich snippet`,
     },
     after: {
-      tag: "Isolated Reactive Hooks",
-      loadTime: "1 render/action",
-      fcp: "0ms lag",
-      score: 98,
-      statusText: "Decoupled state hooks, memoized selectors, 60 FPS interactions",
+      tag: "Rich Result Eligible",
+      loadTime: "Star Ratings Shown",
+      fcp: "FAQ Expanded",
+      score: 100,
+      statusText: "JSON-LD schema unlocking star ratings, FAQs & sitelinks in SERPs",
       improvements: [
-        "Isolated state scope preventing parent re-renders",
-        "Atomic React custom hooks & memoized selectors",
-        "Silky smooth 60 FPS input experience",
+        "JSON-LD Product schema surfacing star ratings & price in Google SERPs",
+        "FAQ schema expanding page footprint with 4 inline questions in results",
+        "CTR increased 34% within 6 weeks of rich result eligibility",
       ],
-      codeSnippet: `// ✅ Solution: Atomic custom hook selector
-const { value, updateValue } = useIsolatedField("user-input");
-
-return <Input value={value} onChange={updateValue} />;`,
+      codeSnippet: `// ✅ JSON-LD Product + FAQ Schema for Rich Results
+<script type="application/ld+json">
+{{
+  "@type": "Product",
+  "name": "Best Running Shoes 2024",
+  "aggregateRating": {{ "ratingValue": "4.8", "reviewCount": "312" }},
+  "offers": {{ "price": "129.99", "availability": "InStock" }}
+}}
+</script>`,
     },
   },
   {
-    id: "type-safety-audit",
-    title: "TypeScript Payload Guarding",
-    category: "Quality & Resilience",
+    id: "technical-seo-crawlability",
+    title: "Crawlability & Indexation Audit",
+    category: "Technical SEO",
     icon: ShieldCheck,
-    metricHighlight: "0 Runtime Crashes",
+    metricHighlight: "+61% Pages Indexed",
     before: {
-      tag: "Unchecked Any Payload",
-      loadTime: "Intermittent Crashes",
-      fcp: "High Error Rate",
-      score: 54,
-      statusText: "Unchecked API payloads leading to TypeError in production",
+      tag: "Indexation Blockers",
+      loadTime: "312 Crawl Errors",
+      fcp: "61% De-indexed",
+      score: 39,
+      statusText: "Misconfigured robots.txt & canonical tags blocking Google from indexing key pages",
       issues: [
-        "Using implicit 'any' types on API response schemas",
-        "Unhandled null/undefined dereferencing crashing client UIs",
-        "No runtime validation for user inputs",
+        "robots.txt accidentally disallowing /products/* — blocking entire catalogue",
+        "Self-referencing canonical tags overridden by pagination canonical conflicts",
+        "Orphaned pages with no internal links — never discovered by Googlebot",
       ],
-      codeSnippet: `// ❌ Legacy: Loose typing & zero payload safety
-async function fetchUser(id: any) {
-  const res = await fetch('/api/user/' + id);
-  const data = await res.json();
-  return data.profile.name; // Crashes if undefined!
-}`,
+      codeSnippet: `# ❌ Broken robots.txt blocking product pages
+User-agent: *
+Disallow: /products/   # ← Kills entire catalogue indexing
+
+<!-- Conflicting canonical on paginated page -->
+<link rel="canonical" href="/products/?page=2" />`,
     },
     after: {
-      tag: "Strict Schema Guarding",
-      loadTime: "Zero Crashes",
-      fcp: "100% Validated",
+      tag: "Full Crawl Coverage",
+      loadTime: "0 Crawl Errors",
+      fcp: "100% Indexed",
       score: 100,
-      statusText: "Strict Zod & TypeScript interfaces with defensive error boundaries",
+      statusText: "Correct robots.txt, canonical strategy & XML sitemap restoring full index coverage",
       improvements: [
-        "100% strict TypeScript types across all API payloads",
-        "Runtime payload validation with fallback default states",
-        "Zero unhandled runtime exceptions in production",
+        "robots.txt fixed — 100% of product & blog pages now crawlable",
+        "Canonical tags audited & aligned with hreflang for multi-region pages",
+        "XML sitemap regenerated with lastmod dates, boosting recrawl frequency",
       ],
-      codeSnippet: `// ✅ Solution: Strict Zod validation & safe payload
-const UserSchema = z.object({ profile: z.object({ name: z.string() }) });
+      codeSnippet: `# ✅ Correct robots.txt + sitemap submission
+User-agent: *
+Disallow: /admin/
+Sitemap: https://site.com/sitemap.xml
 
-const data = UserSchema.safeParse(await res.json());
-return data.success ? data.data.profile.name : "Guest";`,
+<!-- Proper canonical — always points to paginated root -->
+<link rel="canonical" href="/products/" />`,
     },
   },
 ];
@@ -203,11 +209,11 @@ export const LivingInterfacesCard = () => {
           </div>
 
           <h3 className="font-serif text-xl sm:text-2xl md:text-3xl text-white tracking-wide leading-tight">
-            Real-World Problem Solving Architecture
+            Real-World SEO Problem Solving Architecture
           </h3>
 
           <p className="text-xs sm:text-sm text-white/60 leading-relaxed font-normal max-w-2xl">
-            Interactive case studies showing how complex front-end bottlenecks were diagnosed and refactored.
+            Interactive case studies showing how critical SEO bottlenecks — from Core Web Vitals failures to indexation blocks — were diagnosed, fixed, and measured.
           </p>
         </div>
 
