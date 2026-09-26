@@ -79,8 +79,16 @@ export const WelcomeToast = () => {
               transition={{ type: "spring", stiffness: 350, damping: 25 }}
               className="w-full max-w-[460px] relative overflow-hidden rounded-3xl bg-gray-950/90 border border-white/20 shadow-2xl shadow-black/90 text-white p-6 sm:p-8 backdrop-blur-2xl pointer-events-auto"
             >
-              {/* Top Hairline Gradient Accent Line */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-400" />
+              {/* Countdown Progress Bar — shrinks right→left over 8s then modal closes */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-white/10 overflow-hidden">
+                <motion.div
+                  initial={{ scaleX: 1 }}
+                  animate={{ scaleX: 0 }}
+                  transition={{ duration: 8, ease: "linear" }}
+                  style={{ originX: 0 }}
+                  className="h-full w-full bg-gradient-to-r from-emerald-400 via-sky-400 to-purple-400"
+                />
+              </div>
 
               {/* Background grain texture */}
               <div
@@ -135,7 +143,7 @@ export const WelcomeToast = () => {
                   <p className="text-xs text-emerald-300/90 font-semibold mt-0.5">
                     Front-End Developer (Angular & React){" "}
                     <span className="text-white/60 font-normal">
-                      • Associate Software Analyst @ Agilysys
+                      • Associate Software Analyst @ <span className="text-emerald-400 font-semibold">Agilysys</span>
                     </span>
                   </p>
                   <p className="text-xs text-white/75 leading-relaxed font-normal mt-2">

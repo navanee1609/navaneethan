@@ -16,6 +16,7 @@ import {
   FaCheckCircle,
   FaClock,
   FaRedo,
+  FaExclamationTriangle,
 } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 import ArrowUp from "@/assets/icons/arrow-up-right.svg";
@@ -170,6 +171,7 @@ function ContactPill({ item }: { item: (typeof contactLinks)[number] }) {
 export const ContactSection = () => {
   const [isSending, setIsSending] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const emailAddress = "navaneethanvs18@gmail.com";
@@ -219,8 +221,8 @@ export const ContactSection = () => {
       })
       .catch((error) => {
         console.error("Form submission error:", error);
-
         setIsSending(false);
+        setIsError(true);
       });
 
 
@@ -440,7 +442,74 @@ export const ContactSection = () => {
 
               <div className="relative z-10">
                 <AnimatePresence mode="wait">
-                  {isSuccess ? (
+                  {isError ? (
+                    /* ── Error State ───────────────────────────── */
+                    <motion.div
+                      key="error-card"
+                      initial={{ opacity: 0, scale: 0.94, y: 15 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                      className="relative flex flex-col items-center justify-center text-center py-4 sm:py-6 px-1 space-y-4 sm:space-y-5"
+                    >
+                      {/* Background Ambient Glow */}
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-tr from-red-500/20 via-orange-400/10 to-red-500/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+                      {/* Warning Icon Badge */}
+                      <div className="relative">
+                        <span className="absolute -inset-2.5 rounded-full bg-red-400/20 animate-ping opacity-75" />
+                        <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-400 to-orange-400 opacity-20 blur-md" />
+                        <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-red-400/20 to-orange-950/60 border border-red-400/50 flex items-center justify-center shadow-[0_0_25px_rgba(239,68,68,0.35)] backdrop-blur-xl">
+                          <motion.div
+                            initial={{ scale: 0, rotate: -45 }}
+                            animate={{ scale: 1, rotate: 0 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 18, delay: 0.1 }}
+                          >
+                            <FaExclamationTriangle className="text-red-400 text-2xl sm:text-3xl" />
+                          </motion.div>
+                        </div>
+                      </div>
+
+                      {/* Text Details */}
+                      <div className="space-y-1.5 max-w-md">
+                        <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-red-400/10 border border-red-400/30 text-red-300 text-[10px] sm:text-xs font-semibold uppercase tracking-wider">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+                          Message Not Delivered
+                        </div>
+
+                        <h3 className="text-xl sm:text-2xl font-serif text-white tracking-tight">
+                          Something Went Wrong
+                        </h3>
+
+                        <p className="text-white/70 text-xs sm:text-sm leading-relaxed px-2">
+                          Your message couldn&apos;t be sent right now. Please try again, or reach out directly via email below.
+                        </p>
+                      </div>
+
+                      {/* Direct Email Fallback */}
+                      <a
+                        href="mailto:navaneethanvs18@gmail.com?subject=Portfolio%20Inquiry"
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-400/40 hover:bg-emerald-400/5 transition-all duration-200 text-xs font-medium text-white/80 hover:text-emerald-300"
+                      >
+                        <FaEnvelope className="text-emerald-400" />
+                        navaneethanvs18@gmail.com
+                      </a>
+
+                      {/* Retry Button */}
+                      <div className="w-full max-w-md pt-1">
+                        <motion.button
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          type="button"
+                          onClick={() => setIsError(false)}
+                          className="w-full h-10 px-4 rounded-xl bg-white/10 hover:bg-red-400/20 hover:text-red-300 text-white font-semibold text-xs transition-all duration-300 border border-white/15 hover:border-red-400/40 shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
+                        >
+                          <FaRedo className="text-xs group-hover:rotate-180 transition-transform duration-500" />
+                          <span>Try Again</span>
+                        </motion.button>
+                      </div>
+                    </motion.div>
+                  ) : isSuccess ? (
                     <motion.div
                       key="success-card"
                       initial={{ opacity: 0, scale: 0.94, y: 15 }}
