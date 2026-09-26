@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FaLinkedin } from "react-icons/fa";
-import { PROFILE_IMAGE, RESUME_URL } from "@/constants";
+import { PROFILE_IMAGE, RESUME_IMAGE, RESUME_PDF } from "@/constants";
 import grainImage from "@/assets/images/grain.jpg";
 
 interface DiveIntoMyWorldModalProps {
@@ -263,11 +263,11 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                     {/* Icon-Only Action Buttons */}
                     <div className="flex items-center gap-1.5 shrink-0">
                       <a
-                        href={RESUME_URL}
+                        href={RESUME_PDF}
                         target="_blank"
                         rel="noopener noreferrer"
-                        title="Open Full Screen"
-                        aria-label="Open Full Screen"
+                        title="Expand Resume (PDF)"
+                        aria-label="Expand Resume (PDF)"
                         className="w-8 h-8 flex items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-400/10 hover:bg-cyan-400/20 text-cyan-300 transition-all duration-200"
                       >
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -276,8 +276,8 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                       </a>
 
                       <a
-                        href={RESUME_URL}
-                        download={RESUME_URL.split('/').pop()}
+                        href={RESUME_PDF}
+                        download="Navaneethan_KV.pdf"
                         title="Download Resume"
                         aria-label="Download Resume"
                         className="w-8 h-8 flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 hover:bg-emerald-400/20 text-emerald-300 transition-all duration-200"
@@ -289,10 +289,10 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                     </div>
                   </div>
 
-                  {/* High Resolution Image View Container */}
+                  {/* Original High Resolution Image Container */}
                   <div className="relative flex-1 w-full rounded-2xl border border-white/10 bg-gray-950/70 p-2 flex flex-col items-center overflow-y-auto max-h-[580px] scrollbar-thin shadow-inner">
                     <Image
-                      src={RESUME_URL}
+                      src={RESUME_IMAGE}
                       alt="Navaneethan Vetriselvan Resume"
                       width={900}
                       height={1260}

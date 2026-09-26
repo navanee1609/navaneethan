@@ -96,7 +96,7 @@ function ContactPill({ item }: { item: (typeof contactLinks)[number] }) {
 
   return (
     <div className="relative">
-      <div className="absolute -top-12 inset-x-0 flex justify-center z-50 pointer-events-none">
+      <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-max z-50 pointer-events-none flex justify-center">
         <AnimatePresence>
           {isHovered && (
             <motion.div

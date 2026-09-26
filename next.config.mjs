@@ -1,3 +1,16 @@
+import fs from 'fs';
+import path from 'path';
+
+// Ensure the local PDF is synced to public/Navaneethan_Resume.pdf
+try {
+  const userProfile = process.env.USERPROFILE || 'C:\\Users\\Navaneethan KV';
+  const sourcePdf = path.join(userProfile, 'Downloads', 'Navaneethan Resume.pdf');
+  const targetPdf = path.join(process.cwd(), 'public', 'Navaneethan_Resume.pdf');
+  if (fs.existsSync(sourcePdf) && !fs.existsSync(targetPdf)) {
+    fs.copyFileSync(sourcePdf, targetPdf);
+  }
+} catch (e) {}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   webpack(config) {

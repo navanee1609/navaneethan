@@ -5,7 +5,7 @@ import grainImage from "@/assets/images/grain.jpg"; // Importing a grain texture
 import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
-import { PROFILE_IMAGE, RESUME_URL } from "@/constants";
+import { PROFILE_IMAGE, RESUME_IMAGE, RESUME_PDF } from "@/constants";
 import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,8 +47,8 @@ export const HeroSection = () => {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = "https://drive.google.com/uc?export=download&id=10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx"; // Updated direct download link
-    link.setAttribute("download", "Navaneethan_KV.pdf"); // Ensures file is downloaded
+    link.href = RESUME_PDF;
+    link.setAttribute("download", "Navaneethan_KV.pdf");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -225,6 +225,18 @@ export const HeroSection = () => {
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
+                              <a
+                                href={RESUME_PDF}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title="Expand Resume (PDF)"
+                                className="flex items-center gap-1.5 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-300/30 rounded-lg text-xs text-cyan-300 hover:text-cyan-200 transition-all duration-300"
+                              >
+                                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                </svg>
+                                <span className="font-medium hidden sm:inline">Expand</span>
+                              </a>
                               <motion.button
                                 onClick={handleDownload}
                                 whileHover={{ scale: 1.05 }}
@@ -249,7 +261,7 @@ export const HeroSection = () => {
                               <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-gray-900/70 shadow-lg shadow-black/40">
                                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60 z-10" />
                                 <Image
-                                  src={RESUME_URL}
+                                  src={RESUME_IMAGE}
                                   alt="Resume"
                                   width={800}
                                   height={1132}
