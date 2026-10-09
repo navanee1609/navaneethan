@@ -2,12 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import {
-  FaSearchPlus,
-  FaSearchMinus,
-  FaFilePdf,
-  FaDownload,
-} from "react-icons/fa";
 import { RESUME_IMAGE, RESUME_PDF } from "@/constants";
 
 interface ResumeViewerProps {
@@ -21,10 +15,6 @@ export const ResumeViewer: React.FC<ResumeViewerProps> = ({
 }) => {
   const [zoomLevel, setZoomLevel] = useState<number>(1);
 
-  const handleZoomIn = () => setZoomLevel((prev) => Math.min(prev + 0.25, 2.25));
-  const handleZoomOut = () => setZoomLevel((prev) => Math.max(prev - 0.25, 0.75));
-  const handleReset = () => setZoomLevel(1);
-
   // Toggle zoom on image click
   const handleImageClick = () => {
     setZoomLevel((prev) => (prev === 1 ? 1.4 : 1));
@@ -32,76 +22,38 @@ export const ResumeViewer: React.FC<ResumeViewerProps> = ({
 
   return (
     <div className={`w-full h-full min-h-0 flex flex-col ${className}`}>
-      {/* Floating Viewer Toolbar */}
+      {/* Centered Preview Notice Badge */}
       {showToolbar && (
-        <div className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 mb-2 rounded-xl bg-gray-900/90 border border-white/10 backdrop-blur-md shrink-0">
-          {/* Zoom Controls */}
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              onClick={handleZoomOut}
-              disabled={zoomLevel <= 0.75}
-              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-xs cursor-pointer"
-              title="Zoom Out"
-              aria-label="Zoom Out"
-            >
-              <FaSearchMinus className="w-3.5 h-3.5" />
-            </button>
-
-            <button
-              type="button"
-              onClick={handleReset}
-              className="px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white transition-colors text-[11px] font-mono font-medium cursor-pointer"
-              title="Reset Zoom (100%)"
-              aria-label="Reset Zoom"
-            >
-              {Math.round(zoomLevel * 100)}%
-            </button>
-
-            <button
-              type="button"
-              onClick={handleZoomIn}
-              disabled={zoomLevel >= 2.25}
-              className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-white/80 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors text-xs cursor-pointer"
-              title="Zoom In"
-              aria-label="Zoom In"
-            >
-              <FaSearchPlus className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          {/* Image Preview & Action Hint */}
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/5 text-[11px] text-white/60 select-none">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 animate-pulse" />
-            <span>
-              Image preview &bull; Click <span className="text-cyan-300 font-medium">PDF</span> or <span className="text-emerald-300 font-medium">Download</span> to view
+        <div className="flex items-center justify-center mb-2.5 shrink-0 px-2">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-cyan-400/25 shadow-lg shadow-black/40 backdrop-blur-md text-[11.5px] sm:text-xs text-slate-200 select-none">
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
             </span>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-1.5">
-            {/* Open Full PDF in new tab */}
-            <a
-              href={RESUME_PDF}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/30 text-cyan-300 transition-colors text-xs font-semibold"
-              title="Open Official PDF in new tab"
-            >
-              <FaFilePdf className="w-3 h-3" />
-              <span>PDF</span>
-            </a>
+            <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-cyan-400/20 text-cyan-300 border border-cyan-400/30 shrink-0">
+              Image Preview
+            </span>
 
-            {/* Download PDF button */}
-            <a
-              href={RESUME_PDF}
-              download="Navaneethan_KV_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 hover:text-white transition-colors text-xs font-medium"
-              title="Download Resume PDF"
-            >
-              <FaDownload className="w-3 h-3" />
-              <span className="hidden sm:inline">Download</span>
-            </a>
+            <span className="text-slate-300 font-normal">
+              To view full resume, click{" "}
+              <a
+                href={RESUME_PDF}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-cyan-300 hover:text-cyan-200 underline decoration-cyan-400/60 underline-offset-2 transition-colors"
+              >
+                PDF
+              </a>{" "}
+              or{" "}
+              <a
+                href={RESUME_PDF}
+                download="Navaneethan_KV_Resume.pdf"
+                className="font-semibold text-emerald-300 hover:text-emerald-200 underline decoration-emerald-400/60 underline-offset-2 transition-colors"
+              >
+                Download
+              </a>
+            </span>
           </div>
         </div>
       )}
@@ -112,8 +64,9 @@ export const ResumeViewer: React.FC<ResumeViewerProps> = ({
           <div
             onClick={handleImageClick}
             title={zoomLevel === 1 ? "Click to Zoom In (140%)" : "Click to Reset"}
-            className={`relative rounded-xl overflow-hidden shadow-2xl shadow-black/80 border border-slate-300/40 bg-white transition-all duration-300 shrink-0 ${zoomLevel === 1 ? "cursor-zoom-in" : "cursor-zoom-out"
-              }`}
+            className={`relative rounded-xl overflow-hidden shadow-2xl shadow-black/80 border border-slate-300/40 bg-white transition-all duration-300 shrink-0 ${
+              zoomLevel === 1 ? "cursor-zoom-in" : "cursor-zoom-out"
+            }`}
             style={{
               width: `${Math.round(850 * zoomLevel)}px`,
               maxWidth: zoomLevel <= 1 ? "100%" : "none",
