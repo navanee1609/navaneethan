@@ -8,3 +8,4 @@ export * from "./PillBadge";
 export * from "./AppButton";
 export * from "./AppModal";
 export * from "./CommandPalette";
+export * from "./ResumeViewer";

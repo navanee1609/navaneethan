@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FaLinkedin } from "react-icons/fa";
 import { PROFILE_IMAGE, RESUME_IMAGE, RESUME_PDF } from "@/constants";
+import { ResumeViewer } from "./ResumeViewer";
 import grainImage from "@/assets/images/grain.jpg";
 
 interface DiveIntoMyWorldModalProps {
@@ -63,7 +64,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
             role="dialog"
             aria-modal="true"
             aria-labelledby="dive-modal-title"
-            className={`bg-gray-900 border border-white/20 rounded-3xl p-5 sm:p-7 w-full ${isResumeExpanded ? "max-w-3xl max-h-[90vh]" : "max-w-lg"
+            className={`bg-gray-900 border border-white/20 rounded-3xl p-5 sm:p-7 w-full ${isResumeExpanded ? "max-w-4xl sm:max-w-5xl max-h-[92vh]" : "max-w-lg"
               } relative z-10 overflow-hidden shadow-2xl shadow-black/90 transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/10 after:rounded-3xl after:pointer-events-none`}
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -277,7 +278,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
 
                       <a
                         href={RESUME_PDF}
-                        download="Navaneethan_KV.pdf"
+                        download="Navaneethan_KV_Resume.pdf"
                         title="Download Resume"
                         aria-label="Download Resume"
                         className="w-8 h-8 flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 hover:bg-emerald-400/20 text-emerald-300 transition-all duration-200"
@@ -289,16 +290,9 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
                     </div>
                   </div>
 
-                  {/* Original High Resolution Image Container */}
-                  <div className="relative flex-1 w-full rounded-2xl border border-white/10 bg-gray-950/70 p-2 flex flex-col items-center overflow-y-auto max-h-[580px] scrollbar-thin shadow-inner">
-                    <Image
-                      src={RESUME_IMAGE}
-                      alt="Navaneethan Vetriselvan Resume"
-                      width={900}
-                      height={1260}
-                      className="w-full h-auto object-contain rounded-xl shadow-lg transition-transform duration-500 hover:scale-[1.01]"
-                      priority
-                    />
+                  {/* Resume Viewer with Zoom and Contrast Controls */}
+                  <div className="relative flex-1 w-full flex flex-col min-h-0 overflow-hidden">
+                    <ResumeViewer />
                   </div>
                 </motion.div>
               )}

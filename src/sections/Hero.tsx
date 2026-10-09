@@ -6,6 +6,7 @@ import StartIcon from "@/assets/icons/star.svg"; // Importing a star icon
 import { HeroOrbit } from "@/components/HeroOrbit"; // Importing a custom component for orbit animations
 import SparkleIcon from "@/assets/icons/sparkle.svg"; // Importing a sparkle icon
 import { PROFILE_IMAGE, RESUME_IMAGE, RESUME_PDF } from "@/constants";
+import { ResumeViewer } from "@/components/ResumeViewer";
 import { faArrowDown, faEye, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion, AnimatePresence } from "framer-motion";
@@ -26,8 +27,7 @@ export const HeroSection = () => {
   const [showResume, setShowResume] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  const resumeUrl =
-    "https://drive.google.com/file/d/10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx/view?usp=sharing"; // Google Drive view link
+  const resumeUrl = RESUME_PDF;
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,7 +48,7 @@ export const HeroSection = () => {
   const handleDownload = () => {
     const link = document.createElement("a");
     link.href = RESUME_PDF;
-    link.setAttribute("download", "Navaneethan_KV.pdf");
+    link.setAttribute("download", "Navaneethan_KV_Resume.pdf");
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -201,7 +201,7 @@ export const HeroSection = () => {
                           animate={{ x: 0, opacity: 1 }}
                           exit={{ x: "100%", opacity: 0.5 }}
                           transition={{ type: "spring", stiffness: 350, damping: 25 }}
-                          className="absolute right-0 top-0 bottom-0 w-full sm:w-[480px] lg:w-[520px] bg-gray-800 border-l border-white/20 shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
+                          className="absolute right-0 top-0 bottom-0 w-full sm:w-[620px] md:w-[720px] lg:w-[820px] max-w-full bg-gray-800 border-l border-white/20 shadow-2xl shadow-black/80 flex flex-col overflow-hidden"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <div
@@ -255,21 +255,9 @@ export const HeroSection = () => {
                             </div>
                           </div>
 
-                          {/* Resume Image */}
-                          <div className="relative z-10 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                            <div className="p-6">
-                              <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-gray-900/70 shadow-lg shadow-black/40">
-                                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-emerald-300/60 via-sky-400/60 to-emerald-300/60 z-10" />
-                                <Image
-                                  src={RESUME_IMAGE}
-                                  alt="Resume"
-                                  width={800}
-                                  height={1132}
-                                  className="w-full h-auto"
-                                  priority
-                                />
-                              </div>
-                            </div>
+                          {/* Exact Resume Viewer */}
+                          <div className="relative z-10 flex-1 min-h-0 overflow-hidden p-3 sm:p-5 flex flex-col">
+                            <ResumeViewer />
                           </div>
 
                           {/* Bottom hint */}

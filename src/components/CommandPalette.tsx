@@ -22,6 +22,7 @@ import {
   ArrowUpRight,
   X,
 } from "lucide-react";
+import { RESUME_PDF } from "@/constants";
 
 interface CommandItem {
   id: string;
@@ -152,9 +153,8 @@ export const CommandPalette = () => {
       perform: () => {
         setIsOpen(false);
         const link = document.createElement("a");
-        link.href =
-          "https://drive.google.com/uc?export=download&id=10gFsIBaL8r8K8BQGxeXboBcyvJWmL8zx";
-        link.setAttribute("download", "Navaneethan_KV.pdf");
+        link.href = RESUME_PDF;
+        link.setAttribute("download", "Navaneethan_KV_Resume.pdf");
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

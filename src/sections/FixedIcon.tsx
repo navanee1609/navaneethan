@@ -6,6 +6,7 @@ import { FaLinkedin } from 'react-icons/fa';
 import Image from 'next/image';
 import SparkleIcon from "@/assets/icons/star.svg";
 import { PROFILE_IMAGE, RESUME_IMAGE, RESUME_PDF } from "@/constants";
+import { ResumeViewer } from "@/components/ResumeViewer";
 import grainImage from "@/assets/images/grain.jpg";
 
 export const FixedChatIcon = () => {
@@ -139,8 +140,8 @@ export const FixedChatIcon = () => {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="chat-modal-title"
-                className={`relative w-full ${isResumeExpanded ? 'max-w-[95vw] sm:w-[860px]' : 'sm:w-[380px]'
-                  } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out after:absolute after:inset-0 after:border-2 after:border-white/20 after:rounded-3xl after:pointer-events-none`}
+                className={`relative w-full ${isResumeExpanded ? 'max-w-[96vw] sm:w-[1020px] lg:w-[1080px]' : 'sm:w-[380px]'
+                  } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out`}
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -166,11 +167,10 @@ export const FixedChatIcon = () => {
                   </svg>
                 </button>
 
-                <div className={`flex flex-col sm:flex-row w-full ${isResumeExpanded ? 'max-h-[90vh] sm:h-[680px]' : 'max-h-[85vh] sm:max-h-[640px]'
+                <div className={`flex flex-col sm:flex-row w-full ${isResumeExpanded ? 'max-h-[92vh] sm:h-[760px]' : 'max-h-[85vh] sm:max-h-[640px]'
                   } overflow-y-auto sm:overflow-hidden transition-all duration-500`}>
                   {/* Left Profile Section */}
-                  <div className={`w-full sm:w-[380px] shrink-0 p-6 flex-col justify-between relative z-10 border-b sm:border-b-0 sm:border-r border-white/10 ${isResumeExpanded ? 'hidden sm:flex' : 'flex'
-                    }`}>
+                  <div className={`w-full ${isResumeExpanded ? 'sm:w-[380px] shrink-0 border-b sm:border-b-0 sm:border-r border-white/10 hidden sm:flex' : 'flex'} p-6 flex-col justify-between relative z-10`}>
                     {/* Header Row */}
                     <div className="flex flex-col items-start gap-4 mb-5">
                       <div className="flex items-start gap-4 w-full">
@@ -330,9 +330,9 @@ export const FixedChatIcon = () => {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                      className="flex-1 p-5 sm:p-6 bg-gray-900/90 backdrop-blur-md relative z-10 flex flex-col justify-between h-full overflow-hidden"
+                      className="flex-1 p-4 sm:p-6 bg-gray-900/90 backdrop-blur-md relative z-10 flex flex-col h-full min-h-0 overflow-hidden"
                     >
-                      <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-white/10 pr-7 sm:pr-10">
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-white/10 pr-7 sm:pr-10 shrink-0">
                         <div className="flex items-center gap-2 min-w-0">
                           <button
                             onClick={() => setIsResumeExpanded(false)}
@@ -369,7 +369,7 @@ export const FixedChatIcon = () => {
 
                           <a
                             href={RESUME_PDF}
-                            download="Navaneethan_KV.pdf"
+                            download="Navaneethan_KV_Resume.pdf"
                             title="Download Resume"
                             aria-label="Download Resume"
                             className="w-8 h-8 flex items-center justify-center rounded-xl border border-emerald-400/30 bg-emerald-400/10 hover:bg-emerald-400/20 text-emerald-300 transition-all duration-200"
@@ -381,16 +381,9 @@ export const FixedChatIcon = () => {
                         </div>
                       </div>
 
-                      {/* Original High Resolution Image Container */}
-                      <div className="relative flex-1 w-full rounded-2xl border border-white/10 bg-gray-950/70 p-2 flex flex-col items-center overflow-y-auto max-h-[580px] scrollbar-thin shadow-inner">
-                        <Image
-                          src={RESUME_IMAGE}
-                          alt="Navaneethan Vetriselvan Resume"
-                          width={900}
-                          height={1260}
-                          className="w-full h-auto object-contain rounded-xl shadow-lg transition-transform duration-500 hover:scale-[1.01]"
-                          priority
-                        />
+                      {/* Resume Viewer with Zoom and Contrast Controls */}
+                      <div className="relative flex-1 w-full flex flex-col min-h-0 overflow-hidden">
+                        <ResumeViewer />
                       </div>
                     </motion.div>
                   )}
