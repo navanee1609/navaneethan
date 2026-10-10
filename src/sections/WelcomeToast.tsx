@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { X, Sparkles, CheckCircle2, ArrowRight, Mail, Zap, Code2, Rocket } from "lucide-react";
-import { PROFILE_IMAGE } from "@/constants";
+import { NEW_PROFILE_IMAGE } from "@/constants";
 import grainImage from "@/assets/images/grain.jpg";
 
 export const WelcomeToast = () => {
@@ -123,7 +123,7 @@ export const WelcomeToast = () => {
                 <div className="relative shrink-0 select-none">
                   <div className="w-16 h-16 rounded-full border-2 border-emerald-400/80 shadow-lg shadow-emerald-500/20 overflow-hidden relative bg-gray-800">
                     <Image
-                      src={PROFILE_IMAGE}
+                      src={NEW_PROFILE_IMAGE}
                       alt="Navaneethan KV"
                       fill
                       className="object-cover object-top"

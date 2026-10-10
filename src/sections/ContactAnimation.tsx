@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PROFILE_IMAGE } from "@/constants";
+import { NEW_PROFILE_IMAGE } from "@/constants";
 import { Card } from "@/components/Card";
 import { CardHeader } from "@/components/Cardheader";
 import { FaMapPin } from "react-icons/fa";
@@ -49,7 +49,7 @@ const ContactAnimation = () => {
             {/* Profile Avatar Image */}
             <div className="relative size-16 sm:size-20 rounded-full z-10 border-2 border-white shadow-xl overflow-hidden transform-gpu">
               <Image
-                src={PROFILE_IMAGE}
+                src={NEW_PROFILE_IMAGE}
                 alt="Navaneethan KV Location"
                 fill
                 className="object-cover object-top"
