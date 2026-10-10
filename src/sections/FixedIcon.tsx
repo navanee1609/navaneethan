@@ -132,7 +132,11 @@ export const FixedChatIcon = () => {
 
             {/* Modal Dialog Container */}
             <div
-              className="fixed inset-0 sm:inset-auto sm:bottom-6 sm:right-6 z-[9999] flex items-end sm:items-center justify-center sm:justify-end p-0 sm:p-6 pointer-events-none"
+              className={`fixed inset-0 z-[9999] flex p-2.5 sm:p-4 md:p-6 pointer-events-none ${
+                isResumeExpanded
+                  ? 'items-center justify-center'
+                  : 'items-center justify-center md:items-end md:justify-end'
+              }`}
             >
               {/* Modal Card */}
               <motion.div
@@ -140,8 +144,11 @@ export const FixedChatIcon = () => {
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="chat-modal-title"
-                className={`relative w-full ${isResumeExpanded ? 'max-w-[96vw] sm:w-[1020px] lg:w-[1080px]' : 'sm:w-[380px]'
-                  } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 overflow-hidden pointer-events-auto transition-all duration-500 ease-out`}
+                className={`relative w-full ${
+                  isResumeExpanded
+                    ? 'max-w-[96vw] md:w-[980px] lg:w-[1080px] h-[90vh] max-h-[820px]'
+                    : 'max-w-[390px] md:w-[380px] max-h-[88vh]'
+                } bg-gray-900 border border-white/20 rounded-3xl shadow-2xl shadow-black/80 flex flex-col overflow-hidden pointer-events-auto transition-all duration-300 ease-out`}
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -158,7 +165,7 @@ export const FixedChatIcon = () => {
 
                 {/* Close Button */}
                 <button
-                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white/50 hover:text-white transition-all duration-300 cursor-pointer"
+                  className="absolute top-3 right-3 sm:top-4 sm:right-4 z-40 w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white/70 hover:text-white transition-all duration-300 cursor-pointer shadow-md backdrop-blur-md"
                   onClick={closeModal}
                   aria-label="Close details modal"
                 >
@@ -167,13 +174,16 @@ export const FixedChatIcon = () => {
                   </svg>
                 </button>
 
-                <div className={`flex flex-col sm:flex-row w-full ${isResumeExpanded ? 'max-h-[92vh] sm:h-[760px]' : 'max-h-[85vh] sm:max-h-[640px]'
-                  } overflow-y-auto sm:overflow-hidden transition-all duration-500`}>
+                <div className="flex flex-col md:flex-row w-full h-full min-h-0 overflow-hidden">
                   {/* Left Profile Section */}
-                  <div className={`w-full ${isResumeExpanded ? 'sm:w-[380px] shrink-0 border-b sm:border-b-0 sm:border-r border-white/10 hidden sm:flex' : 'flex'} p-6 flex-col justify-between relative z-10`}>
+                  <div className={`w-full ${
+                    isResumeExpanded
+                      ? 'hidden md:flex md:w-[360px] lg:w-[380px] shrink-0 border-b md:border-b-0 md:border-r border-white/10'
+                      : 'flex'
+                  } p-5 sm:p-6 flex-col gap-4 relative z-10 overflow-y-auto`}>
                     {/* Header Row */}
-                    <div className="flex flex-col items-start gap-4 mb-5">
-                      <div className="flex items-start gap-4 w-full">
+                    <div className="flex flex-col items-start gap-4 mb-2 pr-7">
+                      <div className="flex items-start gap-3.5 w-full">
                         {/* Avatar with animated story ring */}
                         <div className="relative shrink-0 select-none">
                           <motion.div
@@ -252,11 +262,11 @@ export const FixedChatIcon = () => {
                     </div>
 
                     {/* Divider */}
-                    <div className="relative h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-5" />
+                    <div className="relative h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-1" />
 
                     {/* Availability Block */}
-                    <div className="mb-5 overflow-hidden rounded-2xl border border-white/5 bg-white/[0.01] p-4 shadow-inner">
-                      <div className="mb-2.5 flex items-center gap-2">
+                    <div className="mb-2 overflow-hidden rounded-2xl border border-white/5 bg-white/[0.01] p-3.5 sm:p-4 shadow-inner">
+                      <div className="mb-2 flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
@@ -266,16 +276,16 @@ export const FixedChatIcon = () => {
                         </span>
                       </div>
 
-                      <p className="text-[12.5px] leading-[1.6] text-white/70 mb-3.5">
+                      <p className="text-[12px] leading-[1.6] text-white/70 mb-3">
                         I build fast, accessible web interfaces with Angular and React — clean component architecture, thoughtful motion, and production-ready code.
                       </p>
 
                       {/* Quick Shortcut Buttons */}
-                      <div className="flex flex-wrap gap-2 pt-3 border-t border-white/5">
+                      <div className="grid grid-cols-2 gap-2 pt-3 border-t border-white/5">
                         <motion.button
                           whileTap={{ scale: 0.96 }}
                           onClick={() => setIsResumeExpanded(!isResumeExpanded)}
-                          className={`flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border ${isResumeExpanded
+                          className={`inline-flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-xl border ${isResumeExpanded
                             ? 'border-cyan-300 bg-cyan-400/20 text-white shadow-[0_0_12px_rgba(34,211,238,0.3)]'
                             : 'border-cyan-400/20 bg-cyan-400/5 hover:border-cyan-300/40 hover:bg-cyan-400/10 text-cyan-300'
                             } text-[10.5px] font-semibold transition-all duration-300 cursor-pointer shadow-sm`}
@@ -293,7 +303,7 @@ export const FixedChatIcon = () => {
                             if (el) el.scrollIntoView({ behavior: 'smooth' });
                             closeModal();
                           }}
-                          className="flex-1 min-w-[120px] inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl border border-emerald-400/20 bg-emerald-400/5 hover:border-emerald-300/40 hover:bg-emerald-400/10 text-[10.5px] font-semibold text-emerald-300 transition-all duration-300 cursor-pointer shadow-sm"
+                          className="inline-flex items-center justify-center gap-1.5 px-2.5 py-2 rounded-xl border border-emerald-400/20 bg-emerald-400/5 hover:border-emerald-300/40 hover:bg-emerald-400/10 text-[10.5px] font-semibold text-emerald-300 transition-all duration-300 cursor-pointer shadow-sm"
                         >
                           <svg className="w-3.5 h-3.5 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.24a6 6 0 00-4.76 4.76m8.88-8.88a6 6 0 00-4.76-4.76" />
@@ -332,11 +342,11 @@ export const FixedChatIcon = () => {
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       className="flex-1 p-4 sm:p-6 bg-gray-900/90 backdrop-blur-md relative z-10 flex flex-col h-full min-h-0 overflow-hidden"
                     >
-                      <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-white/10 pr-7 sm:pr-10 shrink-0">
+                      <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-white/10 pr-8 sm:pr-10 shrink-0">
                         <div className="flex items-center gap-2 min-w-0">
                           <button
                             onClick={() => setIsResumeExpanded(false)}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] font-bold text-white/80 hover:text-white transition-colors duration-200 cursor-pointer sm:hidden shrink-0"
+                            className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-[11px] font-bold text-white transition-colors duration-200 cursor-pointer md:hidden shrink-0"
                           >
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -344,7 +354,7 @@ export const FixedChatIcon = () => {
                             <span>Back</span>
                           </button>
 
-                          <span className="hidden sm:flex h-6 w-6 rounded-full bg-cyan-500/20 items-center justify-center text-cyan-300 shrink-0">
+                          <span className="hidden md:flex h-6 w-6 rounded-full bg-cyan-500/20 items-center justify-center text-cyan-300 shrink-0">
                             <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                             </svg>

@@ -25,16 +25,20 @@ import { RESUME_PDF } from "@/constants";
 interface ResumeDocumentProps {
   className?: string;
   defaultTheme?: "light" | "dark";
+  theme?: "light" | "dark";
   showToolbar?: boolean;
 }
 
 export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
   className = "",
   defaultTheme = "dark",
+  theme: controlledTheme,
   showToolbar = false,
 }) => {
   const [copied, setCopied] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">(defaultTheme);
+  const [internalTheme, setInternalTheme] = useState<"light" | "dark">(defaultTheme);
+  const theme = controlledTheme ?? internalTheme;
+  const setTheme = setInternalTheme;
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -94,58 +98,58 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
 
       {/* Main Resume Sheet */}
       <div
-        className={`w-full max-w-[850px] rounded-2xl shadow-2xl transition-colors duration-300 overflow-hidden text-left border ${
+        className={`w-full max-w-[850px] rounded-xl sm:rounded-2xl shadow-2xl transition-colors duration-300 overflow-hidden text-left border ${
           isDark
-            ? "bg-[#0b1329] text-slate-100 border-cyan-500/20 shadow-cyan-950/40"
-            : "bg-white text-slate-900 border-slate-200 shadow-black/25"
+            ? "bg-gray-900/95 text-slate-100 border-white/15 shadow-2xl shadow-black/80"
+            : "bg-white text-slate-900 border-slate-300 shadow-black/25"
         }`}
       >
-        {/* Top accent gradient line */}
-        <div className="h-1.5 w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-sky-500" />
+        {/* Top accent gradient line matching story ring and app branding */}
+        <div className="h-1.5 w-full bg-gradient-to-r from-emerald-300 via-sky-400 to-emerald-300" />
 
-        <div className="p-5 sm:p-7 space-y-4">
+        <div className="p-3.5 sm:p-7 space-y-3.5 sm:space-y-4">
           {/* Header */}
-          <header className={`border-b pb-4 ${isDark ? "border-white/10" : "border-slate-200"}`}>
-            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 mb-2">
+          <header className={`border-b pb-3 sm:pb-4 ${isDark ? "border-white/10" : "border-slate-200"}`}>
+            <div className="flex flex-col items-start gap-1 mb-2.5">
               <h1
-                className={`text-2xl sm:text-3xl font-black tracking-tight ${
+                className={`text-lg sm:text-xl md:text-2xl lg:text-3xl font-black tracking-tight ${
                   isDark ? "text-white" : "text-[#0f172a]"
                 }`}
               >
                 NAVANEETHAN KV
               </h1>
-              <span
-                className={`text-sm sm:text-base font-bold tracking-wide ${
-                  isDark ? "text-teal-400" : "text-[#0f766e]"
+              <p
+                className={`text-[11px] sm:text-xs md:text-sm font-bold tracking-wide ${
+                  isDark ? "text-emerald-300" : "text-[#0f766e]"
                 }`}
               >
-                Front-End Developer | Chennai
-              </span>
+                Front-End Developer <span className="text-white/30 font-normal">|</span> Chennai, India
+              </p>
             </div>
 
             {/* Contact row */}
             <div
-              className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-xs pt-1 ${
-                isDark ? "text-slate-300" : "text-slate-700"
+              className={`flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1.5 text-[11px] sm:text-xs pt-1 ${
+                isDark ? "text-white/70" : "text-slate-700"
               }`}
             >
               <a
                 href="tel:6380939303"
                 className={`inline-flex items-center gap-1.5 font-medium transition-colors ${
-                  isDark ? "hover:text-teal-300" : "hover:text-teal-700"
+                  isDark ? "hover:text-emerald-300" : "hover:text-teal-700"
                 }`}
               >
-                <FaPhoneAlt className={isDark ? "text-teal-400" : "text-teal-700"} />
+                <FaPhoneAlt className={isDark ? "text-emerald-400" : "text-teal-700"} />
                 <span>6380939303</span>
               </a>
 
               <a
                 href="mailto:navaneethanvs18@gmail.com"
                 className={`inline-flex items-center gap-1.5 font-medium transition-colors ${
-                  isDark ? "hover:text-teal-300" : "hover:text-teal-700"
+                  isDark ? "hover:text-emerald-300" : "hover:text-teal-700"
                 }`}
               >
-                <FaEnvelope className={isDark ? "text-teal-400" : "text-teal-700"} />
+                <FaEnvelope className={isDark ? "text-emerald-400" : "text-teal-700"} />
                 <span>navaneethanvs18@gmail.com</span>
               </a>
 
@@ -154,10 +158,10 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-1.5 font-medium transition-colors ${
-                  isDark ? "hover:text-teal-300" : "hover:text-teal-700"
+                  isDark ? "hover:text-cyan-300" : "hover:text-teal-700"
                 }`}
               >
-                <FaLinkedin className={isDark ? "text-teal-400" : "text-teal-700"} />
+                <FaLinkedin className={isDark ? "text-cyan-400" : "text-teal-700"} />
                 <span>LinkedIn</span>
               </a>
 
@@ -166,10 +170,10 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-1.5 font-medium transition-colors ${
-                  isDark ? "hover:text-teal-300" : "hover:text-teal-700"
+                  isDark ? "hover:text-cyan-300" : "hover:text-teal-700"
                 }`}
               >
-                <FaGithub className={isDark ? "text-teal-400" : "text-teal-700"} />
+                <FaGithub className={isDark ? "text-cyan-400" : "text-teal-700"} />
                 <span>GitHub</span>
               </a>
 
@@ -178,15 +182,15 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`inline-flex items-center gap-1.5 font-medium transition-colors ${
-                  isDark ? "hover:text-teal-300" : "hover:text-teal-700"
+                  isDark ? "hover:text-emerald-300" : "hover:text-teal-700"
                 }`}
               >
-                <FaGlobe className={isDark ? "text-teal-400" : "text-teal-700"} />
+                <FaGlobe className={isDark ? "text-emerald-400" : "text-teal-700"} />
                 <span>Portfolio</span>
               </a>
 
               <span className="inline-flex items-center gap-1.5 font-medium">
-                <FaMapMarkerAlt className={isDark ? "text-teal-400" : "text-teal-700"} />
+                <FaMapMarkerAlt className={isDark ? "text-emerald-400" : "text-teal-700"} />
                 <span>Chennai</span>
               </span>
             </div>
@@ -195,13 +199,13 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
           {/* Two-Column Grid Body */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-7 items-start">
             {/* Left Column (35%) */}
-            <div className="md:col-span-5 space-y-3.5">
+            <div className="md:col-span-5 space-y-3.5 order-2 md:order-1">
               {/* SKILLS */}
               <section>
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -225,7 +229,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       key={skill}
                       className={`text-[10.5px] font-bold px-2 py-0.5 rounded border transition-colors ${
                         isDark
-                          ? "bg-teal-950/40 text-teal-200 border-teal-500/40"
+                          ? "bg-emerald-400/10 text-emerald-300 border-emerald-400/20"
                           : "bg-teal-50 text-teal-900 border-teal-300"
                       }`}
                     >
@@ -240,7 +244,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -251,16 +255,16 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`inline-flex items-center gap-1.5 text-xs font-bold underline mb-2 ${
-                    isDark ? "text-cyan-400 hover:text-cyan-300" : "text-teal-700 hover:text-teal-900"
+                    isDark ? "text-cyan-300 hover:text-cyan-200" : "text-teal-700 hover:text-teal-900"
                   }`}
                 >
-                  <FaGlobe className="w-3 h-3" />
+                  <FaGlobe className="w-3 h-3 text-emerald-400" />
                   <span>navaneethan.vercel.app</span>
                   <FaExternalLinkAlt className="w-2.5 h-2.5" />
                 </a>
                 <ul
                   className={`text-[11.5px] leading-relaxed space-y-1.5 list-disc pl-4 ${
-                    isDark ? "text-slate-300" : "text-slate-700"
+                    isDark ? "text-white/75" : "text-slate-700"
                   }`}
                 >
                   <li>Interactive showcase of frontend projects & components</li>
@@ -274,7 +278,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -293,7 +297,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       key={tool}
                       className={`text-[10.5px] font-bold px-2 py-0.5 rounded border transition-colors ${
                         isDark
-                          ? "bg-sky-950/40 text-sky-200 border-sky-500/40"
+                          ? "bg-cyan-400/10 text-cyan-300 border-cyan-400/20"
                           : "bg-sky-50 text-sky-950 border-sky-300"
                       }`}
                     >
@@ -308,7 +312,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -327,7 +331,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       </h3>
                       <span
                         className={`text-[11px] font-bold ${
-                          isDark ? "text-teal-400" : "text-teal-700"
+                          isDark ? "text-emerald-400" : "text-teal-700"
                         }`}
                       >
                         Agilysys
@@ -335,7 +339,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                     </div>
                     <p
                       className={`text-[11px] mt-0.5 leading-snug ${
-                        isDark ? "text-slate-300" : "text-slate-600"
+                        isDark ? "text-white/70" : "text-slate-600"
                       }`}
                     >
                       High ownership & end-to-end delivery of Tax Exemption Reconciliation feature in Stay.
@@ -354,7 +358,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       </h3>
                       <span
                         className={`text-[11px] font-bold ${
-                          isDark ? "text-teal-400" : "text-teal-700"
+                          isDark ? "text-emerald-400" : "text-teal-700"
                         }`}
                       >
                         Agilysys
@@ -362,7 +366,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                     </div>
                     <p
                       className={`text-[11px] mt-0.5 leading-snug ${
-                        isDark ? "text-slate-300" : "text-slate-600"
+                        isDark ? "text-white/70" : "text-slate-600"
                       }`}
                     >
                       Recognized for cross-functional collaboration on Share Reservation feature in Stay.
@@ -376,7 +380,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -384,7 +388,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 </h2>
                 <div className="relative pl-6 space-y-3.5 py-1">
                   {/* Timeline vertical bar */}
-                  <div className="absolute left-2.5 top-2.5 bottom-2.5 w-[1.5px] bg-teal-500/30" />
+                  <div className="absolute left-2.5 top-2.5 bottom-2.5 w-[1.5px] bg-emerald-400/30" />
 
                   {[
                     {
@@ -409,11 +413,11 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                     },
                   ].map((strength) => (
                     <div key={strength.title} className="relative flex items-start gap-2.5">
-                      {/* Proper Circular Icon Badge matching resume photo */}
+                      {/* Proper Circular Icon Badge matching resume theme */}
                       <div
                         className={`absolute -left-6 top-0.5 w-5 h-5 rounded-full flex items-center justify-center text-[9px] shadow-sm shrink-0 transition-colors ${
                           isDark
-                            ? "bg-teal-950 border border-teal-400/50 text-teal-300 ring-4 ring-[#0b1329]"
+                            ? "bg-emerald-950 border border-emerald-400/50 text-emerald-300 ring-4 ring-gray-900"
                             : "bg-teal-50 border border-teal-500/50 text-teal-700 ring-4 ring-white"
                         }`}
                       >
@@ -422,14 +426,14 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       <div className="min-w-0">
                         <h4
                           className={`text-xs font-bold leading-tight ${
-                            isDark ? "text-teal-200" : "text-slate-900"
+                            isDark ? "text-emerald-300" : "text-slate-900"
                           }`}
                         >
                           {strength.title}
                         </h4>
                         <p
                           className={`text-[11px] leading-snug mt-0.5 ${
-                            isDark ? "text-slate-300" : "text-slate-600"
+                            isDark ? "text-white/70" : "text-slate-600"
                           }`}
                         >
                           {strength.desc}
@@ -445,7 +449,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -470,14 +474,14 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                   </div>
                   <p
                     className={`text-[11px] font-semibold mt-0.5 ${
-                      isDark ? "text-teal-400" : "text-teal-700"
+                      isDark ? "text-cyan-300" : "text-teal-700"
                     }`}
                   >
                     Dhanalakshmi Srinivasan Engineering College
                   </p>
                   <p
                     className={`text-[11px] mt-0.5 ${
-                      isDark ? "text-slate-400" : "text-slate-500"
+                      isDark ? "text-white/50" : "text-slate-500"
                     }`}
                   >
                     2018 – 2022
@@ -487,13 +491,13 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
             </div>
 
             {/* Right Column (65%) */}
-            <div className="md:col-span-7 space-y-3.5">
+            <div className="md:col-span-7 space-y-3.5 order-1 md:order-2">
               {/* SUMMARY */}
               <section>
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -501,7 +505,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 </h2>
                 <p
                   className={`text-xs leading-relaxed ${
-                    isDark ? "text-slate-200" : "text-slate-800"
+                    isDark ? "text-white/80" : "text-slate-800"
                   }`}
                 >
                   Results-driven Frontend Developer with 2.5+ years of experience in building and enhancing
@@ -519,7 +523,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -538,7 +542,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       </h3>
                       <span
                         className={`text-[11px] font-medium ${
-                          isDark ? "text-slate-400" : "text-slate-500"
+                          isDark ? "text-white/50" : "text-slate-500"
                         }`}
                       >
                         March 2025 – Present
@@ -546,14 +550,14 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                     </div>
                     <p
                       className={`text-xs font-semibold mb-2 ${
-                        isDark ? "text-teal-400" : "text-teal-700"
+                        isDark ? "text-emerald-300" : "text-teal-700"
                       }`}
                     >
                       Agilysys Technologies India Pvt. Ltd. | Chennai
                     </p>
                     <ul
                       className={`text-[11.5px] leading-relaxed space-y-1.5 list-disc pl-4 ${
-                        isDark ? "text-slate-200" : "text-slate-700"
+                        isDark ? "text-white/75" : "text-slate-700"
                       }`}
                     >
                       <li>
@@ -583,7 +587,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                       </h3>
                       <span
                         className={`text-[11px] font-medium ${
-                          isDark ? "text-slate-400" : "text-slate-500"
+                          isDark ? "text-white/50" : "text-slate-500"
                         }`}
                       >
                         May 2024 – Feb 2025
@@ -591,14 +595,14 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                     </div>
                     <p
                       className={`text-xs font-semibold mb-2 ${
-                        isDark ? "text-teal-400" : "text-teal-700"
+                        isDark ? "text-emerald-300" : "text-teal-700"
                       }`}
                     >
                       Spritle Software | Chennai
                     </p>
                     <ul
                       className={`text-[11.5px] leading-relaxed space-y-1.5 list-disc pl-4 ${
-                        isDark ? "text-slate-200" : "text-slate-700"
+                        isDark ? "text-white/75" : "text-slate-700"
                       }`}
                     >
                       <li>
@@ -622,7 +626,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -640,14 +644,14 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                     </h3>
                     <p
                       className={`text-[11.5px] font-semibold mb-2 ${
-                        isDark ? "text-teal-400" : "text-teal-700"
+                        isDark ? "text-cyan-300" : "text-teal-700"
                       }`}
                     >
                       Angular 16, TypeScript, JavaScript, Tailwind CSS | Agilysys IDC
                     </p>
                     <ul
                       className={`text-[11.5px] leading-relaxed space-y-1.5 list-disc pl-4 ${
-                        isDark ? "text-slate-200" : "text-slate-700"
+                        isDark ? "text-white/75" : "text-slate-700"
                       }`}
                     >
                       <li>
@@ -683,23 +687,23 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`inline-flex items-center gap-1 text-[11px] font-bold underline ${
-                          isDark ? "text-cyan-400 hover:text-cyan-300" : "text-teal-700 hover:text-teal-900"
+                          isDark ? "text-cyan-300 hover:text-cyan-200" : "text-teal-700 hover:text-teal-900"
                         }`}
                       >
                         <span>cookio-recipehub.netlify.app</span>
-                        <FaExternalLinkAlt className="w-2.5 h-2.5" />
+                        <FaExternalLinkAlt className="w-2.5 h-2.5 text-emerald-400" />
                       </a>
                     </div>
                     <p
                       className={`text-[11.5px] font-semibold mb-2 ${
-                        isDark ? "text-teal-400" : "text-teal-700"
+                        isDark ? "text-cyan-300" : "text-teal-700"
                       }`}
                     >
                       React.js, JavaScript, Tailwind CSS, REST API – Axios
                     </p>
                     <ul
                       className={`text-[11.5px] leading-relaxed space-y-1.5 list-disc pl-4 ${
-                        isDark ? "text-slate-200" : "text-slate-700"
+                        isDark ? "text-white/75" : "text-slate-700"
                       }`}
                     >
                       <li>
@@ -728,7 +732,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 <h2
                   className={`text-xs font-black tracking-wider uppercase pb-1.5 mb-2.5 border-b-2 ${
                     isDark
-                      ? "text-teal-300 border-teal-500/40"
+                      ? "text-emerald-300 border-emerald-400/30"
                       : "text-slate-900 border-[#0f766e]"
                   }`}
                 >
@@ -736,7 +740,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
                 </h2>
                 <ul
                   className={`text-[11.5px] leading-relaxed space-y-1.5 list-disc pl-4 ${
-                    isDark ? "text-slate-200" : "text-slate-700"
+                    isDark ? "text-white/75" : "text-slate-700"
                   }`}
                 >
                   <li>
@@ -772,7 +776,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
           <div className={`mt-5 pt-3 pb-1 text-center w-full border-t ${isDark ? "border-white/10" : "border-slate-200"}`}>
             <p
               className={`text-xs font-bold tracking-wider italic ${
-                isDark ? "text-teal-400" : "text-[#0f766e]"
+                isDark ? "text-emerald-300" : "text-[#0f766e]"
               }`}
             >
               Elevating the Digital Experience !
