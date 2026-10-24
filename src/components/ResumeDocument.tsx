@@ -42,7 +42,7 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigator.clipboard.writeText("navaneethanvs18@gmail.com");
+    navigator.clipboard.writeText("navaneethankv16@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -144,13 +144,13 @@ export const ResumeDocument: React.FC<ResumeDocumentProps> = ({
               </a>
 
               <a
-                href="mailto:navaneethanvs18@gmail.com"
+                href="mailto:navaneethankv16@gmail.com"
                 className={`inline-flex items-center gap-1.5 font-medium transition-colors ${
                   isDark ? "hover:text-emerald-300" : "hover:text-teal-700"
                 }`}
               >
                 <FaEnvelope className={isDark ? "text-emerald-400" : "text-teal-700"} />
-                <span>navaneethanvs18@gmail.com</span>
+                <span>navaneethankv16@gmail.com</span>
               </a>
 
               <a

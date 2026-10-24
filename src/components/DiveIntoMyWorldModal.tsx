@@ -195,7 +195,7 @@ export const DiveIntoMyWorldModal = ({ isOpen, onClose }: DiveIntoMyWorldModalPr
 
                       <motion.a
                         whileTap={{ scale: 0.96 }}
-                        href="mailto:navaneethanvs18@gmail.com"
+                        href="mailto:navaneethankv16@gmail.com"
                         className="flex-1 min-w-[95px] inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl border border-cyan-400/30 bg-cyan-400/10 hover:bg-cyan-400/20 text-cyan-300 text-[11px] font-bold transition-all"
                       >
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.2}>

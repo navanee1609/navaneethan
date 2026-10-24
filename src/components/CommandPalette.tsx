@@ -40,7 +40,7 @@ export const CommandPalette = () => {
   const [copiedText, setCopiedText] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const emailAddress = "navaneethanvs18@gmail.com";
+  const emailAddress = "navaneethankv16@gmail.com";
 
   const copyToClipboard = useCallback((text: string, label: string) => {
     navigator.clipboard.writeText(text);

@@ -10,7 +10,7 @@
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-EF008F?logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-black?logo=vercel&logoColor=white)](https://navaneethan.vercel.app)
 
-[🌐 Live Site](https://navaneethan.vercel.app) &nbsp;·&nbsp; [💼 LinkedIn](https://www.linkedin.com/in/navaneethan-k-v-546a9025b) &nbsp;·&nbsp; [🐙 GitHub](https://github.com/navanee1609) &nbsp;·&nbsp; [📧 Email](mailto:navaneethanvs18@gmail.com)
+[🌐 Live Site](https://navaneethan.vercel.app) &nbsp;·&nbsp; [💼 LinkedIn](https://www.linkedin.com/in/navaneethan-k-v-546a9025b) &nbsp;·&nbsp; [🐙 GitHub](https://github.com/navanee1609) &nbsp;·&nbsp; [📧 Email](mailto:navaneethankv16@gmail.com)
 
 </div>
 
@@ -171,7 +171,7 @@ navaneethan/
 | 🐙 GitHub | [navanee1609](https://github.com/navanee1609) |
 | 📸 Instagram | [@navneethkrishna_05](https://www.instagram.com/navneethkrishna_05) |
 | 💬 WhatsApp | [+91 76390 96688](https://wa.me/917639096688) |
-| 📧 Email | [navaneethanvs18@gmail.com](mailto:navaneethanvs18@gmail.com) |
+| 📧 Email | [navaneethankv16@gmail.com](mailto:navaneethankv16@gmail.com) |
 
 ---
 

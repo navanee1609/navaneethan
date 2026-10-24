@@ -248,7 +248,7 @@ export const FixedChatIcon = () => {
 
                         <motion.a
                           whileTap={{ scale: 0.97 }}
-                          href="mailto:navaneethanvs18@gmail.com"
+                          href="mailto:navaneethankv16@gmail.com"
                           className="group/email flex-1 inline-flex min-w-0 items-center justify-center gap-1.5 rounded-full border border-cyan-400/20 bg-cyan-400/5 py-2 text-[10.5px] font-semibold text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.04)] transition-all duration-300 hover:border-cyan-300/40 hover:bg-cyan-400/10 hover:text-white"
                         >
                           <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-cyan-300 text-gray-950 transition-transform duration-300 group-hover/email:rotate-12">

@@ -51,8 +51,8 @@ const contactLinks = [
   },
   {
     label: "Email",
-    handle: "navaneethanvs18@gmail.com",
-    href: "mailto:navaneethanvs18@gmail.com?subject=Portfolio%20Inquiry",
+    handle: "navaneethankv16@gmail.com",
+    href: "mailto:navaneethankv16@gmail.com?subject=Portfolio%20Inquiry",
     icon: FaEnvelope,
     brandColor: "#10B981",
     hoverBorder: "hover:border-emerald-400/50 hover:shadow-[0_4px_20px_rgba(16,185,129,0.25)] hover:bg-emerald-400/10",
@@ -174,7 +174,7 @@ export const ContactSection = () => {
   const [isError, setIsError] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const emailAddress = "navaneethanvs18@gmail.com";
+  const emailAddress = "navaneethankv16@gmail.com";
 
 
 
@@ -488,11 +488,11 @@ export const ContactSection = () => {
 
                       {/* Direct Email Fallback */}
                       <a
-                        href="mailto:navaneethanvs18@gmail.com?subject=Portfolio%20Inquiry"
+                        href="mailto:navaneethankv16@gmail.com?subject=Portfolio%20Inquiry"
                         className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-emerald-400/40 hover:bg-emerald-400/5 transition-all duration-200 text-xs font-medium text-white/80 hover:text-emerald-300"
                       >
                         <FaEnvelope className="text-emerald-400" />
-                        navaneethanvs18@gmail.com
+                        navaneethankv16@gmail.com
                       </a>
 
                       {/* Retry Button */}
@@ -571,7 +571,7 @@ export const ContactSection = () => {
                           </div>
                           <div className="min-w-0">
                             <p className="text-white/40 uppercase font-bold text-[9px] sm:text-[10px] tracking-wider truncate">Direct Mail</p>
-                            <p className="text-white text-[11px] sm:text-xs font-semibold truncate" title="navaneethanvs18@gmail.com">navaneethanvs18@gmail.com</p>
+                            <p className="text-white text-[11px] sm:text-xs font-semibold truncate" title="navaneethankv16@gmail.com">navaneethankv16@gmail.com</p>
                           </div>
                         </div>
                       </div>
